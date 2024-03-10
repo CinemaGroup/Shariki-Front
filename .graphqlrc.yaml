@@ -1,5 +1,5 @@
 schema:
-  - ${GRAPHQL_SERVER_URL:"https://back.markmang.beget.tech/api/mygraphql"}
+  - ${GRAPHQL_SERVER_URL:"http://back.markmang.beget.tech/api/mygraphql"}
 documents:
   - 'src/schemas/**/*.graphql'
 extensions:
