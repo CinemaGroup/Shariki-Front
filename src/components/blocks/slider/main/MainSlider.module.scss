@@ -1,0 +1,173 @@
+.catalog {
+	@apply absolute bottom-0 left-0 right-0 w-fit mx-auto translate-y-1/2 font-semibold text-white text-2lg flex items-center gap-7 py-5 bg-red-400 rounded-lg whitespace-nowrap border-hover z-1;
+	padding: 21px 37px 21px 23px;
+}
+.catalogIcon {
+	@apply flex flex-col gap-1.5;
+	min-width: 26px;
+
+	> span {
+		@apply h-0.5 rounded-sm bg-white;
+	}
+}
+.slider {
+	@apply relative w-full flex items-end justify-between gap-0;
+	max-width: 1400px;
+	background-color: #e6e6e6;
+	padding-top: 55px;
+}
+.swiper {
+	@apply min-w-full;
+}
+.item {
+	@apply flex items-start justify-between gap-10;
+	padding: 12px 0px 85px 175px;
+}
+.left {
+	@apply w-full relative flex items-end;
+	height: 700px;
+	max-width: 800px;
+}
+.right {
+	@apply pb-20;
+	margin-top: 22px;
+}
+.background {
+	@apply image-like-bg h-full;
+	width: 550px;
+	margin-left: 52px;
+}
+.heading {
+	@apply absolute top-2.5 font-roboto-serif text-8lg text-transparent h-0 uppercase;
+	left: -463px;
+	-webkit-text-stroke-width: 2px;
+	-webkit-text-stroke-color: #494748;
+	transform: rotate(-90deg);
+	transform-origin: right;
+	width: 460px;
+
+	> span {
+		@apply inline-block;
+		-webkit-text-stroke-color: #ffffff;
+		width: 430px;
+		margin-top: 18px;
+	}
+}
+.box {
+	@apply w-full absolute bottom-0 left-0 right-0 flex flex-col items-end gap-2;
+}
+.text {
+	@apply font-roboto-serif font-bold text-white text-6lg py-2 px-1;
+	background-color: rgba(211, 211, 211, 0.36);
+	margin-bottom: 15px;
+}
+.fill {
+	@apply w-full relative pt-1 -mt-5 flex items-end justify-between gap-10;
+	height: 80px;
+
+	&::before {
+		@apply absolute top-0 left-0 right-0 bg-red-400 w-full h-0.5;
+		content: '';
+	}
+}
+.number {
+	@apply font-semibold text-biggest text-transparent;
+	height: 100px;
+	-webkit-text-stroke-width: 2px;
+	-webkit-text-stroke-color: #494748;
+
+	> span {
+		@apply ml-0.5;
+		-webkit-text-stroke-color: #ffffff;
+	}
+}
+.actions {
+	@apply flex;
+	gap: 18px;
+}
+.prev,
+.next {
+	@apply transition-colors bg-red-400 flex items-center justify-center border-b-hover;
+	width: 70px;
+	height: 70px;
+}
+.cards {
+	@apply flex flex-col items-end justify-between pr-4;
+}
+.card {
+	@apply relative;
+	padding: 25px 55px 32px 0;
+
+	&:last-child {
+		.cardImage {
+			@apply w-auto h-auto absolute -bottom-8 right-2;
+		}
+	}
+}
+.cardInner {
+	@apply rounded-md py-6 px-3 font-roboto-serif font-medium;
+	background-color: #e6191a;
+	width: 265px;
+	height: 150px;
+}
+.cardInfo {
+	@apply flex flex-col items-end gap-1.5 -translate-x-1/2;
+}
+.cardName {
+	@apply text-red-400 text-2lg py-2 px-3 bg-white text-center;
+	min-width: 250px;
+}
+.cardLink {
+	@apply text-white underline underline-offset-4 pr-4 left-hover;
+}
+.cardImage {
+	@apply w-auto h-auto absolute bottom-2 right-0;
+}
+.search {
+	@apply absolute top-3;
+	width: 440px;
+	right: 71px;
+}
+.pagination {
+	@apply w-full h-fit absolute left-0 top-0 bottom-0 my-auto flex flex-col;
+	max-width: 155px;
+	gap: 50px;
+	counter-reset: section;
+}
+.bullet {
+	@apply relative cursor-pointer z-1 transition-all;
+	background-color: #b5b5b5;
+	width: 38px;
+	height: 3px;
+
+	&:hover {
+		@apply bg-red-400;
+
+		&::after {
+			@apply text-red-400;
+		}
+	}
+
+	&::after {
+		@apply absolute -right-3 -bottom-2 translate-x-full font-semibold text-3lg transition-all;
+		color: #b5b5b5;
+		counter-increment: section;
+		content: '0' counter(section);
+	}
+}
+.bulletActive {
+	@apply bg-red-400;
+	width: 76px;
+
+	&::after {
+		@apply text-big text-white;
+	}
+
+	&:hover {
+		@apply bg-red-400;
+
+		&::after {
+			@apply text-white;
+		}
+	}
+}

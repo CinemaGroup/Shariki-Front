@@ -1,0 +1,32 @@
+query Products($query: QueryProductInput!) {
+	products(query: $query) {
+		id
+		name
+		slug
+		sku
+		iconPath
+		description
+		images
+		packageQuantity
+		price
+		oldPrice
+		views
+		boughtTimes
+		sizes {
+			size
+			price
+			oldPrice
+		}
+		colors {
+			color
+			price
+			oldPrice
+		}
+		type {
+			name
+			iconPath
+		}
+		status
+		createdAt
+	}
+}

@@ -1,0 +1,9 @@
+.nav {
+	margin-left: 70px;
+}
+.list {
+	@apply flex items-center gap-10;
+}
+.link {
+	@apply font-light underline-hover;
+}

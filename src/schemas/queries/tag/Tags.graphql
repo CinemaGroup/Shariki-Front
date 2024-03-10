@@ -1,0 +1,7 @@
+query Tags($query: QueryInput!) {
+	tags(query: $query) {
+		name
+		slug
+		imagePath
+	}
+}

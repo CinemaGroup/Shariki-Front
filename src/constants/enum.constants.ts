@@ -1,0 +1,10 @@
+export enum EnumCookies {
+	ACCESS_TOKEN = 'SHARIKI_ACCESS',
+	REFRESH_TOKEN = 'SHARIKI_XLSF',
+	SESSION = 'SHARIKI_SESSION',
+}
+
+export enum EnumStorage {
+	CART = "BALLOONS_CART",
+	FAVORITES = "BALLOONS_FAVORITES"
+}

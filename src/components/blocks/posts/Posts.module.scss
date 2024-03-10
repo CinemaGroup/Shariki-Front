@@ -1,0 +1,64 @@
+.posts {
+	margin-bottom: 100px;
+}
+.heading {
+	@apply mb-9;
+}
+.list {
+	@apply flex gap-9 pb-6 px-2 overflow-x-auto overflow-y-hidden;
+	scrollbar-color: #e51314 #d6d3d3;
+	scrollbar-width: thin;
+
+	&::-webkit-scrollbar {
+		@apply rounded-full;
+		height: 5px;
+	}
+
+	&::-webkit-scrollbar-track {
+		@apply h-full rounded-full bg-gray-400;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		@apply h-full bg-red-400 rounded-full;
+	}
+}
+.item {
+	@apply bg-white rounded-lg flex-col;
+	min-width: calc(25% - 27px);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+}
+.preview {
+	@apply relative;
+	aspect-ratio: 1.44 / 1;
+}
+.info {
+	@apply pt-3 px-5 pb-5;
+}
+.terms {
+	@apply flex flex-wrap items-stretch gap-1.5 mb-5;
+}
+.rubric,
+.date {
+	@apply py-1 justify-center px-3 rounded-full text-md-plus text-white;
+	min-width: 145px;
+	max-width: calc(50% - 3px);
+}
+.rubric {
+	@apply bg-red-400;
+}
+.date {
+	@apply font-roboto-flex bg-red-400/50;
+}
+.name {
+	@apply text-2lg font-semibold mb-2;
+}
+.description {
+	@apply font-light text-md-plus;
+}
+.link {
+	@apply block w-fit mx-auto mt-8 text-red-400 font-semibold underline underline-offset-4 up-hover;
+}
+.more {
+	@apply block w-fit mx-auto mt-5 text-3lg text-center bg-red-400 text-white font-semibold font-roboto-flex rounded-md-extra uppercase up-hover;
+	padding: 10px 73px;
+}

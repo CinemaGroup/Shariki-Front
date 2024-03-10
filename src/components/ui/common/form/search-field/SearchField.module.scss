@@ -1,0 +1,14 @@
+.search {
+	@apply flex items-center justify-between gap-10 bg-gray-800/25 rounded-md;
+}
+.input {
+	@apply w-full py-4 text-gray-800 bg-transparent;
+	padding-left: 26px;
+
+	&::placeholder {
+		@apply text-gray-800;
+	}
+}
+.icon {
+	margin-right: 26px;
+}

@@ -1,0 +1,13 @@
+mutation GetNewTokens {
+	newTokens {
+		user {
+			profile {
+				login
+				email
+				avatarPath
+			}
+			role
+		}
+		accessToken
+	}
+}

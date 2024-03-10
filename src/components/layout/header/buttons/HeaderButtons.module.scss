@@ -1,0 +1,14 @@
+.list {
+	@apply flex gap-3.5;
+}
+.link,
+.cart {
+	@apply flex flex-col justify-between items-center text-sm-plus up-hover;
+}
+.cart {
+	@apply relative;
+
+	> span {
+		@apply absolute right-0 top-0 min-w-3 aspect-square flex items-center justify-center gap-0.5 bg-red-400 rounded-full font-semibold font-roboto-flex text-white;
+	}
+}

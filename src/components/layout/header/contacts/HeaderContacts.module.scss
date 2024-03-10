@@ -1,0 +1,10 @@
+.list {
+	@apply flex items-center gap-3 font-light;
+}
+.call {
+	@apply flex items-center gap-1;
+}
+.link,
+.call {
+	@apply underline-hover;
+}

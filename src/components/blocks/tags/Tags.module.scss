@@ -1,0 +1,37 @@
+.tags {
+	@apply overflow-x-auto overflow-y-hidden pb-7 mb-10;
+	scrollbar-color: #e51314 #d6d3d3;
+	scrollbar-width: thin;
+
+	&::-webkit-scrollbar {
+		@apply rounded-full;
+		height: 3px;
+	}
+
+	&::-webkit-scrollbar-track {
+		@apply h-full rounded-full bg-gray-400;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		@apply h-full bg-red-400 rounded-full;
+	}
+}
+.list {
+	@apply flex items-start gap-16;
+}
+.link {
+	@apply flex-col gap-1 up-hover;
+	min-width: 130px;
+}
+.images {
+	@apply relative w-full flex items-end aspect-square;
+}
+.image {
+	@apply w-full h-full;
+}
+.balloons {
+	@apply absolute right-0 bottom-0 translate-x-2/4;
+}
+.name {
+	@apply p-0.5 text-white text-lg bg-red-400 rounded-sm-extra text-center;
+}

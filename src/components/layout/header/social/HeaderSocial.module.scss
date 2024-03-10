@@ -1,0 +1,7 @@
+.list {
+	@apply flex items-center gap-4;
+	margin-left: 90px;
+}
+.link {
+	@apply up-hover;
+}

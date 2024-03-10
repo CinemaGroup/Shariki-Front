@@ -1,0 +1,1 @@
+1.Change constants - SITE_NAME, SITE_EMAIL and etc.

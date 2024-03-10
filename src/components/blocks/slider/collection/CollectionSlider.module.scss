@@ -1,0 +1,133 @@
+.slider {
+	@apply w-full flex flex-col bg-gray-100;
+}
+.swiper {
+	@apply h-full;
+}
+.fill {
+	@apply relative;
+	max-height: 788px;
+	padding: 25px 12px 90px;
+}
+.title {
+	@apply w-full bg-red-400 flex items-center justify-center gap-2 text-white font-semibold font-roboto-serif text-lg;
+	padding: 13px 15px;
+}
+.item {
+	@apply relative w-fit mx-auto;
+	padding: 50px 27px 36px 45px;
+}
+.card {
+	@apply bg-transparent mb-2;
+	border: 5px solid #707070;
+	padding: 20px;
+	width: 265px;
+}
+.name {
+	@apply uppercase font-roboto-serif font-semibold text-4lg text-gray-600;
+}
+.leftBalloon,
+.rightBalloon,
+.tree,
+.decor {
+	@apply absolute;
+}
+.leftBalloon {
+	@apply left-0;
+	top: 13px;
+}
+.rightBalloon {
+	@apply top-0 right-0;
+}
+.tree {
+	right: 39px;
+	top: 29px;
+}
+.decor {
+	left: 44px;
+	top: 127px;
+}
+.link {
+	@apply w-fit ml-auto font-roboto-serif text-sm-plus pl-3 flex gap-1.5 items-center bg-gray-base/20 rounded-full left-hover;
+	height: 16px;
+
+	> span {
+		@apply h-full rounded-full bg-red-400 flex items-center justify-center aspect-square;
+	}
+}
+.actions {
+	@apply absolute z-1 right-0 top-0 bottom-0 my-auto flex flex-col justify-between items-center;
+	height: 155px;
+	width: 55px;
+}
+.prev,
+.next {
+	> span {
+		@apply uppercase text-sm-plus h-0 block absolute;
+		width: 30px;
+		transform: rotate(-90deg);
+		transform-origin: right;
+	}
+}
+.prev {
+	> img {
+		@apply up-hover;
+	}
+
+	> span {
+		left: -21px;
+		top: 23px;
+	}
+}
+.next {
+	> img {
+		@apply down-hover;
+	}
+
+	> span {
+		left: -21px;
+		bottom: 55px;
+	}
+}
+.dots {
+	@apply absolute left-0 bottom-0 right-0 flex items-end justify-center gap-6;
+	counter-reset: dot;
+}
+.bullet {
+	@apply relative cursor-pointer z-1 transition-all;
+	background-color: #696969;
+	width: 85px;
+	height: 3px;
+
+	&::before {
+		@apply absolute left-0 bottom-3 font-semibold text-2lg transition-all;
+		color: #696969;
+		counter-increment: dot;
+		content: '0' counter(dot);
+	}
+
+	&:hover {
+		@apply bg-red-400;
+
+		&:before {
+			@apply text-red-400;
+		}
+	}
+}
+.bulletActive {
+	@apply bg-red-400;
+	width: 102px;
+	height: 5px;
+
+	&::before {
+		@apply text-6lg text-gray-base;
+	}
+
+	&:hover {
+		@apply bg-red-400;
+
+		&::before {
+			@apply text-gray-base;
+		}
+	}
+}

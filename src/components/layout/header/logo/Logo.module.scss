@@ -1,0 +1,10 @@
+.logo {
+	@apply flex items-center gap-4;
+}
+.name {
+	@apply text-red-400 font-roboto-mono font-bold text-2lg;
+}
+.icon {
+	@apply bg-red-400;
+	padding: 5px;
+}

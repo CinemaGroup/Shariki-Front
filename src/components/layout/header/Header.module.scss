@@ -1,0 +1,9 @@
+.header {
+	@apply flex justify-between gap-10 pr-12;
+}
+.left {
+	@apply flex items-center;
+}
+.right {
+	@apply flex items-center gap-5;
+}

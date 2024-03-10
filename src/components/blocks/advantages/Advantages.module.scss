@@ -1,0 +1,41 @@
+.advantages {
+	@apply flex items-center justify-between gap-7 text-gray-800 mb-7;
+}
+.info {
+	@apply relative pl-5 w-full;
+	max-width: 925px;
+
+	&::before {
+		@apply absolute left-0 top-0 bottom-0 h-full w-0.5 bg-red-400;
+		content: '';
+	}
+}
+.infoName {
+	@apply font-semibold text-5lg mb-3.5;
+}
+.infoText {
+	@apply text-lg w-full;
+	max-width: 675px;
+}
+.menuName {
+	@apply font-medium text-7lg mb-4;
+}
+.list {
+	@apply flex items-start gap-7;
+}
+.item {
+	@apply text-center w-full flex flex-col items-center;
+	max-width: 255px;
+}
+.itemName {
+	@apply relative text-lg pb-3 mb-2 w-full;
+	max-width: 130px;
+
+	&::after {
+		@apply absolute left-0 right-0 bottom-0 mx-auto w-4 h-0.5 bg-red-400;
+		content: '';
+	}
+}
+.itemDescription {
+	@apply text-md;
+}
