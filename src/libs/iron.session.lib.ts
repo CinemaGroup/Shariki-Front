@@ -7,7 +7,6 @@ import {
 	type IronSessionData,
 	type IronSessionOptions,
 } from 'iron-session'
-
 import { cookies } from 'next/headers'
 
 export const sessionOptions: IronSessionOptions = {

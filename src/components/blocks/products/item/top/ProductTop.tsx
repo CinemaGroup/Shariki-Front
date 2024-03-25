@@ -7,24 +7,32 @@ import type { IProductPropsWithVariant } from '../../interface/products.interfac
 const ProductTop: FC<IProductPropsWithVariant> = ({ product, variant }) => {
 	return (
 		<div className={styles.top}>
-			<div className={styles.type}>
-				<StaticImage
-									className='w-auto h-auto'
-					src={product.type.iconPath}
-					width={0}
-					height={0}
-					sizes="100vw"
-					alt={product.type.name}
-				/>
-			</div>
-			<span
-				className={cn(styles.variant, {
-					[styles.green]: variant === 'newest',
-					[styles.red]: variant === 'sale',
-				})}
-			>
-				{variant === 'sale' ? 'Акция' : 'Новинка'}
-			</span>
+			{product.types.length > 0 && (
+				<div className={styles.types}>
+					{product.types.map((type, index) => (
+						<div className={styles.type} key={index}>
+							<StaticImage
+								className="w-auto h-auto"
+								src={type.iconPath}
+								width={0}
+								height={0}
+								sizes="100vw"
+								alt="Type"
+							/>
+						</div>
+					))}
+				</div>
+			)}
+			{variant !== 'none' && (
+				<span
+					className={cn(styles.variant, {
+						[styles.green]: variant === 'newest',
+						[styles.red]: variant === 'sale',
+					})}
+				>
+					{variant === 'sale' ? 'Акция' : 'Новинка'}
+				</span>
+			)}
 		</div>
 	)
 }

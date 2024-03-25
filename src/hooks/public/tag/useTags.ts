@@ -2,21 +2,22 @@ import {
 	Sort,
 	Status,
 	TagsDocument,
-	TagsQuery,
-	TagsQueryVariables,
+	type TagsQuery,
+	type TagsQueryVariables,
 } from '@/__generated__/output'
-import { apolloClient } from '@/api/apollo.client'
+import { serverApolloClient } from '@/api/apollo/apollo.client'
 
 export const useTags = async () => {
-	const { data } = await apolloClient().query<TagsQuery, TagsQueryVariables>({
-		query: TagsDocument,
-		variables: {
-			query: {
-				sort: Sort.Oldest,
-				status: Status.Hidden,
+	return serverApolloClient
+		.query<TagsQuery, TagsQueryVariables>({
+			query: TagsDocument,
+			fetchPolicy: 'no-cache',
+			variables: {
+				query: {
+					sort: Sort.Oldest,
+					status: Status.Published,
+				},
 			},
-		},
-	})
-
-	return { data }
+		})
+		.then(({ data }) => ({ tags: data }))
 }

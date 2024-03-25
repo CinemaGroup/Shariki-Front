@@ -1,12 +1,23 @@
 import StaticImage from '@/components/ui/common/image/StaticImage'
+import ManageActions from '@/components/ui/elements/manage/actions/ManageActions'
+import { ADMIN_EDITS } from '@/constants/url.constants'
+import type { IClassName } from '@/shared/interfaces/class-name/class-name.interface'
+import type { IManageActions } from '@/shared/interfaces/manage/manage.interface'
 import type { TypeTag } from '@/shared/types/tag/tag.type'
+import cn from 'clsx'
 import Link from 'next/link'
 import type { FC } from 'react'
 import styles from '../Tags.module.scss'
 
-const Tag: FC<{ tag: TypeTag }> = ({ tag }) => {
+const Tag: FC<TypeTag & IClassName & IManageActions> = ({
+	deleteHandler,
+	toggleHandler,
+	place,
+	tag,
+	className,
+}) => {
 	return (
-		<li className={styles.item}>
+		<li className={cn(styles.item, className && className)}>
 			<Link href={`/tag/${tag.slug}`} className={styles.link}>
 				<div className={styles.images}>
 					<StaticImage
@@ -26,6 +37,12 @@ const Tag: FC<{ tag: TypeTag }> = ({ tag }) => {
 				</div>
 				<h3 className={styles.name}>{tag.name}</h3>
 			</Link>
+			<ManageActions
+				place={place}
+				deleteHandler={deleteHandler}
+				toggleHandler={toggleHandler}
+				edit={ADMIN_EDITS.TAG(tag.id)}
+			/>
 		</li>
 	)
 }

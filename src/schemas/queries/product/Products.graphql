@@ -1,12 +1,11 @@
-query Products($query: QueryProductInput!) {
-	products(query: $query) {
+query Products($query: QueryProductInput!, $isSale: Boolean) {
+	products(query: $query, isSale: $isSale) {
 		id
 		name
 		slug
 		sku
 		iconPath
 		description
-		images
 		packageQuantity
 		price
 		oldPrice
@@ -21,9 +20,9 @@ query Products($query: QueryProductInput!) {
 			color
 			price
 			oldPrice
+			images
 		}
-		type {
-			name
+		types {
 			iconPath
 		}
 		status

@@ -8,6 +8,5 @@ mutation register($data: AuthRegisterInput!) {
 			}
 			role
 		}
-		accessToken
 	}
 }

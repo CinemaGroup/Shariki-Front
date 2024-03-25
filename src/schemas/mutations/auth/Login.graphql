@@ -8,6 +8,5 @@ mutation login($data: AuthLoginInput!) {
 			}
 			role
 		}
-		accessToken
 	}
 }

@@ -1,0 +1,18 @@
+.edit {
+	@apply py-10;
+}
+.wrapper {
+	@apply min-h-screen h-full flex flex-col items-start;
+}
+.heading {
+	@apply mb-10 mx-auto text-2lg font-semibold;
+}
+.form {
+	@apply w-full h-full flex flex-wrap items-start gap-x-10 gap-y-4;
+}
+.updateWrapper {
+	@apply mt-5;
+}
+.update {
+	@apply px-12 py-3 rounded-sm font-medium;
+}

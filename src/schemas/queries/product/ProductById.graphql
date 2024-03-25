@@ -1,0 +1,42 @@
+query ProductById($id: Int!) {
+	productById(id: $id) {
+		name
+		sku
+		price
+		oldPrice
+		packageQuantity
+		tags {
+			id
+			name
+		}
+		types {
+			id
+			name
+		}
+		holidays {
+			id
+			name
+		}
+		characteristics {
+			id
+			name
+		}
+		categories {
+			id
+			name
+		}
+		description
+		iconPath
+		colors {
+			color
+			price
+			oldPrice
+			images
+		}
+		sizes {
+			size
+			price
+			oldPrice
+		}
+	}
+}

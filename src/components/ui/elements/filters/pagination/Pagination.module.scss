@@ -1,0 +1,9 @@
+.pagination {
+	@apply flex items-stretch justify-center gap-5 mt-20;
+}
+.arrow {
+	@apply animate-fade flex items-center justify-center cursor-pointer h-12 w-10 rounded-extra-small bg-gray-800 transition-colors hover:bg-purple-300;
+}
+.current {
+	@apply animate-fade flex items-center justify-center h-12 w-10 bg-purple-300 rounded-extra-small;
+}

@@ -1,24 +1,35 @@
 import cn from 'clsx'
-import { useState, type FC } from 'react'
+import { type FC } from 'react'
 import StaticImage from '../../image/StaticImage'
+import globalStyles from '../Form.module.scss'
 import styles from './SearchField.module.scss'
 import type { ISearchField } from './interface/search-field.interface'
 
 const SearchField: FC<ISearchField> = ({
+	size = 'md',
 	className,
 	placeholder = 'Поиск',
 	label,
+	searchTerm,
+	handleSearch,
 }) => {
-	const [searchTerm, setSearchTerm] = useState('')
-
 	return (
-		<div className={styles.field}>
-			{label && <label className={styles.label}>{label}</label>}
-			<div className={cn(styles.search, className && className)}>
+		<div className={globalStyles.field}>
+			{label && <label className={globalStyles.label}>{label}</label>}
+			<div
+				className={cn(
+					styles.search,
+					{
+						[styles.small]: size === 'sm',
+						[styles.medium]: size === 'md',
+					},
+					className && className
+				)}
+			>
 				<input
 					placeholder={placeholder}
 					value={searchTerm}
-					onChange={(e) => setSearchTerm(e.target.value)}
+					onChange={handleSearch}
 					className={styles.input}
 				/>
 				<StaticImage

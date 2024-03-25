@@ -6,15 +6,21 @@ import Slider from '@/components/blocks/slider/Slider'
 import Tags from '@/components/blocks/tags/Tags'
 import Container from '@/components/ui/common/container/Container'
 import Section from '@/components/ui/common/section/Section'
+import { useProducts } from '@/hooks/public/product/useProducts'
+import { useTags } from '@/hooks/public/tag/useTags'
 import type { FC } from 'react'
 
-const Home: FC = () => {
+const Home: FC = async () => {
+	const { tags } = await useTags()
+	const { products: newestProducts } = await useProducts(false)
+	const { products: saleProducts } = await useProducts(true)
+
 	return (
 		<>
 			<Slider />
 			<Section>
 				<Container variant="lg">
-					<Tags />
+					<Tags tags={tags.tags} />
 				</Container>
 			</Section>
 			<Section>
@@ -24,7 +30,7 @@ const Home: FC = () => {
 			</Section>
 			<Section>
 				<Container variant="lg">
-					<Products variant="newest" />
+					<Products variant="newest" products={newestProducts.products} />
 				</Container>
 			</Section>
 			<Section>
@@ -34,7 +40,7 @@ const Home: FC = () => {
 			</Section>
 			<Section>
 				<Container variant="lg">
-					<Products variant="sale" />
+					<Products variant="sale" products={saleProducts.products} />
 				</Container>
 			</Section>
 			<Section>

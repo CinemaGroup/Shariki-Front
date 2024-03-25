@@ -1,11 +1,11 @@
+import type { IClassName } from '@/shared/interfaces/class-name/class-name.interface'
 import type { CSSProperties } from 'react'
 
-interface IImageProps {
+interface IImageProps extends IClassName {
 	quality?: number
 	src: string
 	alt: string
 	style?: CSSProperties
-	className?: string
 }
 
 export interface IImage extends IImageProps {

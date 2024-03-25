@@ -1,0 +1,9 @@
+query CategoryById($id: Int!) {
+	categoryById(id: $id) {
+		name
+		parent {
+			id
+			name
+		}
+	}
+}

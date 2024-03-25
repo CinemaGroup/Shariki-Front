@@ -1,6 +1,6 @@
 'use client'
 
-import { apolloClient } from '@/api/apollo.client'
+import { apolloClient } from '@/api/apollo/apollo.client'
 import { IS_PRODUCTION } from '@/constants/global.constants'
 import { ApolloProvider } from '@apollo/client'
 import { loadDevMessages, loadErrorMessages } from '@apollo/client/dev'

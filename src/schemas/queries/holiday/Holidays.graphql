@@ -1,0 +1,8 @@
+query Holidays($query: QueryInput!) {
+	holidays(query: $query) {
+		id
+		name
+		slug
+		imagePath
+	}
+}

@@ -4,7 +4,7 @@
 		@apply px-4 py-2;
 		background-color: #242529 !important;
 		border: none !important;
-		border-radius: 10px !important;
+		border-radius: 5px !important;
 		border-bottom: none !important;
 		box-shadow: none !important;
 
@@ -78,6 +78,8 @@
 		background-color: #292a2e !important;
 		color: rgba(white, 0.6) !important;
 		z-index: 30 !important;
+		border-top-left-radius: 0 !important;
+		border-top-right-radius: 0 !important;
 
 		&-list {
 			padding: 0 !important;
@@ -86,9 +88,15 @@
 
 	&__option {
 		cursor: pointer !important;
+
 		&--is-focused,
 		&--is-selected {
 			background-color: #39393f !important;
+
+			&:last-child {
+				border-bottom-left-radius: 4px !important;
+				border-bottom-right-radius: 4px !important;
+			}
 		}
 	}
 
@@ -115,6 +123,9 @@
 	}
 
 	&__control--menu-is-open {
+		border-bottom-left-radius: 0px !important;
+		border-bottom-right-radius: 0px !important;
+
 		.custom-select-top__indicator {
 			> svg {
 				transform: rotate(180deg);
@@ -122,23 +133,25 @@
 		}
 	}
 }
-.public-DraftEditor-content {
-	@apply overflow-x-hidden overflow-y-auto;
-	padding: 20px !important;
-	scrollbar-color: #66676e rgba(255, 255, 255, 0.56);
-	scrollbar-width: thin;
-	&::-webkit-scrollbar {
-		@apply w-2 rounded-lg;
+.public {
+	&-DraftStyleDefault-block {
+		margin: 0 !important;
 	}
+	&-DraftEditor-content {
+		@apply p-4 overflow-x-hidden overflow-y-auto;
+		scrollbar-color: #66676e rgba(255, 255, 255, 0.56);
+		scrollbar-width: thin;
 
-	&::-webkit-scrollbar-track {
-		@apply w-full bg-gray-400 rounded-lg;
-	}
+		&::-webkit-scrollbar {
+			@apply w-2 rounded-lg;
+		}
 
-	&::-webkit-scrollbar-thumb {
-		@apply w-full bg-purple-400 rounded-lg;
+		&::-webkit-scrollbar-track {
+			@apply w-full bg-gray-400 rounded-lg;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			@apply w-full bg-purple-400 rounded-lg;
+		}
 	}
-}
-.public-DraftStyleDefault-block {
-	margin: 0 !important;
 }

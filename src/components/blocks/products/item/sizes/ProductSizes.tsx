@@ -1,14 +1,17 @@
 'use client'
 
 import cn from 'clsx'
-import { useState, type FC } from 'react'
+import { type FC } from 'react'
 import styles from '../../Products.module.scss'
 import type { IProductProps } from '../../interface/products.interface'
+import { IProductSizes } from './interface/product-sizes.interface'
 
-const ProductSizes: FC<IProductProps> = ({ product }) => {
+const ProductSizes: FC<IProductProps & IProductSizes> = ({
+	product,
+	size,
+	setSize,
+}) => {
 	if (product.sizes.length === 0) return null
-
-	const [size, setSize] = useState(product.sizes[0].size)
 
 	return (
 		<ul className={styles.sizes}>
@@ -16,9 +19,9 @@ const ProductSizes: FC<IProductProps> = ({ product }) => {
 				<li className={styles.size} key={index}>
 					<button
 						className={cn(styles.sizeBtn, {
-							[styles.picked]: size === item.size,
+							[styles.picked]: size.size === item.size,
 						})}
-						onClick={() => setSize(item.size)}
+						onClick={() => setSize(item)}
 					>
 						{item.size}
 					</button>

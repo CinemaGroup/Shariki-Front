@@ -1,0 +1,7 @@
+query Categories($query: QueryInput!) {
+	categories(query: $query) {
+		id
+		name
+		slug
+	}
+}

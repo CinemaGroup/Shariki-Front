@@ -1,5 +1,27 @@
 .search {
-	@apply flex items-center justify-between gap-10 bg-gray-800/25 rounded-md;
+	@apply flex items-center justify-between gap-10 bg-gray-800/25;
+
+	&.medium {
+		@apply rounded-md;
+
+		.input {
+			@apply py-4;
+			padding-left: 26px;
+		}
+	}
+
+	&.small {
+		@apply rounded-sm;
+
+		.input {
+			@apply py-2.5 text-md;
+			padding-left: 20px;
+		}
+
+		.icon {
+			@apply w-4;
+		}
+	}
 }
 .input {
 	@apply w-full py-4 text-gray-800 bg-transparent;

@@ -2,6 +2,7 @@
 
 import StaticImage from '@/components/ui/common/image/StaticImage'
 import { useSwiper } from '@/hooks/helpers/slider/useSwiper'
+import type { TypeColor } from '@/shared/types/color/color.type'
 import type { FC } from 'react'
 import 'swiper/css'
 import { Pagination } from 'swiper/modules'
@@ -9,8 +10,10 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import styles from '../../Products.module.scss'
 import type { IProductProps } from '../../interface/products.interface'
 
-const ProductImages: FC<IProductProps> = ({ product }) => {
+const ProductImages: FC<IProductProps & TypeColor> = ({ product, color }) => {
 	const { setSwiper, setBeginning, setEnd } = useSwiper()
+
+	if (!color || color.images.length === 0) return null
 
 	return (
 		<div className={styles.slider}>
@@ -35,7 +38,7 @@ const ProductImages: FC<IProductProps> = ({ product }) => {
 					setEnd(isEnd)
 				}}
 			>
-				{product.images.map((image, index) => (
+				{color.images.map((image, index) => (
 					<SwiperSlide key={index} className={styles.image}>
 						<StaticImage
 							className="w-auto h-auto"
@@ -47,9 +50,8 @@ const ProductImages: FC<IProductProps> = ({ product }) => {
 						/>
 					</SwiperSlide>
 				))}
-							<div id="imagesBullets" className={styles.dots}></div>
+				<div id="imagesBullets" className={styles.dots}></div>
 			</Swiper>
-
 		</div>
 	)
 }

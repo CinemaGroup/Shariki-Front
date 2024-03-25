@@ -18,26 +18,28 @@ const ProductInfo: FC<IProductProps> = ({ product }) => {
 							{product.price} ₽
 							<span className={styles.salePercent}>
 								-
-								{((parseFloat(formatPrice(product.oldPrice)) -
-									parseFloat(formattedPrice)) /
-									parseFloat(formatPrice(product.oldPrice))) *
-									100}
+								{Math.round(
+									((parseInt(formatPrice(product.oldPrice), 10) -
+										parseInt(formattedPrice, 10)) /
+										parseInt(formatPrice(product.oldPrice), 10)) *
+										100
+								)}{' '}
 								%
 							</span>
 						</div>
 						<span className={styles.piecePrice}>
-							{(parseFloat(formattedPrice) / product.packageQuantity).toFixed(
-								2
-							).replace('.', ',')}{' '}
+							{(parseFloat(formattedPrice) / product.packageQuantity)
+								.toFixed(2)
+								.replace('.', ',')}{' '}
 							₽ за шт
 						</span>
 					</div>
 					<div className={styles.oldPriceBox}>
 						<span className={styles.oldPrice}>{product.oldPrice} ₽</span>
 						<span className={styles.piecePrice}>
-							{(
-								parseFloat(formattedOldPrice) / product.packageQuantity
-							).toFixed(2).replace('.', ',')}{' '}
+							{(parseFloat(formattedOldPrice) / product.packageQuantity)
+								.toFixed(2)
+								.replace('.', ',')}{' '}
 							₽ за шт
 						</span>
 					</div>
@@ -46,7 +48,9 @@ const ProductInfo: FC<IProductProps> = ({ product }) => {
 				<div className={styles.currentPriceBox}>
 					<span className={styles.price}>{product.price} ₽</span>
 					<span className={styles.piecePrice}>
-						{(parseFloat(formattedPrice) / product.packageQuantity).toFixed(2).replace('.', ',')}{' '}
+						{(parseFloat(formattedPrice) / product.packageQuantity)
+							.toFixed(2)
+							.replace('.', ',')}{' '}
 						₽ за шт
 					</span>
 				</div>

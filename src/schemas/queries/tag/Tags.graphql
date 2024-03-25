@@ -1,5 +1,6 @@
 query Tags($query: QueryInput!) {
 	tags(query: $query) {
+		id
 		name
 		slug
 		imagePath

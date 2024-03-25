@@ -1,14 +1,17 @@
 'use client'
 
 import cn from 'clsx'
-import { useState, type FC } from 'react'
+import { type FC } from 'react'
 import styles from '../../Products.module.scss'
 import type { IProductProps } from '../../interface/products.interface'
+import type { IProductColors } from './interface/product-colors.interface'
 
-const ProductColors: FC<IProductProps> = ({ product }) => {
+const ProductColors: FC<IProductProps & IProductColors> = ({
+	product,
+	color,
+	setColor,
+}) => {
 	if (product.colors.length === 0) return null
-
-	const [color, setColor] = useState(product.colors[0].color)
 
 	return (
 		<ul className={styles.colors}>
@@ -16,9 +19,9 @@ const ProductColors: FC<IProductProps> = ({ product }) => {
 				<li className={styles.color} key={index}>
 					<button
 						className={cn(styles.colorBtn, {
-							[styles.picked]: color === item.color,
+							[styles.picked]: color.color === item.color,
 						})}
-						onClick={() => setColor(item.color)}
+						onClick={() => setColor(item)}
 					>
 						<span style={{ backgroundColor: item.color }}></span>
 					</button>

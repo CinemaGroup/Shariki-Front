@@ -3,7 +3,7 @@
 import SearchField from '@/components/ui/common/form/search-field/SearchField'
 import { useSwiper } from '@/hooks/helpers/slider/useSwiper'
 import Link from 'next/link'
-import { type FC } from 'react'
+import { useState, type FC } from 'react'
 import 'swiper/css'
 import 'swiper/css/effect-fade'
 import { EffectFade, Pagination } from 'swiper/modules'
@@ -14,10 +14,15 @@ import MainSliderItem from './item/MainSliderItem'
 const MainSlider: FC = () => {
 	const { setSwiper, setBeginning, setEnd, beginning, end, prev, next } =
 		useSwiper()
+	const [searchTerm, setSearchTerm] = useState('')
 
 	return (
 		<div className={styles.slider}>
-			<SearchField className={styles.search} />
+			<SearchField
+				className={styles.search}
+				searchTerm={searchTerm}
+				handleSearch={(e) => setSearchTerm(e.target.value)}
+			/>
 			<Swiper
 				className={styles.swiper}
 				modules={[Pagination, EffectFade]}
