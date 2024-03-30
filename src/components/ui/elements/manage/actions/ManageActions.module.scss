@@ -2,6 +2,7 @@
 	@apply flex items-center justify-center gap-4 mt-4;
 }
 .remove,
-.edit {
+.edit,
+.duplicate {
 	@apply up-hover;
 }

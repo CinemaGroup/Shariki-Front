@@ -5,6 +5,7 @@ import {
 	useProductsQuery,
 	useToggleProductMutation,
 	type QueryProductInput,
+	useDuplicateProductMutation,
 } from '@/__generated__/output'
 import { ADMIN_EDITS } from '@/constants/url.constants'
 import { useRouter } from 'next/navigation'
@@ -62,10 +63,22 @@ export const useManageProducts = (
 		},
 	})
 
+	const [duplicateProduct] = useDuplicateProductMutation({
+		fetchPolicy: "no-cache",
+		refetchQueries: [ProductsDocument],
+		onCompleted: () => {
+			toast.success('Дубликат продукта создан.')
+		},
+		onError: (error) => {
+			toast.error(error.message)
+		},
+	})
+
 	return {
 		data,
 		createProduct,
 		deleteProduct,
 		toggleProduct,
+		duplicateProduct
 	}
 }

@@ -52,14 +52,6 @@ const MainSlider: FC = () => {
 					</SwiperSlide>
 				))}
 			</Swiper>
-			<Link className={styles.catalog} href="/catalog">
-				<span className={styles.catalogIcon}>
-					<span></span>
-					<span></span>
-					<span></span>
-				</span>
-				<span>КАТАЛОГ ТОВАРОВ</span>
-			</Link>
 		</div>
 	)
 }

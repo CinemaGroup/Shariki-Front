@@ -18,7 +18,7 @@ const ManageTags: FC = () => {
 		searchTerm,
 		debounceSearch,
 	} = useFilters({ variant: 'default', place: 'manage' })
-	const { data, createTag, deleteTag, toggleTag } = useManageTags(
+	const { data, createTag, deleteTag, toggleTag, duplicateTag } = useManageTags(
 		queryParams,
 		debounceSearch
 	)
@@ -62,6 +62,13 @@ const ManageTags: FC = () => {
 									}
 									toggleHandler={() =>
 										toggleTag({
+											variables: {
+												id: tag.id,
+											},
+										})
+									}
+									duplicateHandler={() =>
+										duplicateTag({
 											variables: {
 												id: tag.id,
 											},

@@ -10,6 +10,7 @@ import styles from './Category.module.scss'
 const Category: FC<TypeCategory & IClassName & IManageActions> = ({
 	deleteHandler,
 	toggleHandler,
+	duplicateHandler,
 	place,
 	category,
 	className,
@@ -23,6 +24,7 @@ const Category: FC<TypeCategory & IClassName & IManageActions> = ({
 				place={place}
 				deleteHandler={deleteHandler}
 				toggleHandler={toggleHandler}
+				duplicateHandler={duplicateHandler}
 				edit={ADMIN_EDITS.CATEGORY(category.id)}
 			/>
 		</div>

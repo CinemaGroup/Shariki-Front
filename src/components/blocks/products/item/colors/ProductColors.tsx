@@ -19,7 +19,7 @@ const ProductColors: FC<IProductProps & IProductColors> = ({
 				<li className={styles.color} key={index}>
 					<button
 						className={cn(styles.colorBtn, {
-							[styles.picked]: color.color === item.color,
+							[styles.picked]: color ? color.color === item.color : false,
 						})}
 						onClick={() => setColor(item)}
 					>

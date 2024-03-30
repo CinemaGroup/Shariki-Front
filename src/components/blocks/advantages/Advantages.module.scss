@@ -26,6 +26,15 @@
 .item {
 	@apply text-center w-full flex flex-col items-center;
 	max-width: 255px;
+
+	&:first-child > img {
+		@apply mb-6;
+	}
+
+	&:nth-child(2) > img {
+		max-width: 80px;
+		max-height: 147px;
+	}
 }
 .itemName {
 	@apply relative text-lg pb-3 mb-2 w-full;

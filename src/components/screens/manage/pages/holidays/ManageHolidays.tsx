@@ -18,7 +18,7 @@ const ManageHolidays: FC = () => {
 		searchTerm,
 		debounceSearch,
 	} = useFilters({ variant: 'default', place: 'manage' })
-	const { data, createHoliday, deleteHoliday, toggleHoliday } =
+	const { data, createHoliday, deleteHoliday, toggleHoliday, duplicateHoliday } =
 		useManageHolidays(queryParams, debounceSearch)
 
 	return (
@@ -63,6 +63,13 @@ const ManageHolidays: FC = () => {
 									}
 									toggleHandler={() =>
 										toggleHoliday({
+											variables: {
+												id: holiday.id,
+											},
+										})
+									}
+									duplicateHandler={() =>
+										duplicateHoliday({
 											variables: {
 												id: holiday.id,
 											},

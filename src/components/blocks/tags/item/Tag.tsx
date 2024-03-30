@@ -12,6 +12,7 @@ import styles from '../Tags.module.scss'
 const Tag: FC<TypeTag & IClassName & IManageActions> = ({
 	deleteHandler,
 	toggleHandler,
+	duplicateHandler,
 	place,
 	tag,
 	className,
@@ -41,6 +42,7 @@ const Tag: FC<TypeTag & IClassName & IManageActions> = ({
 				place={place}
 				deleteHandler={deleteHandler}
 				toggleHandler={toggleHandler}
+				duplicateHandler={duplicateHandler}
 				edit={ADMIN_EDITS.TAG(tag.id)}
 			/>
 		</li>

@@ -5,6 +5,7 @@ import {
 	useDeleteHolidayMutation,
 	useToggleHolidayMutation,
 	type QueryInput,
+	useDuplicateHolidayMutation,
 } from '@/__generated__/output'
 import { ADMIN_EDITS } from '@/constants/url.constants'
 import { useRouter } from 'next/navigation'
@@ -62,10 +63,22 @@ export const useManageHolidays = (
 		},
 	})
 
+	const [duplicateHoliday] = useDuplicateHolidayMutation({
+		fetchPolicy: "no-cache",
+		refetchQueries: [HolidaysDocument],
+		onCompleted: () => {
+			toast.success('Дубликат праздника создан.')
+		},
+		onError: (error) => {
+			toast.error(error.message)
+		},
+	})
+
 	return {
 		data,
 		createHoliday,
 		deleteHoliday,
 		toggleHoliday,
+		duplicateHoliday
 	}
 }

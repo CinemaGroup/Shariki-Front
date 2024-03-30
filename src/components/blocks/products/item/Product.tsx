@@ -20,24 +20,33 @@ const Product: FC<IProductPropsWithVariant & IManageActions & IClassName> = ({
 	variant,
 	deleteHandler,
 	toggleHandler,
+	duplicateHandler,
 	place,
 	className,
 }) => {
-	const [color, setColor] = useState(product.colors[0])
-	const [size, setSize] = useState(product.sizes[0])
-
+	const [color, setColor] = useState(
+		product.colors.length > 0 ? product.colors[0] : null
+	)
+	const [size, setSize] = useState(
+		product.colors.length > 0 ? product.sizes[0] : null
+	)
 
 	return (
 		<div className={cn(styles.item, className && className)}>
 			<ProductTop variant={variant} product={product} />
 			<ProductImages product={product} color={color} />
-			<ProductInfo product={product} />
+			<ProductInfo
+				product={product}
+				price={size ? size.price : product.price}
+				oldPrice={size ? size.oldPrice : product.oldPrice}
+			/>
 			<ProductSizes product={product} size={size} setSize={setSize} />
 			<ProductColors product={product} color={color} setColor={setColor} />
 			<ProductButtons product={product} />
 			<ManageActions
 				toggleHandler={toggleHandler}
 				deleteHandler={deleteHandler}
+				duplicateHandler={duplicateHandler}
 				place={place}
 				edit={ADMIN_EDITS.PRODUCT(product.id)}
 			/>

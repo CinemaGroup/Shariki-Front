@@ -310,43 +310,6 @@ const ManageProductEdit: FC<{ queryId: string }> = ({ queryId }) => {
 											error={errors.colors && errors.colors[index]?.color}
 										/>
 										<Controller
-											name={`colors.${index}.price`}
-											control={control}
-											render={({
-												field: { value, onChange },
-												fieldState: { error },
-											}) => (
-												<Field
-													onChange={onChange}
-													value={value}
-													className={styles.objectField}
-													label="Цена"
-													error={error}
-												/>
-											)}
-											rules={{
-												...REQUIRED_VALIDATION('Цена'),
-												...PRICE_PATTERN_VALIDATION(),
-											}}
-										/>
-										<Controller
-											name={`colors.${index}.oldPrice`}
-											control={control}
-											render={({
-												field: { value, onChange },
-												fieldState: { error },
-											}) => (
-												<Field
-													onChange={onChange}
-													value={value || undefined}
-													className={styles.objectField}
-													label="Бывшая цена (Не обязательно)"
-													error={error}
-												/>
-											)}
-											rules={PRICE_PATTERN_VALIDATION()}
-										/>
-										<Controller
 											name={`colors.${index}.images`}
 											control={control}
 											defaultValue={[]}
@@ -385,9 +348,7 @@ const ManageProductEdit: FC<{ queryId: string }> = ({ queryId }) => {
 								onClick={() =>
 									colors.append({
 										color: '',
-										price: '0.00',
 										images: [],
-										oldPrice: undefined,
 									})
 								}
 							>

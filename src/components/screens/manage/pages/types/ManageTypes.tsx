@@ -18,10 +18,8 @@ const ManageTypes: FC = () => {
 		searchTerm,
 		debounceSearch,
 	} = useFilters({ variant: 'default', place: 'manage' })
-	const { data, createType, deleteType, toggleType } = useManageTypes(
-		queryParams,
-		debounceSearch
-	)
+	const { data, createType, deleteType, toggleType, duplicateType } =
+		useManageTypes(queryParams, debounceSearch)
 
 	return (
 		<div className={globalStyles.wrapper}>
@@ -62,6 +60,13 @@ const ManageTypes: FC = () => {
 									}
 									toggleHandler={() =>
 										toggleType({
+											variables: {
+												id: type.id,
+											},
+										})
+									}
+									duplicateHandler={() =>
+										duplicateType({
 											variables: {
 												id: type.id,
 											},

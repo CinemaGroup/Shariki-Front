@@ -1,24 +1,16 @@
-import {
-	ProductsDocument,
-	Sort,
-	Status,
-	type ProductsQuery,
-	type ProductsQueryVariables,
-} from '@/__generated__/output'
-import { serverApolloClient } from '@/api/apollo/apollo.client'
+import { Sort, Status, useProductsQuery } from '@/__generated__/output'
 
-export const useProducts = async (isSale: boolean) => {
-	return serverApolloClient
-		.query<ProductsQuery, ProductsQueryVariables>({
-			fetchPolicy: 'no-cache',
-			query: ProductsDocument,
-			variables: {
-				query: {
-					sort: !isSale ? Sort.Newest : Sort.Oldest,
-					status: Status.Published,
-				},
-				isSale: isSale,
+export const useProducts = (isSale: boolean) => {
+	const { data } = useProductsQuery({
+		fetchPolicy: 'no-cache',
+		variables: {
+			query: {
+				sort: !isSale ? Sort.Newest : Sort.Oldest,
+				status: Status.Published,
 			},
-		})
-		.then(({ data }) => ({ products: data }))
+			isSale: isSale,
+		},
+	})
+
+	return { data }
 }

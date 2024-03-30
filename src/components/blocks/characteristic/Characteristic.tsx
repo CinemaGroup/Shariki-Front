@@ -11,6 +11,7 @@ import styles from './Characteristic.module.scss'
 const Characteristic: FC<TypeCharacteristic & IClassName & IManageActions> = ({
 	deleteHandler,
 	toggleHandler,
+	duplicateHandler,
 	place,
 	characteristic,
 	className,
@@ -27,6 +28,7 @@ const Characteristic: FC<TypeCharacteristic & IClassName & IManageActions> = ({
 				place={place}
 				deleteHandler={deleteHandler}
 				toggleHandler={toggleHandler}
+				duplicateHandler={duplicateHandler}
 				edit={ADMIN_EDITS.CHARACTERISTIC(characteristic.id)}
 			/>
 		</div>

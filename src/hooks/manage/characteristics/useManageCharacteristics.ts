@@ -5,6 +5,7 @@ import {
 	useDeleteCharacteristicMutation,
 	useToggleCharacteristicMutation,
 	type QueryInput,
+	useDuplicateCharacteristicMutation,
 } from '@/__generated__/output'
 import { ADMIN_EDITS } from '@/constants/url.constants'
 import { useRouter } from 'next/navigation'
@@ -62,10 +63,22 @@ export const useManageCharacteristics = (
 		},
 	})
 
+	const [duplicateCharacteristic] = useDuplicateCharacteristicMutation({
+		fetchPolicy: "no-cache",
+		refetchQueries: [CharacteristicsDocument],
+		onCompleted: () => {
+			toast.success('Дубликат характеристики создан.')
+		},
+		onError: (error) => {
+			toast.error(error.message)
+		},
+	})
+
 	return {
 		data,
 		createCharacteristic,
 		deleteCharacteristic,
 		toggleCharacteristic,
+		duplicateCharacteristic
 	}
 }

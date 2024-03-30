@@ -29,8 +29,6 @@ query ProductById($id: Int!) {
 		iconPath
 		colors {
 			color
-			price
-			oldPrice
 			images
 		}
 		sizes {

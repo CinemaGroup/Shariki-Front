@@ -19,7 +19,7 @@ const ProductSizes: FC<IProductProps & IProductSizes> = ({
 				<li className={styles.size} key={index}>
 					<button
 						className={cn(styles.sizeBtn, {
-							[styles.picked]: size.size === item.size,
+							[styles.picked]: size ? size.size === item.size : false,
 						})}
 						onClick={() => setSize(item)}
 					>

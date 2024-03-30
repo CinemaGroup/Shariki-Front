@@ -18,7 +18,7 @@ const ManageProducts: FC = () => {
 		searchTerm,
 		debounceSearch,
 	} = useFilters({ variant: 'products', place: 'manage' })
-	const { data, createProduct, deleteProduct, toggleProduct } =
+	const { data, createProduct, deleteProduct, toggleProduct, duplicateProduct } =
 		useManageProducts(queryParams, debounceSearch)
 
 	return (
@@ -61,6 +61,13 @@ const ManageProducts: FC = () => {
 									}
 									toggleHandler={() =>
 										toggleProduct({
+											variables: {
+												id: product.id,
+											},
+										})
+									}
+									duplicateHandler={() =>
+										duplicateProduct({
 											variables: {
 												id: product.id,
 											},

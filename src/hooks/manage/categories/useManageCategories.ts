@@ -5,6 +5,7 @@ import {
 	useDeleteCategoryMutation,
 	useToggleCategoryMutation,
 	type QueryInput,
+	useDuplicateCategoryMutation,
 } from '@/__generated__/output'
 import { ADMIN_EDITS } from '@/constants/url.constants'
 import { useRouter } from 'next/navigation'
@@ -62,10 +63,22 @@ export const useManageCategories = (
 		},
 	})
 
+	const [duplicateCategory] = useDuplicateCategoryMutation({
+		fetchPolicy: "no-cache",
+		refetchQueries: [CategoriesDocument],
+		onCompleted: () => {
+			toast.success('Дубликат категории создан.')
+		},
+		onError: (error) => {
+			toast.error(error.message)
+		},
+	})
+
 	return {
 		data,
 		createCategory,
 		deleteCategory,
 		toggleCategory,
+		duplicateCategory
 	}
 }

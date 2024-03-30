@@ -1,7 +1,7 @@
 import Storage from '@/components/ui/templates/storage/Storage'
 import cn from 'clsx'
 import { Trash2 } from 'lucide-react'
-import { useState, type FC } from 'react'
+import { useState, type FC, useEffect } from 'react'
 import StaticImage from '../../image/StaticImage'
 import globalStyles from '../Form.module.scss'
 import styles from './UploadField.module.scss'
@@ -19,9 +19,13 @@ const UploadField: FC<IUploadField> = ({
 	uploadedClassName,
 }) => {
 	const [isOpen, setIsOpen] = useState(false)
-	const [files, setFiles] = useState<string[]>(
-		value && Array.isArray(value) ? value : value ? [value] : []
-	)
+	const [files, setFiles] = useState<string[]>([])
+
+	useEffect(() => {
+		if (value) {
+			setFiles(Array.isArray(value) ? value : [value])
+		}
+	}, [value])
 
 	const removeFile = (fileUrl: string) => {
 		setFiles(isMulti ? files.filter((file) => file !== fileUrl) : [])

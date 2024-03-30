@@ -1,57 +1,35 @@
-import { formatPrice } from '@/utils/formats/price/format-price.util'
 import type { FC } from 'react'
 import styles from '../../Products.module.scss'
-import type { IProductProps } from '../../interface/products.interface'
+import type { IProductInfo } from './interface/product-info.interface'
 
-const ProductInfo: FC<IProductProps> = ({ product }) => {
-	const formattedPrice = parseFloat(formatPrice(product.price)).toFixed(2)
-	const formattedOldPrice = parseFloat(
-		formatPrice(product.oldPrice ? product.oldPrice : '0')
-	).toFixed(2)
-
+const ProductInfo: FC<IProductInfo> = ({ product, price, oldPrice }) => {
 	return (
 		<div className={styles.info}>
-			{product.oldPrice ? (
+			{oldPrice ? (
 				<div className={styles.salePriceBox}>
 					<div className={styles.newPriceBox}>
 						<div className={styles.newPrice}>
-							{product.price} ₽
+							{price} ₽
 							<span className={styles.salePercent}>
-								-
-								{Math.round(
-									((parseInt(formatPrice(product.oldPrice), 10) -
-										parseInt(formattedPrice, 10)) /
-										parseInt(formatPrice(product.oldPrice), 10)) *
-										100
-								)}{' '}
-								%
+								-{Math.round(100 - (100 * price) / oldPrice)} %
 							</span>
 						</div>
 						<span className={styles.piecePrice}>
-							{(parseFloat(formattedPrice) / product.packageQuantity)
-								.toFixed(2)
-								.replace('.', ',')}{' '}
-							₽ за шт
+							{(price / product.packageQuantity).toFixed(2)} ₽ за шт
 						</span>
 					</div>
 					<div className={styles.oldPriceBox}>
-						<span className={styles.oldPrice}>{product.oldPrice} ₽</span>
+						<span className={styles.oldPrice}>{oldPrice} ₽</span>
 						<span className={styles.piecePrice}>
-							{(parseFloat(formattedOldPrice) / product.packageQuantity)
-								.toFixed(2)
-								.replace('.', ',')}{' '}
-							₽ за шт
+							{(oldPrice / product.packageQuantity).toFixed(2)} ₽ за шт
 						</span>
 					</div>
 				</div>
 			) : (
 				<div className={styles.currentPriceBox}>
-					<span className={styles.price}>{product.price} ₽</span>
+					<span className={styles.price}>{price} ₽</span>
 					<span className={styles.piecePrice}>
-						{(parseFloat(formattedPrice) / product.packageQuantity)
-							.toFixed(2)
-							.replace('.', ',')}{' '}
-						₽ за шт
+						{(price / product.packageQuantity).toFixed(2)} ₽ за шт
 					</span>
 				</div>
 			)}

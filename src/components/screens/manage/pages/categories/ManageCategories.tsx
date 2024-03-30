@@ -18,7 +18,7 @@ const ManageCategories: FC = () => {
 		searchTerm,
 		debounceSearch,
 	} = useFilters({ variant: 'default', place: 'manage' })
-	const { data, createCategory, deleteCategory, toggleCategory } =
+	const { data, createCategory, deleteCategory, toggleCategory, duplicateCategory } =
 		useManageCategories(queryParams, debounceSearch)
 
 	return (
@@ -60,6 +60,13 @@ const ManageCategories: FC = () => {
 									}
 									toggleHandler={() =>
 										toggleCategory({
+											variables: {
+												id: category.id,
+											},
+										})
+									}
+									duplicateHandler={() =>
+										duplicateCategory({
 											variables: {
 												id: category.id,
 											},

@@ -12,6 +12,7 @@ import styles from './Holiday.module.scss'
 const Holiday: FC<TypeHoliday & IClassName & IManageActions> = ({
 	deleteHandler,
 	toggleHandler,
+	duplicateHandler,
 	place,
 	holiday,
 	className,
@@ -35,7 +36,7 @@ const Holiday: FC<TypeHoliday & IClassName & IManageActions> = ({
 				/>
 				<StaticImage
 					className={styles.tree}
-					src="/images/other/slider/tree.png"
+					src={holiday.imagePath}
 					width={68}
 					height={101}
 					alt="Tree"
@@ -47,7 +48,7 @@ const Holiday: FC<TypeHoliday & IClassName & IManageActions> = ({
 					height={36}
 					alt="Decor"
 				/>
-				<span className={styles.name}>Новый год</span>
+				<span className={styles.name}>{holiday.name}</span>
 			</div>
 			<Link className={styles.link} href="/catalog">
 				В каталог
@@ -64,6 +65,7 @@ const Holiday: FC<TypeHoliday & IClassName & IManageActions> = ({
 				place={place}
 				deleteHandler={deleteHandler}
 				toggleHandler={toggleHandler}
+				duplicateHandler={duplicateHandler}
 				edit={ADMIN_EDITS.HOLIDAY(holiday.id)}
 			/>
 		</div>

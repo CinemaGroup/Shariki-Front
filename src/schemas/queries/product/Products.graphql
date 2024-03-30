@@ -18,8 +18,6 @@ query Products($query: QueryProductInput!, $isSale: Boolean) {
 		}
 		colors {
 			color
-			price
-			oldPrice
 			images
 		}
 		types {

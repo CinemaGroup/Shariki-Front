@@ -19,12 +19,16 @@
 .list {
 	@apply flex items-start gap-16;
 }
+.item {
+	@apply up-hover;
+}
 .link {
-	@apply flex-col gap-1 up-hover;
+	@apply flex-col gap-1;
 	min-width: 130px;
 }
 .images {
 	@apply relative w-full flex items-end aspect-square;
+	max-width: 130px;
 }
 .image {
 	@apply w-full h-full;
@@ -34,4 +38,5 @@
 }
 .name {
 	@apply p-0.5 text-white text-lg bg-red-400 rounded-sm-extra text-center;
+	min-height: 26px;
 }

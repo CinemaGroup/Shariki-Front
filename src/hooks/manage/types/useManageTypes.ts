@@ -5,6 +5,7 @@ import {
 	useToggleTypeMutation,
 	useTypesQuery,
 	type QueryInput,
+	useDuplicateTypeMutation,
 } from '@/__generated__/output'
 import { ADMIN_EDITS } from '@/constants/url.constants'
 import { useRouter } from 'next/navigation'
@@ -62,10 +63,22 @@ export const useManageTypes = (
 		},
 	})
 
+	const [duplicateType] = useDuplicateTypeMutation({
+		fetchPolicy: "no-cache",
+		refetchQueries: [TypesDocument],
+		onCompleted: () => {
+			toast.success('Дубликат Модели создан.')
+		},
+		onError: (error) => {
+			toast.error(error.message)
+		},
+	})
+
 	return {
 		data,
 		createType,
 		deleteType,
 		toggleType,
+		duplicateType
 	}
 }

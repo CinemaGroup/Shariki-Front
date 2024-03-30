@@ -13,6 +13,7 @@ const Type: FC<TypeType & IClassName & IManageActions> = ({
 	place,
 	toggleHandler,
 	deleteHandler,
+	duplicateHandler,
 	className,
 }) => {
 	return (
@@ -31,6 +32,7 @@ const Type: FC<TypeType & IClassName & IManageActions> = ({
 				place={place}
 				deleteHandler={deleteHandler}
 				toggleHandler={toggleHandler}
+				duplicateHandler={duplicateHandler}
 				edit={ADMIN_EDITS.TYPE(type.id)}
 			/>
 		</div>

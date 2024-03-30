@@ -104,8 +104,6 @@ export type Color = {
   createdAt: Scalars['DateTime']['output'];
   id: Scalars['Int']['output'];
   images: Array<Scalars['String']['output']>;
-  oldPrice?: Maybe<Scalars['String']['output']>;
-  price: Scalars['String']['output'];
   product: Product;
   productId: Scalars['Int']['output'];
   updatedAt: Scalars['DateTime']['output'];
@@ -114,8 +112,6 @@ export type Color = {
 export type ColorInput = {
   color: Scalars['String']['input'];
   images: Array<Scalars['String']['input']>;
-  oldPrice?: InputMaybe<Scalars['String']['input']>;
-  price: Scalars['String']['input'];
 };
 
 export type CreateFolderInput = {
@@ -191,6 +187,12 @@ export type Mutation = {
   deleteReview: Review;
   deleteTag: Tag;
   deleteType: Type;
+  duplicateCategory: Category;
+  duplicateCharacteristic: Characteristic;
+  duplicateHoliday: Holiday;
+  duplicateProduct: Product;
+  duplicateTag: Tag;
+  duplicateType: Type;
   editFileOrFolderName: Scalars['String']['output'];
   login: AuthResponse;
   logout: Scalars['Boolean']['output'];
@@ -261,6 +263,36 @@ export type MutationDeleteTagArgs = {
 
 
 export type MutationDeleteTypeArgs = {
+  id: Scalars['Int']['input'];
+};
+
+
+export type MutationDuplicateCategoryArgs = {
+  id: Scalars['Int']['input'];
+};
+
+
+export type MutationDuplicateCharacteristicArgs = {
+  id: Scalars['Int']['input'];
+};
+
+
+export type MutationDuplicateHolidayArgs = {
+  id: Scalars['Int']['input'];
+};
+
+
+export type MutationDuplicateProductArgs = {
+  id: Scalars['Int']['input'];
+};
+
+
+export type MutationDuplicateTagArgs = {
+  id: Scalars['Int']['input'];
+};
+
+
+export type MutationDuplicateTypeArgs = {
   id: Scalars['Int']['input'];
 };
 
@@ -473,7 +505,7 @@ export type ProductInput = {
   iconPath?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
   oldPrice?: InputMaybe<Scalars['String']['input']>;
-  packageQuantity: Scalars['Int']['input'];
+  packageQuantity: Scalars['String']['input'];
   price: Scalars['String']['input'];
   sizes: Array<SizeInput>;
   sku: Scalars['String']['input'];
@@ -779,6 +811,13 @@ export type DeleteCategoryMutationVariables = Exact<{
 
 export type DeleteCategoryMutation = { deleteCategory: { id: number } };
 
+export type DuplicateCategoryMutationVariables = Exact<{
+  id: Scalars['Int']['input'];
+}>;
+
+
+export type DuplicateCategoryMutation = { duplicateCategory: { id: number } };
+
 export type ToggleCategoryMutationVariables = Exact<{
   id: Scalars['Int']['input'];
 }>;
@@ -805,6 +844,13 @@ export type DeleteCharacteristicMutationVariables = Exact<{
 
 
 export type DeleteCharacteristicMutation = { deleteCharacteristic: { id: number } };
+
+export type DuplicateCharacteristicMutationVariables = Exact<{
+  id: Scalars['Int']['input'];
+}>;
+
+
+export type DuplicateCharacteristicMutation = { duplicateCharacteristic: { id: number } };
 
 export type ToggleCharacteristicMutationVariables = Exact<{
   id: Scalars['Int']['input'];
@@ -833,6 +879,13 @@ export type DeleteHolidayMutationVariables = Exact<{
 
 export type DeleteHolidayMutation = { deleteHoliday: { id: number } };
 
+export type DuplicateHolidayMutationVariables = Exact<{
+  id: Scalars['Int']['input'];
+}>;
+
+
+export type DuplicateHolidayMutation = { duplicateHoliday: { id: number } };
+
 export type ToggleHolidayMutationVariables = Exact<{
   id: Scalars['Int']['input'];
 }>;
@@ -859,6 +912,13 @@ export type DeleteProductMutationVariables = Exact<{
 
 
 export type DeleteProductMutation = { deleteProduct: { id: number } };
+
+export type DuplicateProductMutationVariables = Exact<{
+  id: Scalars['Int']['input'];
+}>;
+
+
+export type DuplicateProductMutation = { duplicateProduct: { id: number } };
 
 export type ToggleProductMutationVariables = Exact<{
   id: Scalars['Int']['input'];
@@ -915,6 +975,13 @@ export type DeleteTagMutationVariables = Exact<{
 
 export type DeleteTagMutation = { deleteTag: { id: number } };
 
+export type DuplicateTagMutationVariables = Exact<{
+  id: Scalars['Int']['input'];
+}>;
+
+
+export type DuplicateTagMutation = { duplicateTag: { id: number } };
+
 export type ToggleTagMutationVariables = Exact<{
   id: Scalars['Int']['input'];
 }>;
@@ -941,6 +1008,13 @@ export type DeleteTypeMutationVariables = Exact<{
 
 
 export type DeleteTypeMutation = { deleteType: { id: number } };
+
+export type DuplicateTypeMutationVariables = Exact<{
+  id: Scalars['Int']['input'];
+}>;
+
+
+export type DuplicateTypeMutation = { duplicateType: { id: number } };
 
 export type ToggleTypeMutationVariables = Exact<{
   id: Scalars['Int']['input'];
@@ -1011,7 +1085,7 @@ export type ProductByIdQueryVariables = Exact<{
 }>;
 
 
-export type ProductByIdQuery = { productById: { name: string, sku: string, price: any, oldPrice?: any | null, packageQuantity: number, description: string, iconPath?: string | null, tags: Array<{ id: number, name: string }>, types: Array<{ id: number, name: string }>, holidays: Array<{ id: number, name: string }>, characteristics: Array<{ id: number, name: string }>, categories: Array<{ id: number, name: string }>, colors: Array<{ color: string, price: string, oldPrice?: string | null, images: Array<string> }>, sizes: Array<{ size: string, price: string, oldPrice?: string | null }> } };
+export type ProductByIdQuery = { productById: { name: string, sku: string, price: any, oldPrice?: any | null, packageQuantity: number, description: string, iconPath?: string | null, tags: Array<{ id: number, name: string }>, types: Array<{ id: number, name: string }>, holidays: Array<{ id: number, name: string }>, characteristics: Array<{ id: number, name: string }>, categories: Array<{ id: number, name: string }>, colors: Array<{ color: string, images: Array<string> }>, sizes: Array<{ size: string, price: string, oldPrice?: string | null }> } };
 
 export type ProductsQueryVariables = Exact<{
   query: QueryProductInput;
@@ -1019,7 +1093,7 @@ export type ProductsQueryVariables = Exact<{
 }>;
 
 
-export type ProductsQuery = { products: Array<{ id: number, name: string, slug: string, sku: string, iconPath?: string | null, description: string, packageQuantity: number, price: any, oldPrice?: any | null, views: number, boughtTimes: number, status: Status, createdAt: any, sizes: Array<{ size: string, price: string, oldPrice?: string | null }>, colors: Array<{ color: string, price: string, oldPrice?: string | null, images: Array<string> }>, types: Array<{ iconPath: string }> }> };
+export type ProductsQuery = { products: Array<{ id: number, name: string, slug: string, sku: string, iconPath?: string | null, description: string, packageQuantity: number, price: any, oldPrice?: any | null, views: number, boughtTimes: number, status: Status, createdAt: any, sizes: Array<{ size: string, price: string, oldPrice?: string | null }>, colors: Array<{ color: string, images: Array<string> }>, types: Array<{ iconPath: string }> }> };
 
 export type ReviewsQueryVariables = Exact<{
   query: QueryInput;
@@ -1249,6 +1323,39 @@ export function useDeleteCategoryMutation(baseOptions?: Apollo.MutationHookOptio
 export type DeleteCategoryMutationHookResult = ReturnType<typeof useDeleteCategoryMutation>;
 export type DeleteCategoryMutationResult = Apollo.MutationResult<DeleteCategoryMutation>;
 export type DeleteCategoryMutationOptions = Apollo.BaseMutationOptions<DeleteCategoryMutation, DeleteCategoryMutationVariables>;
+export const DuplicateCategoryDocument = gql`
+    mutation DuplicateCategory($id: Int!) {
+  duplicateCategory(id: $id) {
+    id
+  }
+}
+    `;
+export type DuplicateCategoryMutationFn = Apollo.MutationFunction<DuplicateCategoryMutation, DuplicateCategoryMutationVariables>;
+
+/**
+ * __useDuplicateCategoryMutation__
+ *
+ * To run a mutation, you first call `useDuplicateCategoryMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDuplicateCategoryMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [duplicateCategoryMutation, { data, loading, error }] = useDuplicateCategoryMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDuplicateCategoryMutation(baseOptions?: Apollo.MutationHookOptions<DuplicateCategoryMutation, DuplicateCategoryMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DuplicateCategoryMutation, DuplicateCategoryMutationVariables>(DuplicateCategoryDocument, options);
+      }
+export type DuplicateCategoryMutationHookResult = ReturnType<typeof useDuplicateCategoryMutation>;
+export type DuplicateCategoryMutationResult = Apollo.MutationResult<DuplicateCategoryMutation>;
+export type DuplicateCategoryMutationOptions = Apollo.BaseMutationOptions<DuplicateCategoryMutation, DuplicateCategoryMutationVariables>;
 export const ToggleCategoryDocument = gql`
     mutation ToggleCategory($id: Int!) {
   toggleCategory(id: $id) {
@@ -1381,6 +1488,39 @@ export function useDeleteCharacteristicMutation(baseOptions?: Apollo.MutationHoo
 export type DeleteCharacteristicMutationHookResult = ReturnType<typeof useDeleteCharacteristicMutation>;
 export type DeleteCharacteristicMutationResult = Apollo.MutationResult<DeleteCharacteristicMutation>;
 export type DeleteCharacteristicMutationOptions = Apollo.BaseMutationOptions<DeleteCharacteristicMutation, DeleteCharacteristicMutationVariables>;
+export const DuplicateCharacteristicDocument = gql`
+    mutation DuplicateCharacteristic($id: Int!) {
+  duplicateCharacteristic(id: $id) {
+    id
+  }
+}
+    `;
+export type DuplicateCharacteristicMutationFn = Apollo.MutationFunction<DuplicateCharacteristicMutation, DuplicateCharacteristicMutationVariables>;
+
+/**
+ * __useDuplicateCharacteristicMutation__
+ *
+ * To run a mutation, you first call `useDuplicateCharacteristicMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDuplicateCharacteristicMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [duplicateCharacteristicMutation, { data, loading, error }] = useDuplicateCharacteristicMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDuplicateCharacteristicMutation(baseOptions?: Apollo.MutationHookOptions<DuplicateCharacteristicMutation, DuplicateCharacteristicMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DuplicateCharacteristicMutation, DuplicateCharacteristicMutationVariables>(DuplicateCharacteristicDocument, options);
+      }
+export type DuplicateCharacteristicMutationHookResult = ReturnType<typeof useDuplicateCharacteristicMutation>;
+export type DuplicateCharacteristicMutationResult = Apollo.MutationResult<DuplicateCharacteristicMutation>;
+export type DuplicateCharacteristicMutationOptions = Apollo.BaseMutationOptions<DuplicateCharacteristicMutation, DuplicateCharacteristicMutationVariables>;
 export const ToggleCharacteristicDocument = gql`
     mutation ToggleCharacteristic($id: Int!) {
   toggleCharacteristic(id: $id) {
@@ -1513,6 +1653,39 @@ export function useDeleteHolidayMutation(baseOptions?: Apollo.MutationHookOption
 export type DeleteHolidayMutationHookResult = ReturnType<typeof useDeleteHolidayMutation>;
 export type DeleteHolidayMutationResult = Apollo.MutationResult<DeleteHolidayMutation>;
 export type DeleteHolidayMutationOptions = Apollo.BaseMutationOptions<DeleteHolidayMutation, DeleteHolidayMutationVariables>;
+export const DuplicateHolidayDocument = gql`
+    mutation DuplicateHoliday($id: Int!) {
+  duplicateHoliday(id: $id) {
+    id
+  }
+}
+    `;
+export type DuplicateHolidayMutationFn = Apollo.MutationFunction<DuplicateHolidayMutation, DuplicateHolidayMutationVariables>;
+
+/**
+ * __useDuplicateHolidayMutation__
+ *
+ * To run a mutation, you first call `useDuplicateHolidayMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDuplicateHolidayMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [duplicateHolidayMutation, { data, loading, error }] = useDuplicateHolidayMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDuplicateHolidayMutation(baseOptions?: Apollo.MutationHookOptions<DuplicateHolidayMutation, DuplicateHolidayMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DuplicateHolidayMutation, DuplicateHolidayMutationVariables>(DuplicateHolidayDocument, options);
+      }
+export type DuplicateHolidayMutationHookResult = ReturnType<typeof useDuplicateHolidayMutation>;
+export type DuplicateHolidayMutationResult = Apollo.MutationResult<DuplicateHolidayMutation>;
+export type DuplicateHolidayMutationOptions = Apollo.BaseMutationOptions<DuplicateHolidayMutation, DuplicateHolidayMutationVariables>;
 export const ToggleHolidayDocument = gql`
     mutation ToggleHoliday($id: Int!) {
   toggleHoliday(id: $id) {
@@ -1645,6 +1818,39 @@ export function useDeleteProductMutation(baseOptions?: Apollo.MutationHookOption
 export type DeleteProductMutationHookResult = ReturnType<typeof useDeleteProductMutation>;
 export type DeleteProductMutationResult = Apollo.MutationResult<DeleteProductMutation>;
 export type DeleteProductMutationOptions = Apollo.BaseMutationOptions<DeleteProductMutation, DeleteProductMutationVariables>;
+export const DuplicateProductDocument = gql`
+    mutation DuplicateProduct($id: Int!) {
+  duplicateProduct(id: $id) {
+    id
+  }
+}
+    `;
+export type DuplicateProductMutationFn = Apollo.MutationFunction<DuplicateProductMutation, DuplicateProductMutationVariables>;
+
+/**
+ * __useDuplicateProductMutation__
+ *
+ * To run a mutation, you first call `useDuplicateProductMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDuplicateProductMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [duplicateProductMutation, { data, loading, error }] = useDuplicateProductMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDuplicateProductMutation(baseOptions?: Apollo.MutationHookOptions<DuplicateProductMutation, DuplicateProductMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DuplicateProductMutation, DuplicateProductMutationVariables>(DuplicateProductDocument, options);
+      }
+export type DuplicateProductMutationHookResult = ReturnType<typeof useDuplicateProductMutation>;
+export type DuplicateProductMutationResult = Apollo.MutationResult<DuplicateProductMutation>;
+export type DuplicateProductMutationOptions = Apollo.BaseMutationOptions<DuplicateProductMutation, DuplicateProductMutationVariables>;
 export const ToggleProductDocument = gql`
     mutation ToggleProduct($id: Int!) {
   toggleProduct(id: $id) {
@@ -1901,6 +2107,39 @@ export function useDeleteTagMutation(baseOptions?: Apollo.MutationHookOptions<De
 export type DeleteTagMutationHookResult = ReturnType<typeof useDeleteTagMutation>;
 export type DeleteTagMutationResult = Apollo.MutationResult<DeleteTagMutation>;
 export type DeleteTagMutationOptions = Apollo.BaseMutationOptions<DeleteTagMutation, DeleteTagMutationVariables>;
+export const DuplicateTagDocument = gql`
+    mutation DuplicateTag($id: Int!) {
+  duplicateTag(id: $id) {
+    id
+  }
+}
+    `;
+export type DuplicateTagMutationFn = Apollo.MutationFunction<DuplicateTagMutation, DuplicateTagMutationVariables>;
+
+/**
+ * __useDuplicateTagMutation__
+ *
+ * To run a mutation, you first call `useDuplicateTagMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDuplicateTagMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [duplicateTagMutation, { data, loading, error }] = useDuplicateTagMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDuplicateTagMutation(baseOptions?: Apollo.MutationHookOptions<DuplicateTagMutation, DuplicateTagMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DuplicateTagMutation, DuplicateTagMutationVariables>(DuplicateTagDocument, options);
+      }
+export type DuplicateTagMutationHookResult = ReturnType<typeof useDuplicateTagMutation>;
+export type DuplicateTagMutationResult = Apollo.MutationResult<DuplicateTagMutation>;
+export type DuplicateTagMutationOptions = Apollo.BaseMutationOptions<DuplicateTagMutation, DuplicateTagMutationVariables>;
 export const ToggleTagDocument = gql`
     mutation ToggleTag($id: Int!) {
   toggleTag(id: $id) {
@@ -2033,6 +2272,39 @@ export function useDeleteTypeMutation(baseOptions?: Apollo.MutationHookOptions<D
 export type DeleteTypeMutationHookResult = ReturnType<typeof useDeleteTypeMutation>;
 export type DeleteTypeMutationResult = Apollo.MutationResult<DeleteTypeMutation>;
 export type DeleteTypeMutationOptions = Apollo.BaseMutationOptions<DeleteTypeMutation, DeleteTypeMutationVariables>;
+export const DuplicateTypeDocument = gql`
+    mutation DuplicateType($id: Int!) {
+  duplicateType(id: $id) {
+    id
+  }
+}
+    `;
+export type DuplicateTypeMutationFn = Apollo.MutationFunction<DuplicateTypeMutation, DuplicateTypeMutationVariables>;
+
+/**
+ * __useDuplicateTypeMutation__
+ *
+ * To run a mutation, you first call `useDuplicateTypeMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDuplicateTypeMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [duplicateTypeMutation, { data, loading, error }] = useDuplicateTypeMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDuplicateTypeMutation(baseOptions?: Apollo.MutationHookOptions<DuplicateTypeMutation, DuplicateTypeMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DuplicateTypeMutation, DuplicateTypeMutationVariables>(DuplicateTypeDocument, options);
+      }
+export type DuplicateTypeMutationHookResult = ReturnType<typeof useDuplicateTypeMutation>;
+export type DuplicateTypeMutationResult = Apollo.MutationResult<DuplicateTypeMutation>;
+export type DuplicateTypeMutationOptions = Apollo.BaseMutationOptions<DuplicateTypeMutation, DuplicateTypeMutationVariables>;
 export const ToggleTypeDocument = gql`
     mutation ToggleType($id: Int!) {
   toggleType(id: $id) {
@@ -2435,8 +2707,6 @@ export const ProductByIdDocument = gql`
     iconPath
     colors {
       color
-      price
-      oldPrice
       images
     }
     sizes {
@@ -2501,8 +2771,6 @@ export const ProductsDocument = gql`
     }
     colors {
       color
-      price
-      oldPrice
       images
     }
     types {

@@ -23,6 +23,7 @@ const ManageCharacteristics: FC = () => {
 		createCharacteristic,
 		deleteCharacteristic,
 		toggleCharacteristic,
+		duplicateCharacteristic
 	} = useManageCharacteristics(queryParams, debounceSearch)
 
 	return (
@@ -67,6 +68,13 @@ const ManageCharacteristics: FC = () => {
 									}
 									toggleHandler={() =>
 										toggleCharacteristic({
+											variables: {
+												id: characteristic.id,
+											},
+										})
+									}
+									duplicateHandler={() =>
+										duplicateCharacteristic({
 											variables: {
 												id: characteristic.id,
 											},

@@ -5,6 +5,7 @@ import {
 	useDeleteTagMutation,
 	useToggleTagMutation,
 	type QueryInput,
+	useDuplicateTagMutation,
 } from '@/__generated__/output'
 import { ADMIN_EDITS } from '@/constants/url.constants'
 import { useRouter } from 'next/navigation'
@@ -62,10 +63,22 @@ export const useManageTags = (
 		},
 	})
 
+	const [duplicateTag] = useDuplicateTagMutation({
+		fetchPolicy: "no-cache",
+		refetchQueries: [TagsDocument],
+		onCompleted: () => {
+			toast.success('Дубликат метки создан.')
+		},
+		onError: (error) => {
+			toast.error(error.message)
+		},
+	})
+
 	return {
 		data,
 		createTag,
 		deleteTag,
 		toggleTag,
+		duplicateTag
 	}
 }
