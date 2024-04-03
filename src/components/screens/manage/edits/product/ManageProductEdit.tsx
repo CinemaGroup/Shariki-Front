@@ -14,7 +14,6 @@ import {
 import ReactSelect from '@/components/ui/common/selects/react-select/ReactSelect'
 import { useManageSelectCategories } from '@/hooks/manage/categories/useManageSelectCategories'
 import { useManageSelectCharacteristics } from '@/hooks/manage/characteristics/useManageSelectCharacteristics'
-import { useManageSelectHolidays } from '@/hooks/manage/holidays/useManageSelectHolidays'
 import { useManageProductEdit } from '@/hooks/manage/products/useManageProductEdit'
 import { useManageSelectTags } from '@/hooks/manage/tags/useManageSelectTags'
 import { useManageSelectTypes } from '@/hooks/manage/types/useManageSelectTypes'
@@ -37,7 +36,6 @@ const ManageProductEdit: FC<{ queryId: string }> = ({ queryId }) => {
 	} = useManageProductEdit(queryId)
 	const { tags } = useManageSelectTags()
 	const { types } = useManageSelectTypes()
-	const { holidays } = useManageSelectHolidays()
 	const { characteristics } = useManageSelectCharacteristics()
 	const { categories } = useManageSelectCategories()
 
@@ -138,21 +136,6 @@ const ManageProductEdit: FC<{ queryId: string }> = ({ queryId }) => {
 							rules={REQUIRED_VALIDATION('Типы')}
 						/>
 						<Controller
-							name="holidays"
-							control={control}
-							render={({ field, fieldState: { error } }) => (
-								<ReactSelect
-									field={field}
-									options={holidays || []}
-									label="Праздники"
-									error={error}
-									className={styles.select}
-									isMulti
-								/>
-							)}
-							// rules={REQUIRED_VALIDATION('Праздники')}
-						/>
-						<Controller
 							name="characteristics"
 							control={control}
 							render={({ field, fieldState: { error } }) => (
@@ -183,6 +166,23 @@ const ManageProductEdit: FC<{ queryId: string }> = ({ queryId }) => {
 							rules={REQUIRED_VALIDATION('Категории')}
 						/>
 						<Controller
+							name="iconPath"
+							control={control}
+							defaultValue=""
+							render={({
+								field: { value, onChange },
+								fieldState: { error },
+							}) => (
+								<UploadField
+									className={styles.upload}
+									onChange={onChange}
+									value={value}
+									error={error}
+									label="Иконка (Не обязательно)"
+								/>
+							)}
+						/>
+						<Controller
 							name="description"
 							control={control}
 							defaultValue=""
@@ -199,23 +199,6 @@ const ManageProductEdit: FC<{ queryId: string }> = ({ queryId }) => {
 								/>
 							)}
 							rules={REQUIRED_EDITOR_VALIDATION('Описание')}
-						/>
-						<Controller
-							name="iconPath"
-							control={control}
-							defaultValue=""
-							render={({
-								field: { value, onChange },
-								fieldState: { error },
-							}) => (
-								<UploadField
-									className={styles.upload}
-									onChange={onChange}
-									value={value}
-									error={error}
-									label="Иконка (Не обязательно)"
-								/>
-							)}
 						/>
 						<div className={styles.objects}>
 							{sizes.fields.length > 0 && (

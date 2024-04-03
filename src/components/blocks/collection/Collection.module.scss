@@ -1,0 +1,13 @@
+.collection {
+	max-width: 300px;
+
+	> img {
+		@apply w-auto h-auto;
+	}
+}
+.name {
+	@apply px-2 py-3.5 text-center whitespace-nowrap text-white font-bold;
+	opacity: 0.36;
+	background-color: rgba(211, 211, 211, 0.36);
+	font-size: 17px;
+}

@@ -1,15 +1,13 @@
-'use client'
-
 import StaticImage from '@/components/ui/common/image/StaticImage'
 import { useSwiper } from '@/hooks/helpers/slider/useSwiper'
 import type { FC } from 'react'
 import { Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import Collection from '../../collection/Collection'
-import styles from './CollectionSlider.module.scss'
-import { COLLECTION_DATA } from './data/collections.data'
+import Holiday from '../../holiday/Holiday'
+import styles from './HolidaySlider.module.scss'
+import { HOLIDAYS_DATA } from './data/holidays.data'
 
-const CollectionSlider: FC = () => {
+const HolidaySlider: FC = () => {
 	const { setSwiper, setBeginning, setEnd, beginning, end, prev, next } =
 		useSwiper()
 
@@ -22,7 +20,7 @@ const CollectionSlider: FC = () => {
 					height={30}
 					alt="ТОВАРЫ К ПРАЗДНИКАМ"
 				/>
-				КОЛЛЕКЦИИ
+				ТОВАРЫ К ПРАЗДНИКАМ
 			</div>
 			<div className={styles.fill}>
 				<div className={styles.actions}>
@@ -49,7 +47,8 @@ const CollectionSlider: FC = () => {
 					className={styles.swiper}
 					modules={[Pagination]}
 					spaceBetween={0}
-					slidesPerView={1}
+					slidesPerView={4}
+					slidesPerGroup={4}
 					pagination={{
 						clickable: true,
 						bulletClass: styles.bullet,
@@ -65,9 +64,9 @@ const CollectionSlider: FC = () => {
 					}}
 					direction="vertical"
 				>
-					{COLLECTION_DATA.map((collection, index) => (
-						<SwiperSlide key={index} className={styles.collection}>
-							<Collection collection={collection} />
+					{HOLIDAYS_DATA.map((holiday, index) => (
+						<SwiperSlide key={index} className={styles.holiday}>
+							<Holiday holiday={holiday} />
 						</SwiperSlide>
 					))}
 				</Swiper>
@@ -77,4 +76,4 @@ const CollectionSlider: FC = () => {
 	)
 }
 
-export default CollectionSlider
+export default HolidaySlider

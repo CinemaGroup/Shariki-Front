@@ -1,0 +1,49 @@
+.slider {
+	@apply relative w-full bg-gray-100 overflow-hidden;
+}
+.swiper {
+	@apply h-full;
+}
+.dots {
+	@apply absolute left-0 right-0 flex items-end justify-center gap-6;
+	bottom: 23px;
+	counter-reset: dot;
+}
+.bullet {
+	@apply relative cursor-pointer z-1 transition-all;
+	background-color: #696969;
+	width: 85px;
+	height: 3px;
+
+	&::before {
+		@apply absolute left-0 bottom-3 font-semibold text-2lg transition-all;
+		color: #696969;
+		counter-increment: dot;
+		content: '0' counter(dot);
+	}
+
+	&:hover {
+		@apply bg-red-400;
+
+		&:before {
+			@apply text-red-400;
+		}
+	}
+}
+.bulletActive {
+	@apply bg-red-400;
+	width: 102px;
+	height: 5px;
+
+	&::before {
+		@apply text-6lg text-gray-base;
+	}
+
+	&:hover {
+		@apply bg-red-400;
+
+		&::before {
+			@apply text-gray-base;
+		}
+	}
+}

@@ -1,5 +1,7 @@
-import type { HolidaysQuery } from '@/__generated__/output'
-
 export type TypeHoliday = {
-	holiday: HolidaysQuery['holidays'][0]
+	name: string
+	slug: string
+	imagePath: string
+	decorPath: string
+	rightImage?: string
 }
