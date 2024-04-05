@@ -18,7 +18,7 @@ const Holiday: FC<{ holiday: TypeHoliday } & IClassName> = ({
 					src="/images/data/slider/second/balloon.png"
 					width={0}
 					height={0}
-					sizes="100vw"
+					sizes="auto"
 					alt="Balloon"
 				/>
 				{holiday.rightImage && (

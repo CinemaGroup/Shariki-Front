@@ -10,6 +10,7 @@ const MainSliderItem: FC<IMainSliderItem> = ({
 	isEnd,
 	prev,
 	next,
+	item,
 }) => {
 	return (
 		<div className={styles.item}>
@@ -27,7 +28,16 @@ const MainSliderItem: FC<IMainSliderItem> = ({
 					<span>Ирины Майстровой</span>
 				</h2>
 				<div className={styles.box}>
-					<h3 className={styles.text}>ТЕМАТИЧЕСКИЙ ТЕКСТ СЛАЙДА</h3>
+					<div className={styles.preview}>
+						<StaticImage
+							width={0}
+							height={0}
+							sizes="100vw"
+							src={item.imagePath}
+							alt={item.name}
+						/>
+					</div>
+					<h3 className={styles.text}>{item.name}</h3>
 					<div className={styles.fill}>
 						<span className={styles.number}>
 							0<span>{number}</span>

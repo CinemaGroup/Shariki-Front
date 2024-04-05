@@ -24,10 +24,14 @@
 .leftBalloon {
 	@apply left-0;
 	top: 13px;
+	max-width: 84px;
+	max-height: 102px;
 }
 .rightBalloon {
 	@apply top-0;
 	right: 27px;
+	max-width: 55px;
+	max-height: 114px;
 }
 .tree {
 	right: 66px;

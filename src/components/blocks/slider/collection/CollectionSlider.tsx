@@ -4,10 +4,8 @@ import StaticImage from '@/components/ui/common/image/StaticImage'
 import { useSwiper } from '@/hooks/helpers/slider/useSwiper'
 import type { FC } from 'react'
 import { Pagination } from 'swiper/modules'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import Collection from '../../collection/Collection'
+import { Swiper } from 'swiper/react'
 import styles from './CollectionSlider.module.scss'
-import { COLLECTION_DATA } from './data/collections.data'
 
 const CollectionSlider: FC = () => {
 	const { setSwiper, setBeginning, setEnd, beginning, end, prev, next } =
@@ -64,13 +62,7 @@ const CollectionSlider: FC = () => {
 						setEnd(isEnd)
 					}}
 					direction="vertical"
-				>
-					{COLLECTION_DATA.map((collection, index) => (
-						<SwiperSlide key={index} className={styles.collection}>
-							<Collection collection={collection} />
-						</SwiperSlide>
-					))}
-				</Swiper>
+				></Swiper>
 				<div id="holidayBullets" className={styles.dots}></div>
 			</div>
 		</div>

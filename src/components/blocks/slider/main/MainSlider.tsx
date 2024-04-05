@@ -2,13 +2,13 @@
 
 import SearchField from '@/components/ui/common/form/search-field/SearchField'
 import { useSwiper } from '@/hooks/helpers/slider/useSwiper'
-import Link from 'next/link'
 import { useState, type FC } from 'react'
 import 'swiper/css'
 import 'swiper/css/effect-fade'
-import { EffectFade, Pagination } from 'swiper/modules'
+import { Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import styles from './MainSlider.module.scss'
+import { MAIN_SLIDER_DATA } from './data/main-slider.data'
 import MainSliderItem from './item/MainSliderItem'
 
 const MainSlider: FC = () => {
@@ -25,8 +25,7 @@ const MainSlider: FC = () => {
 			/>
 			<Swiper
 				className={styles.swiper}
-				modules={[Pagination, EffectFade]}
-				effect="fade"
+				modules={[Pagination]}
 				speed={800}
 				pagination={{
 					clickable: true,
@@ -40,7 +39,7 @@ const MainSlider: FC = () => {
 					setEnd(isEnd)
 				}}
 			>
-				{Array.from({ length: 4 }).map((_, index) => (
+				{MAIN_SLIDER_DATA.items.map((item, index) => (
 					<SwiperSlide key={index} className={styles.sliderItem}>
 						<MainSliderItem
 							number={index + 1}
@@ -48,6 +47,7 @@ const MainSlider: FC = () => {
 							isEnd={end}
 							prev={prev}
 							next={next}
+							item={item}
 						/>
 					</SwiperSlide>
 				))}
