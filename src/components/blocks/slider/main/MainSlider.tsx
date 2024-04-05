@@ -5,11 +5,13 @@ import { useSwiper } from '@/hooks/helpers/slider/useSwiper'
 import { useState, type FC } from 'react'
 import 'swiper/css'
 import 'swiper/css/effect-fade'
-import { Pagination } from 'swiper/modules'
+import '@/assets/styles/slider.scss'
+import { EffectFade, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import styles from './MainSlider.module.scss'
 import { MAIN_SLIDER_DATA } from './data/main-slider.data'
 import MainSliderItem from './item/MainSliderItem'
+import MainSliderCards from './item/cards/MainSliderCards'
 
 const MainSlider: FC = () => {
 	const { setSwiper, setBeginning, setEnd, beginning, end, prev, next } =
@@ -23,35 +25,45 @@ const MainSlider: FC = () => {
 				searchTerm={searchTerm}
 				handleSearch={(e) => setSearchTerm(e.target.value)}
 			/>
-			<Swiper
-				className={styles.swiper}
-				modules={[Pagination]}
-				speed={800}
-				pagination={{
-					clickable: true,
-					clickableClass: styles.pagination,
-					bulletClass: styles.bullet,
-					bulletActiveClass: styles.bulletActive,
-				}}
-				onSwiper={(swiper) => setSwiper(swiper)}
-				onSlideChange={({ isBeginning, isEnd }) => {
-					setBeginning(isBeginning)
-					setEnd(isEnd)
-				}}
-			>
-				{MAIN_SLIDER_DATA.items.map((item, index) => (
-					<SwiperSlide key={index} className={styles.sliderItem}>
-						<MainSliderItem
-							number={index + 1}
-							isBeginning={beginning}
-							isEnd={end}
-							prev={prev}
-							next={next}
-							item={item}
-						/>
-					</SwiperSlide>
-				))}
-			</Swiper>
+			<div className={styles.sliderInner}>
+				<Swiper
+					className={styles.swiper}
+					modules={[Pagination, EffectFade]}
+					effect="fade"
+					speed={800}
+					pagination={{
+						clickable: true,
+						clickableClass: styles.pagination,
+						bulletClass: styles.bullet,
+						bulletActiveClass: styles.bulletActive,
+					}}
+					onSwiper={(swiper) => setSwiper(swiper)}
+					onSlideChange={({ isBeginning, isEnd }) => {
+						setBeginning(isBeginning)
+						setEnd(isEnd)
+					}}
+					slideVisibleClass={styles.pickedSlide}
+				>
+					{MAIN_SLIDER_DATA.items.map((item, index) => (
+						<SwiperSlide
+							key={index}
+							className={styles.sliderItem}
+						>
+							<MainSliderItem
+								number={index + 1}
+								isBeginning={beginning}
+								isEnd={end}
+								prev={prev}
+								next={next}
+								item={item}
+							/>
+						</SwiperSlide>
+					))}
+				</Swiper>
+				<div className={styles.right}>
+					<MainSliderCards />
+				</div>
+			</div>
 		</div>
 	)
 }

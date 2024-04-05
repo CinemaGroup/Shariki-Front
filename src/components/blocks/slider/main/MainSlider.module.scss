@@ -1,13 +1,18 @@
 .slider {
-	@apply relative w-full flex items-end justify-between gap-0;
+	@apply relative w-full flex flex-col items-end justify-between gap-0;
 	max-width: 1400px;
 	background-color: #e6e6e6;
 	padding-top: 55px;
 }
+.sliderInner {
+	@apply flex items-center justify-between w-full;
+}
 .swiper {
-	@apply min-w-full h-full;
+	@apply w-full h-full;
 }
 .sliderItem {
+	@apply opacity-0;
+
 	&:nth-child(1) .preview > img {
 		max-width: 615px;
 	}
@@ -23,6 +28,9 @@
 		max-width: 425px;
 		margin-right: 204px;
 	}
+}
+.pickedSlide {
+	@apply opacity-100;
 }
 .item {
 	@apply flex items-start justify-between gap-10;

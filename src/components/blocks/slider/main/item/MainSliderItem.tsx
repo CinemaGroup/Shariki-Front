@@ -67,9 +67,6 @@ const MainSliderItem: FC<IMainSliderItem> = ({
 					</div>
 				</div>
 			</div>
-			<div className={styles.right}>
-				<MainSliderCards />
-			</div>
 		</div>
 	)
 }
