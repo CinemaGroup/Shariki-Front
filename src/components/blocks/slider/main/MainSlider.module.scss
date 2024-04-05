@@ -11,8 +11,6 @@
 	@apply w-full h-full;
 }
 .sliderItem {
-	@apply opacity-0;
-
 	&:nth-child(1) .preview > img {
 		max-width: 615px;
 	}

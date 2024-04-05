@@ -12,6 +12,7 @@ import styles from './MainSlider.module.scss'
 import { MAIN_SLIDER_DATA } from './data/main-slider.data'
 import MainSliderItem from './item/MainSliderItem'
 import MainSliderCards from './item/cards/MainSliderCards'
+import cn from 'clsx'
 
 const MainSlider: FC = () => {
 	const { setSwiper, setBeginning, setEnd, beginning, end, prev, next } =
@@ -27,7 +28,7 @@ const MainSlider: FC = () => {
 			/>
 			<div className={styles.sliderInner}>
 				<Swiper
-					className={styles.swiper}
+					className={cn(styles.swiper, 'main-slider')}
 					modules={[Pagination, EffectFade]}
 					effect="fade"
 					speed={800}
