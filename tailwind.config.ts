@@ -174,6 +174,14 @@ const config: Config = {
 						},
 					},
 
+					'.right-hover': {
+						transition: 'transform 200ms ease-in-out',
+
+						'&:hover': {
+							transform: `translateX(2px)`,
+						},
+					},
+
 					'.down-hover': {
 						transition: 'transform 200ms ease-in-out',
 

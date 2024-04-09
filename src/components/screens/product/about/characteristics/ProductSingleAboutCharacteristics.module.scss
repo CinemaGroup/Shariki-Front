@@ -1,0 +1,20 @@
+.characteristics {
+	@apply w-full;
+	max-width: 500px;
+}
+.title {
+	@apply font-semibold text-6lg mb-5;
+}
+.list {
+	@apply flex items-start justify-between flex-wrap gap-10;
+}
+.item {
+	@apply text-lg text-black flex items-center gap-1.5;
+	width: calc(50% - 20px)
+}
+.label {
+	@apply font-semibold;
+}
+.value {
+	@apply font-light;
+}

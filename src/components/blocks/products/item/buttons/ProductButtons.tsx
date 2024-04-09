@@ -22,7 +22,15 @@ const ProductButtons: FC<IProductProps> = ({ product }) => {
 				</Link>
 				<ProductFavorite product={product} />
 			</div>
-			<ProductAddToCart product={product} />
+			<ProductAddToCart
+				product={product}
+				icon={{
+					src: '/images/icons/cart.png',
+					width: 16,
+					height: 16,
+					alt: 'Cart',
+				}}
+			/>
 		</div>
 	)
 }

@@ -30,4 +30,5 @@ export const PUBLIC_PAGES = {
 	HOME: '/',
 	LOGIN: '/auth?type=login',
 	REGISTER: '/auth?type=register',
+	CATALOG: '/catalog'
 }

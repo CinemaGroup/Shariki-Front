@@ -1,0 +1,97 @@
+.content {
+	@apply mt-14 mb-14 flex items-start justify-between gap-14;
+}
+.left {
+	@apply w-full font-roboto-flex;
+	max-width: 425px;
+}
+.right {
+	@apply w-full;
+	max-width: 380px;
+}
+.sale,
+.newest {
+	@apply font-semibold text-2lg text-white py-2.5 px-5 rounded-md text-center mb-5 w-fit;
+	min-width: 210px;
+}
+.sale {
+	@apply bg-red-400;
+}
+.newest {
+	@apply bg-green-400;
+}
+.icon {
+	max-width: 95px;
+	max-height: 95px;
+}
+.heading {
+	@apply w-full;
+	max-width: 375px;
+}
+.sku {
+	@apply w-fit block ml-auto text-lg text-black mb-2;
+}
+.name {
+	@apply text-6lg font-semibold;
+}
+.thumbs {
+	@apply mt-12 flex justify-between gap-5;
+}
+.thumb {
+	@apply w-full flex flex-col items-center gap-5 cursor-pointer;
+	max-width: 115px;
+
+	&:hover,
+	&.active {
+		.thumbLine {
+			@apply bg-red-400;
+		}
+	}
+}
+.thumbLine {
+	@apply bg-gray-300 transition-colors;
+	width: 60px;
+	height: 5px;
+}
+.center {
+	@apply w-full;
+	max-width: 310px;
+}
+.image {
+	> img {
+		@apply w-full;
+	}
+}
+.arrows {
+	@apply mt-3 gap-10 mx-auto flex justify-center;
+}
+.arrow {
+	&:first-child {
+		@apply left-hover;
+	}
+
+	&:last-child {
+		@apply right-hover;
+	}
+
+	> svg {
+		@apply w-16 h-16;
+		stroke-width: 1px;
+	}
+}
+.info {
+	@apply mt-10 flex flex-col gap-5;
+}
+.infoTop {
+	@apply flex items-center justify-between;
+}
+.favorite {
+	@apply up-hover;
+	width: 60px;
+	height: 60px;
+
+	> svg {
+		@apply w-8 h-8;
+		stroke-width: 1.5px;
+	}
+}

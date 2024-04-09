@@ -16,6 +16,7 @@ const Container: FC<PropsWithChildren<IContainer>> = ({
 					[styles.lg]: variant === 'lg',
 					[styles.md]: variant === 'md',
 					[styles.sm]: variant === 'sm',
+					[styles.smallest]: variant === 'smallest',
 				},
 				className && className
 			)}

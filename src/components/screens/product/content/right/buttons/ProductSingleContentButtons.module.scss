@@ -1,0 +1,21 @@
+.buttons {
+	@apply flex gap-3;
+}
+.quantity {
+	@apply px-2 text-3lg font-light rounded-lg;
+	padding-top: 18px;
+	padding-bottom: 18px;
+	height: 60px;
+
+	> button {
+		@apply w-10 h-7 px-3;
+	}
+}
+.cart {
+	@apply gap-5 font-light text-3lg rounded-lg;
+
+	> svg {
+		@apply w-9 h-9;
+		stroke-width: 1.5px;
+	}
+}

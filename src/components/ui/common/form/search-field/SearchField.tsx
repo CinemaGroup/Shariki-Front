@@ -8,13 +8,17 @@ import type { ISearchField } from './interface/search-field.interface'
 const SearchField: FC<ISearchField> = ({
 	size = 'md',
 	className,
+	wrapperClassName,
+	inputClassName,
 	placeholder = 'Поиск',
 	label,
 	searchTerm,
 	handleSearch,
 }) => {
 	return (
-		<div className={globalStyles.field}>
+		<div
+			className={cn(globalStyles.field, wrapperClassName && wrapperClassName)}
+		>
 			{label && <label className={globalStyles.label}>{label}</label>}
 			<div
 				className={cn(
@@ -30,7 +34,7 @@ const SearchField: FC<ISearchField> = ({
 					placeholder={placeholder}
 					value={searchTerm}
 					onChange={handleSearch}
-					className={styles.input}
+					className={cn(styles.input, inputClassName && inputClassName)}
 				/>
 				<StaticImage
 					className={styles.icon}

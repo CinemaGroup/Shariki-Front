@@ -1,0 +1,13 @@
+.products {
+	@apply mt-20;
+}
+.title {
+	@apply text-6lg font-semibold mb-5;
+}
+.list {
+	@apply flex-wrap gap-6;
+}
+.item {
+	min-width: calc(20% - 20px);
+	max-width: calc(20% - 20px);
+}

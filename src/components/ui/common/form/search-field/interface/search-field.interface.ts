@@ -7,4 +7,6 @@ export interface ISearchField extends IClassName {
 	handleSearch: (event: ChangeEvent<HTMLInputElement>) => void
 	placeholder?: string
 	label?: string
+	wrapperClassName?: string
+	inputClassName?: string
 }

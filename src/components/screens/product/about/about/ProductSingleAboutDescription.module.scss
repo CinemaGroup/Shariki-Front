@@ -1,0 +1,10 @@
+.description {
+	@apply w-full;
+	max-width: 760px;
+}
+.title {
+	@apply font-semibold text-6lg mb-5;
+}
+.content {
+	@apply text-lg text-black;
+}

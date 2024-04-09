@@ -119,6 +119,12 @@ export type CreateFolderInput = {
   name: Scalars['String']['input'];
 };
 
+export type CurrentProduct = {
+  __typename?: 'CurrentProduct';
+  product?: Maybe<Product>;
+  similarProducts: Array<Product>;
+};
+
 export type EditFileOrFolderNameInput = {
   newPath: Scalars['String']['input'];
   oldPath: Scalars['String']['input'];
@@ -545,6 +551,7 @@ export type Query = {
   postById: Post;
   posts: Array<Post>;
   productById: Product;
+  productBySlug?: Maybe<CurrentProduct>;
   products: Array<Product>;
   profile: ProfileResponse;
   reviewById: Review;
@@ -604,6 +611,11 @@ export type QueryPostsArgs = {
 
 export type QueryProductByIdArgs = {
   id: Scalars['Int']['input'];
+};
+
+
+export type QueryProductBySlugArgs = {
+  slug: Scalars['String']['input'];
 };
 
 
@@ -695,8 +707,8 @@ export type Size = {
   __typename?: 'Size';
   createdAt: Scalars['DateTime']['output'];
   id: Scalars['Int']['output'];
-  oldPrice?: Maybe<Scalars['String']['output']>;
-  price: Scalars['String']['output'];
+  oldPrice?: Maybe<Scalars['DeweyDecimal']['output']>;
+  price: Scalars['DeweyDecimal']['output'];
   product: Product;
   productId: Scalars['Int']['output'];
   size: Scalars['String']['output'];
@@ -1085,7 +1097,14 @@ export type ProductByIdQueryVariables = Exact<{
 }>;
 
 
-export type ProductByIdQuery = { productById: { name: string, sku: string, price: any, oldPrice?: any | null, packageQuantity: number, description: string, iconPath?: string | null, tags: Array<{ id: number, name: string }>, types: Array<{ id: number, name: string }>, holidays: Array<{ id: number, name: string }>, characteristics: Array<{ id: number, name: string }>, categories: Array<{ id: number, name: string }>, colors: Array<{ color: string, images: Array<string> }>, sizes: Array<{ size: string, price: string, oldPrice?: string | null }> } };
+export type ProductByIdQuery = { productById: { name: string, sku: string, price: any, oldPrice?: any | null, packageQuantity: number, description: string, iconPath?: string | null, tags: Array<{ id: number, name: string }>, types: Array<{ id: number, name: string }>, holidays: Array<{ id: number, name: string }>, characteristics: Array<{ id: number, name: string }>, categories: Array<{ id: number, name: string }>, colors: Array<{ color: string, images: Array<string> }>, sizes: Array<{ size: string, price: any, oldPrice?: any | null }> } };
+
+export type ProductBySlugQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
+}>;
+
+
+export type ProductBySlugQuery = { productBySlug?: { product?: { id: number, name: string, slug: string, sku: string, iconPath?: string | null, description: string, packageQuantity: number, price: any, oldPrice?: any | null, views: number, boughtTimes: number, status: Status, createdAt: any, sizes: Array<{ size: string, price: any, oldPrice?: any | null }>, colors: Array<{ color: string, images: Array<string> }>, types: Array<{ iconPath: string }>, characteristics: Array<{ name: string, type: CharacteristicType }> } | null, similarProducts: Array<{ id: number, name: string, slug: string, sku: string, iconPath?: string | null, description: string, packageQuantity: number, price: any, oldPrice?: any | null, views: number, boughtTimes: number, status: Status, createdAt: any, sizes: Array<{ size: string, price: any, oldPrice?: any | null }>, colors: Array<{ color: string, images: Array<string> }>, types: Array<{ iconPath: string }> }> } | null };
 
 export type ProductsQueryVariables = Exact<{
   query: QueryProductInput;
@@ -1093,7 +1112,7 @@ export type ProductsQueryVariables = Exact<{
 }>;
 
 
-export type ProductsQuery = { products: Array<{ id: number, name: string, slug: string, sku: string, iconPath?: string | null, description: string, packageQuantity: number, price: any, oldPrice?: any | null, views: number, boughtTimes: number, status: Status, createdAt: any, sizes: Array<{ size: string, price: string, oldPrice?: string | null }>, colors: Array<{ color: string, images: Array<string> }>, types: Array<{ iconPath: string }> }> };
+export type ProductsQuery = { products: Array<{ id: number, name: string, slug: string, sku: string, iconPath?: string | null, description: string, packageQuantity: number, price: any, oldPrice?: any | null, views: number, boughtTimes: number, status: Status, createdAt: any, sizes: Array<{ size: string, price: any, oldPrice?: any | null }>, colors: Array<{ color: string, images: Array<string> }>, types: Array<{ iconPath: string }> }> };
 
 export type ReviewsQueryVariables = Exact<{
   query: QueryInput;
@@ -2750,6 +2769,103 @@ export type ProductByIdQueryHookResult = ReturnType<typeof useProductByIdQuery>;
 export type ProductByIdLazyQueryHookResult = ReturnType<typeof useProductByIdLazyQuery>;
 export type ProductByIdSuspenseQueryHookResult = ReturnType<typeof useProductByIdSuspenseQuery>;
 export type ProductByIdQueryResult = Apollo.QueryResult<ProductByIdQuery, ProductByIdQueryVariables>;
+export const ProductBySlugDocument = gql`
+    query ProductBySlug($slug: String!) {
+  productBySlug(slug: $slug) {
+    product {
+      id
+      name
+      slug
+      sku
+      iconPath
+      description
+      packageQuantity
+      price
+      oldPrice
+      views
+      boughtTimes
+      sizes {
+        size
+        price
+        oldPrice
+      }
+      colors {
+        color
+        images
+      }
+      types {
+        iconPath
+      }
+      characteristics {
+        name
+        type
+      }
+      status
+      createdAt
+    }
+    similarProducts {
+      id
+      name
+      slug
+      sku
+      iconPath
+      description
+      packageQuantity
+      price
+      oldPrice
+      views
+      boughtTimes
+      sizes {
+        size
+        price
+        oldPrice
+      }
+      colors {
+        color
+        images
+      }
+      types {
+        iconPath
+      }
+      status
+      createdAt
+    }
+  }
+}
+    `;
+
+/**
+ * __useProductBySlugQuery__
+ *
+ * To run a query within a React component, call `useProductBySlugQuery` and pass it any options that fit your needs.
+ * When your component renders, `useProductBySlugQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useProductBySlugQuery({
+ *   variables: {
+ *      slug: // value for 'slug'
+ *   },
+ * });
+ */
+export function useProductBySlugQuery(baseOptions: Apollo.QueryHookOptions<ProductBySlugQuery, ProductBySlugQueryVariables> & ({ variables: ProductBySlugQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ProductBySlugQuery, ProductBySlugQueryVariables>(ProductBySlugDocument, options);
+      }
+export function useProductBySlugLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ProductBySlugQuery, ProductBySlugQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ProductBySlugQuery, ProductBySlugQueryVariables>(ProductBySlugDocument, options);
+        }
+export function useProductBySlugSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<ProductBySlugQuery, ProductBySlugQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<ProductBySlugQuery, ProductBySlugQueryVariables>(ProductBySlugDocument, options);
+        }
+export type ProductBySlugQueryHookResult = ReturnType<typeof useProductBySlugQuery>;
+export type ProductBySlugLazyQueryHookResult = ReturnType<typeof useProductBySlugLazyQuery>;
+export type ProductBySlugSuspenseQueryHookResult = ReturnType<typeof useProductBySlugSuspenseQuery>;
+export type ProductBySlugQueryResult = Apollo.QueryResult<ProductBySlugQuery, ProductBySlugQueryVariables>;
 export const ProductsDocument = gql`
     query Products($query: QueryProductInput!, $isSale: Boolean) {
   products(query: $query, isSale: $isSale) {

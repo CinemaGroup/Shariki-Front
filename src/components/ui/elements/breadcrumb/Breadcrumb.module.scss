@@ -1,0 +1,49 @@
+.breadcrumb {
+	@apply flex;
+	height: 73px;
+}
+.catalog {
+	@apply flex items-center gap-7 text-white text-2lg font-semibold px-6 bg-red-400 whitespace-nowrap;
+
+	> svg {
+		@apply w-7 h-7;
+	}
+}
+.fill {
+	@apply w-full bg-gray-100 flex items-center justify-between;
+}
+.list {
+	@apply px-8 flex items-center gap-2;
+}
+.item {
+	@apply font-light whitespace-nowrap;
+
+	& + & {
+		@apply relative pl-4;
+
+		&::before,
+		&::after {
+			@apply absolute left-0 bg-red-400 w-2;
+			content: '';
+			height: 1px;
+			bottom: 5px;
+		}
+
+		&::before {
+			@apply top-2;
+			transform: rotate(30deg);
+		}
+		&::after {
+			transform: rotate(-30deg);
+		}
+	}
+}
+.search {
+	@apply mr-11;
+	max-width: 480px;
+}
+.input {
+	padding-left: 54px !important;
+	padding-top: 12px !important;
+	padding-bottom: 12px !important;
+}
