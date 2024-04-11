@@ -33,9 +33,18 @@ export const useManageCategoryEdit = (queryId: string) => {
 			toast.error(error.message)
 		},
 		onCompleted: ({ categoryById }) => {
-			getKeys(categoryById).forEach(({ key, value }) => {
+			const { parent, ...response } = categoryById
+			getKeys(response).forEach(({ key, value }) => {
 				setValue(key, value)
 			})
+
+			if (parent) {
+				const selectedParent = {
+					name: parent.name,
+					value: parent.id,
+				}
+				setValue('parent', selectedParent)
+			}
 		},
 	})
 

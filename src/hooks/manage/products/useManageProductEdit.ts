@@ -35,20 +35,57 @@ export const useManageProductEdit = (queryId: string) => {
 		variables: {
 			id: productId,
 		},
-		fetchPolicy: "no-cache",
+		fetchPolicy: 'no-cache',
 		skip: !productId,
 		onError: (error) => {
 			toast.error(error.message)
 		},
 		onCompleted: ({ productById }) => {
-			getKeys(productById).forEach(({ key, value }) => {
+			const {
+				tags,
+				types,
+				characteristics,
+				categories,
+				holidays,
+				packageQuantity,
+				...response
+			} = productById
+
+			getKeys(response).forEach(({ key, value }) => {
 				setValue(key, value)
 			})
+
+			const selectedTags = tags.map((tag) => ({
+				name: tag.name,
+				value: tag.id,
+			}))
+			const selectedHolidays = holidays.map((holiday) => ({
+				name: holiday.name,
+				value: holiday.id,
+			}))
+			const selectedTypes = types.map((type) => ({
+				name: type.name,
+				value: type.id,
+			}))
+			const selectedCharacteristics = characteristics.map((characteristic) => ({
+				name: characteristic.name,
+				value: characteristic.id,
+			}))
+			const selectedCategories = categories.map((category) => ({
+				name: category.name,
+				value: category.id,
+			}))
+			setValue('tags', selectedTags)
+			setValue('types', selectedTypes)
+			setValue('characteristics', selectedCharacteristics)
+			setValue('categories', selectedCategories)
+			setValue('holidays', selectedHolidays)
+			setValue('packageQuantity', String(packageQuantity))
 		},
 	})
 
 	const [updateProduct] = useUpdateProductMutation({
-		fetchPolicy: "no-cache",
+		fetchPolicy: 'no-cache',
 		onCompleted: () => {
 			push(ADMIN_PAGES.PRODUCTS)
 		},

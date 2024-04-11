@@ -30,10 +30,10 @@ const ManageTypes: FC = () => {
 			/>
 			<div className={globalStyles.content}>
 				<div className={globalStyles.top}>
-					<h1 className={globalStyles.heading}>Типы</h1>
+					<h1 className={globalStyles.heading}>Модели</h1>
 					<button className={globalStyles.create} onClick={() => createType()}>
 						<ListPlus />
-						Создать Тип
+						Создать Модель
 					</button>
 				</div>
 				<Filters

@@ -16,7 +16,7 @@ export const MANAGE_MENU_DATA: IMenu = {
 			href: `${ADMIN_PAGES.TAGS}`,
 		},
 		{
-			label: 'Типы',
+			label: 'Модели',
 			href: `${ADMIN_PAGES.TYPES}`,
 		},
 		{

@@ -31,7 +31,6 @@ const ReactSelect: FC<IReactSelect> = ({
 	className,
 }) => {
 	const onChange = (newValue: unknown | OnChangeValue<IOption, boolean>) => {
-		console.log(newValue)
 		if (!newValue) return field.onChange(isMulti ? [] : '')
 
 		if (isMulti) {
@@ -41,6 +40,7 @@ const ReactSelect: FC<IReactSelect> = ({
 					value: item.value,
 				}))
 			)
+			console.log(newValue)
 		} else {
 			console.log(newValue)
 			field.onChange({
@@ -62,11 +62,9 @@ const ReactSelect: FC<IReactSelect> = ({
 
 				return filteredOptions
 			} else {
-				if (typeof field.value === 'object') {
-					return options.find((option) => option.value === field.value.id)
-				} else {
-					return options.find((option) => option.value === field.value)
-				}
+				console.log(field.value)
+				console.log(options)
+				return options.find((option) => option.value !== field.value)
 			}
 		} else {
 			return isMulti ? [] : ''
