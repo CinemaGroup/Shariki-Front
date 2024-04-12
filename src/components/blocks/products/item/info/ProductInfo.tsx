@@ -3,25 +3,27 @@ import styles from '../../Products.module.scss'
 import type { IProductInfo } from './interface/product-info.interface'
 
 const ProductInfo: FC<IProductInfo> = ({ product, price, oldPrice }) => {
+	const filteredPrice = +price
+	const filteredOldPrice = oldPrice ? +oldPrice : null
 	return (
 		<div className={styles.info}>
-			{oldPrice ? (
+			{filteredOldPrice ? (
 				<div className={styles.salePriceBox}>
 					<div className={styles.newPriceBox}>
 						<div className={styles.newPrice}>
 							{price} ₽
 							<span className={styles.salePercent}>
-								-{Math.round(100 - (100 * price) / oldPrice)} %
+								-{Math.round(100 - (100 * filteredPrice) / filteredOldPrice)} %
 							</span>
 						</div>
 						<span className={styles.piecePrice}>
-							{(price / product.packageQuantity).toFixed(2)} ₽ за шт
+							{(filteredPrice / product.packageQuantity).toFixed(2)} ₽ за шт
 						</span>
 					</div>
 					<div className={styles.oldPriceBox}>
 						<span className={styles.oldPrice}>{oldPrice} ₽</span>
 						<span className={styles.piecePrice}>
-							{(oldPrice / product.packageQuantity).toFixed(2)} ₽ за шт
+							{(filteredOldPrice / product.packageQuantity).toFixed(2)} ₽ за шт
 						</span>
 					</div>
 				</div>
@@ -29,7 +31,7 @@ const ProductInfo: FC<IProductInfo> = ({ product, price, oldPrice }) => {
 				<div className={styles.currentPriceBox}>
 					<span className={styles.price}>{price} ₽</span>
 					<span className={styles.piecePrice}>
-						{(price / product.packageQuantity).toFixed(2)} ₽ за шт
+						{(filteredPrice / product.packageQuantity).toFixed(2)} ₽ за шт
 					</span>
 				</div>
 			)}

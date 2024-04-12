@@ -8,24 +8,26 @@ const ProductSingleContentPrice: FC<ICurrentProduct & TypeSize> = ({
 	size,
 }) => {
 	const item = size ? size : product
+	const filteredPrice = +item.price
+	const filteredOldPrice = item.oldPrice ? +item.oldPrice : null
 
-	return item.oldPrice ? (
+	return filteredOldPrice ? (
 		<div className={styles.salePriceBox}>
 			<div className={styles.newPriceBox}>
 				<div className={styles.newPrice}>
 					{item.price} ₽
 					<span className={styles.salePercent}>
-						-{Math.round(100 - (100 * item.price) / item.oldPrice)} %
+						-{Math.round(100 - (100 * filteredPrice) / filteredOldPrice)} %
 					</span>
 				</div>
 				<span className={styles.piecePrice}>
-					{(item.price / product.packageQuantity).toFixed(2)} ₽ за шт
+					{(filteredPrice / product.packageQuantity).toFixed(2)} ₽ за шт
 				</span>
 			</div>
 			<div className={styles.oldPriceBox}>
 				<span className={styles.oldPrice}>{item.oldPrice} ₽</span>
 				<span className={styles.piecePrice}>
-					{(item.oldPrice / product.packageQuantity).toFixed(2)} ₽ за шт
+					{(filteredOldPrice / product.packageQuantity).toFixed(2)} ₽ за шт
 				</span>
 			</div>
 		</div>
@@ -33,7 +35,7 @@ const ProductSingleContentPrice: FC<ICurrentProduct & TypeSize> = ({
 		<div className={styles.currentPriceBox}>
 			<span className={styles.price}>{item.price} ₽</span>
 			<span className={styles.piecePrice}>
-				{(item.price / product.packageQuantity).toFixed(2)} ₽ за шт
+				{(filteredPrice / product.packageQuantity).toFixed(2)} ₽ за шт
 			</span>
 		</div>
 	)
