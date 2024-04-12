@@ -64,6 +64,9 @@ const ReactSelect: FC<IReactSelect> = ({
 			} else {
 				console.log(field.value)
 				console.log(options)
+				if (typeof field.value === 'object') {
+					return options.find((option) => option.value === field.value.value)
+				}
 				return options.find((option) => option.value !== field.value)
 			}
 		} else {

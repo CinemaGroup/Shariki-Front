@@ -4,6 +4,7 @@ import {
 	type CharacteristicInput,
 } from '@/__generated__/output'
 import { ADMIN_PAGES } from '@/constants/url.constants'
+import { CHARACTERISTIC_TYPES_TRANSLATE } from '@/translates/characteristic-types.translate'
 import { getKeys } from '@/utils/helpers/get-keys.util'
 import { useRouter } from 'next/navigation'
 import { useForm, type SubmitHandler } from 'react-hook-form'
@@ -33,8 +34,14 @@ export const useManageCharacteristicEdit = (queryId: string) => {
 			toast.error(error.message)
 		},
 		onCompleted: ({ characteristicById }) => {
-			getKeys(characteristicById).forEach(({ key, value }) => {
+			const { type, ...response } = characteristicById
+			getKeys(response).forEach(({ key, value }) => {
 				setValue(key, value)
+			})
+			console.log(type)
+			setValue('type', {
+				name: CHARACTERISTIC_TYPES_TRANSLATE[type],
+				value: type,
 			})
 		},
 	})

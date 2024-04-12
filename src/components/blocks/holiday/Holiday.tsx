@@ -5,6 +5,9 @@ import cn from 'clsx'
 import Link from 'next/link'
 import type { FC } from 'react'
 import styles from './Holiday.module.scss'
+import { IManageActions } from '@/shared/interfaces/manage/manage.interface'
+import ManageActions from '@/components/ui/elements/manage/actions/ManageActions'
+import { ADMIN_EDITS } from '@/constants/url.constants'
 
 const Holiday: FC<{ holiday: TypeHoliday } & IClassName> = ({
 	holiday,

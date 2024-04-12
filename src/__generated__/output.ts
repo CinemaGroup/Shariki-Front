@@ -98,6 +98,21 @@ export enum CharacteristicType {
   Material = 'MATERIAL'
 }
 
+export type Collection = {
+  __typename?: 'Collection';
+  createdAt: Scalars['DateTime']['output'];
+  id: Scalars['Int']['output'];
+  name: Scalars['String']['output'];
+  products: Array<Product>;
+  slug: Scalars['String']['output'];
+  status: Status;
+  updatedAt: Scalars['DateTime']['output'];
+};
+
+export type CollectionInput = {
+  name: Scalars['String']['input'];
+};
+
 export type Color = {
   __typename?: 'Color';
   color: Scalars['String']['output'];
@@ -160,7 +175,6 @@ export type Holiday = {
   __typename?: 'Holiday';
   createdAt: Scalars['DateTime']['output'];
   id: Scalars['Int']['output'];
-  imagePath: Scalars['String']['output'];
   name: Scalars['String']['output'];
   products: Array<Product>;
   slug: Scalars['String']['output'];
@@ -169,7 +183,6 @@ export type Holiday = {
 };
 
 export type HolidayInput = {
-  imagePath: Scalars['String']['input'];
   name: Scalars['String']['input'];
 };
 
@@ -177,6 +190,7 @@ export type Mutation = {
   __typename?: 'Mutation';
   createCategory: Category;
   createCharacteristic: Characteristic;
+  createCollection: Collection;
   createFolder: Scalars['String']['output'];
   createHoliday: Holiday;
   createPost: Post;
@@ -186,6 +200,7 @@ export type Mutation = {
   createType: Type;
   deleteCategory: Category;
   deleteCharacteristic: Characteristic;
+  deleteCollection: Collection;
   deleteFileOrFolder: Scalars['String']['output'];
   deleteHoliday: Holiday;
   deletePost: Post;
@@ -195,6 +210,7 @@ export type Mutation = {
   deleteType: Type;
   duplicateCategory: Category;
   duplicateCharacteristic: Characteristic;
+  duplicateCollection: Collection;
   duplicateHoliday: Holiday;
   duplicateProduct: Product;
   duplicateTag: Tag;
@@ -205,6 +221,7 @@ export type Mutation = {
   register: AuthResponse;
   toggleCategory: Category;
   toggleCharacteristic: Characteristic;
+  toggleCollection: Collection;
   toggleHoliday: Holiday;
   togglePost: Post;
   toggleProduct: Product;
@@ -213,6 +230,7 @@ export type Mutation = {
   toggleType: Type;
   updateCategory: Category;
   updateCharacteristic: Characteristic;
+  updateCollection: Collection;
   updateHoliday: Holiday;
   updatePost: Post;
   updateProduct: Product;
@@ -234,6 +252,11 @@ export type MutationDeleteCategoryArgs = {
 
 
 export type MutationDeleteCharacteristicArgs = {
+  id: Scalars['Int']['input'];
+};
+
+
+export type MutationDeleteCollectionArgs = {
   id: Scalars['Int']['input'];
 };
 
@@ -283,6 +306,11 @@ export type MutationDuplicateCharacteristicArgs = {
 };
 
 
+export type MutationDuplicateCollectionArgs = {
+  id: Scalars['Int']['input'];
+};
+
+
 export type MutationDuplicateHolidayArgs = {
   id: Scalars['Int']['input'];
 };
@@ -328,6 +356,11 @@ export type MutationToggleCharacteristicArgs = {
 };
 
 
+export type MutationToggleCollectionArgs = {
+  id: Scalars['Int']['input'];
+};
+
+
 export type MutationToggleHolidayArgs = {
   id: Scalars['Int']['input'];
 };
@@ -366,6 +399,12 @@ export type MutationUpdateCategoryArgs = {
 
 export type MutationUpdateCharacteristicArgs = {
   data: CharacteristicInput;
+  id: Scalars['Int']['input'];
+};
+
+
+export type MutationUpdateCollectionArgs = {
+  data: CollectionInput;
   id: Scalars['Int']['input'];
 };
 
@@ -479,6 +518,7 @@ export type Product = {
   boughtTimes: Scalars['Int']['output'];
   categories: Array<Category>;
   characteristics: Array<Characteristic>;
+  collections: Array<Collection>;
   colors: Array<Color>;
   createdAt: Scalars['DateTime']['output'];
   description: Scalars['String']['output'];
@@ -505,6 +545,7 @@ export type Product = {
 export type ProductInput = {
   categories: Array<SelectInput>;
   characteristics: Array<SelectInput>;
+  collections: Array<SelectInput>;
   colors: Array<ColorInput>;
   description: Scalars['String']['input'];
   holidays: Array<SelectInput>;
@@ -544,6 +585,8 @@ export type Query = {
   categoryById: Category;
   characteristicById: Characteristic;
   characteristics: Array<Characteristic>;
+  collectionById: Collection;
+  collections: Array<Collection>;
   folderItems: StorageItem;
   folders: Array<FolderWithChild>;
   holidayById: Holiday;
@@ -551,7 +594,7 @@ export type Query = {
   postById: Post;
   posts: Array<Post>;
   productById: Product;
-  productBySlug?: Maybe<CurrentProduct>;
+  productBySlug: CurrentProduct;
   products: Array<Product>;
   profile: ProfileResponse;
   reviewById: Review;
@@ -580,6 +623,16 @@ export type QueryCharacteristicByIdArgs = {
 
 
 export type QueryCharacteristicsArgs = {
+  query: QueryInput;
+};
+
+
+export type QueryCollectionByIdArgs = {
+  id: Scalars['Int']['input'];
+};
+
+
+export type QueryCollectionsArgs = {
   query: QueryInput;
 };
 
@@ -879,6 +932,40 @@ export type UpdateCharacteristicMutationVariables = Exact<{
 
 export type UpdateCharacteristicMutation = { updateCharacteristic: { id: number } };
 
+export type CreateCollectionMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CreateCollectionMutation = { createCollection: { id: number } };
+
+export type DeleteCollectionMutationVariables = Exact<{
+  id: Scalars['Int']['input'];
+}>;
+
+
+export type DeleteCollectionMutation = { deleteCollection: { id: number } };
+
+export type DuplicateCollectionMutationVariables = Exact<{
+  id: Scalars['Int']['input'];
+}>;
+
+
+export type DuplicateCollectionMutation = { duplicateCollection: { id: number } };
+
+export type ToggleCollectionMutationVariables = Exact<{
+  id: Scalars['Int']['input'];
+}>;
+
+
+export type ToggleCollectionMutation = { toggleCollection: { id: number } };
+
+export type UpdateCollectionMutationVariables = Exact<{
+  id: Scalars['Int']['input'];
+  data: CollectionInput;
+}>;
+
+
+export type UpdateCollectionMutation = { updateCollection: { id: number } };
+
 export type CreateHolidayMutationVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1071,19 +1158,33 @@ export type CharacteristicsQueryVariables = Exact<{
 
 export type CharacteristicsQuery = { characteristics: Array<{ id: number, name: string, slug: string, type: CharacteristicType }> };
 
+export type CollectionByIdQueryVariables = Exact<{
+  id: Scalars['Int']['input'];
+}>;
+
+
+export type CollectionByIdQuery = { collectionById: { name: string } };
+
+export type CollectionsQueryVariables = Exact<{
+  query: QueryInput;
+}>;
+
+
+export type CollectionsQuery = { collections: Array<{ id: number, name: string, slug: string }> };
+
 export type HolidayByIdQueryVariables = Exact<{
   id: Scalars['Int']['input'];
 }>;
 
 
-export type HolidayByIdQuery = { holidayById: { name: string, imagePath: string } };
+export type HolidayByIdQuery = { holidayById: { name: string } };
 
 export type HolidaysQueryVariables = Exact<{
   query: QueryInput;
 }>;
 
 
-export type HolidaysQuery = { holidays: Array<{ id: number, name: string, slug: string, imagePath: string }> };
+export type HolidaysQuery = { holidays: Array<{ id: number, name: string, slug: string }> };
 
 export type PostsQueryVariables = Exact<{
   query: QueryInput;
@@ -1097,14 +1198,14 @@ export type ProductByIdQueryVariables = Exact<{
 }>;
 
 
-export type ProductByIdQuery = { productById: { name: string, sku: string, price: any, oldPrice?: any | null, packageQuantity: number, description: string, iconPath?: string | null, tags: Array<{ id: number, name: string }>, types: Array<{ id: number, name: string }>, holidays: Array<{ id: number, name: string }>, characteristics: Array<{ id: number, name: string }>, categories: Array<{ id: number, name: string }>, colors: Array<{ color: string, images: Array<string> }>, sizes: Array<{ size: string, price: any, oldPrice?: any | null }> } };
+export type ProductByIdQuery = { productById: { name: string, sku: string, price: any, oldPrice?: any | null, packageQuantity: number, description: string, iconPath?: string | null, tags: Array<{ id: number, name: string }>, types: Array<{ id: number, name: string }>, holidays: Array<{ id: number, name: string }>, characteristics: Array<{ id: number, name: string }>, categories: Array<{ id: number, name: string }>, collections: Array<{ id: number, name: string }>, colors: Array<{ color: string, images: Array<string> }>, sizes: Array<{ size: string, price: any, oldPrice?: any | null }> } };
 
 export type ProductBySlugQueryVariables = Exact<{
   slug: Scalars['String']['input'];
 }>;
 
 
-export type ProductBySlugQuery = { productBySlug?: { product?: { id: number, name: string, slug: string, sku: string, iconPath?: string | null, description: string, packageQuantity: number, price: any, oldPrice?: any | null, views: number, boughtTimes: number, status: Status, createdAt: any, sizes: Array<{ size: string, price: any, oldPrice?: any | null }>, colors: Array<{ color: string, images: Array<string> }>, types: Array<{ iconPath: string }>, characteristics: Array<{ name: string, type: CharacteristicType }> } | null, similarProducts: Array<{ id: number, name: string, slug: string, sku: string, iconPath?: string | null, description: string, packageQuantity: number, price: any, oldPrice?: any | null, views: number, boughtTimes: number, status: Status, createdAt: any, sizes: Array<{ size: string, price: any, oldPrice?: any | null }>, colors: Array<{ color: string, images: Array<string> }>, types: Array<{ iconPath: string }> }> } | null };
+export type ProductBySlugQuery = { productBySlug: { product?: { id: number, name: string, slug: string, sku: string, iconPath?: string | null, description: string, packageQuantity: number, price: any, oldPrice?: any | null, views: number, boughtTimes: number, status: Status, createdAt: any, sizes: Array<{ size: string, price: any, oldPrice?: any | null }>, colors: Array<{ color: string, images: Array<string> }>, types: Array<{ iconPath: string }>, characteristics: Array<{ name: string, type: CharacteristicType }> } | null, similarProducts: Array<{ id: number, name: string, slug: string, sku: string, iconPath?: string | null, description: string, packageQuantity: number, price: any, oldPrice?: any | null, views: number, boughtTimes: number, status: Status, createdAt: any, sizes: Array<{ size: string, price: any, oldPrice?: any | null }>, colors: Array<{ color: string, images: Array<string> }>, types: Array<{ iconPath: string }> }> } };
 
 export type ProductsQueryVariables = Exact<{
   query: QueryProductInput;
@@ -1607,6 +1708,171 @@ export function useUpdateCharacteristicMutation(baseOptions?: Apollo.MutationHoo
 export type UpdateCharacteristicMutationHookResult = ReturnType<typeof useUpdateCharacteristicMutation>;
 export type UpdateCharacteristicMutationResult = Apollo.MutationResult<UpdateCharacteristicMutation>;
 export type UpdateCharacteristicMutationOptions = Apollo.BaseMutationOptions<UpdateCharacteristicMutation, UpdateCharacteristicMutationVariables>;
+export const CreateCollectionDocument = gql`
+    mutation CreateCollection {
+  createCollection {
+    id
+  }
+}
+    `;
+export type CreateCollectionMutationFn = Apollo.MutationFunction<CreateCollectionMutation, CreateCollectionMutationVariables>;
+
+/**
+ * __useCreateCollectionMutation__
+ *
+ * To run a mutation, you first call `useCreateCollectionMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateCollectionMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createCollectionMutation, { data, loading, error }] = useCreateCollectionMutation({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useCreateCollectionMutation(baseOptions?: Apollo.MutationHookOptions<CreateCollectionMutation, CreateCollectionMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateCollectionMutation, CreateCollectionMutationVariables>(CreateCollectionDocument, options);
+      }
+export type CreateCollectionMutationHookResult = ReturnType<typeof useCreateCollectionMutation>;
+export type CreateCollectionMutationResult = Apollo.MutationResult<CreateCollectionMutation>;
+export type CreateCollectionMutationOptions = Apollo.BaseMutationOptions<CreateCollectionMutation, CreateCollectionMutationVariables>;
+export const DeleteCollectionDocument = gql`
+    mutation DeleteCollection($id: Int!) {
+  deleteCollection(id: $id) {
+    id
+  }
+}
+    `;
+export type DeleteCollectionMutationFn = Apollo.MutationFunction<DeleteCollectionMutation, DeleteCollectionMutationVariables>;
+
+/**
+ * __useDeleteCollectionMutation__
+ *
+ * To run a mutation, you first call `useDeleteCollectionMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteCollectionMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteCollectionMutation, { data, loading, error }] = useDeleteCollectionMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDeleteCollectionMutation(baseOptions?: Apollo.MutationHookOptions<DeleteCollectionMutation, DeleteCollectionMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteCollectionMutation, DeleteCollectionMutationVariables>(DeleteCollectionDocument, options);
+      }
+export type DeleteCollectionMutationHookResult = ReturnType<typeof useDeleteCollectionMutation>;
+export type DeleteCollectionMutationResult = Apollo.MutationResult<DeleteCollectionMutation>;
+export type DeleteCollectionMutationOptions = Apollo.BaseMutationOptions<DeleteCollectionMutation, DeleteCollectionMutationVariables>;
+export const DuplicateCollectionDocument = gql`
+    mutation DuplicateCollection($id: Int!) {
+  duplicateCollection(id: $id) {
+    id
+  }
+}
+    `;
+export type DuplicateCollectionMutationFn = Apollo.MutationFunction<DuplicateCollectionMutation, DuplicateCollectionMutationVariables>;
+
+/**
+ * __useDuplicateCollectionMutation__
+ *
+ * To run a mutation, you first call `useDuplicateCollectionMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDuplicateCollectionMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [duplicateCollectionMutation, { data, loading, error }] = useDuplicateCollectionMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDuplicateCollectionMutation(baseOptions?: Apollo.MutationHookOptions<DuplicateCollectionMutation, DuplicateCollectionMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DuplicateCollectionMutation, DuplicateCollectionMutationVariables>(DuplicateCollectionDocument, options);
+      }
+export type DuplicateCollectionMutationHookResult = ReturnType<typeof useDuplicateCollectionMutation>;
+export type DuplicateCollectionMutationResult = Apollo.MutationResult<DuplicateCollectionMutation>;
+export type DuplicateCollectionMutationOptions = Apollo.BaseMutationOptions<DuplicateCollectionMutation, DuplicateCollectionMutationVariables>;
+export const ToggleCollectionDocument = gql`
+    mutation ToggleCollection($id: Int!) {
+  toggleCollection(id: $id) {
+    id
+  }
+}
+    `;
+export type ToggleCollectionMutationFn = Apollo.MutationFunction<ToggleCollectionMutation, ToggleCollectionMutationVariables>;
+
+/**
+ * __useToggleCollectionMutation__
+ *
+ * To run a mutation, you first call `useToggleCollectionMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useToggleCollectionMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [toggleCollectionMutation, { data, loading, error }] = useToggleCollectionMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useToggleCollectionMutation(baseOptions?: Apollo.MutationHookOptions<ToggleCollectionMutation, ToggleCollectionMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<ToggleCollectionMutation, ToggleCollectionMutationVariables>(ToggleCollectionDocument, options);
+      }
+export type ToggleCollectionMutationHookResult = ReturnType<typeof useToggleCollectionMutation>;
+export type ToggleCollectionMutationResult = Apollo.MutationResult<ToggleCollectionMutation>;
+export type ToggleCollectionMutationOptions = Apollo.BaseMutationOptions<ToggleCollectionMutation, ToggleCollectionMutationVariables>;
+export const UpdateCollectionDocument = gql`
+    mutation UpdateCollection($id: Int!, $data: CollectionInput!) {
+  updateCollection(id: $id, data: $data) {
+    id
+  }
+}
+    `;
+export type UpdateCollectionMutationFn = Apollo.MutationFunction<UpdateCollectionMutation, UpdateCollectionMutationVariables>;
+
+/**
+ * __useUpdateCollectionMutation__
+ *
+ * To run a mutation, you first call `useUpdateCollectionMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateCollectionMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateCollectionMutation, { data, loading, error }] = useUpdateCollectionMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useUpdateCollectionMutation(baseOptions?: Apollo.MutationHookOptions<UpdateCollectionMutation, UpdateCollectionMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateCollectionMutation, UpdateCollectionMutationVariables>(UpdateCollectionDocument, options);
+      }
+export type UpdateCollectionMutationHookResult = ReturnType<typeof useUpdateCollectionMutation>;
+export type UpdateCollectionMutationResult = Apollo.MutationResult<UpdateCollectionMutation>;
+export type UpdateCollectionMutationOptions = Apollo.BaseMutationOptions<UpdateCollectionMutation, UpdateCollectionMutationVariables>;
 export const CreateHolidayDocument = gql`
     mutation CreateHoliday {
   createHoliday {
@@ -2561,11 +2827,92 @@ export type CharacteristicsQueryHookResult = ReturnType<typeof useCharacteristic
 export type CharacteristicsLazyQueryHookResult = ReturnType<typeof useCharacteristicsLazyQuery>;
 export type CharacteristicsSuspenseQueryHookResult = ReturnType<typeof useCharacteristicsSuspenseQuery>;
 export type CharacteristicsQueryResult = Apollo.QueryResult<CharacteristicsQuery, CharacteristicsQueryVariables>;
+export const CollectionByIdDocument = gql`
+    query CollectionById($id: Int!) {
+  collectionById(id: $id) {
+    name
+  }
+}
+    `;
+
+/**
+ * __useCollectionByIdQuery__
+ *
+ * To run a query within a React component, call `useCollectionByIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCollectionByIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useCollectionByIdQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useCollectionByIdQuery(baseOptions: Apollo.QueryHookOptions<CollectionByIdQuery, CollectionByIdQueryVariables> & ({ variables: CollectionByIdQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<CollectionByIdQuery, CollectionByIdQueryVariables>(CollectionByIdDocument, options);
+      }
+export function useCollectionByIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CollectionByIdQuery, CollectionByIdQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<CollectionByIdQuery, CollectionByIdQueryVariables>(CollectionByIdDocument, options);
+        }
+export function useCollectionByIdSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<CollectionByIdQuery, CollectionByIdQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<CollectionByIdQuery, CollectionByIdQueryVariables>(CollectionByIdDocument, options);
+        }
+export type CollectionByIdQueryHookResult = ReturnType<typeof useCollectionByIdQuery>;
+export type CollectionByIdLazyQueryHookResult = ReturnType<typeof useCollectionByIdLazyQuery>;
+export type CollectionByIdSuspenseQueryHookResult = ReturnType<typeof useCollectionByIdSuspenseQuery>;
+export type CollectionByIdQueryResult = Apollo.QueryResult<CollectionByIdQuery, CollectionByIdQueryVariables>;
+export const CollectionsDocument = gql`
+    query Collections($query: QueryInput!) {
+  collections(query: $query) {
+    id
+    name
+    slug
+  }
+}
+    `;
+
+/**
+ * __useCollectionsQuery__
+ *
+ * To run a query within a React component, call `useCollectionsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCollectionsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useCollectionsQuery({
+ *   variables: {
+ *      query: // value for 'query'
+ *   },
+ * });
+ */
+export function useCollectionsQuery(baseOptions: Apollo.QueryHookOptions<CollectionsQuery, CollectionsQueryVariables> & ({ variables: CollectionsQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<CollectionsQuery, CollectionsQueryVariables>(CollectionsDocument, options);
+      }
+export function useCollectionsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CollectionsQuery, CollectionsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<CollectionsQuery, CollectionsQueryVariables>(CollectionsDocument, options);
+        }
+export function useCollectionsSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<CollectionsQuery, CollectionsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<CollectionsQuery, CollectionsQueryVariables>(CollectionsDocument, options);
+        }
+export type CollectionsQueryHookResult = ReturnType<typeof useCollectionsQuery>;
+export type CollectionsLazyQueryHookResult = ReturnType<typeof useCollectionsLazyQuery>;
+export type CollectionsSuspenseQueryHookResult = ReturnType<typeof useCollectionsSuspenseQuery>;
+export type CollectionsQueryResult = Apollo.QueryResult<CollectionsQuery, CollectionsQueryVariables>;
 export const HolidayByIdDocument = gql`
     query HolidayById($id: Int!) {
   holidayById(id: $id) {
     name
-    imagePath
   }
 }
     `;
@@ -2608,7 +2955,6 @@ export const HolidaysDocument = gql`
     id
     name
     slug
-    imagePath
   }
 }
     `;
@@ -2719,6 +3065,10 @@ export const ProductByIdDocument = gql`
       name
     }
     categories {
+      id
+      name
+    }
+    collections {
       id
       name
     }

@@ -25,6 +25,10 @@ query ProductById($id: Int!) {
 			id
 			name
 		}
+		collections {
+			id
+			name
+		}
 		description
 		iconPath
 		colors {

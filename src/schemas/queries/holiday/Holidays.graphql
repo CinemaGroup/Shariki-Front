@@ -3,6 +3,5 @@ query Holidays($query: QueryInput!) {
 		id
 		name
 		slug
-		imagePath
 	}
 }

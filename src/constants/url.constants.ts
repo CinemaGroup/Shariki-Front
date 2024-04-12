@@ -6,6 +6,7 @@ export const ADMIN_PAGES = {
 	TYPES: '/manage/types',
 	CATEGORIES: '/manage/categories',
 	HOLIDAYS: '/manage/holidays',
+	COLLECTIONS: '/manage/collections',
 }
 
 export const ADMIN_EDITS = {
@@ -19,6 +20,8 @@ export const ADMIN_EDITS = {
 		`${ADMIN_PAGES.HOME}/category/edit/${categoryId}`,
 	HOLIDAY: (holidayId: number) =>
 		`${ADMIN_PAGES.HOME}/holiday/edit/${holidayId}`,
+	COLLECTION: (collectionId: number) =>
+		`${ADMIN_PAGES.HOME}/collection/edit/${collectionId}`,
 }
 
 export const USER_PAGES = {

@@ -47,6 +47,7 @@ export const useManageProductEdit = (queryId: string) => {
 				characteristics,
 				categories,
 				holidays,
+				collections,
 				packageQuantity,
 				...response
 			} = productById
@@ -62,6 +63,10 @@ export const useManageProductEdit = (queryId: string) => {
 			const selectedHolidays = holidays.map((holiday) => ({
 				name: holiday.name,
 				value: holiday.id,
+			}))
+			const selectedCollections = collections.map((collection) => ({
+				name: collection.name,
+				value: collection.id,
 			}))
 			const selectedTypes = types.map((type) => ({
 				name: type.name,
@@ -80,6 +85,7 @@ export const useManageProductEdit = (queryId: string) => {
 			setValue('characteristics', selectedCharacteristics)
 			setValue('categories', selectedCategories)
 			setValue('holidays', selectedHolidays)
+			setValue('collections', selectedCollections)
 			setValue('packageQuantity', String(packageQuantity))
 		},
 	})

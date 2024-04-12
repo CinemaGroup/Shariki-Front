@@ -14,6 +14,8 @@ import {
 import ReactSelect from '@/components/ui/common/selects/react-select/ReactSelect'
 import { useManageSelectCategories } from '@/hooks/manage/categories/useManageSelectCategories'
 import { useManageSelectCharacteristics } from '@/hooks/manage/characteristics/useManageSelectCharacteristics'
+import { useManageSelectCollections } from '@/hooks/manage/collections/useManageSelectCollections'
+import { useManageSelectHolidays } from '@/hooks/manage/holidays/useManageSelectHolidays'
 import { useManageProductEdit } from '@/hooks/manage/products/useManageProductEdit'
 import { useManageSelectTags } from '@/hooks/manage/tags/useManageSelectTags'
 import { useManageSelectTypes } from '@/hooks/manage/types/useManageSelectTypes'
@@ -38,6 +40,8 @@ const ManageProductEdit: FC<{ queryId: string }> = ({ queryId }) => {
 	const { types } = useManageSelectTypes()
 	const { characteristics } = useManageSelectCharacteristics()
 	const { categories } = useManageSelectCategories()
+	const { holidays } = useManageSelectHolidays()
+	const { collections } = useManageSelectCollections()
 
 	return (
 		<div className={globalStyles.edit}>
@@ -164,6 +168,34 @@ const ManageProductEdit: FC<{ queryId: string }> = ({ queryId }) => {
 								/>
 							)}
 							rules={REQUIRED_VALIDATION('Категории')}
+						/>
+						<Controller
+							name="holidays"
+							control={control}
+							render={({ field, fieldState: { error } }) => (
+								<ReactSelect
+									field={field}
+									options={holidays || []}
+									label="Праздники"
+									error={error}
+									className={styles.select}
+									isMulti
+								/>
+							)}
+						/>
+						<Controller
+							name="collections"
+							control={control}
+							render={({ field, fieldState: { error } }) => (
+								<ReactSelect
+									field={field}
+									options={collections || []}
+									label="Коллекции"
+									error={error}
+									className={styles.select}
+									isMulti
+								/>
+							)}
 						/>
 						<Controller
 							name="iconPath"

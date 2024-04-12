@@ -1,0 +1,7 @@
+query Collections($query: QueryInput!) {
+	collections(query: $query) {
+		id
+		name
+		slug
+	}
+}

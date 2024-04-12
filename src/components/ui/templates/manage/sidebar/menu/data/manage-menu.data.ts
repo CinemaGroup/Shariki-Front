@@ -27,5 +27,9 @@ export const MANAGE_MENU_DATA: IMenu = {
 			label: 'Праздники',
 			href: `${ADMIN_PAGES.HOLIDAYS}`,
 		},
+		{
+			label: 'Коллекции',
+			href: `${ADMIN_PAGES.COLLECTIONS}`,
+		},
 	],
 }

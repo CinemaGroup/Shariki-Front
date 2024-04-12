@@ -11,20 +11,24 @@ const Collection: FC<{ collection: TypeCollection } & IClassName> = ({
 	className,
 }) => {
 	return (
-		<Link
-			className={cn(styles.collection, className && className)}
-			href="/catalog"
-		>
-			<StaticImage
-				className={styles.image}
-				src={collection.imagePath}
-				width={0}
-				height={0}
-				sizes="100vw"
-				alt={collection.name}
-			/>
-			<h3 className={styles.name}>{collection.name}</h3>
-		</Link>
+		<div className={styles.collection}>
+			<Link
+				className={cn(styles.collection, className && className)}
+				href="/catalog"
+			>
+				{collection.imagePath && (
+					<StaticImage
+						className={styles.image}
+						src={collection.imagePath}
+						width={0}
+						height={0}
+						sizes="100vw"
+						alt={collection.name}
+					/>
+				)}
+				{collection.name && <h3 className={styles.name}>{collection.name}</h3>}
+			</Link>
+		</div>
 	)
 }
 

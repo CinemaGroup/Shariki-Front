@@ -20,7 +20,7 @@ const ProductFavorite: FC<IProductProps & IClassName> = ({
 			className={cn(styles.favorite, className && className)}
 			onClick={() => toggle(product)}
 		>
-			<Heart />
+			<Heart size={18} />
 		</button>
 	)
 }
