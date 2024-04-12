@@ -117,13 +117,12 @@ const ManageProductEdit: FC<{ queryId: string }> = ({ queryId }) => {
 								<ReactSelect
 									field={field}
 									options={tags || []}
-									label="Метки"
+									label="Метки (Не обязательно)"
 									error={error}
 									className={styles.select}
 									isMulti
 								/>
 							)}
-							rules={REQUIRED_VALIDATION('Метки')}
 						/>
 						<Controller
 							name="types"
@@ -132,13 +131,12 @@ const ManageProductEdit: FC<{ queryId: string }> = ({ queryId }) => {
 								<ReactSelect
 									field={field}
 									options={types || []}
-									label="Типы"
+									label="Типы (Не обязательно)"
 									error={error}
 									isMulti
 									className={styles.select}
 								/>
 							)}
-							rules={REQUIRED_VALIDATION('Типы')}
 						/>
 						<Controller
 							name="characteristics"
@@ -147,13 +145,12 @@ const ManageProductEdit: FC<{ queryId: string }> = ({ queryId }) => {
 								<ReactSelect
 									field={field}
 									options={characteristics || []}
-									label="Характеристики"
+									label="Характеристики (Не обязательно)"
 									error={error}
 									className={styles.select}
 									isMulti
 								/>
 							)}
-							rules={REQUIRED_VALIDATION('Характеристики')}
 						/>
 						<Controller
 							name="categories"
@@ -162,13 +159,12 @@ const ManageProductEdit: FC<{ queryId: string }> = ({ queryId }) => {
 								<ReactSelect
 									field={field}
 									options={categories || []}
-									label="Категории"
+									label="Категории (Не обязательно)"
 									error={error}
 									className={styles.select}
 									isMulti
 								/>
 							)}
-							rules={REQUIRED_VALIDATION('Категории')}
 						/>
 						<Controller
 							name="holidays"
@@ -177,7 +173,7 @@ const ManageProductEdit: FC<{ queryId: string }> = ({ queryId }) => {
 								<ReactSelect
 									field={field}
 									options={holidays || []}
-									label="Праздники"
+									label="Праздники (Не обязательно)"
 									error={error}
 									className={styles.select}
 									isMulti
@@ -191,7 +187,7 @@ const ManageProductEdit: FC<{ queryId: string }> = ({ queryId }) => {
 								<ReactSelect
 									field={field}
 									options={collections || []}
-									label="Коллекции"
+									label="Коллекции (Не обязательно)"
 									error={error}
 									className={styles.select}
 									isMulti
@@ -229,12 +225,11 @@ const ManageProductEdit: FC<{ queryId: string }> = ({ queryId }) => {
 									value={value}
 									error={error}
 									isMulti
-									placeholder="Выбрать картинки"
+									placeholder="Выбрать картинки (Не обязательно)"
 									label="Картинки"
 									uploadedClassName={styles.uploadedImages}
 								/>
 							)}
-							rules={REQUIRED_VALIDATION('Картинки')}
 						/>
 						<Controller
 							name="description"
