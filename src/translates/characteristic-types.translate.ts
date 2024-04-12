@@ -6,4 +6,5 @@ export const CHARACTERISTIC_TYPES_TRANSLATE = {
 	[CharacteristicType.Hue]: 'Оттенок',
 	[CharacteristicType.Manufacturer]: 'Производитель',
 	[CharacteristicType.Material]: 'Материал',
+	[CharacteristicType.Color]: 'Цвет',
 }

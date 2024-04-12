@@ -5,6 +5,7 @@ query ProductById($id: Int!) {
 		price
 		oldPrice
 		packageQuantity
+		images
 		tags {
 			id
 			name

@@ -12,6 +12,7 @@ query ProductBySlug($slug: String!) {
 			oldPrice
 			views
 			boughtTimes
+			images
 			sizes {
 				size
 				price
@@ -43,6 +44,7 @@ query ProductBySlug($slug: String!) {
 			oldPrice
 			views
 			boughtTimes
+			images
 			sizes {
 				size
 				price

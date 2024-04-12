@@ -4,6 +4,7 @@ import type { IClassName } from '@/shared/interfaces/class-name/class-name.inter
 import type { IManageActions } from '@/shared/interfaces/manage/manage.interface'
 import type { TypeCharacteristic } from '@/shared/types/characteristic/characteristic.type'
 import { CHARACTERISTIC_TYPES_TRANSLATE } from '@/translates/characteristic-types.translate'
+import { isHex } from '@/utils/helpers/is-hex.util'
 import cn from 'clsx'
 import type { FC } from 'react'
 import styles from './Characteristic.module.scss'
@@ -19,7 +20,11 @@ const Characteristic: FC<TypeCharacteristic & IClassName & IManageActions> = ({
 	return (
 		<div className={cn(styles.characteristic, className && className)}>
 			<div className={styles.wrapper}>
-				<h3 className={styles.name}>{characteristic.name}</h3>
+				{isHex(characteristic.name) ? (
+					<div className={styles.color} style={{backgroundColor: `#${characteristic.name}`}}></div>
+				) : (
+					<h3 className={styles.name}>{characteristic.name}</h3>
+				)}
 				<span className={styles.type}>
 					{CHARACTERISTIC_TYPES_TRANSLATE[characteristic.type]}
 				</span>

@@ -12,7 +12,7 @@ import type { IProductSingleContentCenter } from './interface/product-single-con
 const ProductSingleContentCenter: FC<
 	ICurrentProduct & TypeColor & IProductSingleContentCenter
 > = ({ product, color, setSwiper, setCurrentIndex }) => {
-	if (!color || color.images.length === 0) return null
+	const images = color?.images || product.images
 
 	return (
 		<div className={styles.center}>
@@ -31,7 +31,7 @@ const ProductSingleContentCenter: FC<
 					nextEl: '.swiper-next',
 				}}
 			>
-				{color.images.map((image, index) => (
+				{images.map((image, index) => (
 					<SwiperSlide key={index} className={styles.image}>
 						<StaticImage
 							className="w-auto h-auto mx-auto"

@@ -40,9 +40,7 @@ const ReactSelect: FC<IReactSelect> = ({
 					value: item.value,
 				}))
 			)
-			console.log(newValue)
 		} else {
-			console.log(newValue)
 			field.onChange({
 				name: (newValue as IOption).label,
 				value: (newValue as IOption).value,
@@ -95,6 +93,21 @@ const ReactSelect: FC<IReactSelect> = ({
 						menuPortal: (provided) => ({ ...provided, zIndex: 9999 }),
 						menu: (provided) => ({ ...provided, zIndex: 9999 }),
 					}}
+					formatOptionLabel={function (data: any) {
+						if (data.color) {
+							return (
+								<div className={styles.jsx}>
+									{data.label}
+									<div
+										className={styles.color}
+										style={{ backgroundColor: data.color }}
+									/>
+								</div>
+							)
+						}
+
+						return data.label
+					}}
 				/>
 			) : (
 				<Select
@@ -114,6 +127,21 @@ const ReactSelect: FC<IReactSelect> = ({
 					styles={{
 						menuPortal: (provided) => ({ ...provided, zIndex: 9999 }),
 						menu: (provided) => ({ ...provided, zIndex: 9999 }),
+					}}
+					formatOptionLabel={function (data: any) {
+						if (data.color) {
+							return (
+								<div className={styles.jsx}>
+									{data.label}
+									<div
+										className={styles.color}
+										style={{ backgroundColor: data.color }}
+									/>
+								</div>
+							)
+						}
+
+						return data.label
 					}}
 				/>
 			)}

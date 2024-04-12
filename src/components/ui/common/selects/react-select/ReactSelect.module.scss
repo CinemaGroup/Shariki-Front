@@ -7,4 +7,10 @@
 .label {
 	@apply text-md;
 }
+.color {
+	@apply w-4 h-4 rounded-sm;
+}
+.jsx {
+	@apply flex items-center gap-2;
+}
 

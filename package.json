@@ -23,6 +23,7 @@
 		"lucide-react": "^0.331.0",
 		"next": "13.5.5",
 		"react": "^18",
+		"react-best-gradient-color-picker": "^3.0.7",
 		"react-dom": "^18",
 		"react-draft-wysiwyg": "^1.15.0",
 		"react-dropzone": "^14.2.3",

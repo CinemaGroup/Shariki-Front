@@ -2,6 +2,7 @@
 
 import Container from '@/components/ui/common/container/Container'
 import Button from '@/components/ui/common/form/button/Button'
+import ColorPalette from '@/components/ui/common/form/color-palette/ColorPalette'
 import Field from '@/components/ui/common/form/field/Field'
 import TextEditor from '@/components/ui/common/form/text-editor/TextEditor'
 import UploadField from '@/components/ui/common/form/upload-field/UploadField'
@@ -215,6 +216,27 @@ const ManageProductEdit: FC<{ queryId: string }> = ({ queryId }) => {
 							)}
 						/>
 						<Controller
+							name="images"
+							control={control}
+							defaultValue={[]}
+							render={({
+								field: { value, onChange },
+								fieldState: { error },
+							}) => (
+								<UploadField
+									className={styles.objectUpload}
+									onChange={onChange}
+									value={value}
+									error={error}
+									isMulti
+									placeholder="Выбрать картинки"
+									label="Картинки"
+									uploadedClassName={styles.uploadedImages}
+								/>
+							)}
+							rules={REQUIRED_VALIDATION('Картинки')}
+						/>
+						<Controller
 							name="description"
 							control={control}
 							defaultValue=""
@@ -315,14 +337,23 @@ const ManageProductEdit: FC<{ queryId: string }> = ({ queryId }) => {
 							{colors.fields.map((field, index) => (
 								<div className={styles.object} key={field.id}>
 									<div className={styles.objectFill}>
-										<Field
-											{...registerInput(
-												`colors.${index}.color`,
-												REQUIRED_VALIDATION('Цвет')
+										<Controller
+											name={`colors.${index}.color`}
+											control={control}
+											defaultValue="#ffffff"
+											render={({
+												field: { value, onChange },
+												fieldState: { error },
+											}) => (
+												<ColorPalette
+													className={styles.palette}
+													value={value}
+													onChange={onChange}
+													error={error}
+													label="Цвет"
+												/>
 											)}
-											className={styles.objectField}
-											label="Цвет"
-											error={errors.colors && errors.colors[index]?.color}
+											rules={REQUIRED_VALIDATION('Цвет')}
 										/>
 										<Controller
 											name={`colors.${index}.images`}

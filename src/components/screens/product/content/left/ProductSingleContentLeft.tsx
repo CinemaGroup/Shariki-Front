@@ -9,6 +9,8 @@ import type { IProductSingleContentLeft } from './interface/product-single-conte
 const ProductSingleContentLeft: FC<
 	ICurrentProduct & TypeColor & IProductSingleContentLeft
 > = ({ product, color, currentIndex, goTo }) => {
+	const images = color?.images || product.images
+
 	return (
 		<div className={styles.left}>
 			{product.oldPrice ? (
@@ -29,27 +31,25 @@ const ProductSingleContentLeft: FC<
 				<span className={styles.sku}>Артикул: {product.sku}</span>
 				<h1 className={styles.name}>{product.name}</h1>
 			</div>
-			{color && (
-				<div className={styles.thumbs}>
-					{color.images.map((image, index) => (
-						<button
-							key={index}
-							className={cn(styles.thumb, {
-								[styles.active]: index === currentIndex,
-							})}
-							onClick={() => goTo(index)}
-						>
-							<StaticImage
-								src={image}
-								width={115}
-								height={200}
-								alt={product.name}
-							/>
-							<span className={styles.thumbLine}></span>
-						</button>
-					))}
-				</div>
-			)}
+			<div className={styles.thumbs}>
+				{images.map((image, index) => (
+					<button
+						key={index}
+						className={cn(styles.thumb, {
+							[styles.active]: index === currentIndex,
+						})}
+						onClick={() => goTo(index)}
+					>
+						<StaticImage
+							src={image}
+							width={115}
+							height={200}
+							alt={product.name}
+						/>
+						<span className={styles.thumbLine}></span>
+					</button>
+				))}
+			</div>
 		</div>
 	)
 }

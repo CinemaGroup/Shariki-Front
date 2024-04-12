@@ -10,6 +10,7 @@ export interface IReactSelectValue {
 export interface IOption {
 	label: string
 	value: string | number
+	color?: string
 }
 
 export interface IReactSelect extends IFieldProps {

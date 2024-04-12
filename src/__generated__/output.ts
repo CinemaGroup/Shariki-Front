@@ -92,6 +92,7 @@ export type CharacteristicSelectInput = {
 
 export enum CharacteristicType {
   Collection = 'COLLECTION',
+  Color = 'COLOR',
   Country = 'COUNTRY',
   Hue = 'HUE',
   Manufacturer = 'MANUFACTURER',
@@ -550,6 +551,7 @@ export type ProductInput = {
   description: Scalars['String']['input'];
   holidays: Array<SelectInput>;
   iconPath?: InputMaybe<Scalars['String']['input']>;
+  images: Array<Scalars['String']['input']>;
   name: Scalars['String']['input'];
   oldPrice?: InputMaybe<Scalars['String']['input']>;
   packageQuantity: Scalars['String']['input'];
@@ -1198,14 +1200,14 @@ export type ProductByIdQueryVariables = Exact<{
 }>;
 
 
-export type ProductByIdQuery = { productById: { name: string, sku: string, price: any, oldPrice?: any | null, packageQuantity: number, description: string, iconPath?: string | null, tags: Array<{ id: number, name: string }>, types: Array<{ id: number, name: string }>, holidays: Array<{ id: number, name: string }>, characteristics: Array<{ id: number, name: string }>, categories: Array<{ id: number, name: string }>, collections: Array<{ id: number, name: string }>, colors: Array<{ color: string, images: Array<string> }>, sizes: Array<{ size: string, price: any, oldPrice?: any | null }> } };
+export type ProductByIdQuery = { productById: { name: string, sku: string, price: any, oldPrice?: any | null, packageQuantity: number, images: Array<string>, description: string, iconPath?: string | null, tags: Array<{ id: number, name: string }>, types: Array<{ id: number, name: string }>, holidays: Array<{ id: number, name: string }>, characteristics: Array<{ id: number, name: string }>, categories: Array<{ id: number, name: string }>, collections: Array<{ id: number, name: string }>, colors: Array<{ color: string, images: Array<string> }>, sizes: Array<{ size: string, price: any, oldPrice?: any | null }> } };
 
 export type ProductBySlugQueryVariables = Exact<{
   slug: Scalars['String']['input'];
 }>;
 
 
-export type ProductBySlugQuery = { productBySlug: { product?: { id: number, name: string, slug: string, sku: string, iconPath?: string | null, description: string, packageQuantity: number, price: any, oldPrice?: any | null, views: number, boughtTimes: number, status: Status, createdAt: any, sizes: Array<{ size: string, price: any, oldPrice?: any | null }>, colors: Array<{ color: string, images: Array<string> }>, types: Array<{ iconPath: string }>, characteristics: Array<{ name: string, type: CharacteristicType }> } | null, similarProducts: Array<{ id: number, name: string, slug: string, sku: string, iconPath?: string | null, description: string, packageQuantity: number, price: any, oldPrice?: any | null, views: number, boughtTimes: number, status: Status, createdAt: any, sizes: Array<{ size: string, price: any, oldPrice?: any | null }>, colors: Array<{ color: string, images: Array<string> }>, types: Array<{ iconPath: string }> }> } };
+export type ProductBySlugQuery = { productBySlug: { product?: { id: number, name: string, slug: string, sku: string, iconPath?: string | null, description: string, packageQuantity: number, price: any, oldPrice?: any | null, views: number, boughtTimes: number, images: Array<string>, status: Status, createdAt: any, sizes: Array<{ size: string, price: any, oldPrice?: any | null }>, colors: Array<{ color: string, images: Array<string> }>, types: Array<{ iconPath: string }>, characteristics: Array<{ name: string, type: CharacteristicType }> } | null, similarProducts: Array<{ id: number, name: string, slug: string, sku: string, iconPath?: string | null, description: string, packageQuantity: number, price: any, oldPrice?: any | null, views: number, boughtTimes: number, images: Array<string>, status: Status, createdAt: any, sizes: Array<{ size: string, price: any, oldPrice?: any | null }>, colors: Array<{ color: string, images: Array<string> }>, types: Array<{ iconPath: string }> }> } };
 
 export type ProductsQueryVariables = Exact<{
   query: QueryProductInput;
@@ -1213,7 +1215,7 @@ export type ProductsQueryVariables = Exact<{
 }>;
 
 
-export type ProductsQuery = { products: Array<{ id: number, name: string, slug: string, sku: string, iconPath?: string | null, description: string, packageQuantity: number, price: any, oldPrice?: any | null, views: number, boughtTimes: number, status: Status, createdAt: any, sizes: Array<{ size: string, price: any, oldPrice?: any | null }>, colors: Array<{ color: string, images: Array<string> }>, types: Array<{ iconPath: string }> }> };
+export type ProductsQuery = { products: Array<{ id: number, name: string, slug: string, sku: string, iconPath?: string | null, description: string, packageQuantity: number, price: any, oldPrice?: any | null, views: number, boughtTimes: number, images: Array<string>, status: Status, createdAt: any, sizes: Array<{ size: string, price: any, oldPrice?: any | null }>, colors: Array<{ color: string, images: Array<string> }>, types: Array<{ iconPath: string }> }> };
 
 export type ReviewsQueryVariables = Exact<{
   query: QueryInput;
@@ -3048,6 +3050,7 @@ export const ProductByIdDocument = gql`
     price
     oldPrice
     packageQuantity
+    images
     tags {
       id
       name
@@ -3134,6 +3137,7 @@ export const ProductBySlugDocument = gql`
       oldPrice
       views
       boughtTimes
+      images
       sizes {
         size
         price
@@ -3165,6 +3169,7 @@ export const ProductBySlugDocument = gql`
       oldPrice
       views
       boughtTimes
+      images
       sizes {
         size
         price
@@ -3230,6 +3235,7 @@ export const ProductsDocument = gql`
     oldPrice
     views
     boughtTimes
+    images
     sizes {
       size
       price

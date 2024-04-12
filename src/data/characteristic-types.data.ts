@@ -22,4 +22,8 @@ export const CHARACTERISTIC_TYPES_DATA: IOption[] = [
 		label: 'Материал',
 		value: CharacteristicType.Material,
 	},
+	{
+		label: 'Цвет',
+		value: CharacteristicType.Color,
+	},
 ]

@@ -12,9 +12,8 @@ import type { IProductProps } from '../../interface/products.interface'
 
 const ProductImages: FC<IProductProps & TypeColor> = ({ product, color }) => {
 	const { setSwiper, setBeginning, setEnd } = useSwiper()
-
-	if (!color || color.images.length === 0) return null
-
+	const images = color?.images || product.images
+	console.log(product)
 	return (
 		<div className={styles.slider}>
 			<Swiper
@@ -38,7 +37,7 @@ const ProductImages: FC<IProductProps & TypeColor> = ({ product, color }) => {
 					setEnd(isEnd)
 				}}
 			>
-				{color.images.map((image, index) => (
+				{images.map((image, index) => (
 					<SwiperSlide key={index} className={styles.image}>
 						<StaticImage
 							className="w-auto h-auto"
