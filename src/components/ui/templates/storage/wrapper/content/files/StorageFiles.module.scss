@@ -12,6 +12,14 @@
 .btn {
 	@apply w-full py-7 px-4 flex flex-col items-center gap-2 font-medium break-all text-md;
 }
+.preview {
+	@apply relative w-full;
+	height: 80px;
+
+	> img {
+		@apply object-contain;
+	}
+}
 .info {
 	@apply text-sm-plus flex flex-col items-center gap-1;
 }

@@ -2,6 +2,10 @@
 	@apply w-full mx-auto;
 	padding: 0 25px;
 
+	&.extra {
+		max-width: 1910px;
+	}
+
 	&.lg {
 		max-width: 1800px;
 	}

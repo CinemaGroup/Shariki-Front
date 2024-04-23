@@ -9,7 +9,7 @@ import Product from './item/Product'
 
 const Products: FC<IProductVariant> = ({ variant }) => {
 	const { data } = useProducts(variant === 'sale' ? true : false)
-	if (!data || data.products.length === 0) return null
+	if (!data || data.products.count === 0) return null
 
 	return (
 		<div className={styles.products}>
@@ -17,7 +17,7 @@ const Products: FC<IProductVariant> = ({ variant }) => {
 				{variant === 'newest' ? 'Новые поступления' : 'Акционные товары'}
 			</Heading>
 			<div className={styles.list}>
-				{data.products.map((product) => (
+				{data.products.products.map((product) => (
 					<Product
 						key={product.id}
 						product={product}

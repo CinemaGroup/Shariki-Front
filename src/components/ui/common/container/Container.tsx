@@ -13,6 +13,7 @@ const Container: FC<PropsWithChildren<IContainer>> = ({
 			className={cn(
 				styles.container,
 				{
+					[styles.extra]: variant === 'extra',
 					[styles.lg]: variant === 'lg',
 					[styles.md]: variant === 'md',
 					[styles.sm]: variant === 'sm',

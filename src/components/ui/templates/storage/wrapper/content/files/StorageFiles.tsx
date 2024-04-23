@@ -1,11 +1,10 @@
-import StaticImage from '@/components/ui/common/image/StaticImage'
 import { useStorageActions } from '@/hooks/manage/storage/useStorageActions'
 import { formatDate } from '@/utils/formats/other/format-date.util'
 import { Check, X } from 'lucide-react'
 import type { FC } from 'react'
 import styles from './StorageFiles.module.scss'
 import type { IStorageFiles } from './interface/storage-files.interface'
-import { STORAGE_MIME_TYPES } from './mime-types/mime-type.data'
+import FilledImage from '@/components/ui/common/image/FilledImage'
 
 const StorageFiles: FC<IStorageFiles> = ({
 	files,
@@ -19,22 +18,18 @@ const StorageFiles: FC<IStorageFiles> = ({
 			{files.map((file, index) => (
 				<li key={index} className={styles.file}>
 					{pickedFiles.includes(`/${file.path}`) && (
-						<span className={styles.picked}><Check /></span>
+						<span className={styles.picked}>
+							<Check />
+						</span>
 					)}
 					<button
 						type="button"
 						className={styles.btn}
 						onClick={() => onFileSelect(`/${file.path}`)}
 					>
-						<StaticImage
-							width={30}
-							height={40}
-							src={
-								STORAGE_MIME_TYPES[file.extension] ||
-								STORAGE_MIME_TYPES['default']
-							}
-							alt={file.name}
-						/>
+						<div className={styles.preview}>
+							<FilledImage src={`/${file.path}`} alt={file.name} />
+						</div>
 						<span>{file.name}</span>
 						<div className={styles.info}>
 							<span>{formatDate(file.createdAt)}</span>

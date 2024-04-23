@@ -1,7 +1,7 @@
 module.exports = {
 	service: {
 		endpoint: {
-			url: 'https://back.xn--80aiifgeteakjch.xn--p1ai/api/mygraphql',
+			url: 'http://localhost:4200/api/mygraphql',
 			skipSSLValidation: true,
 		},
 	},

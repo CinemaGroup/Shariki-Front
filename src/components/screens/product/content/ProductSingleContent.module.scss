@@ -35,11 +35,10 @@
 	@apply text-6lg font-semibold;
 }
 .thumbs {
-	@apply mt-12 flex justify-between gap-5;
+	@apply mt-12 flex flex-wrap gap-5;
 }
 .thumb {
-	@apply w-full flex flex-col items-center gap-5 cursor-pointer;
-	max-width: 115px;
+	@apply flex flex-col items-center gap-4 cursor-pointer;
 
 	&:hover,
 	&.active {
@@ -48,19 +47,28 @@
 		}
 	}
 }
+.thumbPreview {
+	@apply relative;
+	width: 91px;
+	height: 91px;
+
+	> img {
+		@apply rounded-sm-extra object-cover object-center;
+	}
+}
+.center {
+	width: 450px;
+}
+.image {
+	@apply relative aspect-square;
+}
+.mainImage {
+	@apply rounded-sm-extra image-like-bg-cover;
+}
 .thumbLine {
 	@apply bg-gray-300 transition-colors;
 	width: 60px;
 	height: 5px;
-}
-.center {
-	@apply w-full;
-	max-width: 310px;
-}
-.image {
-	> img {
-		@apply w-full;
-	}
 }
 .arrows {
 	@apply mt-3 gap-10 mx-auto flex justify-center;

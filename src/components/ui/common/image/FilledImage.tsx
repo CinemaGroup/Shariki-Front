@@ -6,6 +6,7 @@ const FilledImage: FC<IFilledImage> = ({
 	quality = 100,
 	src,
 	alt,
+	sizes,
 	className,
 }) => {
 	return (
@@ -16,6 +17,7 @@ const FilledImage: FC<IFilledImage> = ({
 			fill
 			src={src}
 			alt={alt}
+			sizes={sizes}
 			className={className && className}
 		/>
 	)

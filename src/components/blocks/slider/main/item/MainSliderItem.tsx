@@ -1,7 +1,6 @@
 import StaticImage from '@/components/ui/common/image/StaticImage'
 import type { FC } from 'react'
 import styles from '../MainSlider.module.scss'
-import MainSliderCards from './cards/MainSliderCards'
 import type { IMainSliderItem } from './interface/main-slider-item.interface'
 
 const MainSliderItem: FC<IMainSliderItem> = ({
@@ -17,9 +16,8 @@ const MainSliderItem: FC<IMainSliderItem> = ({
 			<div className={styles.left}>
 				<StaticImage
 					className={styles.background}
-					width={0}
-					height={0}
-					sizes="100vw"
+					width={550}
+					height={700}
 					src="/images/other/slider/slider-bg.png"
 					alt="Slider"
 				/>
@@ -30,9 +28,8 @@ const MainSliderItem: FC<IMainSliderItem> = ({
 				<div className={styles.box}>
 					<div className={styles.preview}>
 						<StaticImage
-							width={0}
-							height={0}
-							sizes="100vw"
+							width={item.width}
+							height={item.height}
 							src={item.imagePath}
 							alt={item.name}
 						/>

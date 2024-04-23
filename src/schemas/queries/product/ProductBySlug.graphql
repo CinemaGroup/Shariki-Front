@@ -13,6 +13,27 @@ query ProductBySlug($slug: String!) {
 			views
 			boughtTimes
 			images
+			categories {
+				name
+				slug
+				imagePath
+				parent {
+					name
+					slug
+					parent {
+						name
+						slug
+						parent {
+							name
+							slug
+							parent {
+								name
+								slug
+							}
+						}
+					}
+				}
+			}
 			sizes {
 				size
 				price

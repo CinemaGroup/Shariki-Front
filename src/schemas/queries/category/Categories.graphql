@@ -1,4 +1,4 @@
-query Categories($query: QueryInput!) {
+query Categories($query: QueryCategoryInput!) {
 	categories(query: $query) {
 		id
 		name

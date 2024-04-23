@@ -1,30 +1,33 @@
 query Products($query: QueryProductInput!, $isSale: Boolean) {
 	products(query: $query, isSale: $isSale) {
-		id
-		name
-		slug
-		sku
-		iconPath
-		description
-		packageQuantity
-		price
-		oldPrice
-		views
-		boughtTimes
-		images
-		sizes {
-			size
+		products {
+			id
+			name
+			slug
+			sku
+			iconPath
+			description
+			packageQuantity
 			price
 			oldPrice
-		}
-		colors {
-			color
+			views
+			boughtTimes
 			images
+			sizes {
+				size
+				price
+				oldPrice
+			}
+			colors {
+				color
+				images
+			}
+			types {
+				iconPath
+			}
+			status
+			createdAt
 		}
-		types {
-			iconPath
-		}
-		status
-		createdAt
+		count
 	}
 }

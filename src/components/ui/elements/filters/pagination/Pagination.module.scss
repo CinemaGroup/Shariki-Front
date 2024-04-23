@@ -1,9 +1,23 @@
 .pagination {
-	@apply flex items-stretch justify-center gap-5 mt-20;
+	@apply flex items-stretch justify-center gap-3;
 }
-.arrow {
-	@apply animate-fade flex items-center justify-center cursor-pointer h-12 w-10 rounded-extra-small bg-gray-800 transition-colors hover:bg-purple-300;
+.button {
+	> svg {
+		@apply w-7 h-7;
+		stroke-width: 1.5px;
+	}
 }
 .current {
-	@apply animate-fade flex items-center justify-center h-12 w-10 bg-purple-300 rounded-extra-small;
+	@apply animate-fade flex items-center justify-center h-12 w-10 rounded-sm;
+}
+.number {
+	@apply w-8 h-8 rounded-full bg-gray-300 flex justify-center aspect-square font-roboto-flex font-medium text-gray-base/80 transition-colors leading-2lg cursor-pointer;
+
+	&:hover,
+	&.picked {
+		@apply bg-red-400 text-white;
+	}
+}
+.pin {
+	@apply mt-2;
 }

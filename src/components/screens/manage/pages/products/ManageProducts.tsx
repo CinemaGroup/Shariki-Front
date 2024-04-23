@@ -18,8 +18,13 @@ const ManageProducts: FC = () => {
 		searchTerm,
 		debounceSearch,
 	} = useFilters({ variant: 'products', place: 'manage' })
-	const { data, createProduct, deleteProduct, toggleProduct, duplicateProduct } =
-		useManageProducts(queryParams, debounceSearch)
+	const {
+		data,
+		createProduct,
+		deleteProduct,
+		toggleProduct,
+		duplicateProduct,
+	} = useManageProducts(queryParams, debounceSearch)
 
 	return (
 		<div className={globalStyles.wrapper}>
@@ -31,7 +36,10 @@ const ManageProducts: FC = () => {
 			<div className={globalStyles.content}>
 				<div className={globalStyles.top}>
 					<h1 className={globalStyles.heading}>Продукты</h1>
-					<button className={globalStyles.create} onClick={() => createProduct()}>
+					<button
+						className={globalStyles.create}
+						onClick={() => createProduct()}
+					>
 						<ListPlus />
 						Создать Продукт
 					</button>
@@ -42,15 +50,15 @@ const ManageProducts: FC = () => {
 					queryParams={queryParams}
 					updateQueryFilters={updateQueryFilters}
 				/>
-				{data?.products && data.products.length > 0 && (
+				{data?.products && data.products.products.length > 0 && (
 					<div className={globalStyles.fill}>
 						<div className={styles.products}>
-							{data.products.map((product) => (
+							{data.products.products.map((product) => (
 								<Product
 									key={product.id}
 									className={styles.product}
 									product={product}
-									variant='none'
+									variant="none"
 									place="admin"
 									deleteHandler={() =>
 										deleteProduct({

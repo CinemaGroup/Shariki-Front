@@ -1,46 +1,96 @@
 'use client'
 
+import { usePagination } from '@/hooks/helpers/pagination/usePagination'
+import type { IClassName } from '@/shared/interfaces/class-name/class-name.interface'
 import cn from 'clsx'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import type { FC } from 'react'
 import styles from './Pagination.module.scss'
 import type { IPagination } from './interface/pagination.interface'
 
-const Pagination: FC<IPagination> = ({
-	numberPages,
-	changePage,
-	currentPage = 1,
+const Pagination: FC<IPagination & IClassName> = ({
+	length,
+	page,
+	perPage,
+	className,
+	setProductsQuery,
 }) => {
-	const length = numberPages > 1 ? numberPages : null
-	if (!length) return null
+	const { goToPreviousPage, goToNextPage, goToPage } = usePagination(
+		page,
+		length,
+		setProductsQuery
+	)
+
+	const totalPages = Math.ceil(length / perPage)
+	const visiblePages = 5
+
+	const getDisplayedPages = (
+		currentPage: number,
+		totalPages: number,
+		visiblePages: number
+	) => {
+		const pages = []
+		let startPage = Math.max(1, currentPage - Math.floor(visiblePages / 2))
+		let endPage = Math.min(
+			totalPages,
+			currentPage + Math.floor(visiblePages / 2)
+		)
+
+		if (currentPage > 1 && startPage > 1) {
+			pages.push('. . .')
+		}
+
+		for (let i = startPage; i <= endPage; i++) {
+			pages.push(i)
+		}
+
+		if (currentPage < totalPages && endPage < totalPages) {
+			pages.push('. . .')
+		}
+
+		return pages
+	}
+
+	const displayedPages = getDisplayedPages(page, totalPages, visiblePages)
 
 	return (
-		<div className={styles.pagination}>
-			{currentPage <= 1 && (
-				<button
-					className={cn(styles.arrow, styles.prev)}
-					onClick={() =>
-						changePage(currentPage > 1 ? (currentPage - 1).toString() : '1')
-					}
-				>
-					<ChevronLeft />
-				</button>
-			)}
-			<span className={styles.current}>{currentPage}</span>
-			{currentPage >= numberPages && (
-				<button
-					className={cn(styles.arrow, styles.next)}
-					onClick={() =>
-						changePage(
-							currentPage < numberPages
-								? (currentPage + 1).toString()
-								: numberPages.toString()
-						)
-					}
-				>
-					<ChevronRight />
-				</button>
-			)}
+		<div className={cn(styles.pagination, className && className)}>
+			<button
+				className={styles.button}
+				onClick={goToPreviousPage}
+				disabled={page <= 1}
+			>
+				<ChevronLeft />
+			</button>
+
+			{displayedPages.map((p, idx) => {
+				if (typeof p === 'number') {
+					return (
+						<button
+							key={idx}
+							className={cn(styles.number, {
+								[styles.picked]: page === p,
+							})}
+							onClick={() => goToPage(p)}
+						>
+							{p}
+						</button>
+					)
+				}
+				return (
+					<div key={idx} className={styles.pin}>
+						{p}
+					</div>
+				)
+			})}
+
+			<button
+				className={styles.button}
+				onClick={goToNextPage}
+				disabled={page >= totalPages}
+			>
+				<ChevronRight />
+			</button>
 		</div>
 	)
 }

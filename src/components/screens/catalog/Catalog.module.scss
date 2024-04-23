@@ -1,0 +1,131 @@
+.catalog {
+	@apply pb-12;
+}
+.container {
+	@apply pt-6;
+}
+.wrapper {
+	@apply flex gap-7;
+}
+.filters {
+	@apply w-full h-fit;
+	max-width: 240px;
+	min-width: 240px;
+}
+.fill {
+	@apply w-full min-h-screen;
+}
+.products {
+	@apply flex flex-col gap-10;
+}
+.list {
+	@apply flex;
+
+	&.cards {
+		@apply flex-wrap gap-2.5;
+
+		.product {
+			max-width: calc(100% / 6 - 9px);
+			min-width: calc(100% / 6 - 9px);
+		}
+	}
+
+	&.tables {
+		@apply flex-col gap-5;
+
+		.product {
+			@apply max-w-full min-w-full;
+		}
+	}
+}
+.right {
+	@apply w-full flex flex-col overflow-hidden px-2.5;
+	gap: 70px;
+}
+.categories {
+	@apply flex flex-wrap gap-2.5;
+}
+.category {
+	@apply w-full;
+	max-width: calc(100% / 6 - 9px);
+}
+.categoryLink {
+	@apply w-full h-full bg-gray-100 py-8 px-6 rounded-md text-center flex flex-col items-center gap-6 transition-colors aspect-square;
+
+	> img {
+		@apply mx-auto;
+		max-width: 210px;
+		max-height: 175px;
+	}
+
+	&:hover {
+		@apply bg-red-400 text-white;
+
+		.categoryName {
+			@apply underline;
+		}
+	}
+}
+.categoryName {
+	@apply mt-auto transition-all;
+}
+.sorting {
+	@apply mb-3.5 flex items-center justify-between gap-10;
+}
+.sort,
+.display {
+	@apply font-roboto-flex text-md-minus flex items-center gap-5;
+}
+.sortFill {
+	@apply relative w-full;
+	max-width: 100px;
+}
+.sortLabel,
+.displayLabel {
+	@apply w-fit font-light;
+}
+.sortOpener {
+	@apply flex items-center gap-1.5 font-medium;
+
+	> svg {
+		@apply rotate-180 fill-red-400 stroke-red-400 w-3 h-3 transition-all;
+
+		&.rotated {
+			@apply rotate-0;
+		}
+	}
+}
+.sortList {
+	@apply absolute z-1 animate-fade flex flex-col items-start rounded-sm bg-white shadow;
+	top: calc(100% + 10px);
+	transform: translateX(-25%);
+}
+.sortBtn {
+	@apply py-2.5 px-7;
+}
+.displayFill {
+	@apply flex gap-1 items-center;
+}
+.displayBtn {
+	@apply text-gray-300 transition-colors;
+
+	> svg {
+		@apply transition-colors;
+	}
+
+	&:last-child > svg {
+		@apply w-4 h-4;
+	}
+	&:first-child > svg {
+		@apply w-5 h-5;
+	}
+
+	&:hover,
+	&.picked {
+		@apply text-red-400;
+
+		> svg {
+			@apply fill-red-400;
+		}
+	}
+}

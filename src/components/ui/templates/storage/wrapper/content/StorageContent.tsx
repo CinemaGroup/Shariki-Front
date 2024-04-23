@@ -1,11 +1,11 @@
 'use client'
 
+import { ArrowLeft } from 'lucide-react'
 import type { FC } from 'react'
 import styles from './StorageContent.module.scss'
 import StorageFiles from './files/StorageFiles'
 import StorageFolders from './folders/StorageFolders'
 import type { IStorageContent } from './interface/storage-content.interface'
-import { ArrowLeft } from 'lucide-react'
 
 const StorageContent: FC<IStorageContent> = ({
 	pickedFiles,
@@ -42,7 +42,7 @@ const StorageContent: FC<IStorageContent> = ({
 				<div className={styles.recent}>
 					<h3 className={styles.title}>Файлы</h3>
 					<StorageFiles
-					pickedFiles={pickedFiles}
+						pickedFiles={pickedFiles}
 						files={response.files || []}
 						onFileSelect={onFileSelect}
 					/>

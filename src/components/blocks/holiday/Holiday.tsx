@@ -5,9 +5,6 @@ import cn from 'clsx'
 import Link from 'next/link'
 import type { FC } from 'react'
 import styles from './Holiday.module.scss'
-import { IManageActions } from '@/shared/interfaces/manage/manage.interface'
-import ManageActions from '@/components/ui/elements/manage/actions/ManageActions'
-import { ADMIN_EDITS } from '@/constants/url.constants'
 
 const Holiday: FC<{ holiday: TypeHoliday } & IClassName> = ({
 	holiday,
@@ -19,35 +16,31 @@ const Holiday: FC<{ holiday: TypeHoliday } & IClassName> = ({
 				<StaticImage
 					className={styles.leftBalloon}
 					src="/images/data/slider/second/balloon.png"
-					width={0}
-					height={0}
-					sizes="auto"
+					width={84}
+					height={102}
 					alt="Balloon"
 				/>
 				{holiday.rightImage && (
 					<StaticImage
 						className={styles.rightBalloon}
 						src={holiday.rightImage}
-						width={0}
-						height={0}
-						sizes="100vw"
+						width={holiday.rightWidth}
+						height={holiday.rightHeight}
 						alt="Balloon"
 					/>
 				)}
 				<StaticImage
 					className={styles.tree}
 					src={holiday.imagePath}
-					width={0}
-					height={0}
-					sizes="100vw"
+					width={holiday.imageWidth}
+					height={holiday.imageHeight}
 					alt="Tree"
 				/>
 				<StaticImage
 					className={styles.decor}
 					src={holiday.decorPath}
-					width={0}
-					height={0}
-					sizes="100vw"
+					width={holiday.decorWidth}
+					height={holiday.decorHeight}
 					alt="Decor"
 				/>
 				<span className={styles.name}>{holiday.name}</span>

@@ -47,6 +47,24 @@ const ManageTypeEdit: FC<{ queryId: string }> = ({ queryId }) => {
 							)}
 							rules={REQUIRED_VALIDATION('Иконка')}
 						/>
+						<Controller
+							name='uncheckedIconPath'
+							control={control}
+							defaultValue=""
+							render={({
+								field: { value, onChange },
+								fieldState: { error },
+							}) => (
+								<UploadField
+									className={styles.upload}
+									onChange={onChange}
+									value={value}
+									error={error}
+									label="Иконка в каталоге"
+								/>
+							)}
+							rules={REQUIRED_VALIDATION('Иконка в каталоге')}
+						/>
 						<Button
 							buttonClassName={globalStyles.update}
 							wrapperClassName={globalStyles.updateWrapper}

@@ -16,6 +16,7 @@ const nextConfig = {
 			{
 				source: '/uploads/:path*',
 				destination: `${this.env.SERVER_URL}/uploads/:path*`,
+				// destination: `https://back.xn--80aiifgeteakjch.xn--p1ai/uploads/:path*`,
 			},
 		]
 	},

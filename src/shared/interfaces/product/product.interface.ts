@@ -11,7 +11,6 @@ export interface ICurrentProductSimilarProducts {
 	similarProducts: TypeCurrentProductSimilarProducts
 }
 
-
 export interface ICurrentProductData {
 	product: TypeCurrentProduct
 	similarProducts: TypeCurrentProductSimilarProducts

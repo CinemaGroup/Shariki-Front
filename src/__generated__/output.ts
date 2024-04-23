@@ -48,11 +48,32 @@ export type Billing = {
   updatedAt: Scalars['DateTime']['output'];
 };
 
+export type Catalog = {
+  __typename?: 'Catalog';
+  categories: Array<Category>;
+  filters: Filters;
+  products: Array<Product>;
+  productsCount: Scalars['Int']['output'];
+};
+
+export type CatalogInput = {
+  categoryInput: QueryCategoryInput;
+  categorySlug?: InputMaybe<Scalars['String']['input']>;
+  productInput: QueryProductInput;
+};
+
+export type CatalogProduct = {
+  __typename?: 'CatalogProduct';
+  count: Scalars['Int']['output'];
+  products: Array<Product>;
+};
+
 export type Category = {
   __typename?: 'Category';
   categories: Array<Category>;
   createdAt: Scalars['DateTime']['output'];
   id: Scalars['Int']['output'];
+  imagePath?: Maybe<Scalars['String']['output']>;
   name: Scalars['String']['output'];
   parent?: Maybe<Category>;
   parentId?: Maybe<Scalars['Int']['output']>;
@@ -63,6 +84,7 @@ export type Category = {
 };
 
 export type CategoryInput = {
+  imagePath?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
   parent?: InputMaybe<SelectInput>;
 };
@@ -72,7 +94,6 @@ export type Characteristic = {
   createdAt: Scalars['DateTime']['output'];
   id: Scalars['Int']['output'];
   name: Scalars['String']['output'];
-  product: Product;
   productId: Scalars['Int']['output'];
   slug: Scalars['String']['output'];
   type: CharacteristicType;
@@ -154,6 +175,27 @@ export type File = {
   size: Scalars['String']['output'];
 };
 
+export type Filters = {
+  __typename?: 'Filters';
+  collections: Array<FiltersItem>;
+  colors: Array<FiltersItem>;
+  countries: Array<FiltersItem>;
+  holidays: Array<FiltersItem>;
+  hues: Array<FiltersItem>;
+  manufacturers: Array<FiltersItem>;
+  materials: Array<FiltersItem>;
+  price: RangeFilter;
+  sizes: Array<FiltersItem>;
+  types: Array<ImageFilter>;
+};
+
+export type FiltersItem = {
+  __typename?: 'FiltersItem';
+  count: Scalars['Int']['output'];
+  label: Scalars['String']['output'];
+  value: Scalars['String']['output'];
+};
+
 export type Folder = {
   __typename?: 'Folder';
   count: Scalars['Int']['output'];
@@ -184,6 +226,13 @@ export type Holiday = {
 
 export type HolidayInput = {
   name: Scalars['String']['input'];
+};
+
+export type ImageFilter = {
+  __typename?: 'ImageFilter';
+  iconPath: Scalars['String']['output'];
+  uncheckedIconPath?: Maybe<Scalars['String']['output']>;
+  value: Scalars['String']['output'];
 };
 
 export type Mutation = {
@@ -582,6 +631,7 @@ export type ProfileResponse = {
 
 export type Query = {
   __typename?: 'Query';
+  catalog: Catalog;
   categories: Array<Category>;
   categoryById: Category;
   characteristicById: Characteristic;
@@ -596,7 +646,7 @@ export type Query = {
   posts: Array<Post>;
   productById: Product;
   productBySlug: CurrentProduct;
-  products: Array<Product>;
+  products: CatalogProduct;
   profile: ProfileResponse;
   reviewById: Review;
   reviews: Array<Review>;
@@ -608,8 +658,13 @@ export type Query = {
 };
 
 
+export type QueryCatalogArgs = {
+  data: CatalogInput;
+};
+
+
 export type QueryCategoriesArgs = {
-  query: QueryInput;
+  query: QueryCategoryInput;
 };
 
 
@@ -708,6 +763,15 @@ export type QueryTypesArgs = {
   query: QueryInput;
 };
 
+export type QueryCategoryInput = {
+  isParents?: InputMaybe<Scalars['Boolean']['input']>;
+  page?: InputMaybe<Scalars['String']['input']>;
+  perPage?: InputMaybe<Scalars['String']['input']>;
+  searchTerm?: InputMaybe<Scalars['String']['input']>;
+  sort: Sort;
+  status?: InputMaybe<Status>;
+};
+
 export type QueryInput = {
   page?: InputMaybe<Scalars['String']['input']>;
   perPage?: InputMaybe<Scalars['String']['input']>;
@@ -717,11 +781,28 @@ export type QueryInput = {
 };
 
 export type QueryProductInput = {
+  collections?: InputMaybe<Array<Scalars['String']['input']>>;
+  colors?: InputMaybe<Array<Scalars['String']['input']>>;
+  countries?: InputMaybe<Array<Scalars['String']['input']>>;
+  holidays?: InputMaybe<Array<Scalars['String']['input']>>;
+  hues?: InputMaybe<Array<Scalars['String']['input']>>;
+  manufacturers?: InputMaybe<Array<Scalars['String']['input']>>;
+  materials?: InputMaybe<Array<Scalars['String']['input']>>;
+  max?: InputMaybe<Scalars['String']['input']>;
+  min?: InputMaybe<Scalars['String']['input']>;
   page?: InputMaybe<Scalars['String']['input']>;
   perPage?: InputMaybe<Scalars['String']['input']>;
   searchTerm?: InputMaybe<Scalars['String']['input']>;
+  sizes?: InputMaybe<Array<Scalars['String']['input']>>;
   sort: Sort;
   status?: InputMaybe<Status>;
+  types?: InputMaybe<Array<Scalars['String']['input']>>;
+};
+
+export type RangeFilter = {
+  __typename?: 'RangeFilter';
+  max: Scalars['Int']['output'];
+  min: Scalars['Int']['output'];
 };
 
 export type Review = {
@@ -817,12 +898,14 @@ export type Type = {
   products: Array<Product>;
   slug: Scalars['String']['output'];
   status: Status;
+  uncheckedIconPath?: Maybe<Scalars['String']['output']>;
   updatedAt: Scalars['DateTime']['output'];
 };
 
 export type TypeInput = {
   iconPath: Scalars['String']['input'];
   name: Scalars['String']['input'];
+  uncheckedIconPath: Scalars['String']['input'];
 };
 
 export type UploadFilesInput = {
@@ -1131,8 +1214,15 @@ export type UpdateTypeMutationVariables = Exact<{
 
 export type UpdateTypeMutation = { updateType: { id: number } };
 
+export type CatalogQueryVariables = Exact<{
+  data: CatalogInput;
+}>;
+
+
+export type CatalogQuery = { catalog: { productsCount: number, categories: Array<{ name: string, slug: string, imagePath?: string | null, parent?: { name: string, slug: string, parent?: { name: string, slug: string, parent?: { name: string, slug: string, parent?: { name: string, slug: string } | null } | null } | null } | null }>, filters: { sizes: Array<{ label: string, value: string, count: number }>, colors: Array<{ label: string, value: string, count: number }>, hues: Array<{ label: string, value: string, count: number }>, types: Array<{ iconPath: string, uncheckedIconPath?: string | null, value: string }>, manufacturers: Array<{ label: string, value: string, count: number }>, materials: Array<{ label: string, value: string, count: number }>, collections: Array<{ label: string, value: string, count: number }>, holidays: Array<{ label: string, value: string, count: number }>, countries: Array<{ label: string, value: string, count: number }>, price: { min: number, max: number } }, products: Array<{ id: number, name: string, slug: string, sku: string, iconPath?: string | null, description: string, packageQuantity: number, price: string, oldPrice?: string | null, views: number, boughtTimes: number, images: Array<string>, status: Status, createdAt: any, sizes: Array<{ size: string, price: string, oldPrice?: string | null }>, colors: Array<{ color: string, images: Array<string> }>, types: Array<{ iconPath: string }> }> } };
+
 export type CategoriesQueryVariables = Exact<{
-  query: QueryInput;
+  query: QueryCategoryInput;
 }>;
 
 
@@ -1206,7 +1296,7 @@ export type ProductBySlugQueryVariables = Exact<{
 }>;
 
 
-export type ProductBySlugQuery = { productBySlug: { product?: { id: number, name: string, slug: string, sku: string, iconPath?: string | null, description: string, packageQuantity: number, price: string, oldPrice?: string | null, views: number, boughtTimes: number, images: Array<string>, status: Status, createdAt: any, sizes: Array<{ size: string, price: string, oldPrice?: string | null }>, colors: Array<{ color: string, images: Array<string> }>, types: Array<{ iconPath: string }>, characteristics: Array<{ name: string, type: CharacteristicType }> } | null, similarProducts: Array<{ id: number, name: string, slug: string, sku: string, iconPath?: string | null, description: string, packageQuantity: number, price: string, oldPrice?: string | null, views: number, boughtTimes: number, images: Array<string>, status: Status, createdAt: any, sizes: Array<{ size: string, price: string, oldPrice?: string | null }>, colors: Array<{ color: string, images: Array<string> }>, types: Array<{ iconPath: string }> }> } };
+export type ProductBySlugQuery = { productBySlug: { product?: { id: number, name: string, slug: string, sku: string, iconPath?: string | null, description: string, packageQuantity: number, price: string, oldPrice?: string | null, views: number, boughtTimes: number, images: Array<string>, status: Status, createdAt: any, categories: Array<{ name: string, slug: string, imagePath?: string | null, parent?: { name: string, slug: string, parent?: { name: string, slug: string, parent?: { name: string, slug: string, parent?: { name: string, slug: string } | null } | null } | null } | null }>, sizes: Array<{ size: string, price: string, oldPrice?: string | null }>, colors: Array<{ color: string, images: Array<string> }>, types: Array<{ iconPath: string }>, characteristics: Array<{ name: string, type: CharacteristicType }> } | null, similarProducts: Array<{ id: number, name: string, slug: string, sku: string, iconPath?: string | null, description: string, packageQuantity: number, price: string, oldPrice?: string | null, views: number, boughtTimes: number, images: Array<string>, status: Status, createdAt: any, sizes: Array<{ size: string, price: string, oldPrice?: string | null }>, colors: Array<{ color: string, images: Array<string> }>, types: Array<{ iconPath: string }> }> } };
 
 export type ProductsQueryVariables = Exact<{
   query: QueryProductInput;
@@ -1214,7 +1304,7 @@ export type ProductsQueryVariables = Exact<{
 }>;
 
 
-export type ProductsQuery = { products: Array<{ id: number, name: string, slug: string, sku: string, iconPath?: string | null, description: string, packageQuantity: number, price: string, oldPrice?: string | null, views: number, boughtTimes: number, images: Array<string>, status: Status, createdAt: any, sizes: Array<{ size: string, price: string, oldPrice?: string | null }>, colors: Array<{ color: string, images: Array<string> }>, types: Array<{ iconPath: string }> }> };
+export type ProductsQuery = { products: { count: number, products: Array<{ id: number, name: string, slug: string, sku: string, iconPath?: string | null, description: string, packageQuantity: number, price: string, oldPrice?: string | null, views: number, boughtTimes: number, images: Array<string>, status: Status, createdAt: any, sizes: Array<{ size: string, price: string, oldPrice?: string | null }>, colors: Array<{ color: string, images: Array<string> }>, types: Array<{ iconPath: string }> }> } };
 
 export type ReviewsQueryVariables = Exact<{
   query: QueryInput;
@@ -1254,7 +1344,7 @@ export type TypeByIdQueryVariables = Exact<{
 }>;
 
 
-export type TypeByIdQuery = { typeById: { name: string, iconPath: string } };
+export type TypeByIdQuery = { typeById: { name: string, iconPath: string, uncheckedIconPath?: string | null } };
 
 export type TypesQueryVariables = Exact<{
   query: QueryInput;
@@ -2658,8 +2748,148 @@ export function useUpdateTypeMutation(baseOptions?: Apollo.MutationHookOptions<U
 export type UpdateTypeMutationHookResult = ReturnType<typeof useUpdateTypeMutation>;
 export type UpdateTypeMutationResult = Apollo.MutationResult<UpdateTypeMutation>;
 export type UpdateTypeMutationOptions = Apollo.BaseMutationOptions<UpdateTypeMutation, UpdateTypeMutationVariables>;
+export const CatalogDocument = gql`
+    query Catalog($data: CatalogInput!) {
+  catalog(data: $data) {
+    categories {
+      name
+      slug
+      imagePath
+      parent {
+        name
+        slug
+        parent {
+          name
+          slug
+          parent {
+            name
+            slug
+            parent {
+              name
+              slug
+            }
+          }
+        }
+      }
+    }
+    filters {
+      sizes {
+        label
+        value
+        count
+      }
+      colors {
+        label
+        value
+        count
+      }
+      hues {
+        label
+        value
+        count
+      }
+      types {
+        iconPath
+        uncheckedIconPath
+        value
+      }
+      manufacturers {
+        label
+        value
+        count
+      }
+      materials {
+        label
+        value
+        count
+      }
+      collections {
+        label
+        value
+        count
+      }
+      holidays {
+        label
+        value
+        count
+      }
+      countries {
+        label
+        value
+        count
+      }
+      price {
+        min
+        max
+      }
+    }
+    products {
+      id
+      name
+      slug
+      sku
+      iconPath
+      description
+      packageQuantity
+      price
+      oldPrice
+      views
+      boughtTimes
+      images
+      sizes {
+        size
+        price
+        oldPrice
+      }
+      colors {
+        color
+        images
+      }
+      types {
+        iconPath
+      }
+      status
+      createdAt
+    }
+    productsCount
+  }
+}
+    `;
+
+/**
+ * __useCatalogQuery__
+ *
+ * To run a query within a React component, call `useCatalogQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCatalogQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useCatalogQuery({
+ *   variables: {
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useCatalogQuery(baseOptions: Apollo.QueryHookOptions<CatalogQuery, CatalogQueryVariables> & ({ variables: CatalogQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<CatalogQuery, CatalogQueryVariables>(CatalogDocument, options);
+      }
+export function useCatalogLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CatalogQuery, CatalogQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<CatalogQuery, CatalogQueryVariables>(CatalogDocument, options);
+        }
+export function useCatalogSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<CatalogQuery, CatalogQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<CatalogQuery, CatalogQueryVariables>(CatalogDocument, options);
+        }
+export type CatalogQueryHookResult = ReturnType<typeof useCatalogQuery>;
+export type CatalogLazyQueryHookResult = ReturnType<typeof useCatalogLazyQuery>;
+export type CatalogSuspenseQueryHookResult = ReturnType<typeof useCatalogSuspenseQuery>;
+export type CatalogQueryResult = Apollo.QueryResult<CatalogQuery, CatalogQueryVariables>;
 export const CategoriesDocument = gql`
-    query Categories($query: QueryInput!) {
+    query Categories($query: QueryCategoryInput!) {
   categories(query: $query) {
     id
     name
@@ -3137,6 +3367,27 @@ export const ProductBySlugDocument = gql`
       views
       boughtTimes
       images
+      categories {
+        name
+        slug
+        imagePath
+        parent {
+          name
+          slug
+          parent {
+            name
+            slug
+            parent {
+              name
+              slug
+              parent {
+                name
+                slug
+              }
+            }
+          }
+        }
+      }
       sizes {
         size
         price
@@ -3223,32 +3474,35 @@ export type ProductBySlugQueryResult = Apollo.QueryResult<ProductBySlugQuery, Pr
 export const ProductsDocument = gql`
     query Products($query: QueryProductInput!, $isSale: Boolean) {
   products(query: $query, isSale: $isSale) {
-    id
-    name
-    slug
-    sku
-    iconPath
-    description
-    packageQuantity
-    price
-    oldPrice
-    views
-    boughtTimes
-    images
-    sizes {
-      size
+    products {
+      id
+      name
+      slug
+      sku
+      iconPath
+      description
+      packageQuantity
       price
       oldPrice
-    }
-    colors {
-      color
+      views
+      boughtTimes
       images
+      sizes {
+        size
+        price
+        oldPrice
+      }
+      colors {
+        color
+        images
+      }
+      types {
+        iconPath
+      }
+      status
+      createdAt
     }
-    types {
-      iconPath
-    }
-    status
-    createdAt
+    count
   }
 }
     `;
@@ -3556,6 +3810,7 @@ export const TypeByIdDocument = gql`
   typeById(id: $id) {
     name
     iconPath
+    uncheckedIconPath
   }
 }
     `;

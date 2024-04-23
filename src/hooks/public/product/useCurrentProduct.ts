@@ -1,7 +1,7 @@
 import { useProductBySlugQuery } from '@/__generated__/output'
 
 export const useCurrentProduct = (slug: string) => {
-	const { data, error } = useProductBySlugQuery({
+	const { data, error, loading } = useProductBySlugQuery({
 		variables: {
 			slug,
 		},
@@ -11,5 +11,6 @@ export const useCurrentProduct = (slug: string) => {
 		product: data?.productBySlug?.product || null,
 		similarProducts: data?.productBySlug?.similarProducts || [],
 		error,
+		loading
 	}
 }

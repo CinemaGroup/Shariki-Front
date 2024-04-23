@@ -4,7 +4,7 @@ import cn from 'clsx'
 import { type FC } from 'react'
 import styles from '../../Products.module.scss'
 import type { IProductProps } from '../../interface/products.interface'
-import { IProductSizes } from './interface/product-sizes.interface'
+import type { IProductSizes } from './interface/product-sizes.interface'
 
 const ProductSizes: FC<IProductProps & IProductSizes> = ({
 	product,

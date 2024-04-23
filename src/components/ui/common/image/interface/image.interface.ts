@@ -6,12 +6,12 @@ interface IImageProps extends IClassName {
 	src: string
 	alt: string
 	style?: CSSProperties
+	sizes?: string
 }
 
 export interface IImage extends IImageProps {
 	width: number
 	height: number
-	sizes?: string
 }
 
 export interface IFilledImage extends IImageProps {}

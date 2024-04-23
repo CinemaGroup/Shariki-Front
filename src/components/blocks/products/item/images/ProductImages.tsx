@@ -1,8 +1,10 @@
 'use client'
 
-import StaticImage from '@/components/ui/common/image/StaticImage'
+import FilledImage from '@/components/ui/common/image/FilledImage'
+import { PUBLIC_PAGES } from '@/constants/url.constants'
 import { useSwiper } from '@/hooks/helpers/slider/useSwiper'
 import type { TypeColor } from '@/shared/types/color/color.type'
+import { useRouter } from 'next/navigation'
 import type { FC } from 'react'
 import 'swiper/css'
 import { Pagination } from 'swiper/modules'
@@ -11,11 +13,16 @@ import styles from '../../Products.module.scss'
 import type { IProductProps } from '../../interface/products.interface'
 
 const ProductImages: FC<IProductProps & TypeColor> = ({ product, color }) => {
+	const { push } = useRouter()
+	
 	const { setSwiper, setBeginning, setEnd } = useSwiper()
 	const images = color?.images || product.images
-	console.log(product)
+
 	return (
-		<div className={styles.slider}>
+		<div
+			className={styles.slider}
+			onClick={() => push(PUBLIC_PAGES.PRODUCT(product.slug))}
+		>
 			<Swiper
 				className={styles.images}
 				modules={[Pagination]}
@@ -39,14 +46,7 @@ const ProductImages: FC<IProductProps & TypeColor> = ({ product, color }) => {
 			>
 				{images.map((image, index) => (
 					<SwiperSlide key={index} className={styles.image}>
-						<StaticImage
-							className="w-auto h-auto"
-							src={image}
-							width={0}
-							height={0}
-							sizes="100vw"
-							alt={product.name}
-						/>
+						<FilledImage src={image} alt={product.name} />
 					</SwiperSlide>
 				))}
 				<div id="imagesBullets" className={styles.dots}></div>

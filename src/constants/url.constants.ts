@@ -33,5 +33,7 @@ export const PUBLIC_PAGES = {
 	HOME: '/',
 	LOGIN: '/auth?type=login',
 	REGISTER: '/auth?type=register',
-	CATALOG: '/catalog'
+	CATALOG: '/catalog',
+	CATEGORY: (slug: string) =>  `/category/${slug}`,
+	PRODUCT: (slug: string) =>  `/product/${slug}`
 }

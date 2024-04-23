@@ -1,5 +1,11 @@
 .products {
-	@apply overflow-x-auto overflow-y-hidden pb-6 mb-14;
+	@apply pb-6 mb-14;
+}
+.heading {
+	@apply mb-8;
+}
+.list {
+	@apply flex gap-5 px-2 pt-2 pb-9 overflow-x-auto overflow-y-hidden;
 	scrollbar-color: #e51314 #d6d3d3;
 	scrollbar-width: thin;
 
@@ -16,12 +22,6 @@
 		@apply h-full bg-red-400 rounded-full;
 	}
 }
-.heading {
-	@apply mb-8;
-}
-.list {
-	@apply flex gap-5 px-2;
-}
 .item {
 	@apply flex flex-col bg-white rounded-md;
 	min-width: calc(100% / 6 - 17px);
@@ -32,7 +32,7 @@
 .top {
 	@apply flex items-center justify-between gap-5 mb-5;
 }
-.types{
+.types {
 	@apply flex flex-wrap gap-2;
 }
 .type {
@@ -52,9 +52,19 @@
 		@apply bg-red-400;
 	}
 }
+.images {
+	@apply flex-col items-center gap-4;
+	display: flex !important;
+	height: 220px;
+
+	> div:first-child {
+		max-height: 200px;
+	}
+}
 .image {
 	> img {
-		@apply mx-auto;
+		@apply mx-auto h-full object-contain;
+		max-height: 200px;
 	}
 }
 .currentPriceBox,
@@ -87,7 +97,7 @@
 	@apply font-semibold text-gray-500 line-through;
 }
 .info {
-	@apply mb-3;
+	@apply mb-3 cursor-pointer;
 }
 .name {
 	@apply font-roboto-serif mt-1.5 text-gray-600;
@@ -170,10 +180,10 @@
 	@apply items-center;
 }
 .slider {
-	@apply relative mb-4;
+	@apply relative mb-4 cursor-pointer;
 }
 .dots {
-	@apply flex justify-center gap-1 mt-4;
+	@apply w-full flex justify-center gap-1;
 }
 .bullet {
 	@apply w-full cursor-pointer;
