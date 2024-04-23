@@ -21,7 +21,6 @@ export const useSlider = (data: string[]) => {
 
 	const goTo = (index: number) => {
 		setCurrentIndex(index)
-		console.log(index)
 	}
 
 	return {

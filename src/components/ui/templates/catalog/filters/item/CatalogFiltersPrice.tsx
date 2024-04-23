@@ -34,9 +34,9 @@ const CatalogFiltersPrice: FC<ICatalogFiltersPrice> = ({
 							className={styles.range}
 							min={filters.price.min}
 							max={filters.price.max}
-							onChange={(e) => onChange(e, 'min', 'range')}
+							onMouseDown={() => setIsMouseUp(false)}
 							onMouseUp={() => setIsMouseUp(true)}
-							onTouchEnd={() => setIsMouseUp(true)}
+							onChange={(e) => onChange(e, 'min', 'range')}
 							value={values.min}
 						/>
 						<input
@@ -44,9 +44,9 @@ const CatalogFiltersPrice: FC<ICatalogFiltersPrice> = ({
 							className={styles.range}
 							min={filters.price.min}
 							max={filters.price.max}
-							onChange={(e) => onChange(e, 'max', 'range')}
+							onMouseDown={() => setIsMouseUp(false)}
 							onMouseUp={() => setIsMouseUp(true)}
-							onTouchEnd={() => setIsMouseUp(true)}
+							onChange={(e) => onChange(e, 'max', 'range')}
 							value={values.max}
 						/>
 					</div>

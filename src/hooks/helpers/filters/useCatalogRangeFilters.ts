@@ -4,6 +4,7 @@ import type {
 	TypeCatalogRangeFilters,
 } from '@/shared/types/filter/filter.type'
 import {
+	useEffect,
 	useState,
 	type ChangeEvent,
 	type Dispatch,
@@ -54,27 +55,30 @@ export const useCatalogRangeFilters = (
 			...prev,
 			[variant]: newValue,
 		}))
-		if (
-			!newErrors.min &&
-			!newErrors.max &&
-			(input === 'range' ? isMouseUp : true)
-		) {
-			setTimeout(
-				() => {
-					setProductsQuery((prev) => ({
-						...prev,
-						...(variant === 'min'
-							? { min: String(newValue) }
-							: variant === 'max'
-							? { max: String(newValue) }
-							: {}),
-					}))
-					setIsMouseUp(false)
-				},
-				input === 'range' ? 0 : 500
-			)
+		if (!newErrors.min && !newErrors.max && input !== 'range') {
+			setTimeout(() => {
+				setProductsQuery((prev) => ({
+					...prev,
+					...(variant === 'min'
+						? { min: String(newValue) }
+						: variant === 'max'
+						? { max: String(newValue) }
+						: {}),
+				}))
+			}, 500)
 		}
 	}
+
+	useEffect(() => {
+		if (isMouseUp) {
+			setProductsQuery((prev) => ({
+				...prev,
+				min: String(values.min),
+				max: String(values.max),
+			}))
+			setIsMouseUp(false)
+		}
+	}, [isMouseUp])
 
 	return {
 		onChange,

@@ -28,8 +28,6 @@ const UploadField: FC<IUploadField> = ({
 	}, [value])
 
 	const removeFile = (fileUrl: string) => {
-		console.log(fileUrl)
-		console.log(files)
 		setFiles(isMulti ? files.filter((file) => file !== fileUrl) : [])
 		onChange(isMulti ? files.filter((file) => file !== fileUrl) : files[0])
 	}

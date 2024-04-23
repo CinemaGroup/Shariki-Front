@@ -38,7 +38,6 @@ export const useManageCharacteristicEdit = (queryId: string) => {
 			getKeys(response).forEach(({ key, value }) => {
 				setValue(key, value)
 			})
-			console.log(type)
 			setValue('type', {
 				name: CHARACTERISTIC_TYPES_TRANSLATE[type],
 				value: type,
