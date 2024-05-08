@@ -10,7 +10,7 @@ const Contacts: FC = () => {
 		<Section>
 			<Container variant="smallest">
 				<div className={styles.wrapper}>
-					<h1 className={styles.heading}>Contact us</h1>
+					<h1 className={styles.heading}>Контакты</h1>
 					<ul className={styles.list}>
 						{CONTACTS_DATA.items.map((item, index) => (
 							<ContactsItem key={index} item={item} />

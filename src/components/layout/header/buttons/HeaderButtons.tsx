@@ -11,17 +11,6 @@ const HeaderButtons: FC = () => {
 			<li className={styles.item}>
 				<Link className={styles.link} href={PUBLIC_PAGES.LOGIN}>
 					<StaticImage
-						src="/images/icons/user.svg"
-						width={34}
-						height={34}
-						alt="User"
-					/>
-					Войти
-				</Link>
-			</li>
-			<li className={styles.item}>
-				<Link className={styles.link} href={PUBLIC_PAGES.LOGIN}>
-					<StaticImage
 						src="/images/icons/favorites.svg"
 						width={34}
 						height={34}

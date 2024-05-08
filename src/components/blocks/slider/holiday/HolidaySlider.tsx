@@ -1,7 +1,7 @@
 import StaticImage from '@/components/ui/common/image/StaticImage'
 import { useSwiper } from '@/hooks/helpers/slider/useSwiper'
 import type { FC } from 'react'
-import { Pagination } from 'swiper/modules'
+import { Autoplay, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import Holiday from '../../holiday/Holiday'
 import styles from './HolidaySlider.module.scss'
@@ -45,7 +45,10 @@ const HolidaySlider: FC = () => {
 				</div>
 				<Swiper
 					className={styles.swiper}
-					modules={[Pagination]}
+					modules={[Pagination, Autoplay]}
+					autoplay={{
+						delay: 5000,
+					}}
 					spaceBetween={0}
 					slidesPerView={4}
 					slidesPerGroup={4}

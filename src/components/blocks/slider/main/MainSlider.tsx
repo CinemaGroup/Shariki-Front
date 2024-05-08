@@ -6,7 +6,7 @@ import { useState, type FC } from 'react'
 import 'swiper/css'
 import 'swiper/css/effect-fade'
 import '@/assets/styles/slider.scss'
-import { EffectFade, Pagination } from 'swiper/modules'
+import { Autoplay, EffectFade, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import styles from './MainSlider.module.scss'
 import { MAIN_SLIDER_DATA } from './data/main-slider.data'
@@ -29,9 +29,12 @@ const MainSlider: FC = () => {
 			<div className={styles.sliderInner}>
 				<Swiper
 					className={cn(styles.swiper, 'main-slider')}
-					modules={[Pagination, EffectFade]}
+					modules={[Pagination, EffectFade, Autoplay]}
 					effect="fade"
 					speed={800}
+					autoplay={{
+						delay: 5000,
+					}}
 					pagination={{
 						clickable: true,
 						clickableClass: styles.pagination,
