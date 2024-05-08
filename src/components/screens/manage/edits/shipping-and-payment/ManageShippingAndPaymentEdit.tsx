@@ -22,9 +22,7 @@ const ManageShippingAndPaymentEdit: FC = () => {
 		<div className={globalStyles.edit}>
 			<Container>
 				<div className={globalStyles.wrapper}>
-					<h1 className={globalStyles.heading}>
-						Доставка и Оплата
-					</h1>
+					<h1 className={globalStyles.heading}>Доставка и Оплата</h1>
 					<form className={globalStyles.form} onSubmit={handleSubmit(onSubmit)}>
 						<Field
 							{...registerInput(
