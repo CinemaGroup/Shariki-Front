@@ -23,7 +23,7 @@
 	@apply up-hover;
 }
 .link {
-	@apply flex-col gap-1;
+	@apply flex-col gap-1 cursor-pointer;
 	min-width: 130px;
 }
 .images {

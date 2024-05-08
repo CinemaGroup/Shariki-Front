@@ -1,14 +1,18 @@
 query Posts($query: QueryInput!) {
 	posts(query: $query) {
-		name
-		slug
-		excerpt
-		description
-		poster
-		bigPoster
-		rubrics {
+		posts {
+			id
 			name
+			slug
+			excerpt
+			description
+			poster
+			bigPoster
+			rubrics {
+				name
+			}
+			createdAt
 		}
-		createdAt
+		count
 	}
 }

@@ -1,16 +1,16 @@
 import { Sort, Status, useProductsQuery } from '@/__generated__/output'
 
-export const useProducts = (isSale: boolean) => {
+export const useProducts = (isPopular: boolean) => {
 	const { data } = useProductsQuery({
 		fetchPolicy: 'no-cache',
 		variables: {
 			query: {
-				sort: !isSale ? Sort.Newest : Sort.Oldest,
+				sort: Sort.Newest,
 				status: Status.Published,
 				perPage: '10',
-				page: '1'
+				page: '1',
 			},
-			isSale: isSale,
+			isPopular: isPopular,
 		},
 	})
 

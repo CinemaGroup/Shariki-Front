@@ -1,5 +1,20 @@
 .files {
-	@apply flex items-stretch flex-wrap gap-4;
+	@apply flex items-stretch flex-wrap gap-4 overflow-y-auto overflow-x-hidden pr-5;
+	max-height: 600px;
+	scrollbar-color: #7b61ff #efecff;
+	scrollbar-width: thin;
+
+	&::-webkit-scrollbar {
+		@apply w-2 rounded-lg;
+	}
+
+	&::-webkit-scrollbar-track {
+		@apply w-full bg-gray-400 rounded-lg;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		@apply w-full bg-purple-400 rounded-lg;
+	}
 }
 .file {
 	@apply w-full relative border border-solid border-gray-600/20 rounded-sm bg-white;

@@ -19,6 +19,23 @@ export type Scalars = {
   Upload: { input: any; output: any; }
 };
 
+export type About = {
+  __typename?: 'About';
+  content: Scalars['String']['output'];
+  name: Scalars['String']['output'];
+};
+
+export type AboutInput = {
+  content: Scalars['String']['input'];
+  name: Scalars['String']['input'];
+};
+
+export type AllPosts = {
+  __typename?: 'AllPosts';
+  count: Scalars['Int']['output'];
+  posts: Array<Post>;
+};
+
 export type AuthLoginInput = {
   email: Scalars['String']['input'];
   password: Scalars['String']['input'];
@@ -54,6 +71,7 @@ export type Catalog = {
   filters: Filters;
   products: Array<Product>;
   productsCount: Scalars['Int']['output'];
+  rootCategory?: Maybe<Category>;
 };
 
 export type CatalogInput = {
@@ -213,6 +231,17 @@ export type FolderWithChild = {
   path: Scalars['String']['output'];
 };
 
+export type ForBuyers = {
+  __typename?: 'ForBuyers';
+  content: Scalars['String']['output'];
+  name: Scalars['String']['output'];
+};
+
+export type ForBuyersInput = {
+  content: Scalars['String']['input'];
+  name: Scalars['String']['input'];
+};
+
 export type Holiday = {
   __typename?: 'Holiday';
   createdAt: Scalars['DateTime']['output'];
@@ -245,6 +274,7 @@ export type Mutation = {
   createPost: Post;
   createProduct: Product;
   createReview: Review;
+  createRubric: Rubric;
   createTag: Tag;
   createType: Type;
   deleteCategory: Category;
@@ -255,13 +285,17 @@ export type Mutation = {
   deletePost: Post;
   deleteProduct: Product;
   deleteReview: Review;
+  deleteRubric: Rubric;
   deleteTag: Tag;
   deleteType: Type;
   duplicateCategory: Category;
   duplicateCharacteristic: Characteristic;
   duplicateCollection: Collection;
   duplicateHoliday: Holiday;
+  duplicatePost: Post;
   duplicateProduct: Product;
+  duplicateReview: Review;
+  duplicateRubric: Rubric;
   duplicateTag: Tag;
   duplicateType: Type;
   editFileOrFolderName: Scalars['String']['output'];
@@ -275,15 +309,20 @@ export type Mutation = {
   togglePost: Post;
   toggleProduct: Product;
   toggleReview: Review;
+  toggleRubric: Rubric;
   toggleTag: Tag;
   toggleType: Type;
+  updateAbout: About;
   updateCategory: Category;
   updateCharacteristic: Characteristic;
   updateCollection: Collection;
+  updateForBuyers: ForBuyers;
   updateHoliday: Holiday;
   updatePost: Post;
   updateProduct: Product;
   updateReview: Review;
+  updateRubric: Rubric;
+  updateShippingAndPayment: ShippingAndPayment;
   updateTag: Tag;
   updateType: Type;
   uploadFiles: Scalars['String']['output'];
@@ -335,6 +374,11 @@ export type MutationDeleteReviewArgs = {
 };
 
 
+export type MutationDeleteRubricArgs = {
+  id: Scalars['Int']['input'];
+};
+
+
 export type MutationDeleteTagArgs = {
   id: Scalars['Int']['input'];
 };
@@ -365,7 +409,22 @@ export type MutationDuplicateHolidayArgs = {
 };
 
 
+export type MutationDuplicatePostArgs = {
+  id: Scalars['Int']['input'];
+};
+
+
 export type MutationDuplicateProductArgs = {
+  id: Scalars['Int']['input'];
+};
+
+
+export type MutationDuplicateReviewArgs = {
+  id: Scalars['Int']['input'];
+};
+
+
+export type MutationDuplicateRubricArgs = {
   id: Scalars['Int']['input'];
 };
 
@@ -430,6 +489,11 @@ export type MutationToggleReviewArgs = {
 };
 
 
+export type MutationToggleRubricArgs = {
+  id: Scalars['Int']['input'];
+};
+
+
 export type MutationToggleTagArgs = {
   id: Scalars['Int']['input'];
 };
@@ -437,6 +501,11 @@ export type MutationToggleTagArgs = {
 
 export type MutationToggleTypeArgs = {
   id: Scalars['Int']['input'];
+};
+
+
+export type MutationUpdateAboutArgs = {
+  data: AboutInput;
 };
 
 
@@ -455,6 +524,11 @@ export type MutationUpdateCharacteristicArgs = {
 export type MutationUpdateCollectionArgs = {
   data: CollectionInput;
   id: Scalars['Int']['input'];
+};
+
+
+export type MutationUpdateForBuyersArgs = {
+  data: ForBuyersInput;
 };
 
 
@@ -479,6 +553,17 @@ export type MutationUpdateProductArgs = {
 export type MutationUpdateReviewArgs = {
   data: ReviewInput;
   id: Scalars['Int']['input'];
+};
+
+
+export type MutationUpdateRubricArgs = {
+  data: RubricInput;
+  id: Scalars['Int']['input'];
+};
+
+
+export type MutationUpdateShippingAndPaymentArgs = {
+  data: ShippingAndPaymentInput;
 };
 
 
@@ -534,6 +619,11 @@ export enum OrderStatus {
   Refunded = 'REFUNDED'
 }
 
+export type PaginationInput = {
+  page?: InputMaybe<Scalars['String']['input']>;
+  perPage?: InputMaybe<Scalars['String']['input']>;
+};
+
 export enum PaymentMethod {
   Yookassa = 'YOOKASSA'
 }
@@ -559,7 +649,7 @@ export type PostInput = {
   excerpt: Scalars['String']['input'];
   name: Scalars['String']['input'];
   poster: Scalars['String']['input'];
-  rubrics: Array<Scalars['Int']['input']>;
+  rubrics: Array<SelectInput>;
 };
 
 export type Product = {
@@ -631,6 +721,7 @@ export type ProfileResponse = {
 
 export type Query = {
   __typename?: 'Query';
+  about: About;
   catalog: Catalog;
   categories: Array<Category>;
   categoryById: Category;
@@ -640,16 +731,21 @@ export type Query = {
   collections: Array<Collection>;
   folderItems: StorageItem;
   folders: Array<FolderWithChild>;
+  forBuyers: ForBuyers;
   holidayById: Holiday;
   holidays: Array<Holiday>;
   postById: Post;
-  posts: Array<Post>;
+  postBySlug: Post;
+  posts: AllPosts;
   productById: Product;
   productBySlug: CurrentProduct;
   products: CatalogProduct;
   profile: ProfileResponse;
   reviewById: Review;
   reviews: Array<Review>;
+  rubricById: Rubric;
+  rubrics: Array<Rubric>;
+  shippingAndPayment: ShippingAndPayment;
   tagById: Tag;
   tags: Array<Tag>;
   typeById: Type;
@@ -695,6 +791,7 @@ export type QueryCollectionsArgs = {
 
 export type QueryFolderItemsArgs = {
   folderPath: Scalars['String']['input'];
+  query: PaginationInput;
 };
 
 
@@ -710,6 +807,11 @@ export type QueryHolidaysArgs = {
 
 export type QueryPostByIdArgs = {
   id: Scalars['Int']['input'];
+};
+
+
+export type QueryPostBySlugArgs = {
+  slug: Scalars['String']['input'];
 };
 
 
@@ -729,7 +831,7 @@ export type QueryProductBySlugArgs = {
 
 
 export type QueryProductsArgs = {
-  isSale?: InputMaybe<Scalars['Boolean']['input']>;
+  isPopular?: InputMaybe<Scalars['Boolean']['input']>;
   query: QueryProductInput;
 };
 
@@ -740,6 +842,16 @@ export type QueryReviewByIdArgs = {
 
 
 export type QueryReviewsArgs = {
+  query: QueryInput;
+};
+
+
+export type QueryRubricByIdArgs = {
+  id: Scalars['Int']['input'];
+};
+
+
+export type QueryRubricsArgs = {
   query: QueryInput;
 };
 
@@ -796,6 +908,7 @@ export type QueryProductInput = {
   sizes?: InputMaybe<Array<Scalars['String']['input']>>;
   sort: Sort;
   status?: InputMaybe<Status>;
+  tags?: InputMaybe<Array<Scalars['String']['input']>>;
   types?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
@@ -833,9 +946,28 @@ export type Rubric = {
   updatedAt: Scalars['DateTime']['output'];
 };
 
+export type RubricInput = {
+  name: Scalars['String']['input'];
+};
+
 export type SelectInput = {
   name: Scalars['String']['input'];
   value: Scalars['Int']['input'];
+};
+
+export type ShippingAndPayment = {
+  __typename?: 'ShippingAndPayment';
+  paymentContent: Scalars['String']['output'];
+  paymentName: Scalars['String']['output'];
+  shippingContent: Scalars['String']['output'];
+  shippingName: Scalars['String']['output'];
+};
+
+export type ShippingAndPaymentInput = {
+  paymentContent: Scalars['String']['input'];
+  paymentName: Scalars['String']['input'];
+  shippingContent: Scalars['String']['input'];
+  shippingName: Scalars['String']['input'];
 };
 
 export type Size = {
@@ -868,6 +1000,7 @@ export enum Status {
 
 export type StorageItem = {
   __typename?: 'StorageItem';
+  count: Scalars['Int']['output'];
   files: Array<File>;
   folders: Array<Folder>;
 };
@@ -1084,6 +1217,61 @@ export type UpdateHolidayMutationVariables = Exact<{
 
 export type UpdateHolidayMutation = { updateHoliday: { id: number } };
 
+export type UpdateAboutMutationVariables = Exact<{
+  data: AboutInput;
+}>;
+
+
+export type UpdateAboutMutation = { updateAbout: { name: string, content: string } };
+
+export type UpdateForBuyersMutationVariables = Exact<{
+  data: ForBuyersInput;
+}>;
+
+
+export type UpdateForBuyersMutation = { updateForBuyers: { name: string, content: string } };
+
+export type UpdateShippingAndPaymentMutationVariables = Exact<{
+  data: ShippingAndPaymentInput;
+}>;
+
+
+export type UpdateShippingAndPaymentMutation = { updateShippingAndPayment: { shippingName: string, shippingContent: string, paymentName: string, paymentContent: string } };
+
+export type CreatePostMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CreatePostMutation = { createPost: { id: number } };
+
+export type DeletePostMutationVariables = Exact<{
+  id: Scalars['Int']['input'];
+}>;
+
+
+export type DeletePostMutation = { deletePost: { id: number } };
+
+export type DuplicatePostMutationVariables = Exact<{
+  id: Scalars['Int']['input'];
+}>;
+
+
+export type DuplicatePostMutation = { duplicatePost: { id: number } };
+
+export type TogglePostMutationVariables = Exact<{
+  id: Scalars['Int']['input'];
+}>;
+
+
+export type TogglePostMutation = { togglePost: { id: number } };
+
+export type UpdatePostMutationVariables = Exact<{
+  id: Scalars['Int']['input'];
+  data: PostInput;
+}>;
+
+
+export type UpdatePostMutation = { updatePost: { id: number } };
+
 export type CreateProductMutationVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1117,6 +1305,74 @@ export type UpdateProductMutationVariables = Exact<{
 
 
 export type UpdateProductMutation = { updateProduct: { id: number } };
+
+export type CreateReviewMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CreateReviewMutation = { createReview: { id: number } };
+
+export type DeleteReviewMutationVariables = Exact<{
+  id: Scalars['Int']['input'];
+}>;
+
+
+export type DeleteReviewMutation = { deleteReview: { id: number } };
+
+export type DuplicateReviewMutationVariables = Exact<{
+  id: Scalars['Int']['input'];
+}>;
+
+
+export type DuplicateReviewMutation = { duplicateReview: { id: number } };
+
+export type ToggleReviewMutationVariables = Exact<{
+  id: Scalars['Int']['input'];
+}>;
+
+
+export type ToggleReviewMutation = { toggleReview: { id: number } };
+
+export type UpdateReviewMutationVariables = Exact<{
+  id: Scalars['Int']['input'];
+  data: ReviewInput;
+}>;
+
+
+export type UpdateReviewMutation = { updateReview: { id: number } };
+
+export type CreateRubricMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CreateRubricMutation = { createRubric: { id: number } };
+
+export type DeleteRubricMutationVariables = Exact<{
+  id: Scalars['Int']['input'];
+}>;
+
+
+export type DeleteRubricMutation = { deleteRubric: { id: number } };
+
+export type DuplicateRubricMutationVariables = Exact<{
+  id: Scalars['Int']['input'];
+}>;
+
+
+export type DuplicateRubricMutation = { duplicateRubric: { id: number } };
+
+export type ToggleRubricMutationVariables = Exact<{
+  id: Scalars['Int']['input'];
+}>;
+
+
+export type ToggleRubricMutation = { toggleRubric: { id: number } };
+
+export type UpdateRubricMutationVariables = Exact<{
+  id: Scalars['Int']['input'];
+  data: RubricInput;
+}>;
+
+
+export type UpdateRubricMutation = { updateRubric: { id: number } };
 
 export type CreateFolderMutationVariables = Exact<{
   data: CreateFolderInput;
@@ -1219,7 +1475,7 @@ export type CatalogQueryVariables = Exact<{
 }>;
 
 
-export type CatalogQuery = { catalog: { productsCount: number, categories: Array<{ name: string, slug: string, imagePath?: string | null, parent?: { name: string, slug: string, parent?: { name: string, slug: string, parent?: { name: string, slug: string, parent?: { name: string, slug: string } | null } | null } | null } | null }>, filters: { sizes: Array<{ label: string, value: string, count: number }>, colors: Array<{ label: string, value: string, count: number }>, hues: Array<{ label: string, value: string, count: number }>, types: Array<{ iconPath: string, uncheckedIconPath?: string | null, value: string }>, manufacturers: Array<{ label: string, value: string, count: number }>, materials: Array<{ label: string, value: string, count: number }>, collections: Array<{ label: string, value: string, count: number }>, holidays: Array<{ label: string, value: string, count: number }>, countries: Array<{ label: string, value: string, count: number }>, price: { min: number, max: number } }, products: Array<{ id: number, name: string, slug: string, sku: string, iconPath?: string | null, description: string, packageQuantity: number, price: string, oldPrice?: string | null, views: number, boughtTimes: number, images: Array<string>, status: Status, createdAt: any, sizes: Array<{ size: string, price: string, oldPrice?: string | null }>, colors: Array<{ color: string, images: Array<string> }>, types: Array<{ iconPath: string }> }> } };
+export type CatalogQuery = { catalog: { productsCount: number, rootCategory?: { name: string, slug: string, parent?: { name: string, slug: string, parent?: { name: string, slug: string, parent?: { name: string, slug: string, parent?: { name: string, slug: string, parent?: { name: string, slug: string } | null } | null } | null } | null } | null, categories: Array<{ name: string, slug: string, categories: Array<{ name: string, slug: string, categories: Array<{ name: string, slug: string, categories: Array<{ name: string, slug: string, categories: Array<{ name: string, slug: string }> }> }> }> }> } | null, categories: Array<{ name: string, slug: string, imagePath?: string | null, parent?: { name: string, slug: string, parent?: { name: string, slug: string, parent?: { name: string, slug: string, parent?: { name: string, slug: string } | null } | null } | null } | null }>, filters: { sizes: Array<{ label: string, value: string, count: number }>, colors: Array<{ label: string, value: string, count: number }>, hues: Array<{ label: string, value: string, count: number }>, types: Array<{ iconPath: string, uncheckedIconPath?: string | null, value: string }>, manufacturers: Array<{ label: string, value: string, count: number }>, materials: Array<{ label: string, value: string, count: number }>, collections: Array<{ label: string, value: string, count: number }>, holidays: Array<{ label: string, value: string, count: number }>, countries: Array<{ label: string, value: string, count: number }>, price: { min: number, max: number } }, products: Array<{ id: number, name: string, slug: string, sku: string, iconPath?: string | null, description: string, packageQuantity: number, price: string, oldPrice?: string | null, views: number, boughtTimes: number, images: Array<string>, status: Status, createdAt: any, sizes: Array<{ size: string, price: string, oldPrice?: string | null }>, colors: Array<{ color: string, images: Array<string> }>, types: Array<{ iconPath: string }> }> } };
 
 export type CategoriesQueryVariables = Exact<{
   query: QueryCategoryInput;
@@ -1233,7 +1489,7 @@ export type CategoryByIdQueryVariables = Exact<{
 }>;
 
 
-export type CategoryByIdQuery = { categoryById: { name: string, parent?: { id: number, name: string } | null } };
+export type CategoryByIdQuery = { categoryById: { name: string, imagePath?: string | null, parent?: { id: number, name: string } | null } };
 
 export type CharacteristicByIdQueryVariables = Exact<{
   id: Scalars['Int']['input'];
@@ -1277,12 +1533,41 @@ export type HolidaysQueryVariables = Exact<{
 
 export type HolidaysQuery = { holidays: Array<{ id: number, name: string, slug: string }> };
 
+export type AboutQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AboutQuery = { about: { name: string, content: string } };
+
+export type ForBuyersQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ForBuyersQuery = { forBuyers: { name: string, content: string } };
+
+export type ShippingAndPaymentQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ShippingAndPaymentQuery = { shippingAndPayment: { shippingName: string, shippingContent: string, paymentName: string, paymentContent: string } };
+
+export type PostByIdQueryVariables = Exact<{
+  id: Scalars['Int']['input'];
+}>;
+
+
+export type PostByIdQuery = { postById: { name: string, excerpt: string, description: string, poster: string, bigPoster: string, rubrics: Array<{ id: number, name: string }> } };
+
+export type PostBySlugQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
+}>;
+
+
+export type PostBySlugQuery = { postBySlug: { name: string, excerpt: string, description: string, poster: string, bigPoster: string, createdAt: any, rubrics: Array<{ id: number, name: string }> } };
+
 export type PostsQueryVariables = Exact<{
   query: QueryInput;
 }>;
 
 
-export type PostsQuery = { posts: Array<{ name: string, slug: string, excerpt: string, description: string, poster: string, bigPoster: string, createdAt: any, rubrics: Array<{ name: string }> }> };
+export type PostsQuery = { posts: { count: number, posts: Array<{ id: number, name: string, slug: string, excerpt: string, description: string, poster: string, bigPoster: string, createdAt: any, rubrics: Array<{ name: string }> }> } };
 
 export type ProductByIdQueryVariables = Exact<{
   id: Scalars['Int']['input'];
@@ -1300,25 +1585,47 @@ export type ProductBySlugQuery = { productBySlug: { product?: { id: number, name
 
 export type ProductsQueryVariables = Exact<{
   query: QueryProductInput;
-  isSale?: InputMaybe<Scalars['Boolean']['input']>;
+  isPopular?: InputMaybe<Scalars['Boolean']['input']>;
 }>;
 
 
 export type ProductsQuery = { products: { count: number, products: Array<{ id: number, name: string, slug: string, sku: string, iconPath?: string | null, description: string, packageQuantity: number, price: string, oldPrice?: string | null, views: number, boughtTimes: number, images: Array<string>, status: Status, createdAt: any, sizes: Array<{ size: string, price: string, oldPrice?: string | null }>, colors: Array<{ color: string, images: Array<string> }>, types: Array<{ iconPath: string }> }> } };
+
+export type ReviewByIdQueryVariables = Exact<{
+  id: Scalars['Int']['input'];
+}>;
+
+
+export type ReviewByIdQuery = { reviewById: { author: string, content: string, photo: string } };
 
 export type ReviewsQueryVariables = Exact<{
   query: QueryInput;
 }>;
 
 
-export type ReviewsQuery = { reviews: Array<{ author: string, content: string, photo: string }> };
+export type ReviewsQuery = { reviews: Array<{ id: number, author: string, content: string, photo: string }> };
 
-export type GetFolderItemsQueryVariables = Exact<{
-  folderPath: Scalars['String']['input'];
+export type RubricByIdQueryVariables = Exact<{
+  id: Scalars['Int']['input'];
 }>;
 
 
-export type GetFolderItemsQuery = { folderItems: { folders: Array<{ name: string, size: string, count: number, path: string, createdAt: any }>, files: Array<{ name: string, size: string, extension: string, path: string, createdAt: any }> } };
+export type RubricByIdQuery = { rubricById: { name: string } };
+
+export type RubricsQueryVariables = Exact<{
+  query: QueryInput;
+}>;
+
+
+export type RubricsQuery = { rubrics: Array<{ id: number, name: string, slug: string }> };
+
+export type GetFolderItemsQueryVariables = Exact<{
+  folderPath: Scalars['String']['input'];
+  query: PaginationInput;
+}>;
+
+
+export type GetFolderItemsQuery = { folderItems: { count: number, folders: Array<{ name: string, size: string, count: number, path: string, createdAt: any }>, files: Array<{ name: string, size: string, extension: string, path: string, createdAt: any }> } };
 
 export type FoldersQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -2129,6 +2436,275 @@ export function useUpdateHolidayMutation(baseOptions?: Apollo.MutationHookOption
 export type UpdateHolidayMutationHookResult = ReturnType<typeof useUpdateHolidayMutation>;
 export type UpdateHolidayMutationResult = Apollo.MutationResult<UpdateHolidayMutation>;
 export type UpdateHolidayMutationOptions = Apollo.BaseMutationOptions<UpdateHolidayMutation, UpdateHolidayMutationVariables>;
+export const UpdateAboutDocument = gql`
+    mutation UpdateAbout($data: AboutInput!) {
+  updateAbout(data: $data) {
+    name
+    content
+  }
+}
+    `;
+export type UpdateAboutMutationFn = Apollo.MutationFunction<UpdateAboutMutation, UpdateAboutMutationVariables>;
+
+/**
+ * __useUpdateAboutMutation__
+ *
+ * To run a mutation, you first call `useUpdateAboutMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateAboutMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateAboutMutation, { data, loading, error }] = useUpdateAboutMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useUpdateAboutMutation(baseOptions?: Apollo.MutationHookOptions<UpdateAboutMutation, UpdateAboutMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateAboutMutation, UpdateAboutMutationVariables>(UpdateAboutDocument, options);
+      }
+export type UpdateAboutMutationHookResult = ReturnType<typeof useUpdateAboutMutation>;
+export type UpdateAboutMutationResult = Apollo.MutationResult<UpdateAboutMutation>;
+export type UpdateAboutMutationOptions = Apollo.BaseMutationOptions<UpdateAboutMutation, UpdateAboutMutationVariables>;
+export const UpdateForBuyersDocument = gql`
+    mutation UpdateForBuyers($data: ForBuyersInput!) {
+  updateForBuyers(data: $data) {
+    name
+    content
+  }
+}
+    `;
+export type UpdateForBuyersMutationFn = Apollo.MutationFunction<UpdateForBuyersMutation, UpdateForBuyersMutationVariables>;
+
+/**
+ * __useUpdateForBuyersMutation__
+ *
+ * To run a mutation, you first call `useUpdateForBuyersMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateForBuyersMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateForBuyersMutation, { data, loading, error }] = useUpdateForBuyersMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useUpdateForBuyersMutation(baseOptions?: Apollo.MutationHookOptions<UpdateForBuyersMutation, UpdateForBuyersMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateForBuyersMutation, UpdateForBuyersMutationVariables>(UpdateForBuyersDocument, options);
+      }
+export type UpdateForBuyersMutationHookResult = ReturnType<typeof useUpdateForBuyersMutation>;
+export type UpdateForBuyersMutationResult = Apollo.MutationResult<UpdateForBuyersMutation>;
+export type UpdateForBuyersMutationOptions = Apollo.BaseMutationOptions<UpdateForBuyersMutation, UpdateForBuyersMutationVariables>;
+export const UpdateShippingAndPaymentDocument = gql`
+    mutation UpdateShippingAndPayment($data: ShippingAndPaymentInput!) {
+  updateShippingAndPayment(data: $data) {
+    shippingName
+    shippingContent
+    paymentName
+    paymentContent
+  }
+}
+    `;
+export type UpdateShippingAndPaymentMutationFn = Apollo.MutationFunction<UpdateShippingAndPaymentMutation, UpdateShippingAndPaymentMutationVariables>;
+
+/**
+ * __useUpdateShippingAndPaymentMutation__
+ *
+ * To run a mutation, you first call `useUpdateShippingAndPaymentMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateShippingAndPaymentMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateShippingAndPaymentMutation, { data, loading, error }] = useUpdateShippingAndPaymentMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useUpdateShippingAndPaymentMutation(baseOptions?: Apollo.MutationHookOptions<UpdateShippingAndPaymentMutation, UpdateShippingAndPaymentMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateShippingAndPaymentMutation, UpdateShippingAndPaymentMutationVariables>(UpdateShippingAndPaymentDocument, options);
+      }
+export type UpdateShippingAndPaymentMutationHookResult = ReturnType<typeof useUpdateShippingAndPaymentMutation>;
+export type UpdateShippingAndPaymentMutationResult = Apollo.MutationResult<UpdateShippingAndPaymentMutation>;
+export type UpdateShippingAndPaymentMutationOptions = Apollo.BaseMutationOptions<UpdateShippingAndPaymentMutation, UpdateShippingAndPaymentMutationVariables>;
+export const CreatePostDocument = gql`
+    mutation CreatePost {
+  createPost {
+    id
+  }
+}
+    `;
+export type CreatePostMutationFn = Apollo.MutationFunction<CreatePostMutation, CreatePostMutationVariables>;
+
+/**
+ * __useCreatePostMutation__
+ *
+ * To run a mutation, you first call `useCreatePostMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreatePostMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createPostMutation, { data, loading, error }] = useCreatePostMutation({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useCreatePostMutation(baseOptions?: Apollo.MutationHookOptions<CreatePostMutation, CreatePostMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreatePostMutation, CreatePostMutationVariables>(CreatePostDocument, options);
+      }
+export type CreatePostMutationHookResult = ReturnType<typeof useCreatePostMutation>;
+export type CreatePostMutationResult = Apollo.MutationResult<CreatePostMutation>;
+export type CreatePostMutationOptions = Apollo.BaseMutationOptions<CreatePostMutation, CreatePostMutationVariables>;
+export const DeletePostDocument = gql`
+    mutation DeletePost($id: Int!) {
+  deletePost(id: $id) {
+    id
+  }
+}
+    `;
+export type DeletePostMutationFn = Apollo.MutationFunction<DeletePostMutation, DeletePostMutationVariables>;
+
+/**
+ * __useDeletePostMutation__
+ *
+ * To run a mutation, you first call `useDeletePostMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeletePostMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deletePostMutation, { data, loading, error }] = useDeletePostMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDeletePostMutation(baseOptions?: Apollo.MutationHookOptions<DeletePostMutation, DeletePostMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeletePostMutation, DeletePostMutationVariables>(DeletePostDocument, options);
+      }
+export type DeletePostMutationHookResult = ReturnType<typeof useDeletePostMutation>;
+export type DeletePostMutationResult = Apollo.MutationResult<DeletePostMutation>;
+export type DeletePostMutationOptions = Apollo.BaseMutationOptions<DeletePostMutation, DeletePostMutationVariables>;
+export const DuplicatePostDocument = gql`
+    mutation DuplicatePost($id: Int!) {
+  duplicatePost(id: $id) {
+    id
+  }
+}
+    `;
+export type DuplicatePostMutationFn = Apollo.MutationFunction<DuplicatePostMutation, DuplicatePostMutationVariables>;
+
+/**
+ * __useDuplicatePostMutation__
+ *
+ * To run a mutation, you first call `useDuplicatePostMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDuplicatePostMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [duplicatePostMutation, { data, loading, error }] = useDuplicatePostMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDuplicatePostMutation(baseOptions?: Apollo.MutationHookOptions<DuplicatePostMutation, DuplicatePostMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DuplicatePostMutation, DuplicatePostMutationVariables>(DuplicatePostDocument, options);
+      }
+export type DuplicatePostMutationHookResult = ReturnType<typeof useDuplicatePostMutation>;
+export type DuplicatePostMutationResult = Apollo.MutationResult<DuplicatePostMutation>;
+export type DuplicatePostMutationOptions = Apollo.BaseMutationOptions<DuplicatePostMutation, DuplicatePostMutationVariables>;
+export const TogglePostDocument = gql`
+    mutation TogglePost($id: Int!) {
+  togglePost(id: $id) {
+    id
+  }
+}
+    `;
+export type TogglePostMutationFn = Apollo.MutationFunction<TogglePostMutation, TogglePostMutationVariables>;
+
+/**
+ * __useTogglePostMutation__
+ *
+ * To run a mutation, you first call `useTogglePostMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useTogglePostMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [togglePostMutation, { data, loading, error }] = useTogglePostMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useTogglePostMutation(baseOptions?: Apollo.MutationHookOptions<TogglePostMutation, TogglePostMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<TogglePostMutation, TogglePostMutationVariables>(TogglePostDocument, options);
+      }
+export type TogglePostMutationHookResult = ReturnType<typeof useTogglePostMutation>;
+export type TogglePostMutationResult = Apollo.MutationResult<TogglePostMutation>;
+export type TogglePostMutationOptions = Apollo.BaseMutationOptions<TogglePostMutation, TogglePostMutationVariables>;
+export const UpdatePostDocument = gql`
+    mutation UpdatePost($id: Int!, $data: PostInput!) {
+  updatePost(id: $id, data: $data) {
+    id
+  }
+}
+    `;
+export type UpdatePostMutationFn = Apollo.MutationFunction<UpdatePostMutation, UpdatePostMutationVariables>;
+
+/**
+ * __useUpdatePostMutation__
+ *
+ * To run a mutation, you first call `useUpdatePostMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdatePostMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updatePostMutation, { data, loading, error }] = useUpdatePostMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useUpdatePostMutation(baseOptions?: Apollo.MutationHookOptions<UpdatePostMutation, UpdatePostMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdatePostMutation, UpdatePostMutationVariables>(UpdatePostDocument, options);
+      }
+export type UpdatePostMutationHookResult = ReturnType<typeof useUpdatePostMutation>;
+export type UpdatePostMutationResult = Apollo.MutationResult<UpdatePostMutation>;
+export type UpdatePostMutationOptions = Apollo.BaseMutationOptions<UpdatePostMutation, UpdatePostMutationVariables>;
 export const CreateProductDocument = gql`
     mutation CreateProduct {
   createProduct {
@@ -2294,6 +2870,336 @@ export function useUpdateProductMutation(baseOptions?: Apollo.MutationHookOption
 export type UpdateProductMutationHookResult = ReturnType<typeof useUpdateProductMutation>;
 export type UpdateProductMutationResult = Apollo.MutationResult<UpdateProductMutation>;
 export type UpdateProductMutationOptions = Apollo.BaseMutationOptions<UpdateProductMutation, UpdateProductMutationVariables>;
+export const CreateReviewDocument = gql`
+    mutation CreateReview {
+  createReview {
+    id
+  }
+}
+    `;
+export type CreateReviewMutationFn = Apollo.MutationFunction<CreateReviewMutation, CreateReviewMutationVariables>;
+
+/**
+ * __useCreateReviewMutation__
+ *
+ * To run a mutation, you first call `useCreateReviewMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateReviewMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createReviewMutation, { data, loading, error }] = useCreateReviewMutation({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useCreateReviewMutation(baseOptions?: Apollo.MutationHookOptions<CreateReviewMutation, CreateReviewMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateReviewMutation, CreateReviewMutationVariables>(CreateReviewDocument, options);
+      }
+export type CreateReviewMutationHookResult = ReturnType<typeof useCreateReviewMutation>;
+export type CreateReviewMutationResult = Apollo.MutationResult<CreateReviewMutation>;
+export type CreateReviewMutationOptions = Apollo.BaseMutationOptions<CreateReviewMutation, CreateReviewMutationVariables>;
+export const DeleteReviewDocument = gql`
+    mutation DeleteReview($id: Int!) {
+  deleteReview(id: $id) {
+    id
+  }
+}
+    `;
+export type DeleteReviewMutationFn = Apollo.MutationFunction<DeleteReviewMutation, DeleteReviewMutationVariables>;
+
+/**
+ * __useDeleteReviewMutation__
+ *
+ * To run a mutation, you first call `useDeleteReviewMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteReviewMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteReviewMutation, { data, loading, error }] = useDeleteReviewMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDeleteReviewMutation(baseOptions?: Apollo.MutationHookOptions<DeleteReviewMutation, DeleteReviewMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteReviewMutation, DeleteReviewMutationVariables>(DeleteReviewDocument, options);
+      }
+export type DeleteReviewMutationHookResult = ReturnType<typeof useDeleteReviewMutation>;
+export type DeleteReviewMutationResult = Apollo.MutationResult<DeleteReviewMutation>;
+export type DeleteReviewMutationOptions = Apollo.BaseMutationOptions<DeleteReviewMutation, DeleteReviewMutationVariables>;
+export const DuplicateReviewDocument = gql`
+    mutation DuplicateReview($id: Int!) {
+  duplicateReview(id: $id) {
+    id
+  }
+}
+    `;
+export type DuplicateReviewMutationFn = Apollo.MutationFunction<DuplicateReviewMutation, DuplicateReviewMutationVariables>;
+
+/**
+ * __useDuplicateReviewMutation__
+ *
+ * To run a mutation, you first call `useDuplicateReviewMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDuplicateReviewMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [duplicateReviewMutation, { data, loading, error }] = useDuplicateReviewMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDuplicateReviewMutation(baseOptions?: Apollo.MutationHookOptions<DuplicateReviewMutation, DuplicateReviewMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DuplicateReviewMutation, DuplicateReviewMutationVariables>(DuplicateReviewDocument, options);
+      }
+export type DuplicateReviewMutationHookResult = ReturnType<typeof useDuplicateReviewMutation>;
+export type DuplicateReviewMutationResult = Apollo.MutationResult<DuplicateReviewMutation>;
+export type DuplicateReviewMutationOptions = Apollo.BaseMutationOptions<DuplicateReviewMutation, DuplicateReviewMutationVariables>;
+export const ToggleReviewDocument = gql`
+    mutation ToggleReview($id: Int!) {
+  toggleReview(id: $id) {
+    id
+  }
+}
+    `;
+export type ToggleReviewMutationFn = Apollo.MutationFunction<ToggleReviewMutation, ToggleReviewMutationVariables>;
+
+/**
+ * __useToggleReviewMutation__
+ *
+ * To run a mutation, you first call `useToggleReviewMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useToggleReviewMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [toggleReviewMutation, { data, loading, error }] = useToggleReviewMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useToggleReviewMutation(baseOptions?: Apollo.MutationHookOptions<ToggleReviewMutation, ToggleReviewMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<ToggleReviewMutation, ToggleReviewMutationVariables>(ToggleReviewDocument, options);
+      }
+export type ToggleReviewMutationHookResult = ReturnType<typeof useToggleReviewMutation>;
+export type ToggleReviewMutationResult = Apollo.MutationResult<ToggleReviewMutation>;
+export type ToggleReviewMutationOptions = Apollo.BaseMutationOptions<ToggleReviewMutation, ToggleReviewMutationVariables>;
+export const UpdateReviewDocument = gql`
+    mutation UpdateReview($id: Int!, $data: ReviewInput!) {
+  updateReview(id: $id, data: $data) {
+    id
+  }
+}
+    `;
+export type UpdateReviewMutationFn = Apollo.MutationFunction<UpdateReviewMutation, UpdateReviewMutationVariables>;
+
+/**
+ * __useUpdateReviewMutation__
+ *
+ * To run a mutation, you first call `useUpdateReviewMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateReviewMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateReviewMutation, { data, loading, error }] = useUpdateReviewMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useUpdateReviewMutation(baseOptions?: Apollo.MutationHookOptions<UpdateReviewMutation, UpdateReviewMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateReviewMutation, UpdateReviewMutationVariables>(UpdateReviewDocument, options);
+      }
+export type UpdateReviewMutationHookResult = ReturnType<typeof useUpdateReviewMutation>;
+export type UpdateReviewMutationResult = Apollo.MutationResult<UpdateReviewMutation>;
+export type UpdateReviewMutationOptions = Apollo.BaseMutationOptions<UpdateReviewMutation, UpdateReviewMutationVariables>;
+export const CreateRubricDocument = gql`
+    mutation CreateRubric {
+  createRubric {
+    id
+  }
+}
+    `;
+export type CreateRubricMutationFn = Apollo.MutationFunction<CreateRubricMutation, CreateRubricMutationVariables>;
+
+/**
+ * __useCreateRubricMutation__
+ *
+ * To run a mutation, you first call `useCreateRubricMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateRubricMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createRubricMutation, { data, loading, error }] = useCreateRubricMutation({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useCreateRubricMutation(baseOptions?: Apollo.MutationHookOptions<CreateRubricMutation, CreateRubricMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateRubricMutation, CreateRubricMutationVariables>(CreateRubricDocument, options);
+      }
+export type CreateRubricMutationHookResult = ReturnType<typeof useCreateRubricMutation>;
+export type CreateRubricMutationResult = Apollo.MutationResult<CreateRubricMutation>;
+export type CreateRubricMutationOptions = Apollo.BaseMutationOptions<CreateRubricMutation, CreateRubricMutationVariables>;
+export const DeleteRubricDocument = gql`
+    mutation DeleteRubric($id: Int!) {
+  deleteRubric(id: $id) {
+    id
+  }
+}
+    `;
+export type DeleteRubricMutationFn = Apollo.MutationFunction<DeleteRubricMutation, DeleteRubricMutationVariables>;
+
+/**
+ * __useDeleteRubricMutation__
+ *
+ * To run a mutation, you first call `useDeleteRubricMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteRubricMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteRubricMutation, { data, loading, error }] = useDeleteRubricMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDeleteRubricMutation(baseOptions?: Apollo.MutationHookOptions<DeleteRubricMutation, DeleteRubricMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteRubricMutation, DeleteRubricMutationVariables>(DeleteRubricDocument, options);
+      }
+export type DeleteRubricMutationHookResult = ReturnType<typeof useDeleteRubricMutation>;
+export type DeleteRubricMutationResult = Apollo.MutationResult<DeleteRubricMutation>;
+export type DeleteRubricMutationOptions = Apollo.BaseMutationOptions<DeleteRubricMutation, DeleteRubricMutationVariables>;
+export const DuplicateRubricDocument = gql`
+    mutation DuplicateRubric($id: Int!) {
+  duplicateRubric(id: $id) {
+    id
+  }
+}
+    `;
+export type DuplicateRubricMutationFn = Apollo.MutationFunction<DuplicateRubricMutation, DuplicateRubricMutationVariables>;
+
+/**
+ * __useDuplicateRubricMutation__
+ *
+ * To run a mutation, you first call `useDuplicateRubricMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDuplicateRubricMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [duplicateRubricMutation, { data, loading, error }] = useDuplicateRubricMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useDuplicateRubricMutation(baseOptions?: Apollo.MutationHookOptions<DuplicateRubricMutation, DuplicateRubricMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DuplicateRubricMutation, DuplicateRubricMutationVariables>(DuplicateRubricDocument, options);
+      }
+export type DuplicateRubricMutationHookResult = ReturnType<typeof useDuplicateRubricMutation>;
+export type DuplicateRubricMutationResult = Apollo.MutationResult<DuplicateRubricMutation>;
+export type DuplicateRubricMutationOptions = Apollo.BaseMutationOptions<DuplicateRubricMutation, DuplicateRubricMutationVariables>;
+export const ToggleRubricDocument = gql`
+    mutation ToggleRubric($id: Int!) {
+  toggleRubric(id: $id) {
+    id
+  }
+}
+    `;
+export type ToggleRubricMutationFn = Apollo.MutationFunction<ToggleRubricMutation, ToggleRubricMutationVariables>;
+
+/**
+ * __useToggleRubricMutation__
+ *
+ * To run a mutation, you first call `useToggleRubricMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useToggleRubricMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [toggleRubricMutation, { data, loading, error }] = useToggleRubricMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useToggleRubricMutation(baseOptions?: Apollo.MutationHookOptions<ToggleRubricMutation, ToggleRubricMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<ToggleRubricMutation, ToggleRubricMutationVariables>(ToggleRubricDocument, options);
+      }
+export type ToggleRubricMutationHookResult = ReturnType<typeof useToggleRubricMutation>;
+export type ToggleRubricMutationResult = Apollo.MutationResult<ToggleRubricMutation>;
+export type ToggleRubricMutationOptions = Apollo.BaseMutationOptions<ToggleRubricMutation, ToggleRubricMutationVariables>;
+export const UpdateRubricDocument = gql`
+    mutation UpdateRubric($id: Int!, $data: RubricInput!) {
+  updateRubric(id: $id, data: $data) {
+    id
+  }
+}
+    `;
+export type UpdateRubricMutationFn = Apollo.MutationFunction<UpdateRubricMutation, UpdateRubricMutationVariables>;
+
+/**
+ * __useUpdateRubricMutation__
+ *
+ * To run a mutation, you first call `useUpdateRubricMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateRubricMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateRubricMutation, { data, loading, error }] = useUpdateRubricMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useUpdateRubricMutation(baseOptions?: Apollo.MutationHookOptions<UpdateRubricMutation, UpdateRubricMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateRubricMutation, UpdateRubricMutationVariables>(UpdateRubricDocument, options);
+      }
+export type UpdateRubricMutationHookResult = ReturnType<typeof useUpdateRubricMutation>;
+export type UpdateRubricMutationResult = Apollo.MutationResult<UpdateRubricMutation>;
+export type UpdateRubricMutationOptions = Apollo.BaseMutationOptions<UpdateRubricMutation, UpdateRubricMutationVariables>;
 export const CreateFolderDocument = gql`
     mutation CreateFolder($data: CreateFolderInput!) {
   createFolder(data: $data)
@@ -2751,6 +3657,50 @@ export type UpdateTypeMutationOptions = Apollo.BaseMutationOptions<UpdateTypeMut
 export const CatalogDocument = gql`
     query Catalog($data: CatalogInput!) {
   catalog(data: $data) {
+    rootCategory {
+      name
+      slug
+      parent {
+        name
+        slug
+        parent {
+          name
+          slug
+          parent {
+            name
+            slug
+            parent {
+              name
+              slug
+              parent {
+                name
+                slug
+              }
+            }
+          }
+        }
+      }
+      categories {
+        name
+        slug
+        categories {
+          name
+          slug
+          categories {
+            name
+            slug
+            categories {
+              name
+              slug
+              categories {
+                name
+                slug
+              }
+            }
+          }
+        }
+      }
+    }
     categories {
       name
       slug
@@ -2934,6 +3884,7 @@ export const CategoryByIdDocument = gql`
     query CategoryById($id: Int!) {
   categoryById(id: $id) {
     name
+    imagePath
     parent {
       id
       name
@@ -3222,19 +4173,242 @@ export type HolidaysQueryHookResult = ReturnType<typeof useHolidaysQuery>;
 export type HolidaysLazyQueryHookResult = ReturnType<typeof useHolidaysLazyQuery>;
 export type HolidaysSuspenseQueryHookResult = ReturnType<typeof useHolidaysSuspenseQuery>;
 export type HolidaysQueryResult = Apollo.QueryResult<HolidaysQuery, HolidaysQueryVariables>;
-export const PostsDocument = gql`
-    query Posts($query: QueryInput!) {
-  posts(query: $query) {
+export const AboutDocument = gql`
+    query About {
+  about {
     name
-    slug
+    content
+  }
+}
+    `;
+
+/**
+ * __useAboutQuery__
+ *
+ * To run a query within a React component, call `useAboutQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAboutQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useAboutQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useAboutQuery(baseOptions?: Apollo.QueryHookOptions<AboutQuery, AboutQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<AboutQuery, AboutQueryVariables>(AboutDocument, options);
+      }
+export function useAboutLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AboutQuery, AboutQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<AboutQuery, AboutQueryVariables>(AboutDocument, options);
+        }
+export function useAboutSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<AboutQuery, AboutQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<AboutQuery, AboutQueryVariables>(AboutDocument, options);
+        }
+export type AboutQueryHookResult = ReturnType<typeof useAboutQuery>;
+export type AboutLazyQueryHookResult = ReturnType<typeof useAboutLazyQuery>;
+export type AboutSuspenseQueryHookResult = ReturnType<typeof useAboutSuspenseQuery>;
+export type AboutQueryResult = Apollo.QueryResult<AboutQuery, AboutQueryVariables>;
+export const ForBuyersDocument = gql`
+    query ForBuyers {
+  forBuyers {
+    name
+    content
+  }
+}
+    `;
+
+/**
+ * __useForBuyersQuery__
+ *
+ * To run a query within a React component, call `useForBuyersQuery` and pass it any options that fit your needs.
+ * When your component renders, `useForBuyersQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useForBuyersQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useForBuyersQuery(baseOptions?: Apollo.QueryHookOptions<ForBuyersQuery, ForBuyersQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ForBuyersQuery, ForBuyersQueryVariables>(ForBuyersDocument, options);
+      }
+export function useForBuyersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ForBuyersQuery, ForBuyersQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ForBuyersQuery, ForBuyersQueryVariables>(ForBuyersDocument, options);
+        }
+export function useForBuyersSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<ForBuyersQuery, ForBuyersQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<ForBuyersQuery, ForBuyersQueryVariables>(ForBuyersDocument, options);
+        }
+export type ForBuyersQueryHookResult = ReturnType<typeof useForBuyersQuery>;
+export type ForBuyersLazyQueryHookResult = ReturnType<typeof useForBuyersLazyQuery>;
+export type ForBuyersSuspenseQueryHookResult = ReturnType<typeof useForBuyersSuspenseQuery>;
+export type ForBuyersQueryResult = Apollo.QueryResult<ForBuyersQuery, ForBuyersQueryVariables>;
+export const ShippingAndPaymentDocument = gql`
+    query ShippingAndPayment {
+  shippingAndPayment {
+    shippingName
+    shippingContent
+    paymentName
+    paymentContent
+  }
+}
+    `;
+
+/**
+ * __useShippingAndPaymentQuery__
+ *
+ * To run a query within a React component, call `useShippingAndPaymentQuery` and pass it any options that fit your needs.
+ * When your component renders, `useShippingAndPaymentQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useShippingAndPaymentQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useShippingAndPaymentQuery(baseOptions?: Apollo.QueryHookOptions<ShippingAndPaymentQuery, ShippingAndPaymentQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ShippingAndPaymentQuery, ShippingAndPaymentQueryVariables>(ShippingAndPaymentDocument, options);
+      }
+export function useShippingAndPaymentLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ShippingAndPaymentQuery, ShippingAndPaymentQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ShippingAndPaymentQuery, ShippingAndPaymentQueryVariables>(ShippingAndPaymentDocument, options);
+        }
+export function useShippingAndPaymentSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<ShippingAndPaymentQuery, ShippingAndPaymentQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<ShippingAndPaymentQuery, ShippingAndPaymentQueryVariables>(ShippingAndPaymentDocument, options);
+        }
+export type ShippingAndPaymentQueryHookResult = ReturnType<typeof useShippingAndPaymentQuery>;
+export type ShippingAndPaymentLazyQueryHookResult = ReturnType<typeof useShippingAndPaymentLazyQuery>;
+export type ShippingAndPaymentSuspenseQueryHookResult = ReturnType<typeof useShippingAndPaymentSuspenseQuery>;
+export type ShippingAndPaymentQueryResult = Apollo.QueryResult<ShippingAndPaymentQuery, ShippingAndPaymentQueryVariables>;
+export const PostByIdDocument = gql`
+    query PostById($id: Int!) {
+  postById(id: $id) {
+    name
     excerpt
     description
     poster
     bigPoster
     rubrics {
+      id
+      name
+    }
+  }
+}
+    `;
+
+/**
+ * __usePostByIdQuery__
+ *
+ * To run a query within a React component, call `usePostByIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePostByIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePostByIdQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function usePostByIdQuery(baseOptions: Apollo.QueryHookOptions<PostByIdQuery, PostByIdQueryVariables> & ({ variables: PostByIdQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<PostByIdQuery, PostByIdQueryVariables>(PostByIdDocument, options);
+      }
+export function usePostByIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PostByIdQuery, PostByIdQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<PostByIdQuery, PostByIdQueryVariables>(PostByIdDocument, options);
+        }
+export function usePostByIdSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<PostByIdQuery, PostByIdQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<PostByIdQuery, PostByIdQueryVariables>(PostByIdDocument, options);
+        }
+export type PostByIdQueryHookResult = ReturnType<typeof usePostByIdQuery>;
+export type PostByIdLazyQueryHookResult = ReturnType<typeof usePostByIdLazyQuery>;
+export type PostByIdSuspenseQueryHookResult = ReturnType<typeof usePostByIdSuspenseQuery>;
+export type PostByIdQueryResult = Apollo.QueryResult<PostByIdQuery, PostByIdQueryVariables>;
+export const PostBySlugDocument = gql`
+    query PostBySlug($slug: String!) {
+  postBySlug(slug: $slug) {
+    name
+    excerpt
+    description
+    poster
+    bigPoster
+    rubrics {
+      id
       name
     }
     createdAt
+  }
+}
+    `;
+
+/**
+ * __usePostBySlugQuery__
+ *
+ * To run a query within a React component, call `usePostBySlugQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePostBySlugQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePostBySlugQuery({
+ *   variables: {
+ *      slug: // value for 'slug'
+ *   },
+ * });
+ */
+export function usePostBySlugQuery(baseOptions: Apollo.QueryHookOptions<PostBySlugQuery, PostBySlugQueryVariables> & ({ variables: PostBySlugQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<PostBySlugQuery, PostBySlugQueryVariables>(PostBySlugDocument, options);
+      }
+export function usePostBySlugLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PostBySlugQuery, PostBySlugQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<PostBySlugQuery, PostBySlugQueryVariables>(PostBySlugDocument, options);
+        }
+export function usePostBySlugSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<PostBySlugQuery, PostBySlugQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<PostBySlugQuery, PostBySlugQueryVariables>(PostBySlugDocument, options);
+        }
+export type PostBySlugQueryHookResult = ReturnType<typeof usePostBySlugQuery>;
+export type PostBySlugLazyQueryHookResult = ReturnType<typeof usePostBySlugLazyQuery>;
+export type PostBySlugSuspenseQueryHookResult = ReturnType<typeof usePostBySlugSuspenseQuery>;
+export type PostBySlugQueryResult = Apollo.QueryResult<PostBySlugQuery, PostBySlugQueryVariables>;
+export const PostsDocument = gql`
+    query Posts($query: QueryInput!) {
+  posts(query: $query) {
+    posts {
+      id
+      name
+      slug
+      excerpt
+      description
+      poster
+      bigPoster
+      rubrics {
+        name
+      }
+      createdAt
+    }
+    count
   }
 }
     `;
@@ -3472,8 +4646,8 @@ export type ProductBySlugLazyQueryHookResult = ReturnType<typeof useProductBySlu
 export type ProductBySlugSuspenseQueryHookResult = ReturnType<typeof useProductBySlugSuspenseQuery>;
 export type ProductBySlugQueryResult = Apollo.QueryResult<ProductBySlugQuery, ProductBySlugQueryVariables>;
 export const ProductsDocument = gql`
-    query Products($query: QueryProductInput!, $isSale: Boolean) {
-  products(query: $query, isSale: $isSale) {
+    query Products($query: QueryProductInput!, $isPopular: Boolean) {
+  products(query: $query, isPopular: $isPopular) {
     products {
       id
       name
@@ -3520,7 +4694,7 @@ export const ProductsDocument = gql`
  * const { data, loading, error } = useProductsQuery({
  *   variables: {
  *      query: // value for 'query'
- *      isSale: // value for 'isSale'
+ *      isPopular: // value for 'isPopular'
  *   },
  * });
  */
@@ -3540,9 +4714,52 @@ export type ProductsQueryHookResult = ReturnType<typeof useProductsQuery>;
 export type ProductsLazyQueryHookResult = ReturnType<typeof useProductsLazyQuery>;
 export type ProductsSuspenseQueryHookResult = ReturnType<typeof useProductsSuspenseQuery>;
 export type ProductsQueryResult = Apollo.QueryResult<ProductsQuery, ProductsQueryVariables>;
+export const ReviewByIdDocument = gql`
+    query ReviewById($id: Int!) {
+  reviewById(id: $id) {
+    author
+    content
+    photo
+  }
+}
+    `;
+
+/**
+ * __useReviewByIdQuery__
+ *
+ * To run a query within a React component, call `useReviewByIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `useReviewByIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useReviewByIdQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useReviewByIdQuery(baseOptions: Apollo.QueryHookOptions<ReviewByIdQuery, ReviewByIdQueryVariables> & ({ variables: ReviewByIdQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ReviewByIdQuery, ReviewByIdQueryVariables>(ReviewByIdDocument, options);
+      }
+export function useReviewByIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ReviewByIdQuery, ReviewByIdQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ReviewByIdQuery, ReviewByIdQueryVariables>(ReviewByIdDocument, options);
+        }
+export function useReviewByIdSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<ReviewByIdQuery, ReviewByIdQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<ReviewByIdQuery, ReviewByIdQueryVariables>(ReviewByIdDocument, options);
+        }
+export type ReviewByIdQueryHookResult = ReturnType<typeof useReviewByIdQuery>;
+export type ReviewByIdLazyQueryHookResult = ReturnType<typeof useReviewByIdLazyQuery>;
+export type ReviewByIdSuspenseQueryHookResult = ReturnType<typeof useReviewByIdSuspenseQuery>;
+export type ReviewByIdQueryResult = Apollo.QueryResult<ReviewByIdQuery, ReviewByIdQueryVariables>;
 export const ReviewsDocument = gql`
     query Reviews($query: QueryInput!) {
   reviews(query: $query) {
+    id
     author
     content
     photo
@@ -3582,9 +4799,91 @@ export type ReviewsQueryHookResult = ReturnType<typeof useReviewsQuery>;
 export type ReviewsLazyQueryHookResult = ReturnType<typeof useReviewsLazyQuery>;
 export type ReviewsSuspenseQueryHookResult = ReturnType<typeof useReviewsSuspenseQuery>;
 export type ReviewsQueryResult = Apollo.QueryResult<ReviewsQuery, ReviewsQueryVariables>;
+export const RubricByIdDocument = gql`
+    query RubricById($id: Int!) {
+  rubricById(id: $id) {
+    name
+  }
+}
+    `;
+
+/**
+ * __useRubricByIdQuery__
+ *
+ * To run a query within a React component, call `useRubricByIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `useRubricByIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useRubricByIdQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useRubricByIdQuery(baseOptions: Apollo.QueryHookOptions<RubricByIdQuery, RubricByIdQueryVariables> & ({ variables: RubricByIdQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<RubricByIdQuery, RubricByIdQueryVariables>(RubricByIdDocument, options);
+      }
+export function useRubricByIdLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<RubricByIdQuery, RubricByIdQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<RubricByIdQuery, RubricByIdQueryVariables>(RubricByIdDocument, options);
+        }
+export function useRubricByIdSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<RubricByIdQuery, RubricByIdQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<RubricByIdQuery, RubricByIdQueryVariables>(RubricByIdDocument, options);
+        }
+export type RubricByIdQueryHookResult = ReturnType<typeof useRubricByIdQuery>;
+export type RubricByIdLazyQueryHookResult = ReturnType<typeof useRubricByIdLazyQuery>;
+export type RubricByIdSuspenseQueryHookResult = ReturnType<typeof useRubricByIdSuspenseQuery>;
+export type RubricByIdQueryResult = Apollo.QueryResult<RubricByIdQuery, RubricByIdQueryVariables>;
+export const RubricsDocument = gql`
+    query Rubrics($query: QueryInput!) {
+  rubrics(query: $query) {
+    id
+    name
+    slug
+  }
+}
+    `;
+
+/**
+ * __useRubricsQuery__
+ *
+ * To run a query within a React component, call `useRubricsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useRubricsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useRubricsQuery({
+ *   variables: {
+ *      query: // value for 'query'
+ *   },
+ * });
+ */
+export function useRubricsQuery(baseOptions: Apollo.QueryHookOptions<RubricsQuery, RubricsQueryVariables> & ({ variables: RubricsQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<RubricsQuery, RubricsQueryVariables>(RubricsDocument, options);
+      }
+export function useRubricsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<RubricsQuery, RubricsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<RubricsQuery, RubricsQueryVariables>(RubricsDocument, options);
+        }
+export function useRubricsSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<RubricsQuery, RubricsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<RubricsQuery, RubricsQueryVariables>(RubricsDocument, options);
+        }
+export type RubricsQueryHookResult = ReturnType<typeof useRubricsQuery>;
+export type RubricsLazyQueryHookResult = ReturnType<typeof useRubricsLazyQuery>;
+export type RubricsSuspenseQueryHookResult = ReturnType<typeof useRubricsSuspenseQuery>;
+export type RubricsQueryResult = Apollo.QueryResult<RubricsQuery, RubricsQueryVariables>;
 export const GetFolderItemsDocument = gql`
-    query GetFolderItems($folderPath: String!) {
-  folderItems(folderPath: $folderPath) {
+    query GetFolderItems($folderPath: String!, $query: PaginationInput!) {
+  folderItems(folderPath: $folderPath, query: $query) {
     folders {
       name
       size
@@ -3599,6 +4898,7 @@ export const GetFolderItemsDocument = gql`
       path
       createdAt
     }
+    count
   }
 }
     `;
@@ -3616,6 +4916,7 @@ export const GetFolderItemsDocument = gql`
  * const { data, loading, error } = useGetFolderItemsQuery({
  *   variables: {
  *      folderPath: // value for 'folderPath'
+ *      query: // value for 'query'
  *   },
  * });
  */

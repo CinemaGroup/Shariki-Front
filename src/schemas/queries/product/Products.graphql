@@ -1,5 +1,5 @@
-query Products($query: QueryProductInput!, $isSale: Boolean) {
-	products(query: $query, isSale: $isSale) {
+query Products($query: QueryProductInput!, $isPopular: Boolean) {
+	products(query: $query, isPopular: $isPopular) {
 		products {
 			id
 			name

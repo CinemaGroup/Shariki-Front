@@ -3,11 +3,9 @@
 import Container from '@/components/ui/common/container/Container'
 import Button from '@/components/ui/common/form/button/Button'
 import Field from '@/components/ui/common/form/field/Field'
-import UploadField from '@/components/ui/common/form/upload-field/UploadField'
 import { REQUIRED_VALIDATION } from '@/components/ui/common/form/validations/form.validations'
 import { useManageHolidayEdit } from '@/hooks/manage/holidays/useManageHolidayEdit'
 import type { FC } from 'react'
-import { Controller } from 'react-hook-form'
 import globalStyles from '../ManageEdits.module.scss'
 import styles from './ManageHolidayEdit.module.scss'
 

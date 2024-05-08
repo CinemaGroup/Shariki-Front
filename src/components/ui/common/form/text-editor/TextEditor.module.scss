@@ -13,5 +13,13 @@
 	}
 }
 .editor {
-	@apply h-96 border rounded-b-sm border-gray-800 overflow-hidden;
+	@apply h-96 border rounded-b-sm border-gray-800 overflow-hidden px-3;
+
+	ul {
+		@apply list-disc;
+
+		> li {
+			@apply list-item list-disc;
+		}
+	}
 }

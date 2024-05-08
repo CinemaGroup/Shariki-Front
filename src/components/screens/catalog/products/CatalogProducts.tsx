@@ -26,7 +26,6 @@ const CatalogProducts: FC<ICatalogProducts> = ({
 							className={styles.product}
 							key={product.id}
 							product={product}
-							variant="none"
 							place="public"
 						/>
 					) : (

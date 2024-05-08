@@ -3,7 +3,7 @@ import type { IOption } from '@/components/ui/common/selects/react-select/interf
 
 export const useManageSelectTags = () => {
 	const { data } = useTagsQuery({
-		fetchPolicy: "no-cache",
+		fetchPolicy: 'no-cache',
 		variables: {
 			query: {
 				sort: Sort.Newest,

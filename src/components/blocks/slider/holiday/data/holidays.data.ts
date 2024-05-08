@@ -1,10 +1,11 @@
 import type { TypeHoliday } from '@/shared/types/holiday/holiday.type'
+import { generateSlug } from '@/utils/helpers/generate-slug.util'
 
 export const HOLIDAYS_DATA: TypeHoliday[] = [
 	{
-		id: 0,
+		id: 1,
 		name: 'НОВЫЙ ГОД',
-		slug: 'НОВЫЙ ГОД',
+		slug: generateSlug('НОВЫЙ ГОД'),
 		imagePath: '/images/data/slider/second/image-1.png',
 		decorPath: '/images/data/slider/second/decor-1.png',
 		rightImage: '/images/data/slider/second/right-1.png',
@@ -18,7 +19,7 @@ export const HOLIDAYS_DATA: TypeHoliday[] = [
 	{
 		id: 2,
 		name: '14 ФЕВРАЛЯ',
-		slug: '14 ФЕВРАЛЯ',
+		slug: generateSlug('14 ФЕВРАЛЯ'),
 		imagePath: '/images/data/slider/second/image-2.png',
 		decorPath: '/images/data/slider/second/decor-2.png',
 		imageWidth: 115,
@@ -31,7 +32,7 @@ export const HOLIDAYS_DATA: TypeHoliday[] = [
 	{
 		id: 3,
 		name: '23 ФЕВРАЛЯ',
-		slug: '23 ФЕВРАЛЯ',
+		slug: generateSlug('23 ФЕВРАЛЯ'),
 		imagePath: '/images/data/slider/second/image-3.png',
 		decorPath: '/images/data/slider/second/decor-3.png',
 		imageWidth: 128,
@@ -44,7 +45,7 @@ export const HOLIDAYS_DATA: TypeHoliday[] = [
 	{
 		id: 4,
 		name: '8 МАРТА',
-		slug: '8 МАРТА',
+		slug: generateSlug('8 МАРТА'),
 		imagePath: '/images/data/slider/second/image-4.png',
 		decorPath: '/images/data/slider/second/decor-4.png',
 		imageWidth: 115,
@@ -57,7 +58,7 @@ export const HOLIDAYS_DATA: TypeHoliday[] = [
 	{
 		id: 5,
 		name: '1 МАЯ',
-		slug: '1 МАЯ',
+		slug: generateSlug('1 МАЯ'),
 		imagePath: '/images/data/slider/second/image-5.png',
 		decorPath: '/images/data/slider/second/decor-5.png',
 		imageWidth: 106,
@@ -70,7 +71,7 @@ export const HOLIDAYS_DATA: TypeHoliday[] = [
 	{
 		id: 6,
 		name: '9 МАЯ',
-		slug: '9 МАЯ',
+		slug: generateSlug('9 МАЯ'),
 		imagePath: '/images/data/slider/second/image-6.png',
 		decorPath: '/images/data/slider/second/decor-6.png',
 		imageWidth: 131,
@@ -83,7 +84,7 @@ export const HOLIDAYS_DATA: TypeHoliday[] = [
 	{
 		id: 7,
 		name: 'ВЫПУСКНОЙ САДИК',
-		slug: 'ВЫПУСКНОЙ САДИК',
+		slug: generateSlug('ВЫПУСКНОЙ САДИК'),
 		imagePath: '/images/data/slider/second/image-7.png',
 		decorPath: '/images/data/slider/second/decor-7.png',
 		imageWidth: 86,
@@ -96,7 +97,7 @@ export const HOLIDAYS_DATA: TypeHoliday[] = [
 	{
 		id: 8,
 		name: 'ВЫПУСКНОЙ ШКОЛА',
-		slug: 'ВЫПУСКНОЙ ШКОЛА',
+		slug: generateSlug('ВЫПУСКНОЙ ШКОЛА'),
 		imagePath: '/images/data/slider/second/image-8.png',
 		decorPath: '/images/data/slider/second/decor-8.png',
 		imageWidth: 88,
@@ -109,7 +110,7 @@ export const HOLIDAYS_DATA: TypeHoliday[] = [
 	{
 		id: 9,
 		name: 'ДЕНЬ РОССИИ',
-		slug: 'ДЕНЬ РОССИИ',
+		slug: generateSlug('ДЕНЬ РОССИИ'),
 		imagePath: '/images/data/slider/second/image-9.png',
 		decorPath: '/images/data/slider/second/decor-9.png',
 		imageWidth: 145,
@@ -122,7 +123,7 @@ export const HOLIDAYS_DATA: TypeHoliday[] = [
 	{
 		id: 10,
 		name: 'ДЕНЬ ВДВ',
-		slug: 'ДЕНЬ ВДВ',
+		slug: generateSlug('ДЕНЬ ВДВ'),
 		imagePath: '/images/data/slider/second/image-10.png',
 		decorPath: '/images/data/slider/second/decor-10.png',
 		imageWidth: 167,
@@ -135,7 +136,7 @@ export const HOLIDAYS_DATA: TypeHoliday[] = [
 	{
 		id: 11,
 		name: '1 СЕНТЯБРЯ',
-		slug: '1 СЕНТЯБРЯ',
+		slug: generateSlug('1 СЕНТЯБРЯ'),
 		imagePath: '/images/data/slider/second/image-11.png',
 		decorPath: '/images/data/slider/second/decor-11.png',
 		imageWidth: 135,
@@ -148,7 +149,7 @@ export const HOLIDAYS_DATA: TypeHoliday[] = [
 	{
 		id: 12,
 		name: 'ХЭЛЛОУИН',
-		slug: 'ХЭЛЛОУИН',
+		slug: generateSlug('ХЭЛЛОУИН'),
 		imagePath: '/images/data/slider/second/image-12.png',
 		decorPath: '/images/data/slider/second/decor-12.png',
 		imageWidth: 98,
@@ -161,7 +162,7 @@ export const HOLIDAYS_DATA: TypeHoliday[] = [
 	{
 		id: 13,
 		name: 'НОВОРОЖДЕННЫЙ',
-		slug: 'НОВОРОЖДЕННЫЙ',
+		slug: generateSlug('НОВОРОЖДЕННЫЙ'),
 		imagePath: '/images/data/slider/second/image-13.png',
 		decorPath: '/images/data/slider/second/decor-13.png',
 		imageWidth: 76,
@@ -174,7 +175,7 @@ export const HOLIDAYS_DATA: TypeHoliday[] = [
 	{
 		id: 14,
 		name: '1 ГОДИК',
-		slug: '1 ГОДИК',
+		slug: generateSlug('1 ГОДИК'),
 		imagePath: '/images/data/slider/second/image-14.png',
 		decorPath: '/images/data/slider/second/decor-14.png',
 		imageWidth: 107,

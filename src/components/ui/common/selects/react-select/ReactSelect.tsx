@@ -57,6 +57,7 @@ const ReactSelect: FC<IReactSelect> = ({
 				const filteredOptions = options.filter((option) =>
 					fieldIds.includes(option.value)
 				)
+				console.log(field.value)
 
 				return filteredOptions
 			} else {

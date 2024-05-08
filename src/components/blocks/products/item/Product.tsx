@@ -7,7 +7,7 @@ import type { IManageActions } from '@/shared/interfaces/manage/manage.interface
 import cn from 'clsx'
 import { useState, type FC } from 'react'
 import styles from '../Products.module.scss'
-import type { IProductPropsWithVariant } from '../interface/products.interface'
+import type { IProductProps, IProductPropsWithVariant } from '../interface/products.interface'
 import ProductButtons from './buttons/ProductButtons'
 import ProductColors from './colors/ProductColors'
 import ProductImages from './images/ProductImages'
@@ -15,9 +15,8 @@ import ProductInfo from './info/ProductInfo'
 import ProductSizes from './sizes/ProductSizes'
 import ProductTop from './top/ProductTop'
 
-const Product: FC<IProductPropsWithVariant & IManageActions & IClassName> = ({
+const Product: FC<IProductProps & IManageActions & IClassName> = ({
 	product,
-	variant,
 	deleteHandler,
 	toggleHandler,
 	duplicateHandler,
@@ -33,7 +32,7 @@ const Product: FC<IProductPropsWithVariant & IManageActions & IClassName> = ({
 
 	return (
 		<div className={cn(styles.item, className && className)}>
-			<ProductTop variant={variant} product={product} />
+			<ProductTop product={product} />
 			<ProductImages product={product} color={color} />
 			<ProductInfo
 				product={product}

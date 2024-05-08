@@ -6,7 +6,16 @@ import StorageContent from './content/StorageContent'
 import type { IStorageWrapper } from './interface/storage-wrapper.interface'
 
 const StorageWrapper: FC<IStorageWrapper> = ({ onFileSelect, pickedFiles }) => {
-	const { folderPath, data, goTo, previous, isFirst } = useStorage()
+	const {
+		folderPath,
+		data,
+		goTo,
+		previous,
+		isFirst,
+		setStorageQuery,
+		page,
+		perPage,
+	} = useStorage()
 
 	return (
 		<div className={styles.wrapper}>
@@ -19,6 +28,9 @@ const StorageWrapper: FC<IStorageWrapper> = ({ onFileSelect, pickedFiles }) => {
 				goTo={goTo}
 				previous={previous}
 				isFirst={isFirst}
+				setStorageQuery={setStorageQuery}
+				page={page}
+				perPage={perPage}
 			/>
 		</div>
 	)

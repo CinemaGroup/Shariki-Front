@@ -1,5 +1,49 @@
 query Catalog($data: CatalogInput!) {
 	catalog(data: $data) {
+		rootCategory {
+			name
+			slug
+			parent {
+				name
+				slug
+				parent {
+					name
+					slug
+					parent {
+						name
+						slug
+						parent {
+							name
+							slug
+							parent {
+								name
+								slug
+							}
+						}
+					}
+				}
+			}
+			categories {
+				name
+				slug
+				categories {
+					name
+					slug
+					categories {
+						name
+						slug
+						categories {
+							name
+							slug
+							categories {
+								name
+								slug
+							}
+						}
+					}
+				}
+			}
+		}
 		categories {
 			name
 			slug

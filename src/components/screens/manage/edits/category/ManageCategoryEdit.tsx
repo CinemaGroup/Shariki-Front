@@ -3,6 +3,7 @@
 import Container from '@/components/ui/common/container/Container'
 import Button from '@/components/ui/common/form/button/Button'
 import Field from '@/components/ui/common/form/field/Field'
+import UploadField from '@/components/ui/common/form/upload-field/UploadField'
 import { REQUIRED_VALIDATION } from '@/components/ui/common/form/validations/form.validations'
 import ReactSelect from '@/components/ui/common/selects/react-select/ReactSelect'
 import { useManageCategoryEdit } from '@/hooks/manage/categories/useManageCategoryEdit'
@@ -41,6 +42,23 @@ const ManageCategoryEdit: FC<{ queryId: string }> = ({ queryId }) => {
 									label="Родительская категория (Не обязательно)"
 									error={error}
 									className={styles.select}
+								/>
+							)}
+						/>
+						<Controller
+							name="imagePath"
+							control={control}
+							render={({
+								field: { value, onChange },
+								fieldState: { error },
+							}) => (
+								<UploadField
+									className={styles.upload}
+									onChange={onChange}
+									value={value}
+									error={error}
+									placeholder="Выбрать картинку (Не обязательно)"
+									label="Картинка"
 								/>
 							)}
 						/>

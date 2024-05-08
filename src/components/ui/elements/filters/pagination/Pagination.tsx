@@ -59,10 +59,10 @@ const Pagination: FC<IPagination & IClassName> = ({
 				className={styles.button}
 				onClick={goToPreviousPage}
 				disabled={page <= 1}
+				type="button"
 			>
 				<ChevronLeft />
 			</button>
-
 			{displayedPages.map((p, idx) => {
 				if (typeof p === 'number') {
 					return (
@@ -72,6 +72,7 @@ const Pagination: FC<IPagination & IClassName> = ({
 								[styles.picked]: page === p,
 							})}
 							onClick={() => goToPage(p)}
+							type="button"
 						>
 							{p}
 						</button>
@@ -83,11 +84,11 @@ const Pagination: FC<IPagination & IClassName> = ({
 					</div>
 				)
 			})}
-
 			<button
 				className={styles.button}
 				onClick={goToNextPage}
 				disabled={page >= totalPages}
+				type="button"
 			>
 				<ChevronRight />
 			</button>

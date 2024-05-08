@@ -12,19 +12,20 @@
 }
 .sliderItem {
 	&:nth-child(1) .preview > img {
-		max-width: 615px;
+		max-width: 500px;
+		margin-right: 48px;
 	}
 	&:nth-child(2) .preview > img {
-		margin-right: 122px;
+		margin-right: 100px;
 		max-width: 460px;
 	}
 	&:nth-child(3) .preview > img {
-		margin-right: 159px;
-		max-width: 310px;
+		margin-right: 7px;
+		max-width: 550px;
 	}
 	&:last-child .preview > img {
-		max-width: 425px;
-		margin-right: 204px;
+		max-width: 400px;
+		margin-right: 135px;
 	}
 }
 .pickedSlide {
@@ -58,10 +59,6 @@
 	align-items: flex-end;
 	justify-content: flex-end;
 	z-index: -1;
-
-	> img {
-		@apply w-auto h-auto;
-	}
 }
 .heading {
 	@apply absolute top-2.5 font-roboto-serif text-8lg text-transparent h-0 uppercase;
@@ -112,38 +109,6 @@
 	@apply transition-colors bg-red-400 flex items-center justify-center border-b-hover;
 	width: 70px;
 	height: 70px;
-}
-.cards {
-	@apply flex flex-col items-end justify-between pr-4;
-}
-.card {
-	@apply relative;
-	padding: 25px 55px 32px 0;
-
-	&:last-child {
-		.cardImage {
-			@apply w-auto h-auto absolute -bottom-8 right-2;
-		}
-	}
-}
-.cardInner {
-	@apply rounded-md py-6 px-3 font-roboto-serif font-medium;
-	background-color: #e6191a;
-	width: 265px;
-	height: 150px;
-}
-.cardInfo {
-	@apply flex flex-col items-end gap-1.5 -translate-x-1/2;
-}
-.cardName {
-	@apply text-red-400 text-2lg py-2 px-3 bg-white text-center;
-	min-width: 250px;
-}
-.cardLink {
-	@apply text-white underline underline-offset-4 pr-4 left-hover;
-}
-.cardImage {
-	@apply w-auto h-auto absolute bottom-2 right-0;
 }
 .search {
 	@apply absolute top-3;

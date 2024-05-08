@@ -1,5 +1,3 @@
-import StaticImage from '@/components/ui/common/image/StaticImage'
-import Link from 'next/link'
 import type { FC } from 'react'
 import styles from '../../Products.module.scss'
 import type { IProductProps } from '../../interface/products.interface'
@@ -12,14 +10,6 @@ const ProductButtons: FC<IProductProps> = ({ product }) => {
 		<div className={styles.buttons}>
 			<ProductQuantity product={product} />
 			<div className={styles.actions}>
-				<Link href={`product/${product.slug}`} className={styles.link}>
-					<StaticImage
-						src="/images/icons/eye.png"
-						width={20}
-						height={20}
-						alt="Eye"
-					/>
-				</Link>
 				<ProductFavorite product={product} />
 			</div>
 			<ProductAddToCart

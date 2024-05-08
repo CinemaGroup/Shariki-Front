@@ -34,6 +34,7 @@ export interface ICatalogFiltersArguments extends QueryProductInput {
 	collections: NonNullable<QueryProductInput['collections']>
 	holidays: NonNullable<QueryProductInput['holidays']>
 	countries: NonNullable<QueryProductInput['countries']>
+	tags: NonNullable<QueryProductInput['tags']>
 }
 
 export interface ICatalogFilters extends IClassName {

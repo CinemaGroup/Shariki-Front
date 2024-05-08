@@ -1,5 +1,5 @@
-query GetFolderItems($folderPath: String!) {
-	folderItems(folderPath: $folderPath) {
+query GetFolderItems($folderPath: String!, $query: PaginationInput!) {
+	folderItems(folderPath: $folderPath, query: $query) {
 		folders {
 			name
 			size
@@ -14,5 +14,6 @@ query GetFolderItems($folderPath: String!) {
 			path
 			createdAt
 		}
+		count
 	}
 }

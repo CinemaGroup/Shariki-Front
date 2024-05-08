@@ -13,6 +13,7 @@ const config: Config = {
 			'roboto-flex': ['var(--font-roboto-flex)', 'inherit'],
 			'roboto-mono': ['var(--font-roboto-mono)', 'inherit'],
 			'roboto-serif': ['var(--font-roboto-serif)', 'inherit'],
+			inter: ['var(--font-inter)'],
 		},
 		colors: {
 			white: colors.white,

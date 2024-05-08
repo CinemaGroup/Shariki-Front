@@ -7,7 +7,6 @@
 .dots {
 	@apply absolute left-0 right-0 flex items-end justify-center gap-6;
 	bottom: 23px;
-	counter-reset: dot;
 }
 .bullet {
 	@apply relative cursor-pointer z-1 transition-all;
@@ -15,11 +14,17 @@
 	width: 85px;
 	height: 3px;
 
+	&:first-child::before {
+		content: 'Праздники';
+	}
+
+	&:last-child::before {
+		content: 'Коллекции';
+	}
+
 	&::before {
-		@apply absolute left-0 bottom-3 font-semibold text-2lg transition-all;
+		@apply absolute left-0 bottom-3 font-semibold transition-all;
 		color: #696969;
-		counter-increment: dot;
-		content: '0' counter(dot);
 	}
 
 	&:hover {
@@ -32,11 +37,18 @@
 }
 .bulletActive {
 	@apply bg-red-400;
-	width: 102px;
 	height: 5px;
 
+	&:first-child {
+		width: 125px;
+	}
+
+	&:last-child {
+		width: 123px;
+	}
+
 	&::before {
-		@apply text-6lg text-gray-base;
+		@apply text-3lg text-gray-base;
 	}
 
 	&:hover {

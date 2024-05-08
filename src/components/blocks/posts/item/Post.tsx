@@ -1,30 +1,54 @@
 import FilledImage from '@/components/ui/common/image/FilledImage'
-import type { TypePost } from '@/shared/types/post/post.type'
+import ManageActions from '@/components/ui/elements/manage/actions/ManageActions'
+import { ADMIN_EDITS, PUBLIC_PAGES } from '@/constants/url.constants'
+import type { IClassName } from '@/shared/interfaces/class-name/class-name.interface'
+import type { IManageActions } from '@/shared/interfaces/manage/manage.interface'
+import type { IPost } from '@/shared/interfaces/post/post.interface'
+import { formatDate } from '@/utils/formats/other/format-date.util'
+import cn from 'clsx'
 import Link from 'next/link'
 import type { FC } from 'react'
 import styles from '../Posts.module.scss'
 
-const Post: FC<{ post: TypePost }> = ({ post }) => {
+const Post: FC<IPost & IManageActions & IClassName> = ({
+	post,
+	deleteHandler,
+	toggleHandler,
+	duplicateHandler,
+	place,
+	className,
+}) => {
 	return (
-		<li className={styles.item}>
-			<div className={styles.preview}>
-				<FilledImage src={post.poster} alt={post.name} />
-			</div>
-			<div className={styles.info}>
-				<ul className={styles.terms}>
-					<li className={styles.rubric}>{post.rubrics[0].name}</li>
-					<li className={styles.date}>{post.createdAt}</li>
-				</ul>
-				<h3 className={styles.name}>{post.name}</h3>
-				<div
-					className={styles.description}
-					dangerouslySetInnerHTML={{ __html: post.description }}
-				/>
-				<Link href={`/post/${post.slug}`} className={styles.link}>
-					Подробнее
+		<div className={cn(styles.item, className && className)}>
+			<div className={styles.itemWrapper}>
+				<Link className={styles.preview} href={PUBLIC_PAGES.POST(post.slug)}>
+					<FilledImage src={post.poster} alt={post.name} />
 				</Link>
+				<div className={styles.info}>
+					<Link className={styles.fill} href={PUBLIC_PAGES.POST(post.slug)}>
+						<ul className={styles.terms}>
+							<li className={styles.rubric}>{post.rubrics[0].name}</li>
+							<li className={styles.date}>{formatDate(post.createdAt)}</li>
+						</ul>
+						<h3 className={styles.name}>{post.name}</h3>
+						<div
+							className={styles.description}
+							dangerouslySetInnerHTML={{ __html: post.description }}
+						/>
+					</Link>
+					<Link href={`/post/${post.slug}`} className={styles.link}>
+						Подробнее
+					</Link>
+				</div>
 			</div>
-		</li>
+			<ManageActions
+				toggleHandler={toggleHandler}
+				deleteHandler={deleteHandler}
+				duplicateHandler={duplicateHandler}
+				place={place}
+				edit={ADMIN_EDITS.POST(post.id)}
+			/>
+		</div>
 	)
 }
 

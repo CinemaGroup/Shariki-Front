@@ -2,6 +2,7 @@ import FilledImage from '@/components/ui/common/image/FilledImage'
 import StaticImage from '@/components/ui/common/image/StaticImage'
 import type { ICurrentProduct } from '@/shared/interfaces/product/product.interface'
 import type { TypeColor } from '@/shared/types/color/color.type'
+import { isNewest } from '@/utils/helpers/is-newest.util'
 import cn from 'clsx'
 import type { FC } from 'react'
 import styles from '../ProductSingleContent.module.scss'
@@ -14,9 +15,8 @@ const ProductSingleContentLeft: FC<
 
 	return (
 		<div className={styles.left}>
-			{product.oldPrice ? (
-				<div className={styles.sale}>АКЦИЯ</div>
-			) : (
+			{product.oldPrice && <div className={styles.sale}>АКЦИЯ</div>}
+			{isNewest(product.createdAt) && (
 				<div className={styles.newest}>НОВИНКА</div>
 			)}
 			{product.iconPath && (

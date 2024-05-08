@@ -1,12 +1,23 @@
 import StaticImage from '@/components/ui/common/image/StaticImage'
-import type { TypeReview } from '@/shared/types/review/review'
+import ManageActions from '@/components/ui/elements/manage/actions/ManageActions'
+import { ADMIN_EDITS } from '@/constants/url.constants'
+import type { IClassName } from '@/shared/interfaces/class-name/class-name.interface'
+import type { IManageActions } from '@/shared/interfaces/manage/manage.interface'
+import type { IReview } from '@/shared/interfaces/review/review.interface'
+import cn from 'clsx'
 import type { FC } from 'react'
 import styles from '../Reviews.module.scss'
 
-const Review: FC<{ review: TypeReview }> = ({ review }) => {
+const Review: FC<IReview & IClassName & IManageActions> = ({
+	review,
+	deleteHandler,
+	toggleHandler,
+	duplicateHandler,
+	place,
+	className,
+}) => {
 	return (
-		<li className={styles.item}>
-			
+		<li className={cn(styles.item, className && className)}>
 			<StaticImage
 				className={styles.photo}
 				src={review.photo}
@@ -21,8 +32,18 @@ const Review: FC<{ review: TypeReview }> = ({ review }) => {
 				height={21}
 				alt="Скобки"
 			/>
-			<div className={styles.description}>{review.content}</div>
+			<div
+				className={styles.description}
+				dangerouslySetInnerHTML={{ __html: review.content }}
+			/>
 			<h3 className={styles.name}>{review.author}</h3>
+			<ManageActions
+				toggleHandler={toggleHandler}
+				deleteHandler={deleteHandler}
+				duplicateHandler={duplicateHandler}
+				place={place}
+				edit={ADMIN_EDITS.REVIEW(review.id)}
+			/>
 		</li>
 	)
 }

@@ -92,3 +92,157 @@
 		}
 	}
 }
+
+.collection {
+	&:nth-child(1) > div > div > img:nth-child(2) {
+		right: 6px;
+		top: -13px;
+	}
+	&:nth-child(2) > div > div > img:nth-child(2) {
+		right: 22px;
+		top: 27px;
+	}
+	&:nth-child(3) > div > div > img:nth-child(2) {
+		right: 5px;
+		top: 11px;
+	}
+	&:nth-child(4) > div > div > img:nth-child(2) {
+		right: -1px;
+		top: 29px;
+	}
+	&:nth-child(5) > div > div > img:nth-child(2) {
+		right: -1px;
+		top: 12px;
+	}
+	&:nth-child(6) > div > div > img:nth-child(2) {
+		right: 7px;
+		top: 3px;
+	}
+	&:nth-child(7) > div > div > img:nth-child(2) {
+		right: 17px;
+		top: 3px;
+	}
+	&:nth-child(8) > div > div > img:nth-child(2) {
+		right: 12px;
+		top: 16px;
+	}
+	&:nth-child(9) > div > div > img:nth-child(2) {
+		right: -7px;
+		top: 13px;
+	}
+	&:nth-child(10) > div > div > img:nth-child(2) {
+		right: 5px;
+		top: 18px;
+	}
+	&:nth-child(11) > div > div > img:nth-child(2) {
+		right: 2px;
+		top: 13px;
+	}
+	&:nth-child(12) > div > div > img:nth-child(2) {
+		right: 15px;
+		top: 2px;
+	}
+	&:nth-child(13) > div > div > img:nth-child(2) {
+		right: 11px;
+		top: 6px;
+	}
+	&:nth-child(14) > div > div > img:nth-child(2) {
+		right: 0px;
+		top: 27px;
+	}
+	&:nth-child(15) > div > div > img:nth-child(2) {
+		right: 14px;
+		top: 27px;
+	}
+	&:nth-child(16) > div > div > img:nth-child(2) {
+		right: 3px;
+		top: 14px;
+	}
+	&:nth-child(17) > div > div > img:nth-child(2) {
+		right: 10px;
+		top: 24px;
+	}
+	&:nth-child(18) > div > div > img:nth-child(2) {
+		right: 19px;
+		top: 14px;
+	}
+	&:nth-child(19) > div > div > img:nth-child(2) {
+		right: 13px;
+		top: 2px;
+	}
+	&:nth-child(20) > div > div > img:nth-child(2) {
+		right: 1px;
+		top: 17px;
+	}
+	&:nth-child(21) > div > div {
+		> span {
+			@apply text-2lg;
+		}
+		& > img:nth-child(2) {
+			right: 1px;
+			top: 17px;
+		}
+	}
+	&:nth-child(22) > div > div > img:nth-child(2) {
+		right: 7px;
+		top: 6px;
+	}
+	&:nth-child(23) > div > div > img:nth-child(2) {
+		right: 29px;
+		top: 16px;
+	}
+	&:nth-child(24) > div > div {
+		> span {
+			@apply text-2lg;
+		}
+		& > img:nth-child(2) {
+			right: 43px;
+			top: 3px;
+		}
+	}
+	&:nth-child(25) > div > div > img:nth-child(2) {
+		right: 20px;
+		top: 29px;
+	}
+	&:nth-child(26) > div > div > img:nth-child(2) {
+		right: 18px;
+		top: 19px;
+	}
+	&:nth-child(27) > div > div > img:nth-child(2) {
+		right: 19px;
+		top: 13px;
+	}
+	&:nth-child(28) > div > div > img:nth-child(2) {
+		right: 0px;
+		top: 26px;
+	}
+	&:nth-child(29) > div > div > img:nth-child(2) {
+		right: 15px;
+		top: 20px;
+	}
+	&:nth-child(30) > div > div > img:nth-child(2) {
+		right: 17px;
+		top: 8px;
+	}
+	&:nth-child(31) > div > div > img:nth-child(2) {
+		right: 0px;
+		top: 13px;
+	}
+	&:nth-child(32) > div > div {
+		> span {
+			@apply text-2lg;
+		}
+		& > img:nth-child(2) {
+			right: 25px;
+			top: 3px;
+		}
+	}
+	&:nth-child(33) > div > div > img:nth-child(2) {
+		right: 9px;
+		top: 61px;
+	}
+	&:nth-child(34) > div > div > img:nth-child(2) {
+		right: 39px;
+		top: 22px;
+	}
+}

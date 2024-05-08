@@ -1,6 +1,1 @@
-3.Holidays in Manage and Home
-5.Old Price In Product
-
-
-4.Slider images
-9.search
+5.Collection Images

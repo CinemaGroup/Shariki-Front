@@ -1,7 +1,7 @@
 import type { TypeProduct } from '@/shared/types/product/product.type'
 
 export interface IProductVariant {
-	variant: 'sale' | 'newest' | 'none'
+	variant: 'popular' | 'newest' | 'none'
 }
 
 export interface IProductPropsWithVariant extends IProductVariant {

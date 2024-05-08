@@ -39,18 +39,17 @@
 	@apply w-10 h-10 rounded-full flex items-center justify-center p-1;
 	background-color: #c8c8c8;
 }
-.variant {
+.sale,
+.newest {
 	@apply rounded-sm font-roboto-serif text-md-minus text-white text-center;
 	padding: 5px 10px;
 	min-width: 76px;
-
-	&.green {
-		@apply bg-green-400;
-	}
-
-	&.red {
-		@apply bg-red-400;
-	}
+}
+.sale {
+	@apply bg-red-400;
+}
+.newest {
+	@apply bg-green-400;
 }
 .images {
 	@apply flex-col items-center gap-4;
@@ -81,7 +80,7 @@
 	@apply flex flex-col items-start gap-0.5;
 }
 .newPriceBox {
-	@apply flex items-end gap-2.5;
+	@apply flex items-end gap-1.5;
 
 	.piecePrice {
 		@apply text-red-400;

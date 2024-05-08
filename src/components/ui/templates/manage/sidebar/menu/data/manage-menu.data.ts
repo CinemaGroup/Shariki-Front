@@ -1,4 +1,4 @@
-import { ADMIN_PAGES } from '@/constants/url.constants'
+import { ADMIN_EDITS, ADMIN_PAGES } from '@/constants/url.constants'
 import type { IMenu } from '@/shared/interfaces/menu/menu.interface'
 
 export const MANAGE_MENU_DATA: IMenu = {
@@ -30,6 +30,30 @@ export const MANAGE_MENU_DATA: IMenu = {
 		{
 			label: 'Коллекции',
 			href: `${ADMIN_PAGES.COLLECTIONS}`,
+		},
+		{
+			label: 'Отзывы',
+			href: `${ADMIN_PAGES.REVIEWS}`,
+		},
+		{
+			label: 'Рубрики',
+			href: `${ADMIN_PAGES.RUBRICS}`,
+		},
+		{
+			label: 'Посты',
+			href: `${ADMIN_PAGES.POSTS}`,
+		},
+		{
+			label: 'Доставка и оплата',
+			href: `${ADMIN_EDITS.SHIPPING_AND_PAYMENT}`,
+		},
+		{
+			label: 'Покупателям',
+			href: `${ADMIN_EDITS.FOR_BUYERS}`,
+		},
+		{
+			label: 'О компании',
+			href: `${ADMIN_EDITS.ABOUT}`,
 		},
 	],
 }

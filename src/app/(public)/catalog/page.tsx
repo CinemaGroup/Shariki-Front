@@ -1,4 +1,5 @@
 import Catalog from '@/components/screens/catalog/Catalog'
+import type { IPageSearchParam } from '@/shared/interfaces/param/param.interface'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -6,6 +7,6 @@ export const metadata: Metadata = {
 	description: '',
 }
 
-export default function CatalogPage() {
-	return <Catalog />
+export default function CatalogPage({ searchParams }: IPageSearchParam) {
+	return <Catalog searchParams={searchParams} />
 }

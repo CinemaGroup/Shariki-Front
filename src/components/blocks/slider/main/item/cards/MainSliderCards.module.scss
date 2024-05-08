@@ -1,0 +1,84 @@
+.cards {
+	@apply flex flex-col items-end justify-between pr-4;
+}
+.card {
+	@apply relative;
+	padding: 25px 55px 32px 0;
+
+	&:last-child {
+		.cardImage {
+			@apply w-auto h-auto absolute -bottom-8 right-2;
+		}
+	}
+}
+.cardInner {
+	@apply rounded-md py-6 px-3 font-roboto-serif font-medium;
+	background-color: #e6191a;
+	width: 265px;
+	height: 150px;
+}
+.cardInfo {
+	@apply flex flex-col items-end gap-1.5 -translate-x-1/2;
+}
+.cardName {
+	@apply text-red-400 text-2lg py-2 px-3 bg-white text-center;
+	min-width: 250px;
+}
+.cardLink {
+	@apply text-white underline underline-offset-4 pr-4 left-hover;
+}
+.cardImage {
+	@apply w-auto h-auto absolute bottom-2 right-0;
+}
+.popup {
+	> div {
+		@apply font-inter w-full flex gap-5 rounded-md-extra p-0;
+		max-width: 1150px;
+		min-height: 600px;
+
+		> button {
+			@apply top-7 right-10;
+		}
+	}
+}
+.left {
+	@apply relative p-7;
+	min-width: 600px;
+}
+.leftFill {
+	@apply relative w-full h-full rounded-md-extra border-white p-6;
+	border-width: 3px;
+}
+.icon {
+	@apply flex items-center justify-center rounded-md bg-white;
+	width: 78px;
+	height: 78px;
+}
+.right {
+	@apply w-full pr-10 flex flex-col justify-center;
+}
+.title {
+	@apply relative font-semibold text-3lg text-red-400 pb-5 mb-5;
+
+	&::after {
+		@apply w-full absolute left-0 bottom-0 bg-red-400;
+		content: '';
+		max-width: 145px;
+		height: 2px;
+	}
+}
+.text {
+	@apply relative pb-6 mb-4;
+
+	&::after {
+		@apply w-full absolute left-0 bottom-0 bg-red-400;
+		content: '';
+		max-width: 320px;
+		height: 2px;
+	}
+}
+.bottom {
+	a {
+		@apply text-red-400;
+	}
+}

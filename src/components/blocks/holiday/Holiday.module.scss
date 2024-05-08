@@ -1,5 +1,5 @@
 .item {
-	@apply relative w-fit;
+	@apply relative w-fit cursor-pointer up-hover;
 	padding: 50px 45px 36px 45px;
 }
 .card {
@@ -41,7 +41,7 @@
 	@apply w-fit ml-auto font-roboto-serif text-sm-plus pl-3 flex gap-1.5 items-center bg-gray-base/20 rounded-full left-hover;
 	height: 16px;
 
-	> span {
+	> div {
 		@apply h-full rounded-full bg-red-400 flex items-center justify-center aspect-square;
 	}
 }

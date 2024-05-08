@@ -1,0 +1,35 @@
+.wrapper {
+	@apply py-28;
+}
+.heading {
+	@apply font-bold text-6lg text-center mb-12;
+}
+.list {
+	@apply flex gap-10 justify-between;
+}
+.item {
+	@apply w-full text-center flex flex-col items-center;
+	max-width: 320px;
+}
+.circle {
+	@apply w-20 h-20 rounded-full bg-red-400 text-white flex items-center justify-center mb-3;
+
+	> svg {
+		@apply w-9 h-9;
+		stroke-width: 1.6px;
+	}
+}
+.name {
+	@apply font-semibold text-2lg mb-4;
+}
+.content {
+	@apply leading-sm-plus;
+
+	a {
+		@apply text-red-400 font-semibold underline-hover;
+
+		&:after {
+			@apply bg-red-400;
+		}
+	}
+}

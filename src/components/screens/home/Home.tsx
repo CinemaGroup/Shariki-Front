@@ -1,5 +1,6 @@
 import Advantages from '@/components/blocks/advantages/Advantages'
 import Posts from '@/components/blocks/posts/Posts'
+import PopularProducts from '@/components/blocks/products/PopularProducts'
 import Products from '@/components/blocks/products/Products'
 import Reviews from '@/components/blocks/reviews/Reviews'
 import Slider from '@/components/blocks/slider/Slider'
@@ -24,7 +25,7 @@ const Home: FC = () => {
 			</Section>
 			<Section>
 				<Container variant="lg">
-					<Products variant="newest" />
+					<Products />
 				</Container>
 			</Section>
 			<Section>
@@ -34,7 +35,7 @@ const Home: FC = () => {
 			</Section>
 			<Section>
 				<Container variant="lg">
-					<Products variant="sale" />
+					<PopularProducts />
 				</Container>
 			</Section>
 			<Section>

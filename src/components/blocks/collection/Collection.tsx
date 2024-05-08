@@ -1,8 +1,11 @@
+'use client'
+
 import StaticImage from '@/components/ui/common/image/StaticImage'
+import { PUBLIC_PAGES } from '@/constants/url.constants'
 import type { IClassName } from '@/shared/interfaces/class-name/class-name.interface'
 import type { TypeCollection } from '@/shared/types/collection/collection.interface'
 import cn from 'clsx'
-import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import type { FC } from 'react'
 import styles from './Collection.module.scss'
 
@@ -10,24 +13,50 @@ const Collection: FC<{ collection: TypeCollection } & IClassName> = ({
 	collection,
 	className,
 }) => {
+	const { push } = useRouter()
+
 	return (
-		<div className={styles.collection}>
-			<Link
-				className={cn(styles.collection, className && className)}
-				href="/catalog"
-			>
-				{collection.imagePath && (
+		<div
+			className={cn(styles.item, className && className)}
+			onClick={() =>
+				push(`${PUBLIC_PAGES.CATALOG}?collection=${collection.slug}`)
+			}
+		>
+			<div className={styles.card}>
+				<StaticImage
+					className={styles.balloon}
+					src="/images/data/slider/second/balloon.png"
+					width={84}
+					height={102}
+					alt="Balloon"
+				/>
+				<StaticImage
+					className={styles.mainImage}
+					src={collection.imagePath}
+					width={collection.imageWidth}
+					height={collection.imageHeight}
+					alt={collection.name}
+				/>
+				<StaticImage
+					className={styles.decor}
+					src="/images/data/slider/second/collections/decor.png"
+					width={168}
+					height={60}
+					alt="Decor"
+				/>
+				<span className={styles.name}>{collection.name}</span>
+			</div>
+			<div className={styles.link}>
+				В каталог
+				<div>
 					<StaticImage
-						className={styles.image}
-						src={collection.imagePath}
-						width={0}
-						height={0}
-						sizes="100vw"
-						alt={collection.name}
+						src="/images/icons/chevron-right.png"
+						width={11}
+						height={11}
+						alt="Arrow"
 					/>
-				)}
-				{collection.name && <h3 className={styles.name}>{collection.name}</h3>}
-			</Link>
+				</div>
+			</div>
 		</div>
 	)
 }

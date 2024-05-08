@@ -20,6 +20,7 @@ const CatalogFiltersItem: FC<ICatalogFiltersItem> = ({
 			const updatedProductsQuery = productsQuery[variant].includes(value)
 				? productsQuery[variant].filter((item) => item !== value)
 				: [...productsQuery[variant], value]
+
 			setProductsQuery((prev) => ({
 				...prev,
 				[variant]: updatedProductsQuery,

@@ -1,5 +1,6 @@
 'use client'
 
+import Pagination from '@/components/ui/elements/filters/pagination/Pagination'
 import { ArrowLeft } from 'lucide-react'
 import type { FC } from 'react'
 import styles from './StorageContent.module.scss'
@@ -15,6 +16,9 @@ const StorageContent: FC<IStorageContent> = ({
 	previous,
 	isFirst,
 	onFileSelect,
+	setStorageQuery,
+	page,
+	perPage,
 }) => {
 	const response = data?.folderItems
 
@@ -46,6 +50,15 @@ const StorageContent: FC<IStorageContent> = ({
 						files={response.files || []}
 						onFileSelect={onFileSelect}
 					/>
+					{data.folderItems.count > perPage && (
+						<Pagination
+							length={data.folderItems.count}
+							page={page}
+							perPage={perPage}
+							setProductsQuery={setStorageQuery as any}
+							className={styles.pagination}
+						/>
+					)}
 				</div>
 			)}
 		</div>

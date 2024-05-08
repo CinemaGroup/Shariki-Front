@@ -7,3 +7,5 @@ export type TypeCatalogCategories = CatalogQuery['catalog']['categories']
 export type TypeCatalogProducts = CatalogQuery['catalog']['products']
 
 export type TypeCatalogFilters = CatalogQuery['catalog']['filters']
+
+export type TypeCatalogRootCategory = NonNullable<CatalogQuery['catalog']['rootCategory']>
