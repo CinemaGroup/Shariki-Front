@@ -58,7 +58,6 @@ const ManageProducts: FC = () => {
 									key={product.id}
 									className={styles.product}
 									product={product}
-									variant="none"
 									place="admin"
 									deleteHandler={() =>
 										deleteProduct({

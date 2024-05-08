@@ -42,10 +42,10 @@ const ManagePosts: FC = () => {
 					queryParams={queryParams}
 					updateQueryFilters={updateQueryFilters}
 				/>
-				{data?.posts && data.posts.length > 0 && (
+				{data?.posts.posts && data.posts.posts.length > 0 && (
 					<div className={globalStyles.fill}>
 						<div className={styles.posts}>
-							{data.posts.map((post) => (
+							{data.posts.posts.map((post) => (
 								<Post
 									key={post.id}
 									className={styles.post}

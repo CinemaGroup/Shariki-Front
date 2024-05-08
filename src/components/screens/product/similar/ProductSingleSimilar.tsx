@@ -15,7 +15,6 @@ const ProductSingleSimilar: FC<ICurrentProductSimilarProducts> = ({
 						key={product.id}
 						className={styles.item}
 						product={product}
-						variant="none"
 						place="public"
 					/>
 				))}

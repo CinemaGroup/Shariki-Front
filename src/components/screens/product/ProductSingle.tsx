@@ -7,7 +7,6 @@ import Loader from '@/components/ui/elements/loader/Loader'
 import { PUBLIC_PAGES } from '@/constants/url.constants'
 import { useCurrentProduct } from '@/hooks/public/product/useCurrentProduct'
 import { IMenuItem } from '@/shared/interfaces/menu/menu.interface'
-import { getParentCategories } from '@/utils/helpers/get-breadcrumb-categories'
 import { MoveLeft } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import type { FC } from 'react'
@@ -25,13 +24,15 @@ const ProductSingle: FC<{ slug: string }> = ({ slug }) => {
 	if (!product || error) return null
 
 	let breadcrumbItems: IMenuItem[] = []
-	if (product.categories[0]) {
-		const parentCategories = getParentCategories(product.categories[0], 5)
+	if (product.categories.length > 0 && product.categories[0]) {
+		const parentCategory = product.categories[0]
 
-		breadcrumbItems = parentCategories.map((category, index) => ({
-			label: category.name,
-			href: PUBLIC_PAGES.CATEGORY(category.slug),
-		}))
+		breadcrumbItems = [
+			{
+				label: parentCategory.name,
+				href: PUBLIC_PAGES.CATEGORY(parentCategory.slug),
+			},
+		]
 	}
 
 	breadcrumbItems.push({
