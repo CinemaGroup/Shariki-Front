@@ -14,6 +14,14 @@ const ProductTableCenter: FC<
 
 	return (
 		<div className={styles.center}>
+			<ul className={styles.colors}><li className={styles.color}>
+							<button
+								className={cn(styles.colorBtn)}
+								onClick={() => {}}
+							>
+								<span style={{ backgroundColor: 'red' }}></span>
+							</button>
+						</li></ul>
 			{product.colors.length !== 0 && (
 				<ul className={styles.colors}>
 					{product.colors.map((item, index) => (
@@ -30,6 +38,14 @@ const ProductTableCenter: FC<
 					))}
 				</ul>
 			)}
+				<ul className={styles.sizes}><li className={styles.size}>
+							<button
+								className={cn(styles.sizeBtn)}
+								onClick={() => {}}
+							>
+								9"6
+							</button>
+						</li></ul>
 			{product.sizes.length !== 0 && (
 				<ul className={styles.sizes}>
 					{product.sizes.map((item, index) => (

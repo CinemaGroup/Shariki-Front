@@ -33,6 +33,7 @@
 		@apply flex-wrap gap-2.5;
 
 		.product {
+			@apply w-full;
 			max-width: calc(100% / 6 - 9px);
 			min-width: calc(100% / 6 - 9px);
 		}
@@ -61,8 +62,7 @@
 	@apply w-full h-full bg-gray-100 py-8 px-6 rounded-md text-center flex flex-col items-center gap-6 transition-colors aspect-square;
 
 	> img {
-		@apply mx-auto;
-		max-width: 210px;
+		@apply mx-auto max-w-full;
 		max-height: 175px;
 	}
 

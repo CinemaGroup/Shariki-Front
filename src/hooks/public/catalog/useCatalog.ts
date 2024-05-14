@@ -8,7 +8,7 @@ export const useCatalog = (
 	categorySlug?: string
 ) => {
 	const [productsQuery, setProductsQuery] = useState<ICatalogFiltersArguments>({
-		page: '1',
+		page: '29',
 		perPage: '18',
 		sort: Sort.Newest,
 		status: Status.Published,

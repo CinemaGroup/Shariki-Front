@@ -2,9 +2,9 @@ import Product from '@/components/blocks/products/item/Product'
 import ProductTable from '@/components/blocks/products/table/ProductTable'
 import Pagination from '@/components/ui/elements/filters/pagination/Pagination'
 import type { ICatalogProducts } from '@/shared/interfaces/catalog/catalog.interface'
+import cn from 'clsx'
 import type { FC } from 'react'
 import styles from '../Catalog.module.scss'
-import cn from 'clsx'
 
 const CatalogProducts: FC<ICatalogProducts> = ({
 	display,
@@ -16,10 +16,12 @@ const CatalogProducts: FC<ICatalogProducts> = ({
 }) => {
 	return (
 		<div className={styles.products}>
-			<div className={cn(styles.list, {
-				[styles.tables]: display === 'table',
-				[styles.cards]: display === 'card'
-			})}>
+			<div
+				className={cn(styles.list, {
+					[styles.tables]: display === 'table',
+					[styles.cards]: display === 'card',
+				})}
+			>
 				{products.map((product) =>
 					display === 'card' ? (
 						<Product
@@ -37,7 +39,7 @@ const CatalogProducts: FC<ICatalogProducts> = ({
 					)
 				)}
 			</div>
-			{true && (
+			{productsCount > perPage && (
 				<Pagination
 					length={productsCount}
 					page={+page}
