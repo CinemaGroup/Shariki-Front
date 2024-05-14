@@ -12,12 +12,15 @@ import type { IPageSearchParam } from '@/shared/interfaces/param/param.interface
 import type { TypeParamSlug } from '@/shared/types/param/param.type'
 import type { TypeProductDisplay } from '@/shared/types/product/product.type'
 import { getBreadcrumbCategories } from '@/utils/helpers/get-breadcrumb-categories'
+import cn from 'clsx'
+import { Filter } from 'lucide-react'
 import { useState, type FC } from 'react'
 import styles from './Catalog.module.scss'
 import CatalogCategories from './categories/CatalogCategories'
 import CatalogDisplay from './display/CatalogDisplay'
 import CatalogProducts from './products/CatalogProducts'
 import CatalogSort from './sort/CatalogSort'
+import { useToggleBodyOverflow } from '@/hooks/helpers/body/useToggleBodyOverflow'
 
 const Catalog: FC<TypeParamSlug & IPageSearchParam> = ({
 	slug,
@@ -35,6 +38,9 @@ const Catalog: FC<TypeParamSlug & IPageSearchParam> = ({
 		loading,
 	} = useCatalog(searchParams, slug)
 	const [display, setDisplay] = useState<TypeProductDisplay>('card')
+	const [isFiltersShow, setIsFiltersShow] = useState(false)
+
+	useToggleBodyOverflow(isFiltersShow)
 
 	if (error) return null
 
@@ -66,7 +72,10 @@ const Catalog: FC<TypeParamSlug & IPageSearchParam> = ({
 							filters={filters}
 							productsQuery={productsQuery}
 							setProductsQuery={setProductsQuery}
-							className={styles.filters}
+							closeFilters={() => setIsFiltersShow(false)}
+							className={cn(styles.filters, {
+								[styles.opened]: isFiltersShow,
+							})}
 						/>
 					)}
 					<div className={styles.right}>
@@ -88,6 +97,13 @@ const Catalog: FC<TypeParamSlug & IPageSearchParam> = ({
 											setDisplay={setDisplay}
 											setProductsQuery={setProductsQuery}
 										/>
+										<button
+											className={styles.filtersOpener}
+											onClick={() => setIsFiltersShow(true)}
+										>
+											<Filter />
+											Фильтры
+										</button>
 									</div>
 									<CatalogProducts
 										display={display}

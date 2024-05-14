@@ -1,4 +1,5 @@
 import cn from 'clsx'
+import { X } from 'lucide-react'
 import type { FC } from 'react'
 import styles from './CatalogFilters.module.scss'
 import type { ICatalogFilters } from './interface/catalog-filters.interface'
@@ -11,11 +12,15 @@ const CatalogFilters: FC<ICatalogFilters> = ({
 	filters,
 	productsQuery,
 	setProductsQuery,
+	closeFilters,
 }) => {
 	if (!filters) return null
 
 	return (
 		<div className={cn(styles.wrapper, className && className)}>
+			<button className={styles.close} onClick={closeFilters}>
+				<X />
+			</button>
 			{filters.sizes.length > 0 && (
 				<CatalogFiltersItem
 					heading="Размер,”"

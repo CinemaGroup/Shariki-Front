@@ -1,12 +1,18 @@
 import StaticImage from '@/components/ui/common/image/StaticImage'
 import CallBtn from '@/components/ui/elements/call-btn/CallBtn'
+import cn from 'clsx'
 import Link from 'next/link'
 import type { FC } from 'react'
 import styles from './HeaderContacts.module.scss'
 
-const HeaderContacts: FC = () => {
+const HeaderContacts: FC<{ variant: 'burger' | 'main' }> = ({ variant }) => {
 	return (
-		<ul className={styles.list}>
+		<ul
+			className={cn(styles.list, {
+				[styles.burger]: variant === 'burger',
+				[styles.main]: variant === 'main',
+			})}
+		>
 			<li className={styles.item}>
 				<Link href="tel: 71234567890" className={styles.link}>
 					+7 (123) 456-78-90

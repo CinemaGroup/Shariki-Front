@@ -12,7 +12,6 @@ const CatalogFiltersImageItem: FC<ICatalogFiltersImageItem> = ({
 	setProductsQuery,
 }) => {
 	const [isShow, setIsShow] = useState(true)
-	const [searchTerm, setSearchTerm] = useState('')
 
 	const toggleItem = (value: string) => {
 		if (variant && productsQuery[variant]) {

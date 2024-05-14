@@ -7,3 +7,21 @@
 	@apply w-full;
 	aspect-ratio: 4.4 / 1;
 }
+
+@media (max-width: 1200px) {
+	.copyright {
+		@apply text-md-plus;
+	}
+}
+
+@media (max-width: 900px) {
+	.map {
+		aspect-ratio: 3.5 / 1;
+	}
+}
+
+@media (max-width: 550px) {
+	.map {
+		aspect-ratio: 2 / 1;
+	}
+}

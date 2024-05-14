@@ -1,11 +1,17 @@
+'use client'
+
 import StaticImage from '@/components/ui/common/image/StaticImage'
 import CartBtn from '@/components/ui/elements/cart-btn/CartBtn'
 import { PUBLIC_PAGES } from '@/constants/url.constants'
+import { Menu } from 'lucide-react'
 import Link from 'next/link'
-import type { FC } from 'react'
+import { useState, type FC } from 'react'
+import Burger from '../burger/Burger'
 import styles from './HeaderButtons.module.scss'
 
 const HeaderButtons: FC = () => {
+	const [isShow, setIsShow] = useState(false)
+
 	return (
 		<ul className={styles.list}>
 			<li className={styles.item}>
@@ -21,6 +27,12 @@ const HeaderButtons: FC = () => {
 			</li>
 			<li className={styles.item}>
 				<CartBtn className={styles.cart} />
+			</li>
+			<li className={styles.item}>
+				<button className={styles.burger} onClick={() => setIsShow(true)}>
+					<Menu />
+				</button>
+				{isShow && <Burger close={() => setIsShow(false)} />}
 			</li>
 		</ul>
 	)

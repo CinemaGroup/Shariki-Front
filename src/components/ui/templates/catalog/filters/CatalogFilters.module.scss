@@ -1,5 +1,8 @@
 .wrapper {
-	@apply flex flex-col gap-5;
+	@apply relative flex flex-col gap-5;
+}
+.close {
+	@apply absolute right-5 top-4 transition-colors hover:text-red-400;
 }
 .button {
 	@apply flex items-center gap-3 font-roboto-flex text-lg;
@@ -132,4 +135,33 @@
 }
 .priceInner {
 	@apply animate-fade mt-7;
+}
+
+@media(max-width: 1350px) {
+	.wrapper {
+		@apply gap-8;
+	}
+	.filter {
+		@apply w-full;
+		max-width: calc(50% - 16px);
+	}
+	.button {
+		font-size: 17px;
+	
+		> svg {
+			@apply w-3.5 h-3.5;
+		}
+	}
+}
+
+@media(max-width: 600px) {
+	.wrapper {
+		@apply gap-5;
+	}
+	.filter {
+		@apply max-w-full;
+	}
+	.button {
+		@apply text-base;
+	}
 }

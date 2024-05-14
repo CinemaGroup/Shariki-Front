@@ -4,7 +4,10 @@ import { Triangle } from 'lucide-react'
 import { useState, type FC } from 'react'
 import styles from '../Catalog.module.scss'
 
-const CatalogSort: FC<ICatalogSort> = ({ productsQuery, setProductsQuery }) => {
+const CatalogSort: FC<ICatalogSort> = ({
+	productsQuery,
+	setProductsQuery,
+}) => {
 	const [isShow, setIsShow] = useState(false)
 
 	const isNewest = productsQuery.sort === Sort.Newest

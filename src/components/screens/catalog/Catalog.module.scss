@@ -12,6 +12,14 @@
 	max-width: 240px;
 	min-width: 240px;
 }
+.filtersOpener {
+	@apply hidden items-center gap-2.5 py-2 px-5 rounded-sm bg-red-400 text-white font-medium transition-colors hover:bg-red-500;
+
+	> svg {
+		width: 18px;
+		height: 18px;
+	}
+}
 .fill {
 	@apply w-full;
 }
@@ -127,5 +135,140 @@
 		> svg {
 			@apply fill-red-400;
 		}
+	}
+}
+
+@media (max-width: 1800px) {
+	.list.cards .product {
+		max-width: calc(100% / 5 - 8px);
+		min-width: calc(100% / 5 - 8px);
+	}
+}
+
+@media (max-width: 1600px) {
+	.category {
+		max-width: calc(100% / 5 - 8px);
+	}
+	.list.cards .product {
+		max-width: calc(100% / 4 - 8px);
+		min-width: calc(100% / 4 - 8px);
+	}
+	.right {
+		gap: 50px;
+	}
+}
+
+@media (max-width: 1350px) {
+	.display {
+		@apply ml-auto;
+	}
+	.filtersOpener {
+		@apply flex;
+	}
+	.filters {
+		@apply flex-row px-4 pt-9 pb-5 flex-wrap hidden z-5 fixed w-screen h-screen max-w-full top-0 bottom-0 bg-white right-0 translate-x-full overflow-y-auto overflow-x-hidden;
+		min-width: auto;
+		scrollbar-color: #e51314 #d6d3d3;
+		scrollbar-width: thin;
+
+		&::-webkit-scrollbar {
+			@apply rounded-full;
+			width: 5px;
+		}
+
+		&::-webkit-scrollbar-track {
+			@apply w-full rounded-full bg-gray-400;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			@apply w-full bg-red-400 rounded-full;
+		}
+
+		&.opened {
+			@apply flex animate-slideFromRight;
+		}
+	}
+}
+
+@media (max-width: 1100px) {
+	.right {
+		@apply gap-10;
+	}
+	.sorting {
+		@apply gap-6;
+	}
+	.categoryName {
+		@apply text-md-plus;
+	}
+	.categoryLink {
+		@apply py-5 px-4 gap-4;
+	}
+	.list.cards .product {
+		max-width: calc(100% / 3 - 7px);
+		min-width: calc(100% / 3 - 7px);
+	}
+}
+
+@media (max-width: 1000px) {
+	.category {
+		max-width: calc(100% / 4 - 8px);
+	}
+}
+
+@media(max-width: 800px) {
+	.products {
+		@apply gap-8;
+	}
+	.list.cards .product {
+		max-width: calc(100% / 2 - 5px);
+		min-width: calc(100% / 2 - 5px);
+	}
+	.category {
+		max-width: calc(100% / 3 - 7px);
+	}
+}
+
+@media(max-width: 550px) {
+	.sorting {
+		@apply flex-wrap gap-3;
+	}
+	.display {
+		@apply ml-0;
+	}
+	.list.cards .product {
+		@apply max-w-full;
+		min-width: auto;
+	}
+	.category {
+		max-width: calc(100% / 2 - 5px);
+	}
+}
+
+@media(max-width: 400px) {
+	.products {
+		@apply gap-6;
+	}
+	.right {
+		@apply gap-7;
+	}
+	.category {
+		@apply max-w-full;
+	}
+}
+
+@media(max-width: 360px) {
+	.sort,
+	.display {
+		@apply w-full flex-col gap-2;
+		max-width: calc(50% - 6px);
+	}
+	.sort {
+		@apply items-start;
+	}
+	.display {
+		@apply items-end;
+	}
+	.filtersOpener {
+		@apply ml-auto;
 	}
 }

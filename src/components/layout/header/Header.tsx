@@ -13,11 +13,11 @@ const Header: FC = () => {
 		<header className={styles.header}>
 			<div className={styles.left}>
 				<Logo />
-				<HeaderMenu menu={HEADER_MENU_DATA} />
-				<HeaderSocial social={HEADER_SOCIAL_DATA} />
+				<HeaderMenu variant='main' menu={HEADER_MENU_DATA} />
+				<HeaderSocial variant='main' social={HEADER_SOCIAL_DATA} />
 			</div>
 			<div className={styles.right}>
-				<HeaderContacts />
+				<HeaderContacts variant='main' />
 				<HeaderButtons />
 			</div>
 		</header>

@@ -21,3 +21,14 @@
 .pin {
 	@apply mt-2;
 }
+
+@media(max-width: 400px) {
+	.pagination {
+		@apply gap-2;
+	}
+	.button {
+		> svg {
+			@apply w-6 h-6;
+		}
+	}
+}

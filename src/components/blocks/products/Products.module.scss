@@ -193,3 +193,21 @@
 .bulletActive {
 	@apply bg-red-500;
 }
+
+@media(max-width: 800px) {
+	.item {
+		padding: 16px 24px;
+	}
+	.top {
+		@apply gap-3 mb-3;
+	}
+	.type {
+		@apply w-9 h-9;
+	}
+	.info {
+		@apply mb-2.5;
+	}
+	.addToCart {
+		@apply py-2.5;
+	}
+}

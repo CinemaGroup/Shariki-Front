@@ -37,7 +37,7 @@ const CatalogProducts: FC<ICatalogProducts> = ({
 					)
 				)}
 			</div>
-			{productsCount > perPage && (
+			{true && (
 				<Pagination
 					length={productsCount}
 					page={+page}

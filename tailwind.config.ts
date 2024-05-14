@@ -116,11 +116,29 @@ const config: Config = {
 						transform: 'scale(1)',
 					},
 				},
+				slideFromLeft: {
+					'0%': {
+						transform: 'translateX(-100%)',
+					},
+					'100%': {
+						transform: 'translateX(0)',
+					},
+				},
+				slideFromRight: {
+					'0%': {
+						transform: 'translateX(100%)',
+					},
+					'100%': {
+						transform: 'translateX(0)',
+					},
+				},
 			},
 			animation: {
 				hide: 'hide .5s ease-in-out forwards',
 				fade: 'fade .5s ease-in-out forwards',
 				scaleIn: 'scaleIn .35s ease-in-out forwards',
+				slideFromLeft: 'slideFromLeft 500ms ease-in-out forwards',
+				slideFromRight: 'slideFromRight 500ms ease-in-out forwards',
 			},
 		},
 	},

@@ -8,3 +8,19 @@
 .call {
 	@apply underline-hover;
 }
+
+@media (max-width: 1500px) {
+	.link,
+	.call {
+		@apply text-md-plus;
+	}
+}
+
+@media (max-width: 1350px) {
+	.list.main {
+		@apply hidden;
+	}
+	.list {
+		@apply flex-col items-start;
+	}
+}

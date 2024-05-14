@@ -22,3 +22,9 @@
 		max-width: 1515px;
 	}
 }
+
+@media (max-width: 600px) {
+	.container {
+		@apply px-4;
+	}
+}

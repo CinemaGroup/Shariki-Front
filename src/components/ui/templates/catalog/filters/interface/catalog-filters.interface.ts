@@ -41,6 +41,7 @@ export interface ICatalogFilters extends IClassName {
 	filters: TypeCatalogFilters | null
 	productsQuery: ICatalogFiltersArguments
 	setProductsQuery: Dispatch<SetStateAction<ICatalogFiltersArguments>>
+	closeFilters: () => void
 }
 
 export interface ICatalogFiltersItem {

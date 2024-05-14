@@ -5,3 +5,15 @@
 .link {
 	@apply up-hover;
 }
+
+@media(max-width: 600px) {
+	.list {
+		@apply gap-3 py-4 px-3;
+	}
+	.link {
+		> img {
+			width: 25px;
+			height: 25px;
+		}
+	}
+}
