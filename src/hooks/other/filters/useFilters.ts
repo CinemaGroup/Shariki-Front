@@ -1,15 +1,15 @@
 import { Sort } from '@/__generated__/output'
-import type { IFilters } from '@/shared/interfaces/filter/filter.interface'
 import type { TypeQueryFilters } from '@/shared/types/filter/filter.type'
 import { useState } from 'react'
 import { useSearchFilter } from './useSearchFilter'
+import type { IPageSearchParam } from '@/shared/interfaces/param/param.interface'
 
-export const useFilters = ({ variant, place }: IFilters) => {
+export const useFilters = ({ searchParams }: IPageSearchParam) => {
 	const { searchTerm, debounceSearch, handleSearch } = useSearchFilter()
 
 	const [queryParams, setQueryParams] = useState<TypeQueryFilters>({
-		// page: '1',
-		// perPage: '20',
+		page: searchParams?.page ? String(searchParams.page) : '1',
+		perPage: searchParams?.perPage ? String(searchParams.perPage) : '20',
 		status: null,
 		searchTerm,
 		sort: Sort.Newest,
@@ -25,5 +25,6 @@ export const useFilters = ({ variant, place }: IFilters) => {
 		queryParams,
 		searchTerm,
 		debounceSearch,
+		setQueryParams
 	}
 }

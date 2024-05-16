@@ -38,13 +38,15 @@ const PostsScreen: FC = () => {
 									/>
 								))}
 							</div>
-							<Pagination
-								length={count}
-								page={+postsQuery.page}
-								perPage={+postsQuery.perPage}
-								setProductsQuery={setPostsQuery as any}
-								className={styles.pagination}
-							/>
+							{count > +postsQuery.perPage && (
+								<Pagination
+									length={count}
+									page={+postsQuery.page}
+									perPage={+postsQuery.perPage}
+									setPagination={setPostsQuery}
+									className={styles.pagination}
+								/>
+							)}
 						</>
 					)}
 				</div>

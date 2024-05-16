@@ -8,7 +8,7 @@ import styles from './Reviews.module.scss'
 import Review from './item/Review'
 
 const Reviews: FC = () => {
-	const { data } = useReviews({
+	const { reviews } = useReviews({
 		status: Status.Published,
 		sort: Sort.Newest,
 	})
@@ -17,7 +17,7 @@ const Reviews: FC = () => {
 		<div className={styles.reviews}>
 			<Heading className={styles.heading}>Отзывы о нас</Heading>
 			<ul className={styles.list}>
-				{data?.reviews.map((review, index) => (
+				{reviews.map((review, index) => (
 					<Review key={index} review={review} place="public" />
 				))}
 			</ul>

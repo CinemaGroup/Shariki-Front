@@ -6,6 +6,7 @@ import Breadcrumb from '@/components/ui/elements/breadcrumb/Breadcrumb'
 import Loader from '@/components/ui/elements/loader/Loader'
 import CatalogFilters from '@/components/ui/templates/catalog/filters/CatalogFilters'
 import { PUBLIC_PAGES } from '@/constants/url.constants'
+import { useToggleBodyOverflow } from '@/hooks/helpers/body/useToggleBodyOverflow'
 import { useCatalog } from '@/hooks/public/catalog/useCatalog'
 import type { IMenuItem } from '@/shared/interfaces/menu/menu.interface'
 import type { IPageSearchParam } from '@/shared/interfaces/param/param.interface'
@@ -20,7 +21,6 @@ import CatalogCategories from './categories/CatalogCategories'
 import CatalogDisplay from './display/CatalogDisplay'
 import CatalogProducts from './products/CatalogProducts'
 import CatalogSort from './sort/CatalogSort'
-import { useToggleBodyOverflow } from '@/hooks/helpers/body/useToggleBodyOverflow'
 
 const Catalog: FC<TypeParamSlug & IPageSearchParam> = ({
 	slug,
@@ -109,9 +109,9 @@ const Catalog: FC<TypeParamSlug & IPageSearchParam> = ({
 										display={display}
 										products={products}
 										productsCount={productsCount}
+										setPagination={setProductsQuery}
 										page={+productsQuery.page}
 										perPage={+productsQuery.perPage}
-										setProductsQuery={setProductsQuery}
 									/>
 								</div>
 							)

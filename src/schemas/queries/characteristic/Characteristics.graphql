@@ -1,8 +1,11 @@
 query Characteristics($query: QueryInput!) {
 	characteristics(query: $query) {
-		id
-		name
-		slug
-		type
+		characteristics {
+			id
+			name
+			slug
+			type
+		}
+		count
 	}
 }

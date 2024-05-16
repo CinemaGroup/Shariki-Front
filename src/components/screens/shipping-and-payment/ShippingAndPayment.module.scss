@@ -36,3 +36,20 @@
 		@apply font-bold;
 	}
 }
+
+@media (max-width: 550px) {
+	.wrapper {
+		@apply gap-6 py-12;
+	}
+	.title {
+		@apply text-2lg mb-4;
+	}
+	.content {
+		@apply gap-2 text-md-plus;
+
+		ul,
+		ol {
+			@apply pl-3.5 gap-2;
+		}
+	}
+}

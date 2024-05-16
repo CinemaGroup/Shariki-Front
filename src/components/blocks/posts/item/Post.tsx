@@ -27,13 +27,15 @@ const Post: FC<IPost & IManageActions & IClassName> = ({
 				<div className={styles.info}>
 					<Link className={styles.fill} href={PUBLIC_PAGES.POST(post.slug)}>
 						<ul className={styles.terms}>
-							<li className={styles.rubric}>{post.rubrics[0].name}</li>
+							{post.rubrics.length > 0 && (
+								<li className={styles.rubric}>{post.rubrics[0].name}</li>
+							)}
 							<li className={styles.date}>{formatDate(post.createdAt)}</li>
 						</ul>
 						<h3 className={styles.name}>{post.name}</h3>
 						<div
 							className={styles.description}
-							dangerouslySetInnerHTML={{ __html: post.description }}
+							dangerouslySetInnerHTML={{ __html: post.excerpt }}
 						/>
 					</Link>
 					<Link href={`/post/${post.slug}`} className={styles.link}>

@@ -5,23 +5,24 @@ import Filters from '@/components/ui/templates/filters/Filters'
 import ManageSidebar from '@/components/ui/templates/manage/sidebar/ManageSidebar'
 import { useManageTags } from '@/hooks/manage/tags/useManageTags'
 import { useFilters } from '@/hooks/other/filters/useFilters'
+import type { IPageSearchParam } from '@/shared/interfaces/param/param.interface'
 import { ListPlus } from 'lucide-react'
 import type { FC } from 'react'
 import globalStyles from '../ManagePages.module.scss'
 import styles from './ManageTags.module.scss'
+import Pagination from '@/components/ui/elements/filters/pagination/Pagination'
 
-const ManageTags: FC = () => {
+const ManageTags: FC<IPageSearchParam> = ({ searchParams }) => {
 	const {
 		queryParams,
+		setQueryParams,
 		updateQueryFilters,
 		handleSearch,
 		searchTerm,
 		debounceSearch,
-	} = useFilters({ variant: 'default', place: 'manage' })
-	const { data, createTag, deleteTag, toggleTag, duplicateTag } = useManageTags(
-		queryParams,
-		debounceSearch
-	)
+	} = useFilters({ searchParams })
+	const { tags, count, createTag, deleteTag, toggleTag, duplicateTag } =
+		useManageTags(queryParams, debounceSearch)
 
 	return (
 		<div className={globalStyles.wrapper}>
@@ -39,15 +40,13 @@ const ManageTags: FC = () => {
 					</button>
 				</div>
 				<Filters
-					variant="default"
-					place="manage"
 					queryParams={queryParams}
 					updateQueryFilters={updateQueryFilters}
 				/>
-				{data?.tags && data.tags.length > 0 && (
+				{count > 0 && (
 					<div className={globalStyles.fill}>
 						<div className={styles.tags}>
-							{data.tags.map((tag) => (
+							{tags.map((tag) => (
 								<Tag
 									key={tag.id}
 									className={styles.tag}
@@ -77,6 +76,17 @@ const ManageTags: FC = () => {
 								/>
 							))}
 						</div>
+						{queryParams.page &&
+							queryParams.perPage &&
+							count > +queryParams.perPage && (
+								<Pagination
+									length={count}
+									page={+queryParams.page}
+									perPage={+queryParams.perPage}
+									setPagination={setQueryParams}
+									className={globalStyles.pagination}
+								/>
+							)}
 					</div>
 				)}
 			</div>

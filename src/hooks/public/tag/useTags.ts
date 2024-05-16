@@ -11,5 +11,5 @@ export const useTags = () => {
 		},
 	})
 
-	return { data }
+	return { tags: data?.tags.tags || [], count: data?.tags.count || 0 }
 }

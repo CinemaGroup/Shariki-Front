@@ -194,7 +194,7 @@
 	@apply bg-red-500;
 }
 
-@media(max-width: 800px) {
+@media (max-width: 800px) {
 	.item {
 		padding: 16px 24px;
 	}
@@ -209,5 +209,31 @@
 	}
 	.addToCart {
 		@apply py-2.5;
+	}
+}
+
+@media (max-width: 550px) {
+	.piecePrice {
+		font-size: 11px;
+	}
+	.currentPriceBox,
+	.oldPriceBox {
+		@apply text-md gap-x-2 gap-y-1 flex-wrap;
+	}
+	.name {
+		@apply text-md;
+	}
+	.addToCart {
+		@apply text-md;
+	}
+}
+
+@media (max-width: 420px) {
+	.images {
+		height: 170px;
+
+		& > div:first-child {
+			max-height: 150px;
+		}
 	}
 }

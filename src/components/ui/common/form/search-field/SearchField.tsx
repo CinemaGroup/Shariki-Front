@@ -1,9 +1,11 @@
 import cn from 'clsx'
+import { useRouter } from 'next/navigation'
 import { type FC } from 'react'
 import StaticImage from '../../image/StaticImage'
 import globalStyles from '../Form.module.scss'
 import styles from './SearchField.module.scss'
 import type { ISearchField } from './interface/search-field.interface'
+import { PUBLIC_PAGES } from '@/constants/url.constants'
 
 const SearchField: FC<ISearchField> = ({
 	size = 'md',
@@ -15,6 +17,8 @@ const SearchField: FC<ISearchField> = ({
 	searchTerm,
 	handleSearch,
 }) => {
+	const { push, refresh } = useRouter()
+
 	return (
 		<div
 			className={cn(globalStyles.field, wrapperClassName && wrapperClassName)}
@@ -34,6 +38,12 @@ const SearchField: FC<ISearchField> = ({
 					placeholder={placeholder}
 					value={searchTerm}
 					onChange={handleSearch}
+					onKeyDown={(e) => {
+						if (e.key === 'Enter') {
+							push(PUBLIC_PAGES.SEARCH(searchTerm))
+							refresh()
+						}
+					}}
 					className={cn(styles.input, inputClassName && inputClassName)}
 				/>
 				<StaticImage

@@ -11,15 +11,8 @@ export const useManageSelectRubrics = () => {
 		},
 	})
 
-	console.log(data?.rubrics.map(
-		(rubric): IOption => ({
-			label: rubric.name,
-			value: rubric.id,
-		})
-	),)
-
 	return {
-		rubrics: data?.rubrics.map(
+		rubrics: data?.rubrics.rubrics.map(
 			(rubric): IOption => ({
 				label: rubric.name,
 				value: rubric.id,

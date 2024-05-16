@@ -1,25 +1,29 @@
 'use client'
 
 import Product from '@/components/blocks/products/item/Product'
+import Pagination from '@/components/ui/elements/filters/pagination/Pagination'
 import Filters from '@/components/ui/templates/filters/Filters'
 import ManageSidebar from '@/components/ui/templates/manage/sidebar/ManageSidebar'
 import { useManageProducts } from '@/hooks/manage/products/useManageProducts'
 import { useFilters } from '@/hooks/other/filters/useFilters'
+import type { IPageSearchParam } from '@/shared/interfaces/param/param.interface'
 import { ListPlus } from 'lucide-react'
 import type { FC } from 'react'
 import globalStyles from '../ManagePages.module.scss'
 import styles from './ManageProducts.module.scss'
 
-const ManageProducts: FC = () => {
+const ManageProducts: FC<IPageSearchParam> = ({ searchParams }) => {
 	const {
 		queryParams,
 		updateQueryFilters,
 		handleSearch,
 		searchTerm,
+		setQueryParams,
 		debounceSearch,
-	} = useFilters({ variant: 'products', place: 'manage' })
+	} = useFilters({ searchParams })
 	const {
-		data,
+		products,
+		count,
 		createProduct,
 		deleteProduct,
 		toggleProduct,
@@ -45,15 +49,13 @@ const ManageProducts: FC = () => {
 					</button>
 				</div>
 				<Filters
-					variant="products"
-					place="manage"
 					queryParams={queryParams}
 					updateQueryFilters={updateQueryFilters}
 				/>
-				{data?.products && data.products.products.length > 0 && (
+				{count > 0 && (
 					<div className={globalStyles.fill}>
 						<div className={styles.products}>
-							{data.products.products.map((product) => (
+							{products.map((product) => (
 								<Product
 									key={product.id}
 									className={styles.product}
@@ -83,11 +85,17 @@ const ManageProducts: FC = () => {
 								/>
 							))}
 						</div>
-						{/* <Pagination
-							changePage={(page) => updateQueryFilters('page', page.toString())}
-							currentPage={+queryParams.page}
-							numberPages={data.serials.length / +queryParams.perPage}
-						/> */}
+						{queryParams.page &&
+							queryParams.perPage &&
+							count > +queryParams.perPage && (
+								<Pagination
+									length={count}
+									page={+queryParams.page}
+									perPage={+queryParams.perPage}
+									setPagination={setQueryParams}
+									className={globalStyles.pagination}
+								/>
+							)}
 					</div>
 				)}
 			</div>

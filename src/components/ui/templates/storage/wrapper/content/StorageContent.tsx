@@ -55,7 +55,7 @@ const StorageContent: FC<IStorageContent> = ({
 							length={data.folderItems.count}
 							page={page}
 							perPage={perPage}
-							setProductsQuery={setStorageQuery as any}
+							setPagination={setStorageQuery}
 							className={styles.pagination}
 						/>
 					)}

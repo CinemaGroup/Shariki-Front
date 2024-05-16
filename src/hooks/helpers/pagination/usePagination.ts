@@ -1,15 +1,12 @@
-import type { ICatalogFiltersArguments } from '@/components/ui/templates/catalog/filters/interface/catalog-filters.interface'
-import type { Dispatch, SetStateAction } from 'react'
-
 export const usePagination = (
 	page: number,
 	length: number,
-	setProductsQuery: Dispatch<SetStateAction<ICatalogFiltersArguments>>
+	setPagination: any
 ) => {
 	const goToPreviousPage = () => {
 		if (page > 1) {
 			const previousPage = (page - 1).toString()
-			setProductsQuery((prev) => ({
+			setPagination((prev: object) => ({
 				...prev,
 				page: previousPage,
 			}))
@@ -19,7 +16,7 @@ export const usePagination = (
 	const goToNextPage = () => {
 		if (page < length) {
 			const nextPage = (page + 1).toString()
-			setProductsQuery((prev) => ({
+			setPagination((prev: object) => ({
 				...prev,
 				page: nextPage,
 			}))
@@ -27,7 +24,7 @@ export const usePagination = (
 	}
 
 	const goToPage = (pageNumber: number) => {
-		setProductsQuery((prev) => ({
+		setPagination((prev: object) => ({
 			...prev,
 			page: pageNumber.toString(),
 		}))

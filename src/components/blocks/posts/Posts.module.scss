@@ -28,19 +28,19 @@
 	}
 }
 .itemWrapper {
-	@apply w-full bg-white rounded-lg flex-col;
+	@apply w-full h-full bg-white rounded-lg flex flex-col;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
 }
 .preview {
 	@apply block relative rounded-t-lg z-1;
-	aspect-ratio: 1.44 / 1;
+	min-height: 255px;
 
 	> img {
 		@apply rounded-t-lg image-like-bg-cover;
 	}
 }
 .info {
-	@apply pt-3 px-5 pb-5;
+	@apply w-full h-full pt-3 px-5 pb-5 flex flex-col justify-between gap-5;
 }
 .terms {
 	@apply flex flex-wrap items-stretch gap-1.5 mb-5;
@@ -64,7 +64,7 @@
 	@apply font-light text-md-plus;
 }
 .link {
-	@apply block w-fit mx-auto mt-8 text-red-400 font-semibold underline underline-offset-4 up-hover;
+	@apply block w-fit mx-auto text-red-400 font-semibold underline underline-offset-4 up-hover;
 }
 .more {
 	@apply block w-fit mx-auto mt-5 text-3lg text-center bg-red-400 text-white font-semibold font-roboto-flex rounded-md-extra uppercase up-hover;

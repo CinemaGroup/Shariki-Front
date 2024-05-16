@@ -3,9 +3,9 @@ import {
 	useCharacteristicsQuery,
 	useCreateCharacteristicMutation,
 	useDeleteCharacteristicMutation,
+	useDuplicateCharacteristicMutation,
 	useToggleCharacteristicMutation,
 	type QueryInput,
-	useDuplicateCharacteristicMutation,
 } from '@/__generated__/output'
 import { ADMIN_EDITS } from '@/constants/url.constants'
 import { useRouter } from 'next/navigation'
@@ -24,14 +24,14 @@ export const useManageCharacteristics = (
 				searchTerm: debounceSearch,
 			},
 		},
-		fetchPolicy: "no-cache",
+		fetchPolicy: 'no-cache',
 		onError: (error) => {
 			toast.error(error.message)
 		},
 	})
 
 	const [createCharacteristic] = useCreateCharacteristicMutation({
-		fetchPolicy: "no-cache",
+		fetchPolicy: 'no-cache',
 		onCompleted: ({ createCharacteristic }) => {
 			toast.success('Характеристика успешно создана.')
 			push(ADMIN_EDITS.CHARACTERISTIC(createCharacteristic.id))
@@ -42,7 +42,7 @@ export const useManageCharacteristics = (
 	})
 
 	const [deleteCharacteristic] = useDeleteCharacteristicMutation({
-		fetchPolicy: "no-cache",
+		fetchPolicy: 'no-cache',
 		refetchQueries: [CharacteristicsDocument],
 		onCompleted: () => {
 			toast.success('Характеристика успешно удалена.')
@@ -53,7 +53,7 @@ export const useManageCharacteristics = (
 	})
 
 	const [toggleCharacteristic] = useToggleCharacteristicMutation({
-		fetchPolicy: "no-cache",
+		fetchPolicy: 'no-cache',
 		refetchQueries: [CharacteristicsDocument],
 		onCompleted: () => {
 			toast.success('Статус характеристики успешно обновлен.')
@@ -64,7 +64,7 @@ export const useManageCharacteristics = (
 	})
 
 	const [duplicateCharacteristic] = useDuplicateCharacteristicMutation({
-		fetchPolicy: "no-cache",
+		fetchPolicy: 'no-cache',
 		refetchQueries: [CharacteristicsDocument],
 		onCompleted: () => {
 			toast.success('Дубликат характеристики создан.')
@@ -75,10 +75,11 @@ export const useManageCharacteristics = (
 	})
 
 	return {
-		data,
+		characteristics: data?.characteristics.characteristics || [],
+		count: data?.characteristics.count || 0,
 		createCharacteristic,
 		deleteCharacteristic,
 		toggleCharacteristic,
-		duplicateCharacteristic
+		duplicateCharacteristic,
 	}
 }

@@ -2,10 +2,10 @@ import {
 	TypesDocument,
 	useCreateTypeMutation,
 	useDeleteTypeMutation,
+	useDuplicateTypeMutation,
 	useToggleTypeMutation,
 	useTypesQuery,
 	type QueryInput,
-	useDuplicateTypeMutation,
 } from '@/__generated__/output'
 import { ADMIN_EDITS } from '@/constants/url.constants'
 import { useRouter } from 'next/navigation'
@@ -24,14 +24,14 @@ export const useManageTypes = (
 				searchTerm: debounceSearch,
 			},
 		},
-		fetchPolicy: "no-cache",
+		fetchPolicy: 'no-cache',
 		onError: (error) => {
 			toast.error(error.message)
 		},
 	})
 
 	const [createType] = useCreateTypeMutation({
-		fetchPolicy: "no-cache",
+		fetchPolicy: 'no-cache',
 		onCompleted: ({ createType }) => {
 			toast.success('Модель успешно создана.')
 			push(ADMIN_EDITS.TYPE(createType.id))
@@ -42,7 +42,7 @@ export const useManageTypes = (
 	})
 
 	const [deleteType] = useDeleteTypeMutation({
-		fetchPolicy: "no-cache",
+		fetchPolicy: 'no-cache',
 		refetchQueries: [TypesDocument],
 		onCompleted: () => {
 			toast.success('Модель успешно удалена.')
@@ -53,7 +53,7 @@ export const useManageTypes = (
 	})
 
 	const [toggleType] = useToggleTypeMutation({
-		fetchPolicy: "no-cache",
+		fetchPolicy: 'no-cache',
 		refetchQueries: [TypesDocument],
 		onCompleted: () => {
 			toast.success('Статус Модели успешно обновлен.')
@@ -64,7 +64,7 @@ export const useManageTypes = (
 	})
 
 	const [duplicateType] = useDuplicateTypeMutation({
-		fetchPolicy: "no-cache",
+		fetchPolicy: 'no-cache',
 		refetchQueries: [TypesDocument],
 		onCompleted: () => {
 			toast.success('Дубликат Модели создан.')
@@ -75,10 +75,11 @@ export const useManageTypes = (
 	})
 
 	return {
-		data,
+		types: data?.types.types || [],
+		count: data?.types.count || 0,
 		createType,
 		deleteType,
 		toggleType,
-		duplicateType
+		duplicateType,
 	}
 }

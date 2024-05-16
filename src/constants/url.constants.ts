@@ -42,6 +42,7 @@ export const PUBLIC_PAGES = {
 	LOGIN: '/auth?type=login',
 	REGISTER: '/auth?type=register',
 	CATALOG: '/catalog',
+	SEARCH: (searchTerm: string) => `/catalog?searchTerm=${searchTerm}`,
 	CATEGORY: (slug: string) => `/category/${slug}`,
 	POST: (slug: string) => `/post/${slug}`,
 	PRODUCT: (slug: string) => `/product/${slug}`,
@@ -49,5 +50,5 @@ export const PUBLIC_PAGES = {
 	FOR_BUYERS: '/for-buyers',
 	ABOUT: '/about',
 	CONTACTS: '/contacts',
-	POSTS: '/posts'
+	POSTS: '/posts',
 }

@@ -12,7 +12,7 @@ export const useManageSelectCategories = (excludeName?: string) => {
 	})
 
 	return {
-		categories: data?.categories
+		categories: data?.categories.categories
 			.filter((category) => category.name !== excludeName)
 			.map(
 				(category): IOption => ({

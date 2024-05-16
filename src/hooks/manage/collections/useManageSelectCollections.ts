@@ -12,7 +12,7 @@ export const useManageSelectCollections = (excludeName?: string) => {
 	})
 
 	return {
-		collections: data?.collections
+		collections: data?.collections.collections
 			.filter((collection) => collection.name !== excludeName)
 			.map(
 				(collection): IOption => ({

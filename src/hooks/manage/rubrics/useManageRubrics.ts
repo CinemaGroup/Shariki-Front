@@ -75,7 +75,8 @@ export const useManageRubrics = (
 	})
 
 	return {
-		data,
+		rubrics: data?.rubrics.rubrics || [],
+		count: data?.rubrics.count || 0,
 		createRubric,
 		deleteRubric,
 		toggleRubric,

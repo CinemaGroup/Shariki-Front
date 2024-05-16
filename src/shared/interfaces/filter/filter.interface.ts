@@ -2,13 +2,9 @@ import type {
 	TypeCatalogFilters,
 	TypeQueryFilters,
 } from '@/shared/types/filter/filter.type'
+import type { IPageSearchParam } from '../param/param.interface'
 
-export interface IFilters {
-	variant: 'default' | 'products'
-	place: 'public' | 'manage'
-}
-
-export interface IQueryFilters extends IFilters {
+export interface IQueryFilters extends IPageSearchParam {
 	queryParams: TypeQueryFilters
 	updateQueryFilters: (key: string, value: string | null) => void
 }

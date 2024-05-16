@@ -3,9 +3,9 @@ import {
 	useCategoriesQuery,
 	useCreateCategoryMutation,
 	useDeleteCategoryMutation,
+	useDuplicateCategoryMutation,
 	useToggleCategoryMutation,
 	type QueryInput,
-	useDuplicateCategoryMutation,
 } from '@/__generated__/output'
 import { ADMIN_EDITS } from '@/constants/url.constants'
 import { useRouter } from 'next/navigation'
@@ -24,14 +24,14 @@ export const useManageCategories = (
 				searchTerm: debounceSearch,
 			},
 		},
-		fetchPolicy: "no-cache",
+		fetchPolicy: 'no-cache',
 		onError: (error) => {
 			toast.error(error.message)
 		},
 	})
 
 	const [createCategory] = useCreateCategoryMutation({
-		fetchPolicy: "no-cache",
+		fetchPolicy: 'no-cache',
 		onCompleted: ({ createCategory }) => {
 			toast.success('Категория успешно создана.')
 			push(ADMIN_EDITS.CATEGORY(createCategory.id))
@@ -42,7 +42,7 @@ export const useManageCategories = (
 	})
 
 	const [deleteCategory] = useDeleteCategoryMutation({
-		fetchPolicy: "no-cache",
+		fetchPolicy: 'no-cache',
 		refetchQueries: [CategoriesDocument],
 		onCompleted: () => {
 			toast.success('Категория успешно удалена.')
@@ -53,7 +53,7 @@ export const useManageCategories = (
 	})
 
 	const [toggleCategory] = useToggleCategoryMutation({
-		fetchPolicy: "no-cache",
+		fetchPolicy: 'no-cache',
 		refetchQueries: [CategoriesDocument],
 		onCompleted: () => {
 			toast.success('Статус категории успешно обновлен.')
@@ -64,7 +64,7 @@ export const useManageCategories = (
 	})
 
 	const [duplicateCategory] = useDuplicateCategoryMutation({
-		fetchPolicy: "no-cache",
+		fetchPolicy: 'no-cache',
 		refetchQueries: [CategoriesDocument],
 		onCompleted: () => {
 			toast.success('Дубликат категории создан.')
@@ -75,10 +75,11 @@ export const useManageCategories = (
 	})
 
 	return {
-		data,
+		categories: data?.categories.categories || [],
+		count: data?.categories.count || 0,
 		createCategory,
 		deleteCategory,
 		toggleCategory,
-		duplicateCategory
+		duplicateCategory,
 	}
 }

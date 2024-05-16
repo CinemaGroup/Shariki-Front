@@ -1,8 +1,11 @@
 query Tags($query: QueryInput!) {
 	tags(query: $query) {
-		id
-		name
-		slug
-		imagePath
+		tags {
+			id
+			name
+			slug
+			imagePath
+		}
+		count
 	}
 }

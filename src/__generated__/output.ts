@@ -30,10 +30,58 @@ export type AboutInput = {
   name: Scalars['String']['input'];
 };
 
+export type AllCategories = {
+  __typename?: 'AllCategories';
+  categories: Array<Category>;
+  count: Scalars['Int']['output'];
+};
+
+export type AllCharacteristics = {
+  __typename?: 'AllCharacteristics';
+  characteristics: Array<Characteristic>;
+  count: Scalars['Int']['output'];
+};
+
+export type AllCollections = {
+  __typename?: 'AllCollections';
+  collections: Array<Collection>;
+  count: Scalars['Int']['output'];
+};
+
+export type AllHolidays = {
+  __typename?: 'AllHolidays';
+  count: Scalars['Int']['output'];
+  holidays: Array<Holiday>;
+};
+
 export type AllPosts = {
   __typename?: 'AllPosts';
   count: Scalars['Int']['output'];
   posts: Array<Post>;
+};
+
+export type AllReviews = {
+  __typename?: 'AllReviews';
+  count: Scalars['Int']['output'];
+  reviews: Array<Review>;
+};
+
+export type AllRubrics = {
+  __typename?: 'AllRubrics';
+  count: Scalars['Int']['output'];
+  rubrics: Array<Rubric>;
+};
+
+export type AllTags = {
+  __typename?: 'AllTags';
+  count: Scalars['Int']['output'];
+  tags: Array<Tag>;
+};
+
+export type AllTypes = {
+  __typename?: 'AllTypes';
+  count: Scalars['Int']['output'];
+  types: Array<Type>;
 };
 
 export type AuthLoginInput = {
@@ -723,17 +771,17 @@ export type Query = {
   __typename?: 'Query';
   about: About;
   catalog: Catalog;
-  categories: Array<Category>;
+  categories: AllCategories;
   categoryById: Category;
   characteristicById: Characteristic;
-  characteristics: Array<Characteristic>;
+  characteristics: AllCharacteristics;
   collectionById: Collection;
-  collections: Array<Collection>;
+  collections: AllCollections;
   folderItems: StorageItem;
   folders: Array<FolderWithChild>;
   forBuyers: ForBuyers;
   holidayById: Holiday;
-  holidays: Array<Holiday>;
+  holidays: AllHolidays;
   postById: Post;
   postBySlug: Post;
   posts: AllPosts;
@@ -742,14 +790,14 @@ export type Query = {
   products: CatalogProduct;
   profile: ProfileResponse;
   reviewById: Review;
-  reviews: Array<Review>;
+  reviews: AllReviews;
   rubricById: Rubric;
-  rubrics: Array<Rubric>;
+  rubrics: AllRubrics;
   shippingAndPayment: ShippingAndPayment;
   tagById: Tag;
-  tags: Array<Tag>;
+  tags: AllTags;
   typeById: Type;
-  types: Array<Type>;
+  types: AllTypes;
   users: Array<User>;
 };
 
@@ -1482,7 +1530,7 @@ export type CategoriesQueryVariables = Exact<{
 }>;
 
 
-export type CategoriesQuery = { categories: Array<{ id: number, name: string, slug: string }> };
+export type CategoriesQuery = { categories: { count: number, categories: Array<{ id: number, name: string, slug: string }> } };
 
 export type CategoryByIdQueryVariables = Exact<{
   id: Scalars['Int']['input'];
@@ -1503,7 +1551,7 @@ export type CharacteristicsQueryVariables = Exact<{
 }>;
 
 
-export type CharacteristicsQuery = { characteristics: Array<{ id: number, name: string, slug: string, type: CharacteristicType }> };
+export type CharacteristicsQuery = { characteristics: { count: number, characteristics: Array<{ id: number, name: string, slug: string, type: CharacteristicType }> } };
 
 export type CollectionByIdQueryVariables = Exact<{
   id: Scalars['Int']['input'];
@@ -1517,7 +1565,7 @@ export type CollectionsQueryVariables = Exact<{
 }>;
 
 
-export type CollectionsQuery = { collections: Array<{ id: number, name: string, slug: string }> };
+export type CollectionsQuery = { collections: { count: number, collections: Array<{ id: number, name: string, slug: string }> } };
 
 export type HolidayByIdQueryVariables = Exact<{
   id: Scalars['Int']['input'];
@@ -1531,7 +1579,7 @@ export type HolidaysQueryVariables = Exact<{
 }>;
 
 
-export type HolidaysQuery = { holidays: Array<{ id: number, name: string, slug: string }> };
+export type HolidaysQuery = { holidays: { count: number, holidays: Array<{ id: number, name: string, slug: string }> } };
 
 export type AboutQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1603,7 +1651,7 @@ export type ReviewsQueryVariables = Exact<{
 }>;
 
 
-export type ReviewsQuery = { reviews: Array<{ id: number, author: string, content: string, photo: string }> };
+export type ReviewsQuery = { reviews: { count: number, reviews: Array<{ id: number, author: string, content: string, photo: string }> } };
 
 export type RubricByIdQueryVariables = Exact<{
   id: Scalars['Int']['input'];
@@ -1617,7 +1665,7 @@ export type RubricsQueryVariables = Exact<{
 }>;
 
 
-export type RubricsQuery = { rubrics: Array<{ id: number, name: string, slug: string }> };
+export type RubricsQuery = { rubrics: { count: number, rubrics: Array<{ id: number, name: string, slug: string }> } };
 
 export type GetFolderItemsQueryVariables = Exact<{
   folderPath: Scalars['String']['input'];
@@ -1644,7 +1692,7 @@ export type TagsQueryVariables = Exact<{
 }>;
 
 
-export type TagsQuery = { tags: Array<{ id: number, name: string, slug: string, imagePath: string }> };
+export type TagsQuery = { tags: { count: number, tags: Array<{ id: number, name: string, slug: string, imagePath: string }> } };
 
 export type TypeByIdQueryVariables = Exact<{
   id: Scalars['Int']['input'];
@@ -1658,7 +1706,7 @@ export type TypesQueryVariables = Exact<{
 }>;
 
 
-export type TypesQuery = { types: Array<{ id: number, name: string, iconPath: string }> };
+export type TypesQuery = { types: { count: number, types: Array<{ id: number, name: string, iconPath: string }> } };
 
 export type ProfileQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -3841,9 +3889,12 @@ export type CatalogQueryResult = Apollo.QueryResult<CatalogQuery, CatalogQueryVa
 export const CategoriesDocument = gql`
     query Categories($query: QueryCategoryInput!) {
   categories(query: $query) {
-    id
-    name
-    slug
+    categories {
+      id
+      name
+      slug
+    }
+    count
   }
 }
     `;
@@ -3969,10 +4020,13 @@ export type CharacteristicByIdQueryResult = Apollo.QueryResult<CharacteristicByI
 export const CharacteristicsDocument = gql`
     query Characteristics($query: QueryInput!) {
   characteristics(query: $query) {
-    id
-    name
-    slug
-    type
+    characteristics {
+      id
+      name
+      slug
+      type
+    }
+    count
   }
 }
     `;
@@ -4052,9 +4106,12 @@ export type CollectionByIdQueryResult = Apollo.QueryResult<CollectionByIdQuery, 
 export const CollectionsDocument = gql`
     query Collections($query: QueryInput!) {
   collections(query: $query) {
-    id
-    name
-    slug
+    collections {
+      id
+      name
+      slug
+    }
+    count
   }
 }
     `;
@@ -4134,9 +4191,12 @@ export type HolidayByIdQueryResult = Apollo.QueryResult<HolidayByIdQuery, Holida
 export const HolidaysDocument = gql`
     query Holidays($query: QueryInput!) {
   holidays(query: $query) {
-    id
-    name
-    slug
+    holidays {
+      id
+      name
+      slug
+    }
+    count
   }
 }
     `;
@@ -4759,10 +4819,13 @@ export type ReviewByIdQueryResult = Apollo.QueryResult<ReviewByIdQuery, ReviewBy
 export const ReviewsDocument = gql`
     query Reviews($query: QueryInput!) {
   reviews(query: $query) {
-    id
-    author
-    content
-    photo
+    reviews {
+      id
+      author
+      content
+      photo
+    }
+    count
   }
 }
     `;
@@ -4842,9 +4905,12 @@ export type RubricByIdQueryResult = Apollo.QueryResult<RubricByIdQuery, RubricBy
 export const RubricsDocument = gql`
     query Rubrics($query: QueryInput!) {
   rubrics(query: $query) {
-    id
-    name
-    slug
+    rubrics {
+      id
+      name
+      slug
+    }
+    count
   }
 }
     `;
@@ -5066,10 +5132,13 @@ export type TagByIdQueryResult = Apollo.QueryResult<TagByIdQuery, TagByIdQueryVa
 export const TagsDocument = gql`
     query Tags($query: QueryInput!) {
   tags(query: $query) {
-    id
-    name
-    slug
-    imagePath
+    tags {
+      id
+      name
+      slug
+      imagePath
+    }
+    count
   }
 }
     `;
@@ -5151,9 +5220,12 @@ export type TypeByIdQueryResult = Apollo.QueryResult<TypeByIdQuery, TypeByIdQuer
 export const TypesDocument = gql`
     query Types($query: QueryInput!) {
   types(query: $query) {
-    id
-    name
-    iconPath
+    types {
+      id
+      name
+      iconPath
+    }
+    count
   }
 }
     `;

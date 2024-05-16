@@ -9,25 +9,7 @@ export const HEADER_SOCIAL_DATA: ISocial = {
 				height: 30,
 				alt: 'VKontakte',
 			},
-			href: '/',
-		},
-		{
-			icon: {
-				src: '/images/icons/instagram.svg',
-				width: 26,
-				height: 26,
-				alt: 'Instagram',
-			},
-			href: '/',
-		},
-		{
-			icon: {
-				src: '/images/icons/ok.svg',
-				width: 25,
-				height: 25,
-				alt: 'Ok',
-			},
-			href: '/',
+			href: 'https://vk.com/vse_shary',
 		},
 	],
 }

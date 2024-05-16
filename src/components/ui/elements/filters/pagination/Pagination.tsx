@@ -12,13 +12,13 @@ const Pagination: FC<IPagination & IClassName> = ({
 	length,
 	page,
 	perPage,
+	setPagination,
 	className,
-	setProductsQuery,
 }) => {
 	const { goToPreviousPage, goToNextPage, goToPage } = usePagination(
 		page,
 		length,
-		setProductsQuery
+		setPagination
 	)
 
 	const totalPages = Math.ceil(length / perPage)

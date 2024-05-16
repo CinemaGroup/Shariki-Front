@@ -1,11 +1,11 @@
 import {
 	TagsDocument,
-	useTagsQuery,
 	useCreateTagMutation,
 	useDeleteTagMutation,
+	useDuplicateTagMutation,
+	useTagsQuery,
 	useToggleTagMutation,
 	type QueryInput,
-	useDuplicateTagMutation,
 } from '@/__generated__/output'
 import { ADMIN_EDITS } from '@/constants/url.constants'
 import { useRouter } from 'next/navigation'
@@ -24,14 +24,14 @@ export const useManageTags = (
 				searchTerm: debounceSearch,
 			},
 		},
-		fetchPolicy: "no-cache",
+		fetchPolicy: 'no-cache',
 		onError: (error) => {
 			toast.error(error.message)
 		},
 	})
 
 	const [createTag] = useCreateTagMutation({
-		fetchPolicy: "no-cache",
+		fetchPolicy: 'no-cache',
 		onCompleted: ({ createTag }) => {
 			toast.success('Метка успешно создана.')
 			push(ADMIN_EDITS.TAG(createTag.id))
@@ -42,7 +42,7 @@ export const useManageTags = (
 	})
 
 	const [deleteTag] = useDeleteTagMutation({
-		fetchPolicy: "no-cache",
+		fetchPolicy: 'no-cache',
 		refetchQueries: [TagsDocument],
 		onCompleted: () => {
 			toast.success('Метка успешно удалена.')
@@ -53,7 +53,7 @@ export const useManageTags = (
 	})
 
 	const [toggleTag] = useToggleTagMutation({
-		fetchPolicy: "no-cache",
+		fetchPolicy: 'no-cache',
 		refetchQueries: [TagsDocument],
 		onCompleted: () => {
 			toast.success('Статус метки успешно обновлен.')
@@ -64,7 +64,7 @@ export const useManageTags = (
 	})
 
 	const [duplicateTag] = useDuplicateTagMutation({
-		fetchPolicy: "no-cache",
+		fetchPolicy: 'no-cache',
 		refetchQueries: [TagsDocument],
 		onCompleted: () => {
 			toast.success('Дубликат метки создан.')
@@ -75,10 +75,11 @@ export const useManageTags = (
 	})
 
 	return {
-		data,
+		tags: data?.tags.tags || [],
+		count: data?.tags.count || 0,
 		createTag,
 		deleteTag,
 		toggleTag,
-		duplicateTag
+		duplicateTag,
 	}
 }

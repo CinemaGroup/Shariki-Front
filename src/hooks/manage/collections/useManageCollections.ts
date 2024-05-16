@@ -75,7 +75,8 @@ export const useManageCollections = (
 	})
 
 	return {
-		data,
+		collections: data?.collections.collections || [],
+		count: data?.collections.count || 0,
 		createCollection,
 		deleteCollection,
 		toggleCollection,

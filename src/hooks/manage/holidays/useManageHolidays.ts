@@ -1,11 +1,11 @@
 import {
 	HolidaysDocument,
-	type QueryInput,
 	useCreateHolidayMutation,
 	useDeleteHolidayMutation,
 	useDuplicateHolidayMutation,
 	useHolidaysQuery,
 	useToggleHolidayMutation,
+	type QueryInput,
 } from '@/__generated__/output'
 import { ADMIN_EDITS } from '@/constants/url.constants'
 import { useRouter } from 'next/navigation'
@@ -75,7 +75,8 @@ export const useManageHolidays = (
 	})
 
 	return {
-		data,
+		holidays: data?.holidays.holidays || [],
+		count: data?.holidays.count || 0,
 		createHoliday,
 		deleteHoliday,
 		toggleHoliday,

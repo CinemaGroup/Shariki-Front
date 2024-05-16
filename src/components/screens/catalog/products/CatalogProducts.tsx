@@ -12,7 +12,7 @@ const CatalogProducts: FC<ICatalogProducts> = ({
 	productsCount,
 	page,
 	perPage,
-	setProductsQuery,
+	setPagination
 }) => {
 	return (
 		<div className={styles.products}>
@@ -44,7 +44,7 @@ const CatalogProducts: FC<ICatalogProducts> = ({
 					length={productsCount}
 					page={+page}
 					perPage={+perPage}
-					setProductsQuery={setProductsQuery}
+					setPagination={setPagination}
 					className={styles.pagination}
 				/>
 			)}

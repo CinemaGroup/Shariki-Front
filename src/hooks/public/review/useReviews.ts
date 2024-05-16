@@ -8,6 +8,6 @@ export const useReviews = (query: QueryInput) => {
 	})
 
 	return {
-		data,
+		reviews: data?.reviews.reviews || [],
 	}
 }

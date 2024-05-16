@@ -1,14 +1,15 @@
 import { Sort, Status, useCatalogQuery } from '@/__generated__/output'
 import type { ICatalogFiltersArguments } from '@/components/ui/templates/catalog/filters/interface/catalog-filters.interface'
 import type { TypeSearchParams } from '@/shared/types/param/param.type'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export const useCatalog = (
 	searchParams?: TypeSearchParams,
 	categorySlug?: string
 ) => {
+	console.log(searchParams)
 	const [productsQuery, setProductsQuery] = useState<ICatalogFiltersArguments>({
-		page: '1',
+		page: searchParams?.page ? String(searchParams.page) : '1',
 		perPage: '18',
 		sort: Sort.Newest,
 		status: Status.Published,
@@ -25,6 +26,20 @@ export const useCatalog = (
 		countries: [],
 		tags: searchParams?.tag ? [searchParams.tag as string] : [],
 	})
+
+	useEffect(() => {
+		if (searchParams?.searchTerm) {
+			setProductsQuery((prevQuery) => ({
+				...prevQuery,
+				searchTerm: String(searchParams.searchTerm),
+			}))
+		} else {
+			setProductsQuery((prevQuery) => ({
+				...prevQuery,
+				searchTerm: '',
+			}))
+		}
+	}, [searchParams?.searchTerm])
 
 	const { data, error, loading } = useCatalogQuery({
 		fetchPolicy: 'no-cache',

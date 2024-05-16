@@ -12,7 +12,7 @@ export const useManageSelectTypes = () => {
 	})
 
 	return {
-		types: data?.types.map(
+		types: data?.types.types.map(
 			(type): IOption => ({
 				label: type.name,
 				value: type.id,

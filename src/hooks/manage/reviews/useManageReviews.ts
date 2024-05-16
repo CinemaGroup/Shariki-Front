@@ -75,7 +75,8 @@ export const useManageReviews = (
 	})
 
 	return {
-		data,
+		reviews: data?.reviews.reviews || [],
+		count: data?.reviews.count || 0,
 		createReview,
 		deleteReview,
 		toggleReview,

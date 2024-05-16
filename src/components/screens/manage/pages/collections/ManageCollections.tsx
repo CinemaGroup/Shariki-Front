@@ -6,21 +6,25 @@ import ManageSidebar from '@/components/ui/templates/manage/sidebar/ManageSideba
 import { ADMIN_EDITS } from '@/constants/url.constants'
 import { useManageCollections } from '@/hooks/manage/collections/useManageCollections'
 import { useFilters } from '@/hooks/other/filters/useFilters'
+import type { IPageSearchParam } from '@/shared/interfaces/param/param.interface'
 import { ListPlus } from 'lucide-react'
 import type { FC } from 'react'
 import globalStyles from '../ManagePages.module.scss'
 import styles from './ManageCollections.module.scss'
+import Pagination from '@/components/ui/elements/filters/pagination/Pagination'
 
-const ManageCollections: FC = () => {
+const ManageCollections: FC<IPageSearchParam> = ({ searchParams }) => {
 	const {
 		queryParams,
+		setQueryParams,
 		updateQueryFilters,
 		handleSearch,
 		searchTerm,
 		debounceSearch,
-	} = useFilters({ variant: 'default', place: 'manage' })
+	} = useFilters({ searchParams })
 	const {
-		data,
+		collections,
+		count,
 		createCollection,
 		deleteCollection,
 		toggleCollection,
@@ -46,15 +50,13 @@ const ManageCollections: FC = () => {
 					</button>
 				</div>
 				<Filters
-					variant="default"
-					place="manage"
 					queryParams={queryParams}
 					updateQueryFilters={updateQueryFilters}
 				/>
-				{data?.collections && data.collections.length > 0 && (
+				{count > 0 && (
 					<div className={globalStyles.fill}>
 						<div className={styles.collections}>
-							{data.collections.map((collection) => (
+							{collections.map((collection) => (
 								<div className={styles.collection} key={collection.id}>
 									<h2 className={styles.name}>{collection.name}</h2>
 									<ManageActions
@@ -85,6 +87,17 @@ const ManageCollections: FC = () => {
 								</div>
 							))}
 						</div>
+						{queryParams.page &&
+							queryParams.perPage &&
+							count > +queryParams.perPage && (
+								<Pagination
+									length={count}
+									page={+queryParams.page}
+									perPage={+queryParams.perPage}
+									setPagination={setQueryParams}
+									className={globalStyles.pagination}
+								/>
+							)}
 					</div>
 				)}
 			</div>

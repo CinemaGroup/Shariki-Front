@@ -1,29 +1,33 @@
 'use client'
 
 import Characteristic from '@/components/blocks/characteristic/Characteristic'
+import Pagination from '@/components/ui/elements/filters/pagination/Pagination'
 import Filters from '@/components/ui/templates/filters/Filters'
 import ManageSidebar from '@/components/ui/templates/manage/sidebar/ManageSidebar'
 import { useManageCharacteristics } from '@/hooks/manage/characteristics/useManageCharacteristics'
 import { useFilters } from '@/hooks/other/filters/useFilters'
+import type { IPageSearchParam } from '@/shared/interfaces/param/param.interface'
 import { ListPlus } from 'lucide-react'
 import type { FC } from 'react'
 import globalStyles from '../ManagePages.module.scss'
 import styles from './ManageCharacteristics.module.scss'
 
-const ManageCharacteristics: FC = () => {
+const ManageCharacteristics: FC<IPageSearchParam> = ({ searchParams }) => {
 	const {
 		queryParams,
+		setQueryParams,
 		updateQueryFilters,
 		handleSearch,
 		searchTerm,
 		debounceSearch,
-	} = useFilters({ variant: 'default', place: 'manage' })
+	} = useFilters({ searchParams })
 	const {
-		data,
+		characteristics,
+		count,
 		createCharacteristic,
 		deleteCharacteristic,
 		toggleCharacteristic,
-		duplicateCharacteristic
+		duplicateCharacteristic,
 	} = useManageCharacteristics(queryParams, debounceSearch)
 
 	return (
@@ -45,15 +49,13 @@ const ManageCharacteristics: FC = () => {
 					</button>
 				</div>
 				<Filters
-					variant="default"
-					place="manage"
 					queryParams={queryParams}
 					updateQueryFilters={updateQueryFilters}
 				/>
-				{data?.characteristics && data.characteristics.length > 0 && (
+				{count > 0 && (
 					<div className={globalStyles.fill}>
 						<div className={styles.characteristics}>
-							{data.characteristics.map((characteristic) => (
+							{characteristics.map((characteristic) => (
 								<Characteristic
 									key={characteristic.id}
 									className={styles.characteristic}
@@ -83,6 +85,17 @@ const ManageCharacteristics: FC = () => {
 								/>
 							))}
 						</div>
+						{queryParams.page &&
+							queryParams.perPage &&
+							count > +queryParams.perPage && (
+								<Pagination
+									length={count}
+									page={+queryParams.page}
+									perPage={+queryParams.perPage}
+									setPagination={setQueryParams}
+									className={globalStyles.pagination}
+								/>
+							)}
 					</div>
 				)}
 			</div>

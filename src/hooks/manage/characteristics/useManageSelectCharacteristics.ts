@@ -14,7 +14,7 @@ export const useManageSelectCharacteristics = () => {
 	})
 
 	return {
-		characteristics: data?.characteristics.map(
+		characteristics: data?.characteristics.characteristics.map(
 			(characteristic): IOption => ({
 				label: isHex(characteristic.name)
 					? `${CHARACTERISTIC_TYPES_TRANSLATE[characteristic.type]} -`

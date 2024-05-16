@@ -75,7 +75,8 @@ export const useManagePosts = (
 	})
 
 	return {
-		data,
+		posts: data?.posts.posts || [],
+		count: data?.posts.count || 0,
 		createPost,
 		deletePost,
 		togglePost,

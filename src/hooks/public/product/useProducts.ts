@@ -14,5 +14,8 @@ export const useProducts = (isPopular: boolean) => {
 		},
 	})
 
-	return { data }
+	return {
+		products: data?.products.products || [],
+		count: data?.products.count || 0,
+	}
 }

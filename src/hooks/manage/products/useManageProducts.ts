@@ -2,10 +2,10 @@ import {
 	ProductsDocument,
 	useCreateProductMutation,
 	useDeleteProductMutation,
+	useDuplicateProductMutation,
 	useProductsQuery,
 	useToggleProductMutation,
 	type QueryProductInput,
-	useDuplicateProductMutation,
 } from '@/__generated__/output'
 import { ADMIN_EDITS } from '@/constants/url.constants'
 import { useRouter } from 'next/navigation'
@@ -24,14 +24,14 @@ export const useManageProducts = (
 				searchTerm: debounceSearch,
 			},
 		},
-		fetchPolicy: "no-cache",
+		fetchPolicy: 'no-cache',
 		onError: (error) => {
 			toast.error(error.message)
 		},
 	})
 
 	const [createProduct] = useCreateProductMutation({
-		fetchPolicy: "no-cache",
+		fetchPolicy: 'no-cache',
 		onCompleted: ({ createProduct }) => {
 			toast.success('Продукт успешно создан.')
 			push(ADMIN_EDITS.PRODUCT(createProduct.id))
@@ -42,7 +42,7 @@ export const useManageProducts = (
 	})
 
 	const [deleteProduct] = useDeleteProductMutation({
-		fetchPolicy: "no-cache",
+		fetchPolicy: 'no-cache',
 		refetchQueries: [ProductsDocument],
 		onCompleted: () => {
 			toast.success('Продукт успешно удален.')
@@ -53,7 +53,7 @@ export const useManageProducts = (
 	})
 
 	const [toggleProduct] = useToggleProductMutation({
-		fetchPolicy: "no-cache",
+		fetchPolicy: 'no-cache',
 		refetchQueries: [ProductsDocument],
 		onCompleted: () => {
 			toast.success('Статус продукта успешно обновлен.')
@@ -64,7 +64,7 @@ export const useManageProducts = (
 	})
 
 	const [duplicateProduct] = useDuplicateProductMutation({
-		fetchPolicy: "no-cache",
+		fetchPolicy: 'no-cache',
 		refetchQueries: [ProductsDocument],
 		onCompleted: () => {
 			toast.success('Дубликат продукта создан.')
@@ -75,10 +75,11 @@ export const useManageProducts = (
 	})
 
 	return {
-		data,
+		products: data?.products.products || [],
+		count: data?.products.count || 0,
 		createProduct,
 		deleteProduct,
 		toggleProduct,
-		duplicateProduct
+		duplicateProduct,
 	}
 }

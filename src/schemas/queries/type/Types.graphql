@@ -1,7 +1,10 @@
 query Types($query: QueryInput!) {
 	types(query: $query) {
-		id
-		name
-		iconPath
+		types {
+			id
+			name
+			iconPath
+		}
+		count
 	}
 }

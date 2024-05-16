@@ -12,7 +12,7 @@ export const useManageSelectTags = () => {
 	})
 
 	return {
-		tags: data?.tags.map(
+		tags: data?.tags.tags.map(
 			(tag): IOption => ({
 				label: tag.name,
 				value: tag.id,

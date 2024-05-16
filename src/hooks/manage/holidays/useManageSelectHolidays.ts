@@ -12,7 +12,7 @@ export const useManageSelectHolidays = (excludeName?: string) => {
 	})
 
 	return {
-		holidays: data?.holidays
+		holidays: data?.holidays.holidays
 			.filter((holiday) => holiday.name !== excludeName)
 			.map(
 				(holiday): IOption => ({
