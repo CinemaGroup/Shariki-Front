@@ -1,6 +1,9 @@
 .advantages {
 	@apply flex items-center justify-between gap-7 text-gray-800 mb-7;
 }
+.heading {
+	@apply hidden mb-8;
+}
 .info {
 	@apply relative pl-5 w-full;
 	max-width: 925px;
@@ -16,6 +19,9 @@
 .infoText {
 	@apply text-lg w-full;
 	max-width: 675px;
+}
+.menu {
+	min-width: 680px;
 }
 .menuName {
 	@apply font-medium text-7lg mb-4;
@@ -47,4 +53,145 @@
 }
 .itemDescription {
 	@apply text-md;
+}
+
+@media (max-width: 1500px) {
+	.infoName {
+		@apply text-4lg;
+	}
+	.infoText {
+		font-size: 17px;
+	}
+	.menuName {
+		@apply text-6lg;
+	}
+	.item {
+		& > img {
+			max-width: 120px;
+		}
+
+		&:nth-child(2) > img {
+			max-width: 67px;
+			max-height: 120px;
+		}
+	}
+}
+
+@media (max-width: 1350px) {
+	.infoName {
+		@apply text-3lg;
+	}
+	.menuName {
+		@apply text-5lg;
+	}
+}
+
+@media (max-width: 1200px) {
+	.section {
+		@apply pb-8;
+	}
+	.advantages {
+		@apply flex-col-reverse mb-0;
+	}
+	.menu {
+		@apply min-w-full;
+	}
+	.list {
+		@apply justify-between;
+	}
+	.item {
+		max-width: calc(100% / 3 - 19px);
+	}
+	.menuName {
+		@apply text-center;
+	}
+	.info,
+	.infoText {
+		@apply max-w-full;
+	}
+	.info {
+		@apply pl-0;
+
+		&::before {
+			@apply content-none;
+		}
+	}
+	.infoText {
+		@apply relative pl-4;
+
+		&::before {
+			@apply absolute left-0 top-0 bottom-0 h-full w-0.5 bg-red-400;
+			content: '';
+		}
+	}
+	.advantages {
+		@apply gap-10;
+	}
+}
+
+@media (max-width: 800px) {
+	.menuName {
+		@apply text-3lg;
+	}
+	.list {
+		@apply gap-5;
+	}
+	.item {
+		max-width: calc(33.3333333333% - 14px);
+	}
+	.itemName {
+		@apply text-base;
+	}
+	.itemDescription {
+		font-size: 13px;
+	}
+	.infoName {
+		@apply text-2lg mb-3;
+	}
+	.infoText {
+		font-size: 15px;
+	}
+}
+
+@media (max-width: 600px) {
+	.heading {
+		@apply block;
+	}
+	.menuName {
+		@apply hidden;
+	}
+	.list {
+		@apply flex-col gap-6;
+	}
+	.item,
+	.itemName {
+		@apply max-w-full;
+	}
+	.item {
+		& > img {
+			max-width: 130px;
+		}
+	}
+	.item {
+		@apply max-w-full;
+	}
+	.advantages {
+		@apply gap-6;
+	}
+	.infoName {
+		@apply text-lg;
+	}
+	.infoText {
+		@apply text-md;
+	}
+}
+
+@media (max-width: 400px) {
+	.item > img {
+		max-width: 110px;
+	}
+	.item:nth-child(2) > img {
+		max-width: 70px;
+		max-height: 120px;
+	}
 }

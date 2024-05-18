@@ -4,7 +4,7 @@ import FilledImage from '@/components/ui/common/image/FilledImage'
 import { PUBLIC_PAGES } from '@/constants/url.constants'
 import { useSwiper } from '@/hooks/helpers/slider/useSwiper'
 import type { TypeColor } from '@/shared/types/color/color.type'
-import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import type { FC } from 'react'
 import 'swiper/css'
 import { Pagination } from 'swiper/modules'
@@ -13,16 +13,11 @@ import styles from '../../Products.module.scss'
 import type { IProductProps } from '../../interface/products.interface'
 
 const ProductImages: FC<IProductProps & TypeColor> = ({ product, color }) => {
-	const { push } = useRouter()
-	
 	const { setSwiper, setBeginning, setEnd } = useSwiper()
 	const images = color?.images || product.images
 
 	return (
-		<div
-			className={styles.slider}
-			onClick={() => push(PUBLIC_PAGES.PRODUCT(product.slug))}
-		>
+		<div className={styles.slider}>
 			<Swiper
 				className={styles.images}
 				modules={[Pagination]}
@@ -46,7 +41,9 @@ const ProductImages: FC<IProductProps & TypeColor> = ({ product, color }) => {
 			>
 				{images.map((image, index) => (
 					<SwiperSlide key={index} className={styles.image}>
-						<FilledImage src={image} alt={product.name} />
+						<Link href={PUBLIC_PAGES.PRODUCT(product.slug)}>
+							<FilledImage src={image} alt={product.name} />
+						</Link>
 					</SwiperSlide>
 				))}
 				<div id="imagesBullets" className={styles.dots}></div>

@@ -23,9 +23,8 @@ const MainSliderCard: FC<{ card: IMainSliderCard }> = ({ card }) => {
 				<StaticImage
 					className={styles.cardImage}
 					src={card.imagePath}
-					width={0}
-					height={0}
-					sizes="100vw"
+					width={card.imageWidth}
+					height={card.imageHeight}
 					alt={card.name}
 				/>
 			</li>

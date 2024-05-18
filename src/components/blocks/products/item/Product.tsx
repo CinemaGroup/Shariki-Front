@@ -7,7 +7,7 @@ import type { IManageActions } from '@/shared/interfaces/manage/manage.interface
 import cn from 'clsx'
 import { useState, type FC } from 'react'
 import styles from '../Products.module.scss'
-import type { IProductProps, IProductPropsWithVariant } from '../interface/products.interface'
+import type { IProductProps } from '../interface/products.interface'
 import ProductButtons from './buttons/ProductButtons'
 import ProductColors from './colors/ProductColors'
 import ProductImages from './images/ProductImages'

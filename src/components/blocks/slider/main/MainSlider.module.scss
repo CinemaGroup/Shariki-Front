@@ -1,11 +1,11 @@
 .slider {
-	@apply relative w-full flex flex-col items-end justify-between gap-0;
-	max-width: 1400px;
+	@apply relative flex flex-col items-end justify-between gap-0;
+	min-width: calc(100% - 500px);
 	background-color: #e6e6e6;
 	padding-top: 55px;
 }
 .sliderInner {
-	@apply flex items-center justify-between w-full;
+	@apply flex items-center justify-between gap-5 w-full;
 }
 .swiper {
 	@apply w-full h-full;
@@ -50,15 +50,10 @@
 	margin-left: 52px;
 }
 .preview {
-	@apply absolute;
-	width: 618px;
+	@apply absolute w-full flex items-end justify-end -z-1;
 	height: 619px;
 	top: -1px;
 	right: 45px;
-	display: flex;
-	align-items: flex-end;
-	justify-content: flex-end;
-	z-index: -1;
 }
 .heading {
 	@apply absolute top-2.5 font-roboto-serif text-8lg text-transparent h-0 uppercase;
@@ -156,5 +151,56 @@
 		&::after {
 			@apply text-white;
 		}
+	}
+}
+
+@media (max-width: 1800px) {
+	.left {
+		height: 680px;
+		max-width: 700px;
+	}
+	.heading {
+		font-size: 33px;
+	}
+	.preview {
+		top: -18px;
+	}
+	.sliderItem {
+		&:nth-child(1) .preview > img {
+			max-width: 460px;
+			margin-right: 20px;
+		}
+		&:nth-child(2) .preview > img {
+			margin-right: 52px;
+		}
+		&:nth-child(3) .preview > img {
+			max-width: 500px;
+		}
+		&:last-child .preview > img {
+			margin-right: 52px;
+		}
+	}
+	.text {
+		font-size: 19px;
+		margin-bottom: 11px;
+	}
+	.next,
+	.prev {
+		width: 60px;
+		height: 60px;
+
+		> img {
+			@apply w-11 h-11;
+		}
+	}
+	.number {
+		font-size: 83px;
+		height: 85px;
+	}
+	.bullet {
+		width: 30px;
+	}
+	.bulletActive {
+		width: 65px;
 	}
 }

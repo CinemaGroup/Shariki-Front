@@ -82,3 +82,10 @@
 		@apply text-red-400;
 	}
 }
+
+@media(max-width: 1800px) {
+	.cardName {
+		@apply text-lg;
+		min-width: 200px;
+	}
+}

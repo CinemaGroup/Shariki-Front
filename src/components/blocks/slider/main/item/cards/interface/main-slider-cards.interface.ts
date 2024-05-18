@@ -7,6 +7,8 @@ export interface IMainSliderCardPopup {
 export interface IMainSliderCard {
 	name: string
 	imagePath: string
+	imageWidth: number
+	imageHeight: number
 	popup: IMainSliderCardPopup
 }
 

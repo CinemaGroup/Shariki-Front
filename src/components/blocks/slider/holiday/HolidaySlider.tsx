@@ -46,9 +46,9 @@ const HolidaySlider: FC = () => {
 				<Swiper
 					className={styles.swiper}
 					modules={[Pagination, Autoplay]}
-					autoplay={{
-						delay: 5000,
-					}}
+					// autoplay={{
+					// 	delay: 5000,
+					// }}
 					spaceBetween={0}
 					slidesPerView={4}
 					slidesPerGroup={4}
@@ -66,6 +66,16 @@ const HolidaySlider: FC = () => {
 						setEnd(isEnd)
 					}}
 					direction="vertical"
+					breakpoints={{
+						1700: {
+							slidesPerView: 4,
+							slidesPerGroup: 4,
+						},
+						1400: {
+							slidesPerView: 2,
+							slidesPerGroup: 1,
+						},
+					}}
 				>
 					{HOLIDAYS_DATA.map((holiday, index) => (
 						<SwiperSlide key={index} className={styles.holiday}>

@@ -1,5 +1,6 @@
 .slider {
 	@apply relative w-full bg-gray-100 overflow-hidden;
+	min-width: 500px;
 }
 .swiper {
 	@apply h-full;
@@ -57,5 +58,11 @@
 		&::before {
 			@apply text-gray-base;
 		}
+	}
+}
+
+@media (max-width: 1700px) {
+	.slider {
+		height: 550px;
 	}
 }

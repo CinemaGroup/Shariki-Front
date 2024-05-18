@@ -5,6 +5,8 @@ export const MAIN_SLIDER_CARDS_DATA: IMainSliderCards = {
 		{
 			name: 'ФИГУРЫ ИЗ ШАРОВ',
 			imagePath: '/images/data/slider/cards/card-1.png',
+			imageWidth: 181,
+			imageHeight: 183,
 			popup: {
 				name: 'ФИГУРЫ ИЗ ВОЗДУШНЫХ ШАРОВ',
 				content:
@@ -15,6 +17,8 @@ export const MAIN_SLIDER_CARDS_DATA: IMainSliderCards = {
 		{
 			name: 'ФОТОЗОНЫ',
 			imagePath: '/images/data/slider/cards/card-2.png',
+			imageWidth: 180,
+			imageHeight: 196,
 			popup: {
 				name: 'ФОТОЗОНЫ',
 				content:
@@ -25,6 +29,8 @@ export const MAIN_SLIDER_CARDS_DATA: IMainSliderCards = {
 		{
 			name: 'ДОСТАВКА БУКЕТОВ',
 			imagePath: '/images/data/slider/cards/card-3.png',
+			imageWidth: 199,
+			imageHeight: 182,
 			popup: {
 				name: 'ДОСТАВКА БУКЕТОВ',
 				content:

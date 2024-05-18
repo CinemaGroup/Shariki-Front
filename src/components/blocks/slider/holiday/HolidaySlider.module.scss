@@ -303,3 +303,20 @@
 		}
 	}
 }
+
+@media (max-width: 1700px) {
+	.slider {
+		@apply h-full;
+	}
+	.fill {
+		@apply max-h-full h-full;
+	}
+	.swiper {
+		> div {
+			display: grid;
+			grid-template-columns: 1fr;
+			grid-template-rows: auto auto auto auto;
+			grid-auto-flow: column;
+		}
+	}
+}

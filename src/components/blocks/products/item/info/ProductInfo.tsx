@@ -3,17 +3,16 @@ import { useRouter } from 'next/navigation'
 import type { FC } from 'react'
 import styles from '../../Products.module.scss'
 import type { IProductInfo } from './interface/product-info.interface'
+import Link from 'next/link'
 
 const ProductInfo: FC<IProductInfo> = ({ product, price, oldPrice }) => {
-	const { push } = useRouter()
-
 	const filteredPrice = +price
 	const filteredOldPrice = oldPrice ? +oldPrice : null
 
 	return (
-		<div
+		<Link
 			className={styles.info}
-			onClick={() => push(PUBLIC_PAGES.PRODUCT(product.slug))}
+			href={PUBLIC_PAGES.PRODUCT(product.slug)}
 		>
 			{filteredOldPrice ? (
 				<div className={styles.salePriceBox}>
@@ -44,7 +43,7 @@ const ProductInfo: FC<IProductInfo> = ({ product, price, oldPrice }) => {
 				</div>
 			)}
 			<h3 className={styles.name}>{product.name}</h3>
-		</div>
+		</Link>
 	)
 }
 

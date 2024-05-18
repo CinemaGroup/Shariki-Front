@@ -1,18 +1,18 @@
 'use client'
 
+import '@/assets/styles/slider.scss'
 import SearchField from '@/components/ui/common/form/search-field/SearchField'
 import { useSwiper } from '@/hooks/helpers/slider/useSwiper'
+import cn from 'clsx'
 import { useState, type FC } from 'react'
 import 'swiper/css'
 import 'swiper/css/effect-fade'
-import '@/assets/styles/slider.scss'
 import { Autoplay, EffectFade, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import styles from './MainSlider.module.scss'
 import { MAIN_SLIDER_DATA } from './data/main-slider.data'
 import MainSliderItem from './item/MainSliderItem'
 import MainSliderCards from './item/cards/MainSliderCards'
-import cn from 'clsx'
 
 const MainSlider: FC = () => {
 	const { setSwiper, setBeginning, setEnd, beginning, end, prev, next } =
@@ -49,10 +49,7 @@ const MainSlider: FC = () => {
 					slideVisibleClass={styles.pickedSlide}
 				>
 					{MAIN_SLIDER_DATA.items.map((item, index) => (
-						<SwiperSlide
-							key={index}
-							className={styles.sliderItem}
-						>
+						<SwiperSlide key={index} className={styles.sliderItem}>
 							<MainSliderItem
 								number={index + 1}
 								isBeginning={beginning}
