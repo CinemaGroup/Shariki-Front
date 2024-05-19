@@ -29,10 +29,11 @@
 }
 .preview {
 	@apply relative w-full;
-	height: 80px;
+	height: 150px;
 
 	> img {
-		@apply object-contain;
+		@apply image-like-bg-cover absolute left-0 top-0 bottom-0 right-0 rounded-sm;
+		z-index: 0 !important;
 	}
 }
 .info {

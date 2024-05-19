@@ -44,6 +44,10 @@
 .left {
 	@apply relative p-7;
 	min-width: 600px;
+
+	> img {
+		@apply image-like-bg-cover absolute left-0 top-0 bottom-0 right-0;
+	}
 }
 .leftFill {
 	@apply relative w-full h-full rounded-md-extra border-white p-6;
@@ -83,7 +87,7 @@
 	}
 }
 
-@media(max-width: 1800px) {
+@media (max-width: 1800px) {
 	.cardName {
 		@apply text-lg;
 		min-width: 200px;

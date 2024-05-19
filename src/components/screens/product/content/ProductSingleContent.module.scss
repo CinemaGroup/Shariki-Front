@@ -53,7 +53,7 @@
 	height: 91px;
 
 	> img {
-		@apply rounded-sm-extra object-cover object-center;
+		@apply rounded-sm-extra image-like-bg-cover absolute left-0 top-0 bottom-0 right-0;
 	}
 }
 .center {
@@ -63,7 +63,7 @@
 	@apply relative aspect-square;
 }
 .mainImage {
-	@apply rounded-sm-extra image-like-bg-cover;
+	@apply rounded-sm-extra image-like-bg-cover absolute left-0 top-0 bottom-0 right-0;
 }
 .thumbLine {
 	@apply bg-gray-300 transition-colors;

@@ -1,19 +1,15 @@
 import { PUBLIC_PAGES } from '@/constants/url.constants'
-import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import type { FC } from 'react'
 import styles from '../../Products.module.scss'
 import type { IProductInfo } from './interface/product-info.interface'
-import Link from 'next/link'
 
 const ProductInfo: FC<IProductInfo> = ({ product, price, oldPrice }) => {
 	const filteredPrice = +price
 	const filteredOldPrice = oldPrice ? +oldPrice : null
 
 	return (
-		<Link
-			className={styles.info}
-			href={PUBLIC_PAGES.PRODUCT(product.slug)}
-		>
+		<Link className={styles.info} href={PUBLIC_PAGES.PRODUCT(product.slug)}>
 			{filteredOldPrice ? (
 				<div className={styles.salePriceBox}>
 					<div className={styles.newPriceBox}>

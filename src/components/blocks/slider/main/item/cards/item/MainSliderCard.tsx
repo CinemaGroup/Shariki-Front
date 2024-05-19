@@ -1,4 +1,3 @@
-import FilledImage from '@/components/ui/common/image/FilledImage'
 import StaticImage from '@/components/ui/common/image/StaticImage'
 import Modal from '@/components/ui/templates/modal/Modal'
 import Link from 'next/link'
@@ -31,7 +30,12 @@ const MainSliderCard: FC<{ card: IMainSliderCard }> = ({ card }) => {
 			{isShow && (
 				<Modal className={styles.popup} closeModal={() => setIsShow(false)}>
 					<div className={styles.left}>
-						<FilledImage src={card.popup.imagePath} alt={card.name} />
+						<StaticImage
+							src={card.popup.imagePath}
+							width={600}
+							height={600}
+							alt={card.name}
+						/>
 						<div className={styles.leftFill}>
 							<div className={styles.icon}>
 								<StaticImage
@@ -50,7 +54,7 @@ const MainSliderCard: FC<{ card: IMainSliderCard }> = ({ card }) => {
 							dangerouslySetInnerHTML={{ __html: card.popup.content }}
 						/>
 						<div className={styles.bottom}>
-							Посмотреть альбом «цветы. фигуры. фотозоны » можно по ссылке: {' '}
+							Посмотреть альбом «цветы. фигуры. фотозоны » можно по ссылке:{' '}
 							<Link href="https://disk.yandex.ru/a/FIqKuVEsBYql1g">
 								https://disk.yandex.ru/a/FIqKuVEsBYql1g
 							</Link>

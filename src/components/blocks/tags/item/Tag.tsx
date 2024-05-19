@@ -1,5 +1,3 @@
-'use client'
-
 import StaticImage from '@/components/ui/common/image/StaticImage'
 import ManageActions from '@/components/ui/elements/manage/actions/ManageActions'
 import { ADMIN_EDITS, PUBLIC_PAGES } from '@/constants/url.constants'
@@ -7,7 +5,7 @@ import type { IClassName } from '@/shared/interfaces/class-name/class-name.inter
 import type { IManageActions } from '@/shared/interfaces/manage/manage.interface'
 import type { TypeTag } from '@/shared/types/tag/tag.type'
 import cn from 'clsx'
-import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import type { FC } from 'react'
 import styles from '../Tags.module.scss'
 
@@ -19,12 +17,10 @@ const Tag: FC<TypeTag & IClassName & IManageActions> = ({
 	tag,
 	className,
 }) => {
-	const { push } = useRouter()
-
 	return (
 		<li className={cn(styles.item, className && className)}>
-			<div
-				onClick={() => push(`${PUBLIC_PAGES.CATALOG}?tag=${tag.slug}`)}
+			<Link
+				href={`${PUBLIC_PAGES.CATALOG}?tag=${tag.slug}`}
 				className={styles.link}
 			>
 				<div className={styles.images}>
@@ -44,7 +40,7 @@ const Tag: FC<TypeTag & IClassName & IManageActions> = ({
 					/>
 				</div>
 				<h3 className={styles.name}>{tag.name}</h3>
-			</div>
+			</Link>
 			<ManageActions
 				place={place}
 				deleteHandler={deleteHandler}

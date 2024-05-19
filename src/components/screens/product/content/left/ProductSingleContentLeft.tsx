@@ -1,4 +1,3 @@
-import FilledImage from '@/components/ui/common/image/FilledImage'
 import StaticImage from '@/components/ui/common/image/StaticImage'
 import type { ICurrentProduct } from '@/shared/interfaces/product/product.interface'
 import type { TypeColor } from '@/shared/types/color/color.type'
@@ -42,7 +41,12 @@ const ProductSingleContentLeft: FC<
 						onClick={() => goTo(index)}
 					>
 						<div className={styles.thumbPreview}>
-							<FilledImage src={image} alt={product.name} />
+							<StaticImage
+								src={image}
+								width={100}
+								height={100}
+								alt={product.name}
+							/>
 						</div>
 						<span className={styles.thumbLine}></span>
 					</button>

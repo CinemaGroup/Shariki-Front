@@ -1,3 +1,4 @@
+import StaticImage from '@/components/ui/common/image/StaticImage'
 import type { ICurrentProduct } from '@/shared/interfaces/product/product.interface'
 import type { TypeColor } from '@/shared/types/color/color.type'
 import cn from 'clsx'
@@ -7,7 +8,6 @@ import { Navigation } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import styles from '../ProductSingleContent.module.scss'
 import type { IProductSingleContentCenter } from './interface/product-single-content-center.interface'
-import FilledImage from '@/components/ui/common/image/FilledImage'
 
 const ProductSingleContentCenter: FC<
 	ICurrentProduct & TypeColor & IProductSingleContentCenter
@@ -33,9 +33,11 @@ const ProductSingleContentCenter: FC<
 			>
 				{images.map((image, index) => (
 					<SwiperSlide key={index} className={styles.image}>
-						<FilledImage
+						<StaticImage
 							className={styles.mainImage}
 							src={image}
+							width={450}
+							height={450}
 							alt={product.name}
 						/>
 					</SwiperSlide>

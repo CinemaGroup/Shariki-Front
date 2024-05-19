@@ -1,11 +1,9 @@
-'use client'
-
 import StaticImage from '@/components/ui/common/image/StaticImage'
 import { PUBLIC_PAGES } from '@/constants/url.constants'
 import type { IClassName } from '@/shared/interfaces/class-name/class-name.interface'
 import type { TypeHoliday } from '@/shared/types/holiday/holiday.type'
 import cn from 'clsx'
-import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import type { FC } from 'react'
 import styles from './Holiday.module.scss'
 
@@ -13,12 +11,10 @@ const Holiday: FC<{ holiday: TypeHoliday } & IClassName> = ({
 	holiday,
 	className,
 }) => {
-	const { push } = useRouter()
-
 	return (
-		<div
+		<Link
 			className={cn(styles.item, className && className)}
-			onClick={() => push(`${PUBLIC_PAGES.CATALOG}?holiday=${holiday.slug}`)}
+			href={`${PUBLIC_PAGES.CATALOG}?holiday=${holiday.slug}`}
 		>
 			<div className={styles.card}>
 				<StaticImage
@@ -64,7 +60,7 @@ const Holiday: FC<{ holiday: TypeHoliday } & IClassName> = ({
 					/>
 				</div>
 			</div>
-		</div>
+		</Link>
 	)
 }
 

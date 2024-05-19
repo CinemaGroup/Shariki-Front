@@ -1,10 +1,10 @@
+import StaticImage from '@/components/ui/common/image/StaticImage'
 import { useStorageActions } from '@/hooks/manage/storage/useStorageActions'
 import { formatDate } from '@/utils/formats/other/format-date.util'
 import { Check, X } from 'lucide-react'
 import type { FC } from 'react'
 import styles from './StorageFiles.module.scss'
 import type { IStorageFiles } from './interface/storage-files.interface'
-import FilledImage from '@/components/ui/common/image/FilledImage'
 
 const StorageFiles: FC<IStorageFiles> = ({
 	files,
@@ -28,7 +28,12 @@ const StorageFiles: FC<IStorageFiles> = ({
 						onClick={() => onFileSelect(`/${file.path}`)}
 					>
 						<div className={styles.preview}>
-							<FilledImage src={`/${file.path}`} alt={file.name} />
+							<StaticImage
+								src={`/${file.path}`}
+								width={150}
+								height={150}
+								alt={file.name}
+							/>
 						</div>
 						<span>{file.name}</span>
 						<div className={styles.info}>

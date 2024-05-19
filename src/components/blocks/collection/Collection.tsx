@@ -1,11 +1,9 @@
-'use client'
-
 import StaticImage from '@/components/ui/common/image/StaticImage'
 import { PUBLIC_PAGES } from '@/constants/url.constants'
 import type { IClassName } from '@/shared/interfaces/class-name/class-name.interface'
 import type { TypeCollection } from '@/shared/types/collection/collection.interface'
 import cn from 'clsx'
-import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import type { FC } from 'react'
 import styles from './Collection.module.scss'
 
@@ -13,14 +11,10 @@ const Collection: FC<{ collection: TypeCollection } & IClassName> = ({
 	collection,
 	className,
 }) => {
-	const { push } = useRouter()
-
 	return (
-		<div
+		<Link
 			className={cn(styles.item, className && className)}
-			onClick={() =>
-				push(`${PUBLIC_PAGES.CATALOG}?collection=${collection.slug}`)
-			}
+			href={`${PUBLIC_PAGES.CATALOG}?collection=${collection.slug}`}
 		>
 			<div className={styles.card}>
 				<StaticImage
@@ -57,7 +51,7 @@ const Collection: FC<{ collection: TypeCollection } & IClassName> = ({
 					/>
 				</div>
 			</div>
-		</div>
+		</Link>
 	)
 }
 

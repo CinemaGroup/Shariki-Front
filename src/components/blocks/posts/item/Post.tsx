@@ -1,4 +1,4 @@
-import FilledImage from '@/components/ui/common/image/FilledImage'
+import StaticImage from '@/components/ui/common/image/StaticImage'
 import ManageActions from '@/components/ui/elements/manage/actions/ManageActions'
 import { ADMIN_EDITS, PUBLIC_PAGES } from '@/constants/url.constants'
 import type { IClassName } from '@/shared/interfaces/class-name/class-name.interface'
@@ -22,7 +22,12 @@ const Post: FC<IPost & IManageActions & IClassName> = ({
 		<div className={cn(styles.item, className && className)}>
 			<div className={styles.itemWrapper}>
 				<Link className={styles.preview} href={PUBLIC_PAGES.POST(post.slug)}>
-					<FilledImage src={post.poster} alt={post.name} />
+					<StaticImage
+						src={post.poster}
+						width={400}
+						height={300}
+						alt={post.name}
+					/>
 				</Link>
 				<div className={styles.info}>
 					<Link className={styles.fill} href={PUBLIC_PAGES.POST(post.slug)}>

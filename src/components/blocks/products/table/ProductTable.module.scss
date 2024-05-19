@@ -21,9 +21,15 @@
 .info {
 	@apply relative;
 }
-.slider {
+.preview {
 	min-width: 160px;
+	min-height: 160px;
 	max-width: 160px;
+	max-height: 160px;
+
+	> img {
+		@apply w-full h-full object-cover object-center rounded-sm;
+	}
 }
 .types {
 	@apply flex flex-col gap-2;
@@ -189,21 +195,6 @@
 .removeFromCart {
 	@apply items-center;
 }
-.slider {
-	@apply relative cursor-pointer;
-}
-.dots {
-	@apply w-full flex justify-center gap-1;
-}
-.bullet {
-	@apply w-full cursor-pointer;
-	max-width: 47px;
-	height: 3px;
-	background-color: #dad4d4;
-}
-.bulletActive {
-	@apply bg-red-500;
-}
 
 @media (max-width: 1700px) {
 	.buttons {
@@ -234,9 +225,11 @@
 	.salePriceBox {
 		@apply gap-1.5;
 	}
-	.slider {
+	.preview {
 		min-width: 150px;
+		min-height: 150px;
 		max-width: 150px;
+		max-height: 150px;
 	}
 	.images {
 		height: 170px;
@@ -318,9 +311,11 @@
 			max-height: 130px;
 		}
 	}
-	.slider {
+	.preview {
 		min-width: 130px;
+		min-height: 130px;
 		max-width: 130px;
+		max-height: 130px;
 	}
 	.leftFill {
 		@apply gap-4;

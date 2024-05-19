@@ -1,7 +1,7 @@
 'use client'
 
 import Container from '@/components/ui/common/container/Container'
-import FilledImage from '@/components/ui/common/image/FilledImage'
+import StaticImage from '@/components/ui/common/image/StaticImage'
 import Section from '@/components/ui/common/section/Section'
 import Loader from '@/components/ui/elements/loader/Loader'
 import { useCurrentPost } from '@/hooks/public/post/useCurrentPost'
@@ -28,7 +28,12 @@ const PostSingle: FC<{ slug: string }> = ({ slug }) => {
 							<MoveLeft /> ВЕРНУТЬСЯ
 						</button>
 						<div className={styles.poster}>
-							<FilledImage src={post.bigPoster} alt={post.name} />
+							<StaticImage
+								src={post.bigPoster}
+								width={1600}
+								height={530}
+								alt={post.name}
+							/>
 							<ul className={styles.terms}>
 								{post.rubrics.map((rubric) => (
 									<li className={styles.rubric}>{rubric.name}</li>

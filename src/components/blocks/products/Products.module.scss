@@ -54,25 +54,6 @@
 .newest {
 	@apply bg-green-400;
 }
-.images {
-	@apply flex-col items-center gap-4;
-	display: flex !important;
-	height: 220px;
-
-	> div:first-child {
-		max-height: 200px;
-	}
-}
-.image {
-	> a {
-		@apply inline-block w-full h-full;
-
-		> img {
-			@apply mx-auto h-full object-contain;
-			max-height: 200px;
-		}
-	}
-}
 .currentPriceBox,
 .oldPriceBox {
 	@apply flex items-end gap-5;
@@ -185,20 +166,13 @@
 .removeFromCart {
 	@apply items-center;
 }
-.slider {
-	@apply relative mb-4;
-}
-.dots {
-	@apply w-full flex justify-center gap-1;
-}
-.bullet {
-	@apply w-full cursor-pointer;
-	max-width: 47px;
-	height: 3px;
-	background-color: #dad4d4;
-}
-.bulletActive {
-	@apply bg-red-500;
+.preview {
+	@apply relative mb-4 flex items-end justify-center;
+	height: 150px;
+
+	> img {
+		@apply max-w-full h-full object-cover object-center rounded-sm;
+	}
 }
 
 @media (max-width: 1200px) {
@@ -283,11 +257,7 @@
 }
 
 @media (max-width: 420px) {
-	.images {
+	.preview {
 		height: 170px;
-
-		& > div:first-child {
-			max-height: 150px;
-		}
 	}
 }

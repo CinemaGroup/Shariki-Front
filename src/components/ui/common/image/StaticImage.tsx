@@ -15,7 +15,6 @@ const StaticImage: FC<IImage> = ({
 		<Image
 			quality={quality}
 			draggable={false}
-			priority
 			width={width}
 			height={height}
 			sizes={sizes}
