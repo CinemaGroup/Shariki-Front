@@ -108,12 +108,10 @@
 @media (max-width: 600px) {
 	.slider {
 		@apply min-w-full;
-		padding-bottom: 30px;
+		padding-bottom: 80px;
+		height: 475px;
 	}
 	.dots {
-		bottom: 30px;
-	}
-	.slider {
-		height: 425px;
+		bottom: 90px;
 	}
 }

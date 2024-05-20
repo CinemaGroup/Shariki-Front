@@ -12,7 +12,7 @@ export const CONTACTS_DATA: IContacts = {
 		{
 			icon: Smartphone,
 			name: 'Телефон',
-			content: '<a href="tel: 79264036635">+7 (926) 403 - 66 - 35</a>',
+			content: '<a href="tel: 79253919535">+7 (925) 391 - 95 - 35</a>',
 		},
 		{
 			icon: Mail,

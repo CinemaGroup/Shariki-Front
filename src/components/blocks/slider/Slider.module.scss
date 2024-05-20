@@ -37,6 +37,10 @@
 		@apply mb-0;
 	}
 	.catalog {
-		@apply hidden;
+		@apply bottom-10 text-base;
+		padding: 13px 20px 13px 16px;
+	}
+	.catalogIcon {
+		@apply min-w-4 gap-1 justify-center mt-0.5;
 	}
 }
