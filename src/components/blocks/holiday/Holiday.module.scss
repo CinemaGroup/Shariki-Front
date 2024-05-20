@@ -45,3 +45,35 @@
 		@apply h-full rounded-full bg-red-400 flex items-center justify-center aspect-square;
 	}
 }
+
+@media (max-width: 1050px) {
+	.item {
+		padding: 25px 12px 0px 27px;
+	}
+	.decor {
+		left: 27px;
+		top: 88px;
+	}
+	.card {
+		height: 65px;
+		width: 200px;
+
+		> img {
+			&:first-child {
+				max-width: 50px;
+			}
+			&:nth-child(2) {
+				@apply top-0 right-0;
+				max-width: 37px;
+			}
+		}
+	}
+	.tree {
+		right: 33px;
+		top: 25px;
+	}
+	.name {
+		@apply ml-4;
+		font-size: 19px;
+	}
+}

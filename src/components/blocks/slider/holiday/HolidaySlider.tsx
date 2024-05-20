@@ -1,7 +1,8 @@
 import StaticImage from '@/components/ui/common/image/StaticImage'
 import { useSwiper } from '@/hooks/helpers/slider/useSwiper'
 import type { FC } from 'react'
-import { Autoplay, Pagination } from 'swiper/modules'
+import 'swiper/css/grid'
+import { Autoplay, Grid, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import Holiday from '../../holiday/Holiday'
 import styles from './HolidaySlider.module.scss'
@@ -45,7 +46,7 @@ const HolidaySlider: FC = () => {
 				</div>
 				<Swiper
 					className={styles.swiper}
-					modules={[Pagination, Autoplay]}
+					modules={[Grid, Pagination, Autoplay]}
 					// autoplay={{
 					// 	delay: 5000,
 					// }}
@@ -71,9 +72,45 @@ const HolidaySlider: FC = () => {
 							slidesPerView: 4,
 							slidesPerGroup: 4,
 						},
-						1400: {
+						1600: {
 							slidesPerView: 2,
-							slidesPerGroup: 1,
+							slidesPerGroup: 2,
+							grid: {
+								rows: 4,
+								fill: 'column',
+							},
+						},
+						1050: {
+							slidesPerView: 2,
+							slidesPerGroup: 2,
+							grid: {
+								rows: 3,
+								fill: 'column',
+							},
+						},
+						700: {
+							slidesPerView: 2,
+							slidesPerGroup: 2,
+							grid: {
+								rows: 3,
+								fill: 'column',
+							},
+						},
+						600: {
+							slidesPerView: 2,
+							slidesPerGroup: 2,
+							grid: {
+								rows: 2,
+								fill: 'column',
+							},
+						},
+						0: {
+							slidesPerView: 2,
+							slidesPerGroup: 2,
+							grid: {
+								rows: 1,
+								fill: 'column',
+							},
 						},
 					}}
 				>

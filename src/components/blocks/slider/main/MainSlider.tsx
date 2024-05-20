@@ -2,6 +2,7 @@
 
 import '@/assets/styles/slider.scss'
 import SearchField from '@/components/ui/common/form/search-field/SearchField'
+import Heading from '@/components/ui/common/heading/Heading'
 import { useSwiper } from '@/hooks/helpers/slider/useSwiper'
 import cn from 'clsx'
 import { useState, type FC } from 'react'
@@ -62,6 +63,7 @@ const MainSlider: FC = () => {
 					))}
 				</Swiper>
 				<div className={styles.right}>
+					<Heading className={styles.mobileHeading}>УСЛУГИ</Heading>
 					<MainSliderCards />
 				</div>
 			</div>

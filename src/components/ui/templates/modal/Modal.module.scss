@@ -10,9 +10,10 @@
 	animation-name: windowTransform;
 	animation-fill-mode: forwards;
 	animation-duration: 700ms;
+	max-height: 90vh;
 }
 .close {
-	@apply absolute right-6 top-6;
+	@apply absolute z-1 right-6 top-6;
 
 	> svg {
 		@apply w-4 h-4 text-gray-600/90;

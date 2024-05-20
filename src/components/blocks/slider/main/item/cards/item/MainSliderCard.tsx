@@ -29,35 +29,37 @@ const MainSliderCard: FC<{ card: IMainSliderCard }> = ({ card }) => {
 			</li>
 			{isShow && (
 				<Modal className={styles.popup} closeModal={() => setIsShow(false)}>
-					<div className={styles.left}>
-						<StaticImage
-							src={card.popup.imagePath}
-							width={600}
-							height={600}
-							alt={card.name}
-						/>
-						<div className={styles.leftFill}>
-							<div className={styles.icon}>
-								<StaticImage
-									src="/images/other/slider/card-popup-icon.png"
-									width={45}
-									height={47}
-									alt={card.name}
-								/>
+					<div className={styles.wrapper}>
+						<div className={styles.left}>
+							<StaticImage
+								src={card.popup.imagePath}
+								width={600}
+								height={600}
+								alt={card.name}
+							/>
+							<div className={styles.leftFill}>
+								<div className={styles.icon}>
+									<StaticImage
+										src="/images/other/slider/card-popup-icon.png"
+										width={45}
+										height={47}
+										alt={card.name}
+									/>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div className={styles.right}>
-						<h2 className={styles.title}>{card.popup.name}</h2>
-						<div
-							className={styles.text}
-							dangerouslySetInnerHTML={{ __html: card.popup.content }}
-						/>
-						<div className={styles.bottom}>
-							Посмотреть альбом «цветы. фигуры. фотозоны » можно по ссылке:{' '}
-							<Link href="https://disk.yandex.ru/a/FIqKuVEsBYql1g">
-								https://disk.yandex.ru/a/FIqKuVEsBYql1g
-							</Link>
+						<div className={styles.right}>
+							<h2 className={styles.title}>{card.popup.name}</h2>
+							<div
+								className={styles.text}
+								dangerouslySetInnerHTML={{ __html: card.popup.content }}
+							/>
+							<div className={styles.bottom}>
+								Посмотреть альбом «цветы. фигуры. фотозоны » можно по ссылке:{' '}
+								<Link href="https://disk.yandex.ru/a/FIqKuVEsBYql1g">
+									https://disk.yandex.ru/a/FIqKuVEsBYql1g
+								</Link>
+							</div>
 						</div>
 					</div>
 				</Modal>

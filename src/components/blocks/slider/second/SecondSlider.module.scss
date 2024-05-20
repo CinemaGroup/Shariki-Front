@@ -63,6 +63,57 @@
 
 @media (max-width: 1700px) {
 	.slider {
-		height: 550px;
+		height: 580px;
+		padding-bottom: 70px;
+	}
+	.dots {
+		bottom: 60px;
+	}
+}
+
+@media (max-width: 1050px) {
+	.slider {
+		height: 470px;
+		padding-bottom: 70px;
+	}
+	.dots {
+		bottom: 60px;
+	}
+	.dots {
+		@apply gap-4;
+		bottom: 60px;
+	}
+	.bullet {
+		@apply text-md-plus;
+		width: 76px;
+		height: 2px;
+	}
+	.bulletActive {
+		height: 4px;
+
+		&:first-child {
+			width: 103px;
+		}
+
+		&:last-child {
+			width: 103px;
+		}
+
+		&::before {
+			@apply text-2lg text-gray-base;
+		}
+	}
+}
+
+@media (max-width: 600px) {
+	.slider {
+		@apply min-w-full;
+		padding-bottom: 30px;
+	}
+	.dots {
+		bottom: 30px;
+	}
+	.slider {
+		height: 425px;
 	}
 }
