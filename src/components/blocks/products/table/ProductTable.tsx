@@ -32,7 +32,7 @@ const ProductTable: FC<IProductProps & IClassName> = ({
 				color={color}
 				setColor={setColor}
 			/>
-			<ProductTableRight product={product} />
+			<ProductTableRight product={product} color={color?.color} size={size?.size} />
 		</div>
 	)
 }

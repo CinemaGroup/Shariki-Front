@@ -2,4 +2,5 @@ import type { IImage } from '@/components/ui/common/image/interface/image.interf
 
 export interface IAddToCart {
 	icon: IImage
+	count: number
 }

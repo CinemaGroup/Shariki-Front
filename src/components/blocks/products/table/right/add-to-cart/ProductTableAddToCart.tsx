@@ -6,15 +6,16 @@ import { useCartStore } from '@/store/cart-store'
 import cn from 'clsx'
 import { Trash2 } from 'lucide-react'
 import type { FC } from 'react'
+import type {
+	IProductProps,
+	IProductSelected,
+} from '../../../interface/products.interface'
 import styles from '../../ProductTable.module.scss'
-import type { IProductProps } from '../../../interface/products.interface'
 import type { IAddToCart } from './interface/add-to-cart.interface'
 
-const ProductTableAddToCart: FC<IProductProps & IClassName & IAddToCart> = ({
-	product,
-	className,
-	icon,
-}) => {
+const ProductTableAddToCart: FC<
+	IProductProps & IClassName & IAddToCart & IProductSelected
+> = ({ product, className, icon, count, color, size }) => {
 	const { toggle, isExists } = useCartStore()
 
 	return (
@@ -26,7 +27,7 @@ const ProductTableAddToCart: FC<IProductProps & IClassName & IAddToCart> = ({
 				},
 				className && className
 			)}
-			onClick={() => toggle(product)}
+			onClick={() => toggle(product, count, color, size)}
 		>
 			{isExists(product.id) ? (
 				<>
