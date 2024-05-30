@@ -10,6 +10,7 @@ export const ADMIN_PAGES = {
 	HOLIDAYS: '/manage/holidays',
 	COLLECTIONS: '/manage/collections',
 	REVIEWS: '/manage/reviews',
+	ORDERS: '/manage/orders',
 }
 
 export const ADMIN_EDITS = {
@@ -31,6 +32,10 @@ export const ADMIN_EDITS = {
 	SHIPPING_AND_PAYMENT: `${ADMIN_PAGES.HOME}/shipping-and-payment/edit`,
 	FOR_BUYERS: `${ADMIN_PAGES.HOME}/for-buyers/edit`,
 	ABOUT: `${ADMIN_PAGES.HOME}/about/edit`,
+}
+
+export const ADMIN_VIEWS = {
+	ORDER: (orderId: number) => `${ADMIN_PAGES.HOME}/order/view/${orderId}`,
 }
 
 export const USER_PAGES = {

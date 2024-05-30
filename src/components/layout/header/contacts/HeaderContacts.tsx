@@ -14,8 +14,8 @@ const HeaderContacts: FC<{ variant: 'burger' | 'main' }> = ({ variant }) => {
 			})}
 		>
 			<li className={styles.item}>
-				<Link href="tel: 79253919535" className={styles.link}>
-					+7 925 391 95 35
+				<Link href="tel: 79774404060" className={styles.link}>
+					+7 (977) 440-40-60
 				</Link>
 			</li>
 			<li className={styles.item}>

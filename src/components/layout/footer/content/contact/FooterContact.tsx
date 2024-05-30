@@ -7,8 +7,8 @@ const FooterContact: FC = () => {
 	return (
 		<div className={styles.contact}>
 			<h3 className={styles.title}>Нужна помощь?</h3>
-			<Link href="tel: 79253919535" className={styles.phone}>
-				+7 925 391 95 35
+			<Link href="tel: 79774404060" className={styles.phone}>
+				+7 (977) 440-40-60
 			</Link>
 			<p className={styles.workdays}>Каждый день с 9:00 до 18:00</p>
 			<FooterCards />

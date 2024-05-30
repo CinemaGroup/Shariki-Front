@@ -55,5 +55,9 @@ export const MANAGE_MENU_DATA: IMenu = {
 			label: 'О компании',
 			href: `${ADMIN_EDITS.ABOUT}`,
 		},
+		{
+			label: 'Заказы',
+			href: `${ADMIN_PAGES.ORDERS}`,
+		},
 	],
 }

@@ -5,12 +5,17 @@ import CartBtn from '@/components/ui/elements/cart-btn/CartBtn'
 import { PUBLIC_PAGES } from '@/constants/url.constants'
 import { Menu } from 'lucide-react'
 import Link from 'next/link'
-import { useState, type FC } from 'react'
+import { useEffect, useState, type FC } from 'react'
 import Burger from '../burger/Burger'
 import styles from './HeaderButtons.module.scss'
 
 const HeaderButtons: FC = () => {
 	const [isShow, setIsShow] = useState(false)
+	const [isHydrated, setIsHydrated] = useState(false)
+
+	useEffect(() => {
+		setIsHydrated(true)
+	}, [])
 
 	return (
 		<ul className={styles.list}>
@@ -26,7 +31,7 @@ const HeaderButtons: FC = () => {
 				</Link>
 			</li>
 			<li className={styles.item}>
-				<CartBtn className={styles.cart} />
+				{isHydrated && <CartBtn className={styles.cart} />}
 			</li>
 			<li className={styles.item}>
 				<button className={styles.burger} onClick={() => setIsShow(true)}>

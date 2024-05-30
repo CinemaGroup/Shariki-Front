@@ -2,9 +2,15 @@ import { EnumStorage } from '@/constants/enum.constants'
 import type { TypeProduct } from '@/shared/types/product/product.type'
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import { type ICartItem, type TypeCartStore } from './types/cart.type'
+import type { ICartItem, TypeCartStore } from './types/cart.type'
 
-const toggleCart = (product: TypeProduct, cart: ICartItem[]): ICartItem[] => {
+const toggleCart = (
+	product: TypeProduct,
+	count: number,
+	cart: ICartItem[],
+	color?: string | null,
+	size?: string | null
+): ICartItem[] => {
 	const isExistsIndex = cart.findIndex((item) => item.id === product.id)
 
 	if (isExistsIndex !== -1) {
@@ -12,7 +18,7 @@ const toggleCart = (product: TypeProduct, cart: ICartItem[]): ICartItem[] => {
 		updatedCart.splice(isExistsIndex, 1)
 		return updatedCart
 	} else {
-		return [...cart, { ...product, count: 1 }]
+		return [...cart, { ...product, count, selectedColor: color, selectedSize: size }]
 	}
 }
 
@@ -44,14 +50,23 @@ export const useCartStore = create<TypeCartStore>()(
 		(set, get) => {
 			return {
 				cart: [],
+				length: () => {
+					const { cart } = get()
+					return cart.reduce((total, item) => total + item.count, 0)
+				},
 				isExists: (productId: number) => {
 					const { cart } = get()
 					const isExists = cart.some((product) => product.id === productId)
 					return isExists ? true : false
 				},
-				toggle: (product: TypeProduct) => {
+				toggle: (
+					product: TypeProduct,
+					count: number,
+					color?: string | null,
+					size?: string | null
+				) => {
 					const { cart } = get()
-					const updatedCart = toggleCart(product, cart)
+					const updatedCart = toggleCart(product, count, cart, color, size)
 					set({ cart: updatedCart })
 				},
 				remove: (id: number) => {

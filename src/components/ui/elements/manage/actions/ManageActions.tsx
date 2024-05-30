@@ -17,9 +17,11 @@ const ManageActions: FC<IManageActions & { edit: string }> = ({
 				<button className={styles.remove} onClick={deleteHandler}>
 					<Trash2 />
 				</button>
-				<button className={styles.duplicate} onClick={duplicateHandler}>
-					<Copy />
-				</button>
+				{duplicateHandler && (
+					<button className={styles.duplicate} onClick={duplicateHandler}>
+						<Copy />
+					</button>
+				)}
 				<Link className={styles.edit} href={edit}>
 					<Pencil />
 				</Link>
