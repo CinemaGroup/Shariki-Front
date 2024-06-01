@@ -1,11 +1,13 @@
 .list {
 	@apply flex gap-3.5;
 }
+.favorites,
 .link,
 .cart {
 	@apply flex flex-col justify-between items-center text-sm-plus up-hover;
 }
-.cart {
+.cart,
+.favorites {
 	@apply relative;
 
 	> span {
@@ -26,6 +28,7 @@
 		@apply gap-2.5;
 	}
 	.link,
+	.favorites,
 	.cart {
 		@apply text-sm;
 
@@ -44,7 +47,8 @@
 
 @media(max-width: 500px) {
 	.link,
-	.cart {
+	.cart,
+	.favorites {
 		> img {
 			max-width: 28px;
 			max-height: 28px;

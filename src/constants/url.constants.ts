@@ -56,4 +56,5 @@ export const PUBLIC_PAGES = {
 	ABOUT: '/about',
 	CONTACTS: '/contacts',
 	POSTS: '/posts',
+	FAVORITES: '/favorites',
 }

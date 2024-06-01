@@ -3,6 +3,7 @@
 import StaticImage from '@/components/ui/common/image/StaticImage'
 import CartBtn from '@/components/ui/elements/cart-btn/CartBtn'
 import { PUBLIC_PAGES } from '@/constants/url.constants'
+import { useFavoritesStore } from '@/store/favorites-store'
 import { Menu } from 'lucide-react'
 import Link from 'next/link'
 import { useEffect, useState, type FC } from 'react'
@@ -12,6 +13,7 @@ import styles from './HeaderButtons.module.scss'
 const HeaderButtons: FC = () => {
 	const [isShow, setIsShow] = useState(false)
 	const [isHydrated, setIsHydrated] = useState(false)
+	const { length } = useFavoritesStore()
 
 	useEffect(() => {
 		setIsHydrated(true)
@@ -20,7 +22,7 @@ const HeaderButtons: FC = () => {
 	return (
 		<ul className={styles.list}>
 			<li className={styles.item}>
-				<Link className={styles.link} href={PUBLIC_PAGES.LOGIN}>
+				<Link className={styles.favorites} href={PUBLIC_PAGES.FAVORITES}>
 					<StaticImage
 						src="/images/icons/favorites.svg"
 						width={34}
@@ -28,6 +30,7 @@ const HeaderButtons: FC = () => {
 						alt="Favorites"
 					/>
 					Избранное
+					{length() > 0 && <span>{length()}</span>}
 				</Link>
 			</li>
 			<li className={styles.item}>

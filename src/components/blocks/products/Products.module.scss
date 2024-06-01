@@ -156,6 +156,17 @@
 .favorite {
 	@apply flex items-center justify-center p-1 rounded-full bg-gray-200 up-hover;
 }
+.favorite {
+	> svg {
+		@apply transition-colors fill-transparent;
+	}
+
+	&.filled {
+		> svg {
+			@apply stroke-red-300 fill-red-300;
+		}
+	}
+}
 .addToCart {
 	@apply w-full uppercase flex items-start justify-center gap-1.5 font-light font-roboto-serif py-3 rounded-md bg-gray-200 up-hover;
 

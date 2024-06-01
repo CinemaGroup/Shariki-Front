@@ -28,6 +28,10 @@ export const useFavoritesStore = create<TypeFavoritesStore>()(
 		(set, get) => {
 			return {
 				favorites: [],
+				length: () => {
+					const { favorites } = get()
+					return favorites.reduce((total) => total + 1, 0)
+				},
 				isExists: (productId: number) => {
 					const { favorites } = get()
 					const isExists = favorites.some((product) => product.id === productId)
