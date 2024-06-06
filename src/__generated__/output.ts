@@ -119,8 +119,27 @@ export type Billing = {
   updatedAt: Scalars['DateTime']['output'];
 };
 
+export type Block = {
+  __typename?: 'Block';
+  content: Scalars['String']['output'];
+  heading: Scalars['String']['output'];
+};
+
+export type BlockInput = {
+  content: Scalars['String']['input'];
+  heading: Scalars['String']['input'];
+  type?: InputMaybe<BlockType>;
+};
+
+export enum BlockType {
+  HomeFirst = 'HOME_FIRST',
+  HomeSecond = 'HOME_SECOND',
+  HomeThird = 'HOME_THIRD'
+}
+
 export type Catalog = {
   __typename?: 'Catalog';
+  block?: Maybe<Block>;
   categories: Array<Category>;
   filters: Filters;
   products: Array<Product>;
@@ -156,9 +175,11 @@ export type Category = {
 };
 
 export type CategoryInput = {
+  block?: InputMaybe<BlockInput>;
   imagePath?: InputMaybe<Scalars['String']['input']>;
   name: Scalars['String']['input'];
   parent?: InputMaybe<SelectInput>;
+  seo?: InputMaybe<SeoInput>;
 };
 
 export type Characteristic = {
@@ -375,6 +396,7 @@ export type Mutation = {
   updateForBuyers: ForBuyers;
   updateHoliday: Holiday;
   updateOrder: Order;
+  updatePage: Scalars['Boolean']['output'];
   updatePost: Post;
   updateProduct: Product;
   updateReview: Review;
@@ -611,6 +633,12 @@ export type MutationUpdateOrderArgs = {
 };
 
 
+export type MutationUpdatePageArgs = {
+  data: PageInput;
+  type: PageType;
+};
+
+
 export type MutationUpdatePostArgs = {
   data: PostInput;
   id: Scalars['Int']['input'];
@@ -689,6 +717,23 @@ export enum OrderStatus {
   Pending = 'PENDING'
 }
 
+export type Page = {
+  __typename?: 'Page';
+  blocks?: Maybe<Array<Block>>;
+  seo?: Maybe<Seo>;
+};
+
+export type PageInput = {
+  blocks?: InputMaybe<Array<BlockInput>>;
+  seo?: InputMaybe<SeoInput>;
+};
+
+export enum PageType {
+  Catalog = 'CATALOG',
+  Home = 'HOME',
+  Posts = 'POSTS'
+}
+
 export type PaginationInput = {
   page?: InputMaybe<Scalars['String']['input']>;
   perPage?: InputMaybe<Scalars['String']['input']>;
@@ -731,6 +776,7 @@ export type PostInput = {
   name: Scalars['String']['input'];
   poster: Scalars['String']['input'];
   rubrics: Array<SelectInput>;
+  seo?: InputMaybe<SeoInput>;
 };
 
 export type Product = {
@@ -775,6 +821,7 @@ export type ProductInput = {
   oldPrice?: InputMaybe<Scalars['String']['input']>;
   packageQuantity: Scalars['String']['input'];
   price: Scalars['String']['input'];
+  seo?: InputMaybe<SeoInput>;
   sizes: Array<SizeInput>;
   sku: Scalars['String']['input'];
   tags: Array<SelectInput>;
@@ -806,6 +853,7 @@ export type Query = {
   catalog: Catalog;
   categories: AllCategories;
   categoryById: Category;
+  categorySeo?: Maybe<Seo>;
   characteristicById: Characteristic;
   characteristics: AllCharacteristics;
   collectionById: Collection;
@@ -817,11 +865,16 @@ export type Query = {
   holidays: AllHolidays;
   orderById: Order;
   orders: AllOrders;
+  page: Page;
+  pageBlock?: Maybe<Block>;
+  pageSeo?: Maybe<Seo>;
   postById: Post;
   postBySlug: Post;
+  postSeo?: Maybe<Seo>;
   posts: AllPosts;
   productById: Product;
   productBySlug: CurrentProduct;
+  productSeo?: Maybe<Seo>;
   products: CatalogProduct;
   profile: ProfileResponse;
   reviewById: Review;
@@ -849,6 +902,11 @@ export type QueryCategoriesArgs = {
 
 export type QueryCategoryByIdArgs = {
   id: Scalars['Int']['input'];
+};
+
+
+export type QueryCategorySeoArgs = {
+  slug: Scalars['String']['input'];
 };
 
 
@@ -898,12 +956,32 @@ export type QueryOrdersArgs = {
 };
 
 
+export type QueryPageArgs = {
+  type: PageType;
+};
+
+
+export type QueryPageBlockArgs = {
+  type: BlockType;
+};
+
+
+export type QueryPageSeoArgs = {
+  type: PageType;
+};
+
+
 export type QueryPostByIdArgs = {
   id: Scalars['Int']['input'];
 };
 
 
 export type QueryPostBySlugArgs = {
+  slug: Scalars['String']['input'];
+};
+
+
+export type QueryPostSeoArgs = {
   slug: Scalars['String']['input'];
 };
 
@@ -919,6 +997,11 @@ export type QueryProductByIdArgs = {
 
 
 export type QueryProductBySlugArgs = {
+  slug: Scalars['String']['input'];
+};
+
+
+export type QueryProductSeoArgs = {
   slug: Scalars['String']['input'];
 };
 
@@ -1046,6 +1129,17 @@ export type RubricInput = {
 export type SelectInput = {
   name: Scalars['String']['input'];
   value: Scalars['Int']['input'];
+};
+
+export type Seo = {
+  __typename?: 'Seo';
+  description: Scalars['String']['output'];
+  title: Scalars['String']['output'];
+};
+
+export type SeoInput = {
+  description: Scalars['String']['input'];
+  title: Scalars['String']['input'];
 };
 
 export type ShippingAndPayment = {
@@ -1328,6 +1422,14 @@ export type PlaceOrderMutationVariables = Exact<{
 
 export type PlaceOrderMutation = { placeOrder: { id: number } };
 
+export type UpdatePageMutationVariables = Exact<{
+  type: PageType;
+  data: PageInput;
+}>;
+
+
+export type UpdatePageMutation = { updatePage: boolean };
+
 export type UpdateAboutMutationVariables = Exact<{
   data: AboutInput;
 }>;
@@ -1586,7 +1688,7 @@ export type CatalogQueryVariables = Exact<{
 }>;
 
 
-export type CatalogQuery = { catalog: { productsCount: number, rootCategory?: { name: string, slug: string, parent?: { name: string, slug: string, parent?: { name: string, slug: string, parent?: { name: string, slug: string, parent?: { name: string, slug: string, parent?: { name: string, slug: string } | null } | null } | null } | null } | null, categories: Array<{ name: string, slug: string, categories: Array<{ name: string, slug: string, categories: Array<{ name: string, slug: string, categories: Array<{ name: string, slug: string, categories: Array<{ name: string, slug: string }> }> }> }> }> } | null, categories: Array<{ name: string, slug: string, imagePath?: string | null, parent?: { name: string, slug: string, parent?: { name: string, slug: string, parent?: { name: string, slug: string, parent?: { name: string, slug: string } | null } | null } | null } | null }>, filters: { sizes: Array<{ label: string, value: string, count: number }>, colors: Array<{ label: string, value: string, count: number }>, hues: Array<{ label: string, value: string, count: number }>, types: Array<{ iconPath: string, uncheckedIconPath?: string | null, value: string }>, manufacturers: Array<{ label: string, value: string, count: number }>, materials: Array<{ label: string, value: string, count: number }>, collections: Array<{ label: string, value: string, count: number }>, holidays: Array<{ label: string, value: string, count: number }>, countries: Array<{ label: string, value: string, count: number }>, price: { min: number, max: number } }, products: Array<{ id: number, name: string, slug: string, sku: string, iconPath?: string | null, description: string, packageQuantity: number, price: string, oldPrice?: string | null, views: number, boughtTimes: number, images: Array<string>, status: Status, createdAt: any, sizes: Array<{ size: string, price: string, oldPrice?: string | null }>, colors: Array<{ color: string, images: Array<string> }>, types: Array<{ iconPath: string }> }> } };
+export type CatalogQuery = { catalog: { productsCount: number, block?: { heading: string, content: string } | null, rootCategory?: { name: string, slug: string, parent?: { name: string, slug: string, parent?: { name: string, slug: string, parent?: { name: string, slug: string, parent?: { name: string, slug: string, parent?: { name: string, slug: string } | null } | null } | null } | null } | null, categories: Array<{ name: string, slug: string, categories: Array<{ name: string, slug: string, categories: Array<{ name: string, slug: string, categories: Array<{ name: string, slug: string, categories: Array<{ name: string, slug: string }> }> }> }> }> } | null, categories: Array<{ name: string, slug: string, imagePath?: string | null, parent?: { name: string, slug: string, parent?: { name: string, slug: string, parent?: { name: string, slug: string, parent?: { name: string, slug: string } | null } | null } | null } | null }>, filters: { sizes: Array<{ label: string, value: string, count: number }>, colors: Array<{ label: string, value: string, count: number }>, hues: Array<{ label: string, value: string, count: number }>, types: Array<{ iconPath: string, uncheckedIconPath?: string | null, value: string }>, manufacturers: Array<{ label: string, value: string, count: number }>, materials: Array<{ label: string, value: string, count: number }>, collections: Array<{ label: string, value: string, count: number }>, holidays: Array<{ label: string, value: string, count: number }>, countries: Array<{ label: string, value: string, count: number }>, price: { min: number, max: number } }, products: Array<{ id: number, name: string, slug: string, sku: string, iconPath?: string | null, description: string, packageQuantity: number, price: string, oldPrice?: string | null, views: number, boughtTimes: number, images: Array<string>, status: Status, createdAt: any, sizes: Array<{ size: string, price: string, oldPrice?: string | null }>, colors: Array<{ color: string, images: Array<string> }>, types: Array<{ iconPath: string }> }> } };
 
 export type CategoriesQueryVariables = Exact<{
   query: QueryCategoryInput;
@@ -1601,6 +1703,13 @@ export type CategoryByIdQueryVariables = Exact<{
 
 
 export type CategoryByIdQuery = { categoryById: { name: string, imagePath?: string | null, parent?: { id: number, name: string } | null } };
+
+export type CategorySeoQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
+}>;
+
+
+export type CategorySeoQuery = { categorySeo?: { title: string, description: string } | null };
 
 export type CharacteristicByIdQueryVariables = Exact<{
   id: Scalars['Int']['input'];
@@ -1658,6 +1767,27 @@ export type OrdersQueryVariables = Exact<{
 
 export type OrdersQuery = { orders: { count: number, orders: Array<{ id: number, status: OrderStatus, total: number, name: string, phone: string, createdAt: any, items: Array<{ quantity: number }> }> } };
 
+export type PageQueryVariables = Exact<{
+  type: PageType;
+}>;
+
+
+export type PageQuery = { page: { blocks?: Array<{ heading: string, content: string }> | null, seo?: { title: string, description: string } | null } };
+
+export type PageBlockQueryVariables = Exact<{
+  type: BlockType;
+}>;
+
+
+export type PageBlockQuery = { pageBlock?: { heading: string, content: string } | null };
+
+export type PageSeoQueryVariables = Exact<{
+  type: PageType;
+}>;
+
+
+export type PageSeoQuery = { pageSeo?: { title: string, description: string } | null };
+
 export type AboutQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1687,6 +1817,13 @@ export type PostBySlugQueryVariables = Exact<{
 
 export type PostBySlugQuery = { postBySlug: { name: string, excerpt: string, description: string, poster: string, bigPoster: string, createdAt: any, rubrics: Array<{ id: number, name: string }> } };
 
+export type PostSeoQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
+}>;
+
+
+export type PostSeoQuery = { postSeo?: { title: string, description: string } | null };
+
 export type PostsQueryVariables = Exact<{
   query: QueryInput;
 }>;
@@ -1707,6 +1844,13 @@ export type ProductBySlugQueryVariables = Exact<{
 
 
 export type ProductBySlugQuery = { productBySlug: { product?: { id: number, name: string, slug: string, sku: string, iconPath?: string | null, description: string, packageQuantity: number, price: string, oldPrice?: string | null, views: number, boughtTimes: number, images: Array<string>, status: Status, createdAt: any, categories: Array<{ name: string, slug: string, imagePath?: string | null, parent?: { name: string, slug: string, parent?: { name: string, slug: string, parent?: { name: string, slug: string, parent?: { name: string, slug: string } | null } | null } | null } | null }>, sizes: Array<{ size: string, price: string, oldPrice?: string | null }>, colors: Array<{ color: string, images: Array<string> }>, types: Array<{ iconPath: string }>, characteristics: Array<{ name: string, type: CharacteristicType }> } | null, similarProducts: Array<{ id: number, name: string, slug: string, sku: string, iconPath?: string | null, description: string, packageQuantity: number, price: string, oldPrice?: string | null, views: number, boughtTimes: number, images: Array<string>, status: Status, createdAt: any, sizes: Array<{ size: string, price: string, oldPrice?: string | null }>, colors: Array<{ color: string, images: Array<string> }>, types: Array<{ iconPath: string }> }> } };
+
+export type ProductSeoQueryVariables = Exact<{
+  slug: Scalars['String']['input'];
+}>;
+
+
+export type ProductSeoQuery = { productSeo?: { title: string, description: string } | null };
 
 export type ProductsQueryVariables = Exact<{
   query: QueryProductInput;
@@ -2627,6 +2771,38 @@ export function usePlaceOrderMutation(baseOptions?: Apollo.MutationHookOptions<P
 export type PlaceOrderMutationHookResult = ReturnType<typeof usePlaceOrderMutation>;
 export type PlaceOrderMutationResult = Apollo.MutationResult<PlaceOrderMutation>;
 export type PlaceOrderMutationOptions = Apollo.BaseMutationOptions<PlaceOrderMutation, PlaceOrderMutationVariables>;
+export const UpdatePageDocument = gql`
+    mutation UpdatePage($type: PageType!, $data: PageInput!) {
+  updatePage(type: $type, data: $data)
+}
+    `;
+export type UpdatePageMutationFn = Apollo.MutationFunction<UpdatePageMutation, UpdatePageMutationVariables>;
+
+/**
+ * __useUpdatePageMutation__
+ *
+ * To run a mutation, you first call `useUpdatePageMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdatePageMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updatePageMutation, { data, loading, error }] = useUpdatePageMutation({
+ *   variables: {
+ *      type: // value for 'type'
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useUpdatePageMutation(baseOptions?: Apollo.MutationHookOptions<UpdatePageMutation, UpdatePageMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdatePageMutation, UpdatePageMutationVariables>(UpdatePageDocument, options);
+      }
+export type UpdatePageMutationHookResult = ReturnType<typeof useUpdatePageMutation>;
+export type UpdatePageMutationResult = Apollo.MutationResult<UpdatePageMutation>;
+export type UpdatePageMutationOptions = Apollo.BaseMutationOptions<UpdatePageMutation, UpdatePageMutationVariables>;
 export const UpdateAboutDocument = gql`
     mutation UpdateAbout($data: AboutInput!) {
   updateAbout(data: $data) {
@@ -3848,6 +4024,10 @@ export type UpdateTypeMutationOptions = Apollo.BaseMutationOptions<UpdateTypeMut
 export const CatalogDocument = gql`
     query Catalog($data: CatalogInput!) {
   catalog(data: $data) {
+    block {
+      heading
+      content
+    }
     rootCategory {
       name
       slug
@@ -4119,6 +4299,47 @@ export type CategoryByIdQueryHookResult = ReturnType<typeof useCategoryByIdQuery
 export type CategoryByIdLazyQueryHookResult = ReturnType<typeof useCategoryByIdLazyQuery>;
 export type CategoryByIdSuspenseQueryHookResult = ReturnType<typeof useCategoryByIdSuspenseQuery>;
 export type CategoryByIdQueryResult = Apollo.QueryResult<CategoryByIdQuery, CategoryByIdQueryVariables>;
+export const CategorySeoDocument = gql`
+    query CategorySeo($slug: String!) {
+  categorySeo(slug: $slug) {
+    title
+    description
+  }
+}
+    `;
+
+/**
+ * __useCategorySeoQuery__
+ *
+ * To run a query within a React component, call `useCategorySeoQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCategorySeoQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useCategorySeoQuery({
+ *   variables: {
+ *      slug: // value for 'slug'
+ *   },
+ * });
+ */
+export function useCategorySeoQuery(baseOptions: Apollo.QueryHookOptions<CategorySeoQuery, CategorySeoQueryVariables> & ({ variables: CategorySeoQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<CategorySeoQuery, CategorySeoQueryVariables>(CategorySeoDocument, options);
+      }
+export function useCategorySeoLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CategorySeoQuery, CategorySeoQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<CategorySeoQuery, CategorySeoQueryVariables>(CategorySeoDocument, options);
+        }
+export function useCategorySeoSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<CategorySeoQuery, CategorySeoQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<CategorySeoQuery, CategorySeoQueryVariables>(CategorySeoDocument, options);
+        }
+export type CategorySeoQueryHookResult = ReturnType<typeof useCategorySeoQuery>;
+export type CategorySeoLazyQueryHookResult = ReturnType<typeof useCategorySeoLazyQuery>;
+export type CategorySeoSuspenseQueryHookResult = ReturnType<typeof useCategorySeoSuspenseQuery>;
+export type CategorySeoQueryResult = Apollo.QueryResult<CategorySeoQuery, CategorySeoQueryVariables>;
 export const CharacteristicByIdDocument = gql`
     query CharacteristicById($id: Int!) {
   characteristicById(id: $id) {
@@ -4484,6 +4705,135 @@ export type OrdersQueryHookResult = ReturnType<typeof useOrdersQuery>;
 export type OrdersLazyQueryHookResult = ReturnType<typeof useOrdersLazyQuery>;
 export type OrdersSuspenseQueryHookResult = ReturnType<typeof useOrdersSuspenseQuery>;
 export type OrdersQueryResult = Apollo.QueryResult<OrdersQuery, OrdersQueryVariables>;
+export const PageDocument = gql`
+    query Page($type: PageType!) {
+  page(type: $type) {
+    blocks {
+      heading
+      content
+    }
+    seo {
+      title
+      description
+    }
+  }
+}
+    `;
+
+/**
+ * __usePageQuery__
+ *
+ * To run a query within a React component, call `usePageQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePageQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePageQuery({
+ *   variables: {
+ *      type: // value for 'type'
+ *   },
+ * });
+ */
+export function usePageQuery(baseOptions: Apollo.QueryHookOptions<PageQuery, PageQueryVariables> & ({ variables: PageQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<PageQuery, PageQueryVariables>(PageDocument, options);
+      }
+export function usePageLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PageQuery, PageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<PageQuery, PageQueryVariables>(PageDocument, options);
+        }
+export function usePageSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<PageQuery, PageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<PageQuery, PageQueryVariables>(PageDocument, options);
+        }
+export type PageQueryHookResult = ReturnType<typeof usePageQuery>;
+export type PageLazyQueryHookResult = ReturnType<typeof usePageLazyQuery>;
+export type PageSuspenseQueryHookResult = ReturnType<typeof usePageSuspenseQuery>;
+export type PageQueryResult = Apollo.QueryResult<PageQuery, PageQueryVariables>;
+export const PageBlockDocument = gql`
+    query PageBlock($type: BlockType!) {
+  pageBlock(type: $type) {
+    heading
+    content
+  }
+}
+    `;
+
+/**
+ * __usePageBlockQuery__
+ *
+ * To run a query within a React component, call `usePageBlockQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePageBlockQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePageBlockQuery({
+ *   variables: {
+ *      type: // value for 'type'
+ *   },
+ * });
+ */
+export function usePageBlockQuery(baseOptions: Apollo.QueryHookOptions<PageBlockQuery, PageBlockQueryVariables> & ({ variables: PageBlockQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<PageBlockQuery, PageBlockQueryVariables>(PageBlockDocument, options);
+      }
+export function usePageBlockLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PageBlockQuery, PageBlockQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<PageBlockQuery, PageBlockQueryVariables>(PageBlockDocument, options);
+        }
+export function usePageBlockSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<PageBlockQuery, PageBlockQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<PageBlockQuery, PageBlockQueryVariables>(PageBlockDocument, options);
+        }
+export type PageBlockQueryHookResult = ReturnType<typeof usePageBlockQuery>;
+export type PageBlockLazyQueryHookResult = ReturnType<typeof usePageBlockLazyQuery>;
+export type PageBlockSuspenseQueryHookResult = ReturnType<typeof usePageBlockSuspenseQuery>;
+export type PageBlockQueryResult = Apollo.QueryResult<PageBlockQuery, PageBlockQueryVariables>;
+export const PageSeoDocument = gql`
+    query PageSeo($type: PageType!) {
+  pageSeo(type: $type) {
+    title
+    description
+  }
+}
+    `;
+
+/**
+ * __usePageSeoQuery__
+ *
+ * To run a query within a React component, call `usePageSeoQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePageSeoQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePageSeoQuery({
+ *   variables: {
+ *      type: // value for 'type'
+ *   },
+ * });
+ */
+export function usePageSeoQuery(baseOptions: Apollo.QueryHookOptions<PageSeoQuery, PageSeoQueryVariables> & ({ variables: PageSeoQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<PageSeoQuery, PageSeoQueryVariables>(PageSeoDocument, options);
+      }
+export function usePageSeoLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PageSeoQuery, PageSeoQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<PageSeoQuery, PageSeoQueryVariables>(PageSeoDocument, options);
+        }
+export function usePageSeoSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<PageSeoQuery, PageSeoQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<PageSeoQuery, PageSeoQueryVariables>(PageSeoDocument, options);
+        }
+export type PageSeoQueryHookResult = ReturnType<typeof usePageSeoQuery>;
+export type PageSeoLazyQueryHookResult = ReturnType<typeof usePageSeoLazyQuery>;
+export type PageSeoSuspenseQueryHookResult = ReturnType<typeof usePageSeoSuspenseQuery>;
+export type PageSeoQueryResult = Apollo.QueryResult<PageSeoQuery, PageSeoQueryVariables>;
 export const AboutDocument = gql`
     query About {
   about {
@@ -4703,6 +5053,47 @@ export type PostBySlugQueryHookResult = ReturnType<typeof usePostBySlugQuery>;
 export type PostBySlugLazyQueryHookResult = ReturnType<typeof usePostBySlugLazyQuery>;
 export type PostBySlugSuspenseQueryHookResult = ReturnType<typeof usePostBySlugSuspenseQuery>;
 export type PostBySlugQueryResult = Apollo.QueryResult<PostBySlugQuery, PostBySlugQueryVariables>;
+export const PostSeoDocument = gql`
+    query PostSeo($slug: String!) {
+  postSeo(slug: $slug) {
+    title
+    description
+  }
+}
+    `;
+
+/**
+ * __usePostSeoQuery__
+ *
+ * To run a query within a React component, call `usePostSeoQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePostSeoQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePostSeoQuery({
+ *   variables: {
+ *      slug: // value for 'slug'
+ *   },
+ * });
+ */
+export function usePostSeoQuery(baseOptions: Apollo.QueryHookOptions<PostSeoQuery, PostSeoQueryVariables> & ({ variables: PostSeoQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<PostSeoQuery, PostSeoQueryVariables>(PostSeoDocument, options);
+      }
+export function usePostSeoLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PostSeoQuery, PostSeoQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<PostSeoQuery, PostSeoQueryVariables>(PostSeoDocument, options);
+        }
+export function usePostSeoSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<PostSeoQuery, PostSeoQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<PostSeoQuery, PostSeoQueryVariables>(PostSeoDocument, options);
+        }
+export type PostSeoQueryHookResult = ReturnType<typeof usePostSeoQuery>;
+export type PostSeoLazyQueryHookResult = ReturnType<typeof usePostSeoLazyQuery>;
+export type PostSeoSuspenseQueryHookResult = ReturnType<typeof usePostSeoSuspenseQuery>;
+export type PostSeoQueryResult = Apollo.QueryResult<PostSeoQuery, PostSeoQueryVariables>;
 export const PostsDocument = gql`
     query Posts($query: QueryInput!) {
   posts(query: $query) {
@@ -4956,6 +5347,47 @@ export type ProductBySlugQueryHookResult = ReturnType<typeof useProductBySlugQue
 export type ProductBySlugLazyQueryHookResult = ReturnType<typeof useProductBySlugLazyQuery>;
 export type ProductBySlugSuspenseQueryHookResult = ReturnType<typeof useProductBySlugSuspenseQuery>;
 export type ProductBySlugQueryResult = Apollo.QueryResult<ProductBySlugQuery, ProductBySlugQueryVariables>;
+export const ProductSeoDocument = gql`
+    query ProductSeo($slug: String!) {
+  productSeo(slug: $slug) {
+    title
+    description
+  }
+}
+    `;
+
+/**
+ * __useProductSeoQuery__
+ *
+ * To run a query within a React component, call `useProductSeoQuery` and pass it any options that fit your needs.
+ * When your component renders, `useProductSeoQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useProductSeoQuery({
+ *   variables: {
+ *      slug: // value for 'slug'
+ *   },
+ * });
+ */
+export function useProductSeoQuery(baseOptions: Apollo.QueryHookOptions<ProductSeoQuery, ProductSeoQueryVariables> & ({ variables: ProductSeoQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ProductSeoQuery, ProductSeoQueryVariables>(ProductSeoDocument, options);
+      }
+export function useProductSeoLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ProductSeoQuery, ProductSeoQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ProductSeoQuery, ProductSeoQueryVariables>(ProductSeoDocument, options);
+        }
+export function useProductSeoSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<ProductSeoQuery, ProductSeoQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<ProductSeoQuery, ProductSeoQueryVariables>(ProductSeoDocument, options);
+        }
+export type ProductSeoQueryHookResult = ReturnType<typeof useProductSeoQuery>;
+export type ProductSeoLazyQueryHookResult = ReturnType<typeof useProductSeoLazyQuery>;
+export type ProductSeoSuspenseQueryHookResult = ReturnType<typeof useProductSeoSuspenseQuery>;
+export type ProductSeoQueryResult = Apollo.QueryResult<ProductSeoQuery, ProductSeoQueryVariables>;
 export const ProductsDocument = gql`
     query Products($query: QueryProductInput!, $isPopular: Boolean) {
   products(query: $query, isPopular: $isPopular) {

@@ -9,7 +9,7 @@ export const SOCIAL_DATA: ISocial = {
 				height: 30,
 				alt: 'Telegram',
 			},
-			href: 'https://t.me/+79253919535',
+			href: 'https://t.me/+79774404060',
 		},
 		{
 			icon: {
@@ -18,7 +18,7 @@ export const SOCIAL_DATA: ISocial = {
 				height: 30,
 				alt: 'Whatsapp',
 			},
-			href: 'https://api.whatsapp.com/send?phone=79253919535',
+			href: 'https://api.whatsapp.com/send?phone=79774404060',
 		},
 	],
 }

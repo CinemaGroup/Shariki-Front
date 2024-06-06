@@ -12,6 +12,8 @@ import type { FC } from 'react'
 import { Controller } from 'react-hook-form'
 import globalStyles from '../ManageEdits.module.scss'
 import styles from './ManageCategoryEdit.module.scss'
+import ManageCategoryBlockEdit from './block/ManageCategoryBlockEdit'
+import ManageCategorySeoEdit from './seo/ManageCategorySeoEdit'
 
 const ManageCategoryEdit: FC<{ queryId: string }> = ({ queryId }) => {
 	const { registerInput, control, errors, data, handleSubmit, onSubmit } =
@@ -61,6 +63,15 @@ const ManageCategoryEdit: FC<{ queryId: string }> = ({ queryId }) => {
 									label="Картинка"
 								/>
 							)}
+						/>
+						<ManageCategorySeoEdit
+							registerInput={registerInput}
+							errors={errors}
+						/>
+						<ManageCategoryBlockEdit
+							registerInput={registerInput}
+							control={control}
+							errors={errors}
 						/>
 						<Button
 							buttonClassName={globalStyles.update}

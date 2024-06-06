@@ -7,7 +7,6 @@ export const useCatalog = (
 	searchParams?: TypeSearchParams,
 	categorySlug?: string
 ) => {
-	console.log(searchParams)
 	const [productsQuery, setProductsQuery] = useState<ICatalogFiltersArguments>({
 		page: searchParams?.page ? String(searchParams.page) : '1',
 		perPage: '18',
@@ -57,6 +56,7 @@ export const useCatalog = (
 	})
 
 	return {
+		block: data?.catalog.block || null,
 		rootCategory: data?.catalog.rootCategory || null,
 		categories: data?.catalog.categories || [],
 		filters: data?.catalog.filters || null,

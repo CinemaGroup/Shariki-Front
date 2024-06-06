@@ -21,18 +21,20 @@ const HeaderButtons: FC = () => {
 
 	return (
 		<ul className={styles.list}>
-			<li className={styles.item}>
-				<Link className={styles.favorites} href={PUBLIC_PAGES.FAVORITES}>
-					<StaticImage
-						src="/images/icons/favorites.svg"
-						width={34}
-						height={34}
-						alt="Favorites"
-					/>
-					Избранное
-					{length() > 0 && <span>{length()}</span>}
-				</Link>
-			</li>
+			{isHydrated && (
+				<li className={styles.item}>
+					<Link className={styles.favorites} href={PUBLIC_PAGES.FAVORITES}>
+						<StaticImage
+							src="/images/icons/favorites.svg"
+							width={34}
+							height={34}
+							alt="Favorites"
+						/>
+						Избранное
+						{length() > 0 && <span>{length()}</span>}
+					</Link>
+				</li>
+			)}
 			<li className={styles.item}>
 				{isHydrated && <CartBtn className={styles.cart} />}
 			</li>

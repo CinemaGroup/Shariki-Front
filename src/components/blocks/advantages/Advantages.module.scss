@@ -4,22 +4,6 @@
 .heading {
 	@apply hidden mb-8;
 }
-.info {
-	@apply relative pl-5 w-full;
-	max-width: 925px;
-
-	&::before {
-		@apply absolute left-0 top-0 bottom-0 h-full w-0.5 bg-red-400;
-		content: '';
-	}
-}
-.infoName {
-	@apply font-semibold text-5lg mb-3.5;
-}
-.infoText {
-	@apply text-lg w-full;
-	max-width: 675px;
-}
 .menu {
 	min-width: 680px;
 }
@@ -28,6 +12,13 @@
 }
 .list {
 	@apply flex items-start gap-7;
+}
+.info {
+	max-width: 925px;
+
+	> div {
+		max-width: 675px;
+	}
 }
 .item {
 	@apply text-center w-full flex flex-col items-center;
@@ -56,12 +47,6 @@
 }
 
 @media (max-width: 1500px) {
-	.infoName {
-		@apply text-4lg;
-	}
-	.infoText {
-		font-size: 17px;
-	}
 	.menuName {
 		@apply text-6lg;
 	}
@@ -78,9 +63,6 @@
 }
 
 @media (max-width: 1350px) {
-	.infoName {
-		@apply text-3lg;
-	}
 	.menuName {
 		@apply text-5lg;
 	}
@@ -106,23 +88,8 @@
 		@apply text-center;
 	}
 	.info,
-	.infoText {
+	.info > div {
 		@apply max-w-full;
-	}
-	.info {
-		@apply pl-0;
-
-		&::before {
-			@apply content-none;
-		}
-	}
-	.infoText {
-		@apply relative pl-4;
-
-		&::before {
-			@apply absolute left-0 top-0 bottom-0 h-full w-0.5 bg-red-400;
-			content: '';
-		}
 	}
 	.advantages {
 		@apply gap-10;
@@ -144,12 +111,6 @@
 	}
 	.itemDescription {
 		font-size: 13px;
-	}
-	.infoName {
-		@apply text-2lg mb-3;
-	}
-	.infoText {
-		font-size: 15px;
 	}
 }
 
@@ -177,12 +138,6 @@
 	}
 	.advantages {
 		@apply gap-6;
-	}
-	.infoName {
-		@apply text-lg;
-	}
-	.infoText {
-		@apply text-md;
 	}
 }
 

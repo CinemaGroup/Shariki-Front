@@ -4,10 +4,7 @@ import Container from '@/components/ui/common/container/Container'
 import Button from '@/components/ui/common/form/button/Button'
 import Field from '@/components/ui/common/form/field/Field'
 import TextEditor from '@/components/ui/common/form/text-editor/TextEditor'
-import {
-	REQUIRED_EDITOR_VALIDATION,
-	REQUIRED_VALIDATION,
-} from '@/components/ui/common/form/validations/form.validations'
+import { REQUIRED_VALIDATION } from '@/components/ui/common/form/validations/form.validations'
 import { useManageShippingAndPaymentEdit } from '@/hooks/manage/pages/useManageShippingAndPaymentEdit'
 import type { FC } from 'react'
 import { Controller } from 'react-hook-form'
@@ -49,7 +46,7 @@ const ManageShippingAndPaymentEdit: FC = () => {
 									label="Описание для доставки"
 								/>
 							)}
-							rules={REQUIRED_EDITOR_VALIDATION('Описание для доставки')}
+							rules={REQUIRED_VALIDATION('Описание для доставки')}
 						/>
 						<Field
 							{...registerInput(
@@ -76,7 +73,7 @@ const ManageShippingAndPaymentEdit: FC = () => {
 									label="Описание для оплаты"
 								/>
 							)}
-							rules={REQUIRED_EDITOR_VALIDATION('Описание для оплаты')}
+							rules={REQUIRED_VALIDATION('Описание для оплаты')}
 						/>
 						<Button
 							buttonClassName={globalStyles.update}

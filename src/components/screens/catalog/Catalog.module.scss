@@ -4,6 +4,9 @@
 .container {
 	@apply pt-6;
 }
+.block {
+	@apply pt-24 pb-5;
+}
 .wrapper {
 	@apply flex gap-7;
 }
@@ -190,6 +193,12 @@
 	}
 }
 
+@media(max-width: 1200px) {
+	.block {
+		@apply pt-16;
+	}
+}
+
 @media (max-width: 1100px) {
 	.right {
 		@apply gap-10;
@@ -216,6 +225,9 @@
 }
 
 @media (max-width: 800px) {
+	.block {
+		@apply pt-12 pb-0;
+	}
 	.products {
 		@apply gap-8;
 	}

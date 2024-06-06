@@ -5,10 +5,7 @@ import Button from '@/components/ui/common/form/button/Button'
 import Field from '@/components/ui/common/form/field/Field'
 import TextEditor from '@/components/ui/common/form/text-editor/TextEditor'
 import UploadField from '@/components/ui/common/form/upload-field/UploadField'
-import {
-	REQUIRED_EDITOR_VALIDATION,
-	REQUIRED_VALIDATION,
-} from '@/components/ui/common/form/validations/form.validations'
+import { REQUIRED_VALIDATION } from '@/components/ui/common/form/validations/form.validations'
 import { useManageReviewEdit } from '@/hooks/manage/reviews/useManageReviewEdit'
 import type { FC } from 'react'
 import { Controller } from 'react-hook-form'
@@ -65,7 +62,7 @@ const ManageReviewEdit: FC<{ queryId: string }> = ({ queryId }) => {
 									label="Отзыв"
 								/>
 							)}
-							rules={REQUIRED_EDITOR_VALIDATION('Отзыв')}
+							rules={REQUIRED_VALIDATION('Отзыв')}
 						/>
 						<Button
 							buttonClassName={globalStyles.update}

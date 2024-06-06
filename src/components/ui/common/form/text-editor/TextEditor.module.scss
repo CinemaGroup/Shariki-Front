@@ -1,25 +1,6 @@
 .field {
 	@apply relative z-1;
 }
-.toolbar {
-	@apply outline-border-none rounded-t-sm mb-0 bg-gray-800 p-3;
-
-	> div {
-		@apply m-0;
-
-		> div {
-			@apply outline-border-none shadow-none bg-white mx-1.5 up-hover;
-		}
-	}
-}
 .editor {
-	@apply h-96 border rounded-b-sm border-gray-800 overflow-hidden px-3;
-
-	ul {
-		@apply list-disc;
-
-		> li {
-			@apply list-item list-disc;
-		}
-	}
+	@apply leading-3lg;
 }

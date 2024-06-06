@@ -1,5 +1,9 @@
 query Catalog($data: CatalogInput!) {
 	catalog(data: $data) {
+		block {
+			heading
+			content
+		}
 		rootCategory {
 			name
 			slug

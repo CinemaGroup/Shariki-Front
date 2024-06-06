@@ -1,3 +1,5 @@
+import { PageType } from '@/__generated__/output'
+
 export const ADMIN_PAGES = {
 	HOME: '/manage',
 	PRODUCTS: '/manage/products',
@@ -32,6 +34,7 @@ export const ADMIN_EDITS = {
 	SHIPPING_AND_PAYMENT: `${ADMIN_PAGES.HOME}/shipping-and-payment/edit`,
 	FOR_BUYERS: `${ADMIN_PAGES.HOME}/for-buyers/edit`,
 	ABOUT: `${ADMIN_PAGES.HOME}/about/edit`,
+	PAGE: (type: PageType) => `${ADMIN_PAGES.HOME}/page/edit?type=${type}`,
 }
 
 export const ADMIN_VIEWS = {

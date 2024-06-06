@@ -17,6 +17,7 @@ import cn from 'clsx'
 import { Filter } from 'lucide-react'
 import { useState, type FC } from 'react'
 import styles from './Catalog.module.scss'
+import CatalogBlock from './block/CatalogBlock'
 import CatalogCategories from './categories/CatalogCategories'
 import CatalogDisplay from './display/CatalogDisplay'
 import CatalogProducts from './products/CatalogProducts'
@@ -27,6 +28,7 @@ const Catalog: FC<TypeParamSlug & IPageSearchParam> = ({
 	searchParams,
 }) => {
 	const {
+		block,
 		rootCategory,
 		categories,
 		filters,
@@ -118,6 +120,7 @@ const Catalog: FC<TypeParamSlug & IPageSearchParam> = ({
 						)}
 					</div>
 				</div>
+				<CatalogBlock block={block} />
 			</Container>
 		</Section>
 	)

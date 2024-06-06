@@ -1,15 +1,7 @@
 import { validEmail } from '@/utils/regex/email.regex'
-import { stripHtml } from 'string-strip-html'
 
 export const REQUIRED_VALIDATION = (name: string) => ({
 	required: `${name} - обязательное поле.`,
-})
-
-export const REQUIRED_EDITOR_VALIDATION = (name: string) => ({
-	validate: {
-		required: (v: string) =>
-			(v && stripHtml(v).result.length > 0) || `${name} - обязательное поле.`,
-	},
 })
 
 export const LENGTH_VALIDATION = (count: number) => ({

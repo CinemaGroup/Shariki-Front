@@ -4,10 +4,7 @@ import Container from '@/components/ui/common/container/Container'
 import Button from '@/components/ui/common/form/button/Button'
 import Field from '@/components/ui/common/form/field/Field'
 import TextEditor from '@/components/ui/common/form/text-editor/TextEditor'
-import {
-	REQUIRED_EDITOR_VALIDATION,
-	REQUIRED_VALIDATION,
-} from '@/components/ui/common/form/validations/form.validations'
+import { REQUIRED_VALIDATION } from '@/components/ui/common/form/validations/form.validations'
 import { useManageForBuyersEdit } from '@/hooks/manage/pages/useManageForBuyersEdit'
 import type { FC } from 'react'
 import { Controller } from 'react-hook-form'
@@ -46,7 +43,7 @@ const ManageForBuyersEdit: FC = () => {
 									label="Описание"
 								/>
 							)}
-							rules={REQUIRED_EDITOR_VALIDATION('Описание')}
+							rules={REQUIRED_VALIDATION('Описание')}
 						/>
 						<Button
 							buttonClassName={globalStyles.update}

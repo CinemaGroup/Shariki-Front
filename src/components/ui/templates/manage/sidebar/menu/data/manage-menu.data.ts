@@ -1,3 +1,4 @@
+import { PageType } from '@/__generated__/output'
 import { ADMIN_EDITS, ADMIN_PAGES } from '@/constants/url.constants'
 import type { IMenu } from '@/shared/interfaces/menu/menu.interface'
 
@@ -44,6 +45,18 @@ export const MANAGE_MENU_DATA: IMenu = {
 			href: `${ADMIN_PAGES.POSTS}`,
 		},
 		{
+			label: 'Страница - Главная',
+			href: `${ADMIN_EDITS.PAGE(PageType.Home)}`,
+		},
+		{
+			label: 'Страница - Каталог',
+			href: `${ADMIN_EDITS.PAGE(PageType.Catalog)}`,
+		},
+		{
+			label: 'Страница - Посты',
+			href: `${ADMIN_EDITS.PAGE(PageType.Posts)}`,
+		},
+		{
 			label: 'Доставка и оплата',
 			href: `${ADMIN_EDITS.SHIPPING_AND_PAYMENT}`,
 		},
@@ -55,6 +68,7 @@ export const MANAGE_MENU_DATA: IMenu = {
 			label: 'О компании',
 			href: `${ADMIN_EDITS.ABOUT}`,
 		},
+		
 		{
 			label: 'Заказы',
 			href: `${ADMIN_PAGES.ORDERS}`,

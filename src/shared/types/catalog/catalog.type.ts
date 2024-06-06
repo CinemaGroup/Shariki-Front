@@ -9,3 +9,6 @@ export type TypeCatalogProducts = CatalogQuery['catalog']['products']
 export type TypeCatalogFilters = CatalogQuery['catalog']['filters']
 
 export type TypeCatalogRootCategory = NonNullable<CatalogQuery['catalog']['rootCategory']>
+
+export type TypeCatalogBlock = CatalogQuery['catalog']['block']
+export type TypeCatalogSeo = CatalogQuery['catalog']['seo']

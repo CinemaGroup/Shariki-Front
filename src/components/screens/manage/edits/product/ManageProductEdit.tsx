@@ -9,7 +9,6 @@ import UploadField from '@/components/ui/common/form/upload-field/UploadField'
 import {
 	NUMBER_PATTERN_VALIDATION,
 	PRICE_PATTERN_VALIDATION,
-	REQUIRED_EDITOR_VALIDATION,
 	REQUIRED_VALIDATION,
 } from '@/components/ui/common/form/validations/form.validations'
 import ReactSelect from '@/components/ui/common/selects/react-select/ReactSelect'
@@ -247,7 +246,7 @@ const ManageProductEdit: FC<{ queryId: string }> = ({ queryId }) => {
 									label="Описание"
 								/>
 							)}
-							rules={REQUIRED_EDITOR_VALIDATION('Описание')}
+							rules={REQUIRED_VALIDATION('Описание')}
 						/>
 						<div className={styles.objects}>
 							{sizes.fields.length > 0 && (

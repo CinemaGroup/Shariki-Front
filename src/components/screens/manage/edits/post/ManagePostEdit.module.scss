@@ -11,3 +11,6 @@
 		max-width: calc(100% / 3 - 14px);
 	}
 }
+.seo {
+	@apply w-full flex flex-col gap-1.5;
+}

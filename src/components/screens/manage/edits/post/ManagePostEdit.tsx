@@ -5,10 +5,7 @@ import Button from '@/components/ui/common/form/button/Button'
 import Field from '@/components/ui/common/form/field/Field'
 import TextEditor from '@/components/ui/common/form/text-editor/TextEditor'
 import UploadField from '@/components/ui/common/form/upload-field/UploadField'
-import {
-	REQUIRED_EDITOR_VALIDATION,
-	REQUIRED_VALIDATION,
-} from '@/components/ui/common/form/validations/form.validations'
+import { REQUIRED_VALIDATION } from '@/components/ui/common/form/validations/form.validations'
 import ReactSelect from '@/components/ui/common/selects/react-select/ReactSelect'
 import { useManagePostEdit } from '@/hooks/manage/posts/useManagePostEdit'
 import { useManageSelectRubrics } from '@/hooks/manage/rubrics/useManageSelectRubrics'
@@ -102,7 +99,7 @@ const ManagePostEdit: FC<{ queryId: string }> = ({ queryId }) => {
 									label="Краткое Описание"
 								/>
 							)}
-							rules={REQUIRED_EDITOR_VALIDATION('Краткое Описание')}
+							rules={REQUIRED_VALIDATION('Краткое Описание')}
 						/>
 						<Controller
 							name="description"
@@ -120,7 +117,7 @@ const ManagePostEdit: FC<{ queryId: string }> = ({ queryId }) => {
 									label="Описание"
 								/>
 							)}
-							rules={REQUIRED_EDITOR_VALIDATION('Описание')}
+							rules={REQUIRED_VALIDATION('Описание')}
 						/>
 						<Button
 							buttonClassName={globalStyles.update}

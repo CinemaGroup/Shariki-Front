@@ -1,9 +1,16 @@
+import { PageType } from '@/__generated__/output'
 import Home from '@/components/screens/home/Home'
-import type { Metadata } from 'next'
+import { useSeo } from '@/hooks/public/seo/useSeo'
 
-export const metadata: Metadata = {
-	title: '',
-	description: '',
+export async function generateMetadata() {
+	const { seo, error } = await useSeo(PageType.Home)
+
+	if (!seo || error) return {}
+
+	return {
+		title: seo.title,
+		description: seo.description,
+	}
 }
 
 export default function HomePage() {

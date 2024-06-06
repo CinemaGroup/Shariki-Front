@@ -5,7 +5,7 @@
 	@apply text-6lg font-semibold mb-5;
 }
 .list {
-	@apply flex-wrap gap-6;
+	@apply flex flex-wrap gap-6;
 }
 .item {
 	min-width: calc(20% - 20px);
