@@ -4,7 +4,7 @@ import globalStyles from '../../ManageEdits.module.scss'
 import styles from '../ManageProductEdit.module.scss'
 import type { IManageProductSeoEdit } from './interface/manage-product-seo-edit.interface'
 
-const ManageCategoryProductEdit: FC<IManageProductSeoEdit> = ({
+const ManageProductSeoEdit: FC<IManageProductSeoEdit> = ({
 	registerInput,
 	errors,
 }) => {
@@ -29,4 +29,4 @@ const ManageCategoryProductEdit: FC<IManageProductSeoEdit> = ({
 	)
 }
 
-export default ManageCategoryProductEdit
+export default ManageProductSeoEdit

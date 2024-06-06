@@ -24,6 +24,7 @@ import type { FC } from 'react'
 import { Controller } from 'react-hook-form'
 import globalStyles from '../ManageEdits.module.scss'
 import styles from './ManageProductEdit.module.scss'
+import ManageProductSeoEdit from './seo/ManageProductSeoEdit'
 
 const ManageProductEdit: FC<{ queryId: string }> = ({ queryId }) => {
 	const {
@@ -396,6 +397,10 @@ const ManageProductEdit: FC<{ queryId: string }> = ({ queryId }) => {
 								Добавить Цвет
 							</Button>
 						</div>
+						<ManageProductSeoEdit
+							registerInput={registerInput}
+							errors={errors}
+						/>
 						<Button
 							buttonClassName={globalStyles.update}
 							wrapperClassName={globalStyles.updateWrapper}
