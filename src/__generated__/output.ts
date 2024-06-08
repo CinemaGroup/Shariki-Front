@@ -137,6 +137,11 @@ export enum BlockType {
   HomeThird = 'HOME_THIRD'
 }
 
+export type CallRequestInput = {
+  name: Scalars['String']['input'];
+  phone: Scalars['String']['input'];
+};
+
 export type Catalog = {
   __typename?: 'Catalog';
   block?: Maybe<Block>;
@@ -379,6 +384,7 @@ export type Mutation = {
   logout: Scalars['Boolean']['output'];
   placeOrder: Order;
   register: AuthResponse;
+  sendCallRequest: Scalars['Boolean']['output'];
   toggleCategory: Category;
   toggleCharacteristic: Characteristic;
   toggleCollection: Collection;
@@ -540,6 +546,11 @@ export type MutationPlaceOrderArgs = {
 
 export type MutationRegisterArgs = {
   data: AuthRegisterInput;
+};
+
+
+export type MutationSendCallRequestArgs = {
+  data: CallRequestInput;
 };
 
 
@@ -1518,6 +1529,13 @@ export type UpdateProductMutationVariables = Exact<{
 
 
 export type UpdateProductMutation = { updateProduct: { id: number } };
+
+export type SendCallRequestMutationVariables = Exact<{
+  data: CallRequestInput;
+}>;
+
+
+export type SendCallRequestMutation = { sendCallRequest: boolean };
 
 export type CreateReviewMutationVariables = Exact<{ [key: string]: never; }>;
 
@@ -3237,6 +3255,37 @@ export function useUpdateProductMutation(baseOptions?: Apollo.MutationHookOption
 export type UpdateProductMutationHookResult = ReturnType<typeof useUpdateProductMutation>;
 export type UpdateProductMutationResult = Apollo.MutationResult<UpdateProductMutation>;
 export type UpdateProductMutationOptions = Apollo.BaseMutationOptions<UpdateProductMutation, UpdateProductMutationVariables>;
+export const SendCallRequestDocument = gql`
+    mutation SendCallRequest($data: CallRequestInput!) {
+  sendCallRequest(data: $data)
+}
+    `;
+export type SendCallRequestMutationFn = Apollo.MutationFunction<SendCallRequestMutation, SendCallRequestMutationVariables>;
+
+/**
+ * __useSendCallRequestMutation__
+ *
+ * To run a mutation, you first call `useSendCallRequestMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useSendCallRequestMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [sendCallRequestMutation, { data, loading, error }] = useSendCallRequestMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useSendCallRequestMutation(baseOptions?: Apollo.MutationHookOptions<SendCallRequestMutation, SendCallRequestMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<SendCallRequestMutation, SendCallRequestMutationVariables>(SendCallRequestDocument, options);
+      }
+export type SendCallRequestMutationHookResult = ReturnType<typeof useSendCallRequestMutation>;
+export type SendCallRequestMutationResult = Apollo.MutationResult<SendCallRequestMutation>;
+export type SendCallRequestMutationOptions = Apollo.BaseMutationOptions<SendCallRequestMutation, SendCallRequestMutationVariables>;
 export const CreateReviewDocument = gql`
     mutation CreateReview {
   createReview {

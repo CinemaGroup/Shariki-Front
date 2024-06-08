@@ -17,7 +17,7 @@ export const CONTACTS_DATA: IContacts = {
 		{
 			icon: Mail,
 			name: 'Почта',
-			content: '<a href="mailto: info@noras.ru">info@noras.ru</a>',
+			content: '<a href="mailto: skoroprazdnik@inbox.ru">skoroprazdnik@inbox.ru</a>',
 		},
 	],
 }

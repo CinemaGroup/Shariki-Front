@@ -49,7 +49,6 @@ const Catalog: FC<TypeParamSlug & IPageSearchParam> = ({
 	let breadcrumbItems: IMenuItem[] = []
 	if (rootCategory && slug) {
 		const parentCategories = getBreadcrumbCategories(rootCategory)
-		console.log('Parent Categories: ', parentCategories)
 
 		breadcrumbItems = parentCategories.map((category, index) => ({
 			label: category.name,
