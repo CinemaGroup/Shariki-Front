@@ -45,6 +45,11 @@ export const metadata: Metadata = {
 		siteName: SITE_NAME,
 		emails: SITE_EMAILS,
 	},
+	icons: {
+		icon: {
+			url: '/metadata/favicon.png',
+		},
+	},
 }
 
 export default async function RootLayout({
