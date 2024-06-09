@@ -32,7 +32,7 @@
 	height: 150px;
 
 	> img {
-		@apply image-like-bg-cover absolute left-0 top-0 bottom-0 right-0 rounded-sm;
+		@apply min-w-full max-w-full min-h-full max-h-full object-center object-cover pointer-events-none absolute left-0 top-0 bottom-0 right-0 rounded-sm;
 		z-index: 0 !important;
 	}
 }

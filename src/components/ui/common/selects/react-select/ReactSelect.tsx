@@ -13,6 +13,7 @@ import type {
 	IReactSelect,
 	IReactSelectValue,
 } from './interface/react-select.interface'
+import { IS_CLIENT } from '@/constants/global.constants'
 
 const animatedComponents = makeAnimated()
 
@@ -85,7 +86,7 @@ const ReactSelect: FC<IReactSelect> = ({
 					isClearable={isClearable}
 					isLoading={isLoading}
 					placeholder={placeholder || ''}
-					menuPortalTarget={document.body}
+					menuPortalTarget={IS_CLIENT ? document.body : undefined}
 					menuPosition={isMenuFixed ? 'fixed' : undefined}
 					styles={{
 						menuPortal: (provided) => ({ ...provided, zIndex: 9999 }),
@@ -120,7 +121,7 @@ const ReactSelect: FC<IReactSelect> = ({
 					components={animatedComponents}
 					isLoading={isLoading}
 					placeholder={placeholder || ''}
-					menuPortalTarget={document.body}
+					menuPortalTarget={IS_CLIENT ? document.body : undefined}
 					menuPosition={isMenuFixed ? 'fixed' : undefined}
 					styles={{
 						menuPortal: (provided) => ({ ...provided, zIndex: 9999 }),

@@ -37,7 +37,6 @@ const inter = Inter({
 export const metadata: Metadata = {
 	title: {
 		absolute: SITE_NAME,
-		template: `%s | ${SITE_NAME}`,
 	},
 	metadataBase: new URL(SITE_URL),
 	openGraph: {
