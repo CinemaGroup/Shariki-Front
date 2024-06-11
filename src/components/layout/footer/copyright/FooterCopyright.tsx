@@ -11,7 +11,7 @@ const FooterCopyright: FC = () => {
 				height={19}
 				alt="Copyright"
 			/>
-			2023 Все права защищены
+			2024 Все права защищены
 		</div>
 	)
 }
