@@ -2,18 +2,23 @@ import Product from '@/components/blocks/products/item/Product'
 import ProductTable from '@/components/blocks/products/table/ProductTable'
 import Pagination from '@/components/ui/elements/filters/pagination/Pagination'
 import type { ICatalogProducts } from '@/shared/interfaces/catalog/catalog.interface'
+import type { ISessionUser } from '@/shared/interfaces/user/user.interface'
 import cn from 'clsx'
 import type { FC } from 'react'
 import styles from '../Catalog.module.scss'
+import { UserRole } from '@/__generated__/output'
 
-const CatalogProducts: FC<ICatalogProducts> = ({
+const CatalogProducts: FC<ICatalogProducts & ISessionUser> = ({
 	display,
 	products,
 	productsCount,
 	page,
 	perPage,
-	setPagination
+	setPagination,
+	user,
 }) => {
+	const isAdmin = user ? user.role === UserRole.Admin : false
+
 	return (
 		<div className={styles.products}>
 			<div
@@ -29,6 +34,7 @@ const CatalogProducts: FC<ICatalogProducts> = ({
 							key={product.id}
 							product={product}
 							place="public"
+							isAdmin={isAdmin}
 						/>
 					) : (
 						<ProductTable

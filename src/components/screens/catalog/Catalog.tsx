@@ -10,6 +10,7 @@ import { useToggleBodyOverflow } from '@/hooks/helpers/body/useToggleBodyOverflo
 import { useCatalog } from '@/hooks/public/catalog/useCatalog'
 import type { IMenuItem } from '@/shared/interfaces/menu/menu.interface'
 import type { IPageSearchParam } from '@/shared/interfaces/param/param.interface'
+import type { ISessionUser } from '@/shared/interfaces/user/user.interface'
 import type { TypeParamSlug } from '@/shared/types/param/param.type'
 import type { TypeProductDisplay } from '@/shared/types/product/product.type'
 import { getBreadcrumbCategories } from '@/utils/helpers/get-breadcrumb-categories'
@@ -23,9 +24,10 @@ import CatalogDisplay from './display/CatalogDisplay'
 import CatalogProducts from './products/CatalogProducts'
 import CatalogSort from './sort/CatalogSort'
 
-const Catalog: FC<TypeParamSlug & IPageSearchParam> = ({
+const Catalog: FC<TypeParamSlug & IPageSearchParam & ISessionUser> = ({
 	slug,
 	searchParams,
+	user,
 }) => {
 	const {
 		block,
@@ -113,6 +115,7 @@ const Catalog: FC<TypeParamSlug & IPageSearchParam> = ({
 										setPagination={setProductsQuery}
 										page={+productsQuery.page}
 										perPage={+productsQuery.perPage}
+										user={user}
 									/>
 								</div>
 							)

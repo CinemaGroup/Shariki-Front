@@ -14,6 +14,7 @@ import styles from './MainSlider.module.scss'
 import { MAIN_SLIDER_DATA } from './data/main-slider.data'
 import MainSliderItem from './item/MainSliderItem'
 import MainSliderCards from './item/cards/MainSliderCards'
+import HeaderContacts from '@/components/layout/header/contacts/HeaderContacts'
 
 const MainSlider: FC = () => {
 	const { setSwiper, setBeginning, setEnd, beginning, end, prev, next } =

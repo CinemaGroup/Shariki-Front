@@ -336,7 +336,7 @@
 		@apply hidden;
 	}
 	.slider {
-		padding-top: 35px;
+		padding-top: 60px;
 	}
 	.left {
 		height: 400px;
@@ -421,14 +421,20 @@
 	}
 }
 
-@media(max-width: 600px) {
+@media (max-width: 600px) {
 	.mobileHeading {
 		@apply block;
 	}
 }
 
-@media(max-width: 450px) {
+@media (max-width: 450px) {
 	.text {
 		@apply w-full translate-x-0 rounded-none text-md;
+	}
+}
+
+@media (max-width: 400px) {
+	.slider {
+		padding-top: 55px;
 	}
 }

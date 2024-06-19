@@ -49,6 +49,9 @@ export const metadata: Metadata = {
 			url: '/metadata/favicon.png',
 		},
 	},
+	other: {
+		'yandex-verification': '84f53c70e1958378',
+	},
 }
 
 export default async function RootLayout({

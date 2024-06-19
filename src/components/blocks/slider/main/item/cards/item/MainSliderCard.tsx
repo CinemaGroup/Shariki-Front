@@ -1,6 +1,5 @@
 import StaticImage from '@/components/ui/common/image/StaticImage'
 import Modal from '@/components/ui/templates/modal/Modal'
-import Link from 'next/link'
 import { useState, type FC } from 'react'
 import styles from '../MainSliderCards.module.scss'
 import type { IMainSliderCard } from '../interface/main-slider-cards.interface'
@@ -54,12 +53,10 @@ const MainSliderCard: FC<{ card: IMainSliderCard }> = ({ card }) => {
 								className={styles.text}
 								dangerouslySetInnerHTML={{ __html: card.popup.content }}
 							/>
-							<div className={styles.bottom}>
-								Посмотреть альбом «цветы. фигуры. фотозоны » можно по ссылке:{' '}
-								<Link href="https://disk.yandex.ru/a/FIqKuVEsBYql1g">
-									https://disk.yandex.ru/a/FIqKuVEsBYql1g
-								</Link>
-							</div>
+							<div
+								className={styles.bottom}
+								dangerouslySetInnerHTML={{ __html: card.popup.bottom }}
+							/>
 						</div>
 					</div>
 				</Modal>

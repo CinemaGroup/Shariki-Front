@@ -16,11 +16,43 @@
 	}
 }
 
-@media (max-width: 1350px) {
-	.list.main {
-		@apply hidden;
+@media (max-width: 800px) {
+	.link,
+	.call {
+		@apply text-md;
+
+		&::after {
+			@apply content-none;
+		}
 	}
+	.call {
+		> img {
+			@apply hidden;
+		}
+	}
+}
+
+@media (max-width: 700px) {
 	.list {
-		@apply flex-col items-start;
+		@apply absolute left-0 right-0 mx-auto w-full top-20 z-5 justify-center;
+	}
+
+	.link,
+	.call {
+		&::after {
+			content: '';
+		}
+	}
+
+	.call {
+		> img {
+			@apply block w-4 h-4;
+		}
+	}
+}
+
+@media (max-width: 400px) {
+	.list {
+		@apply top-16;
 	}
 }

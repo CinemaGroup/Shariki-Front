@@ -5,20 +5,23 @@ import Products from '@/components/blocks/products/Products'
 import Reviews from '@/components/blocks/reviews/Reviews'
 import Slider from '@/components/blocks/slider/Slider'
 import Tags from '@/components/blocks/tags/Tags'
+import { getServerSession } from '@/server/auth/get-server-session'
 import type { FC } from 'react'
 import HomePostsBlock from './posts-block/HomePostsBlock'
 import HomeReviewsBlock from './reviews-block/HomeReviewsBlock'
 
-const Home: FC = () => {
+const Home: FC = async () => {
+	const user = await getServerSession()
+
 	return (
 		<>
 			<Slider />
 			<Tags />
 			<Advantages />
-			<Products />
+			<Products user={user} />
 			<Reviews />
 			<HomeReviewsBlock />
-			<PopularProducts />
+			<PopularProducts user={user} />
 			<Posts />
 			<HomePostsBlock />
 		</>

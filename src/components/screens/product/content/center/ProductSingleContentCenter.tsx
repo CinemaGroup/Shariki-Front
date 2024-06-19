@@ -1,5 +1,8 @@
 import StaticImage from '@/components/ui/common/image/StaticImage'
+import ManageActions from '@/components/ui/elements/manage/actions/ManageActions'
+import { ADMIN_EDITS } from '@/constants/url.constants'
 import type { ICurrentProduct } from '@/shared/interfaces/product/product.interface'
+import type { IIsSessionUserAdmin } from '@/shared/interfaces/user/user.interface'
 import type { TypeColor } from '@/shared/types/color/color.type'
 import cn from 'clsx'
 import { MoveLeft, MoveRight } from 'lucide-react'
@@ -10,8 +13,11 @@ import styles from '../ProductSingleContent.module.scss'
 import type { IProductSingleContentCenter } from './interface/product-single-content-center.interface'
 
 const ProductSingleContentCenter: FC<
-	ICurrentProduct & TypeColor & IProductSingleContentCenter
-> = ({ product, color, setSwiper, setCurrentIndex }) => {
+	ICurrentProduct &
+		TypeColor &
+		IProductSingleContentCenter &
+		IIsSessionUserAdmin
+> = ({ product, color, setSwiper, setCurrentIndex, isAdmin }) => {
 	const images = color?.images || product.images
 
 	return (
@@ -33,6 +39,13 @@ const ProductSingleContentCenter: FC<
 			>
 				{images.map((image, index) => (
 					<SwiperSlide key={index} className={styles.image}>
+						{isAdmin && (
+							<ManageActions
+								className={styles.edit}
+								edit={ADMIN_EDITS.PRODUCT(product.id)}
+								place="admin"
+							/>
+						)}
 						<StaticImage
 							className={styles.mainImage}
 							src={image}

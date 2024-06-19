@@ -9,6 +9,13 @@
 	@apply w-full;
 	max-width: 380px;
 }
+.edit > a {
+	@apply bg-white flex items-center justify-normal p-2 rounded-full;
+
+	> svg {
+		@apply w-5 h-5;
+	}
+}
 .sale,
 .newest {
 	@apply font-semibold text-2lg text-white py-2.5 px-5 rounded-md text-center mb-5 w-fit;

@@ -17,7 +17,6 @@ const Burger: FC<{ close: () => void }> = ({ close }) => {
 				<HeaderMenu variant="burger" menu={HEADER_MENU_DATA} />
 				<div className={styles.fill}>
 					<HeaderSocial variant="burger" social={HEADER_SOCIAL_DATA} />
-					<HeaderContacts variant="burger" />
 				</div>
 			</div>
 		</div>

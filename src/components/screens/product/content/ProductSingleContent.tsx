@@ -5,8 +5,9 @@ import styles from './ProductSingleContent.module.scss'
 import ProductSingleContentCenter from './center/ProductSingleContentCenter'
 import ProductSingleContentLeft from './left/ProductSingleContentLeft'
 import ProductSingleContentRight from './right/ProductSingleContentRight'
+import type { IIsSessionUserAdmin } from '@/shared/interfaces/user/user.interface'
 
-const ProductSingleContent: FC<ICurrentProduct> = ({ product }) => {
+const ProductSingleContent: FC<ICurrentProduct & IIsSessionUserAdmin> = ({ product, isAdmin }) => {
 	const { setSwiper, currentIndex, setCurrentIndex, goTo } = useSwiper()
 	const [color, setColor] = useState(
 		product.colors.length > 0 ? product.colors[0] : null
@@ -28,6 +29,7 @@ const ProductSingleContent: FC<ICurrentProduct> = ({ product }) => {
 				color={color}
 				setSwiper={setSwiper}
 				setCurrentIndex={setCurrentIndex}
+				isAdmin={isAdmin}
 			/>
 			<ProductSingleContentRight
 				product={product}

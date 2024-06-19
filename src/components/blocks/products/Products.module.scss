@@ -32,8 +32,18 @@
 	box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
 	padding: 16px 30px 26px;
 }
+.edit {
+	@apply absolute left-2 top-2 z-2;
+}
+.edit > a {
+	@apply flex items-center justify-center p-2 rounded-full bg-white shadow-sm;
+
+	> svg {
+		@apply w-5 h-5;
+	}
+}
 .top {
-	@apply flex items-center justify-between gap-5 mb-5;
+	@apply flex items-center justify-between gap-5 mb-5 relative;
 }
 .types {
 	@apply flex flex-wrap gap-2;

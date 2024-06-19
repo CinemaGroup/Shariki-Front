@@ -1,5 +1,6 @@
 import Catalog from '@/components/screens/catalog/Catalog'
 import { useCategorySeo } from '@/hooks/public/seo/useCategorySeo'
+import { getServerSession } from '@/server/auth/get-server-session'
 import type {
 	IPageSearchParam,
 	IPageSlugParam,
@@ -16,9 +17,11 @@ export async function generateMetadata({ params }: IPageSlugParam) {
 	}
 }
 
-export default function CategoryPage({
+export default async function CategoryPage({
 	searchParams,
 	params,
 }: IPageSearchParam & IPageSlugParam) {
-	return <Catalog searchParams={searchParams} slug={params.slug} />
+	const user = await getServerSession()
+
+	return <Catalog searchParams={searchParams} slug={params.slug} user={user} />
 }

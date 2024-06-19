@@ -4,6 +4,7 @@ import ManageActions from '@/components/ui/elements/manage/actions/ManageActions
 import { ADMIN_EDITS } from '@/constants/url.constants'
 import type { IClassName } from '@/shared/interfaces/class-name/class-name.interface'
 import type { IManageActions } from '@/shared/interfaces/manage/manage.interface'
+import type { IIsSessionUserAdmin } from '@/shared/interfaces/user/user.interface'
 import cn from 'clsx'
 import { useState, type FC } from 'react'
 import styles from '../Products.module.scss'
@@ -15,7 +16,10 @@ import ProductInfo from './info/ProductInfo'
 import ProductSizes from './sizes/ProductSizes'
 import ProductTop from './top/ProductTop'
 
-const Product: FC<IProductProps & IManageActions & IClassName> = ({
+const Product: FC<
+	IProductProps & IManageActions & IClassName & IIsSessionUserAdmin
+> = ({
+	isAdmin,
 	product,
 	deleteHandler,
 	toggleHandler,
@@ -32,7 +36,7 @@ const Product: FC<IProductProps & IManageActions & IClassName> = ({
 
 	return (
 		<div className={cn(styles.item, className && className)}>
-			<ProductTop product={product} />
+			<ProductTop product={product} isAdmin={isAdmin} />
 			<ProductImages product={product} color={color} />
 			<ProductInfo
 				product={product}
