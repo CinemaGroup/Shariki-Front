@@ -11,6 +11,7 @@ export const useSeo = async (type: PageType) => {
 		PageSeoQuery,
 		PageSeoQueryVariables
 	>({
+		fetchPolicy: 'no-cache',
 		query: PageSeoDocument,
 		variables: {
 			type,

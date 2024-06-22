@@ -11,6 +11,7 @@ export const useBlock = async (type: BlockType) => {
 		PageBlockQuery,
 		PageBlockQueryVariables
 	>({
+		fetchPolicy: 'no-cache',
 		query: PageBlockDocument,
 		variables: {
 			type,

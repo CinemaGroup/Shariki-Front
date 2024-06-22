@@ -14,6 +14,7 @@ export const useProductSeo = async (slug?: string) => {
 			ProductSeoQuery,
 			ProductSeoQueryVariables
 		>({
+			fetchPolicy: 'no-cache',
 			query: ProductSeoDocument,
 			variables: {
 				slug,

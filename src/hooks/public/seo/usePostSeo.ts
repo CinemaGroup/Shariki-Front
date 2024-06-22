@@ -14,6 +14,7 @@ export const usePostSeo = async (slug?: string) => {
 			PostSeoQuery,
 			PostSeoQueryVariables
 		>({
+			fetchPolicy: 'no-cache',
 			query: PostSeoDocument,
 			variables: {
 				slug,

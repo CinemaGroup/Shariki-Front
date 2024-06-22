@@ -14,6 +14,7 @@ export const useCategorySeo = async (slug?: string) => {
 			CategorySeoQuery,
 			CategorySeoQueryVariables
 		>({
+			fetchPolicy: 'no-cache',
 			query: CategorySeoDocument,
 			variables: {
 				slug,
