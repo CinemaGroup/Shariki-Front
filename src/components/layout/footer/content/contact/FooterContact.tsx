@@ -10,7 +10,7 @@ const FooterContact: FC = () => {
 			<Link href="tel: 79774404060" className={styles.phone}>
 				+7 (977) 440-40-60
 			</Link>
-			<p className={styles.workdays}>Каждый день с 9:00 до 18:00</p>
+			<p className={styles.workdays}>Каждый день с 9:00 до 22:00</p>
 			<FooterCards />
 		</div>
 	)

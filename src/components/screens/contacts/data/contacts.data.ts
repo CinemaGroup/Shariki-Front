@@ -6,8 +6,7 @@ export const CONTACTS_DATA: IContacts = {
 		{
 			icon: MapPinned,
 			name: 'Адрес',
-			content:
-				'Адрес в г. Москва: 123100, г. Москва,1-й Красногвардейский пр-д 22, стр. 2',
+			content: 'Адрес в г. Мытищи, улица Семашко, 10, корп. 1',
 		},
 		{
 			icon: Smartphone,
@@ -17,7 +16,8 @@ export const CONTACTS_DATA: IContacts = {
 		{
 			icon: Mail,
 			name: 'Почта',
-			content: '<a href="mailto: skoroprazdnik@inbox.ru">skoroprazdnik@inbox.ru</a>',
+			content:
+				'<a href="mailto: skoroprazdnik@inbox.ru">skoroprazdnik@inbox.ru</a>',
 		},
 	],
 }
