@@ -11,14 +11,19 @@ import AdvantagesMenu from './menu/AdvantagesMenu'
 const Advantages: FC = async () => {
 	const { block, error } = await useBlock(BlockType.HomeFirst)
 
-	if(!block || error) return null
+	if (!block || error) return null
 
 	return (
 		<Section className={styles.section}>
 			<Heading className={styles.heading}>ПРЕИМУЩЕСТВА</Heading>
 			<Container variant="md">
 				<div className={styles.advantages}>
-					<Block block={block} error={error} className={styles.info} />
+					<Block
+						block={block}
+						error={error}
+						heading="h1"
+						className={styles.info}
+					/>
 					<AdvantagesMenu />
 				</div>
 			</Container>
