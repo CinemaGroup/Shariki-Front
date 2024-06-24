@@ -6,9 +6,10 @@ import type { FC } from 'react'
 import styles from '../Footer.module.scss'
 
 const FooterMap: FC = () => {
+	const geoMetry = [55.896246, 37.727625]
 	const defaultState = {
-		center: [55.896246, 37.727625],
-		zoom: 12,
+		center: geoMetry,
+		zoom: 17,
 		controls: [],
 	}
 	const error = console.error
@@ -23,7 +24,7 @@ const FooterMap: FC = () => {
 				style={{ width: '100%', height: 'auto' }}
 				defaultState={defaultState}
 			>
-				<Placemark geometry={[55.75, 37.57]} />
+				<Placemark geometry={geoMetry} />
 			</Map>
 		</YMaps>
 	)

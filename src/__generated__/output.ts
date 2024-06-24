@@ -893,6 +893,7 @@ export type Query = {
   rubricById: Rubric;
   rubrics: AllRubrics;
   shippingAndPayment: ShippingAndPayment;
+  sitemap: Sitemap;
   tagById: Tag;
   tags: AllTags;
   typeById: Type;
@@ -1166,6 +1167,13 @@ export type ShippingAndPaymentInput = {
   paymentName: Scalars['String']['input'];
   shippingContent: Scalars['String']['input'];
   shippingName: Scalars['String']['input'];
+};
+
+export type Sitemap = {
+  __typename?: 'Sitemap';
+  categoriesSlugs: Array<Scalars['String']['output']>;
+  postsSlugs: Array<Scalars['String']['output']>;
+  productsSlugs: Array<Scalars['String']['output']>;
 };
 
 export type Size = {
@@ -1905,6 +1913,11 @@ export type RubricsQueryVariables = Exact<{
 
 
 export type RubricsQuery = { rubrics: { count: number, rubrics: Array<{ id: number, name: string, slug: string }> } };
+
+export type SitemapQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type SitemapQuery = { sitemap: { categoriesSlugs: Array<string>, productsSlugs: Array<string>, postsSlugs: Array<string> } };
 
 export type GetFolderItemsQueryVariables = Exact<{
   folderPath: Scalars['String']['input'];
@@ -5679,6 +5692,47 @@ export type RubricsQueryHookResult = ReturnType<typeof useRubricsQuery>;
 export type RubricsLazyQueryHookResult = ReturnType<typeof useRubricsLazyQuery>;
 export type RubricsSuspenseQueryHookResult = ReturnType<typeof useRubricsSuspenseQuery>;
 export type RubricsQueryResult = Apollo.QueryResult<RubricsQuery, RubricsQueryVariables>;
+export const SitemapDocument = gql`
+    query Sitemap {
+  sitemap {
+    categoriesSlugs
+    productsSlugs
+    postsSlugs
+  }
+}
+    `;
+
+/**
+ * __useSitemapQuery__
+ *
+ * To run a query within a React component, call `useSitemapQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSitemapQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSitemapQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useSitemapQuery(baseOptions?: Apollo.QueryHookOptions<SitemapQuery, SitemapQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<SitemapQuery, SitemapQueryVariables>(SitemapDocument, options);
+      }
+export function useSitemapLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SitemapQuery, SitemapQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<SitemapQuery, SitemapQueryVariables>(SitemapDocument, options);
+        }
+export function useSitemapSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<SitemapQuery, SitemapQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<SitemapQuery, SitemapQueryVariables>(SitemapDocument, options);
+        }
+export type SitemapQueryHookResult = ReturnType<typeof useSitemapQuery>;
+export type SitemapLazyQueryHookResult = ReturnType<typeof useSitemapLazyQuery>;
+export type SitemapSuspenseQueryHookResult = ReturnType<typeof useSitemapSuspenseQuery>;
+export type SitemapQueryResult = Apollo.QueryResult<SitemapQuery, SitemapQueryVariables>;
 export const GetFolderItemsDocument = gql`
     query GetFolderItems($folderPath: String!, $query: PaginationInput!) {
   folderItems(folderPath: $folderPath, query: $query) {

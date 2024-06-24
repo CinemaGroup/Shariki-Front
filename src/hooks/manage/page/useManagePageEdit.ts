@@ -25,6 +25,7 @@ export const useManagePageEdit = (type: PageType) => {
 	const { push } = useRouter()
 
 	usePageQuery({
+		fetchPolicy: 'no-cache',
 		variables: {
 			type,
 		},
