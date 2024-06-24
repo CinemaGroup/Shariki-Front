@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import type { FC } from 'react'
 import type { IImage } from './interface/image.interface'
 
@@ -12,12 +11,9 @@ const StaticImage: FC<IImage> = ({
 	className,
 }) => {
 	return (
-		<Image
-			quality={quality}
-			draggable={false}
+		<img
 			width={width}
 			height={height}
-			sizes={sizes}
 			src={src}
 			alt={alt}
 			className={className && className}
