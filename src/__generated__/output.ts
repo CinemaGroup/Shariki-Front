@@ -808,6 +808,7 @@ export type Product = {
   orderItems: Array<OrderItem>;
   packageQuantity: Scalars['Int']['output'];
   price: Scalars['String']['output'];
+  seo: Seo;
   sizes: Array<Size>;
   sku: Scalars['String']['output'];
   slug: Scalars['String']['output'];
@@ -1862,7 +1863,7 @@ export type ProductByIdQueryVariables = Exact<{
 }>;
 
 
-export type ProductByIdQuery = { productById: { name: string, sku: string, price: string, oldPrice?: string | null, packageQuantity: number, images: Array<string>, description: string, iconPath?: string | null, tags: Array<{ id: number, name: string }>, types: Array<{ id: number, name: string }>, holidays: Array<{ id: number, name: string }>, characteristics: Array<{ id: number, name: string }>, categories: Array<{ id: number, name: string }>, collections: Array<{ id: number, name: string }>, colors: Array<{ color: string, images: Array<string> }>, sizes: Array<{ size: string, price: string, oldPrice?: string | null }> } };
+export type ProductByIdQuery = { productById: { name: string, sku: string, price: string, oldPrice?: string | null, packageQuantity: number, images: Array<string>, description: string, iconPath?: string | null, tags: Array<{ id: number, name: string }>, types: Array<{ id: number, name: string }>, holidays: Array<{ id: number, name: string }>, characteristics: Array<{ id: number, name: string }>, categories: Array<{ id: number, name: string }>, collections: Array<{ id: number, name: string }>, colors: Array<{ color: string, images: Array<string> }>, sizes: Array<{ size: string, price: string, oldPrice?: string | null }>, seo: { title: string, description: string } } };
 
 export type ProductBySlugQueryVariables = Exact<{
   slug: Scalars['String']['input'];
@@ -5252,6 +5253,10 @@ export const ProductByIdDocument = gql`
       size
       price
       oldPrice
+    }
+    seo {
+      title
+      description
     }
   }
 }

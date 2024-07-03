@@ -41,5 +41,9 @@ query ProductById($id: Int!) {
 			price
 			oldPrice
 		}
+		seo {
+			title
+			description
+		}
 	}
 }
